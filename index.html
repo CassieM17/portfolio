@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassandra May — Marketing &amp; Product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;0,700;1,500;1,600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  /* ============================================================
+     EDIT ME — search "EDIT:" for every spot to personalize:
+     - phone number (currently omitted from public site for privacy)
+     - Product project description, teaching bio, recordings, Play cards
+     - photos (portrait, project images) currently colored placeholders
+     - resume.pdf must sit in the same folder as this file
+     ============================================================ */
+
+  :root{
+    --paper: #ECE7DA;
+    --paper-line: #D9D1BC;
+    --ink: #1E2233;
+    --burgundy: #7C2D3B;
+    --gold: #A8842F;
+    --sage: #57654F;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    overflow-x:hidden;
+  }
+  a{ color:inherit; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--burgundy); outline-offset:3px; }
+  ::selection{ background:var(--burgundy); color:var(--paper); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.1em; text-transform:uppercase; opacity:0.62;
+    display:flex; align-items:center; gap:0.5rem;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background:var(--burgundy); }
+
+  /* ---------- staff line motif (signature element) ---------- */
+  .staff{ position:relative; height:34px; margin:0 auto; max-width:1100px; }
+  .staff .line{ position:absolute; left:0; right:0; height:1px; background:var(--paper-line); }
+  .staff .l1{ top:0; } .staff .l2{ top:8px; } .staff .l3{ top:16px; }
+  .staff .l4{ top:24px; } .staff .l5{ top:32px; }
+  .staff .note{
+    position:absolute; width:9px; height:9px; border-radius:50%;
+    background:var(--burgundy); left:2rem;
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .staff .note{ animation:notemove 3.2s ease-in-out infinite; }
+    @keyframes notemove{
+      0%, 100%{ left:2rem; top:16px; }
+      50%{ left:calc(100% - 3rem); top:8px; }
+    }
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.3rem 2rem;
+    background:rgba(236,231,218,0.9); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--paper-line);
+  }
+  .nav-mark{ font-family:'Source Serif 4'; font-weight:700; font-style:italic; font-size:1.15rem; }
+  .nav-links{ display:flex; gap:2rem; }
+  .nav-links a{
+    font-family:'IBM Plex Mono'; font-size:0.74rem; letter-spacing:0.06em;
+    text-decoration:none; opacity:0.72; transition:opacity 0.2s;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ opacity:1; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:92vh; display:flex; flex-direction:column; justify-content:center;
+    padding:8rem 2rem 3rem; max-width:1100px; margin:0 auto;
+  }
+  .hero h1{
+    font-family:'Source Serif 4'; font-weight:700;
+    font-size:clamp(2.8rem, 8vw, 5.6rem); line-height:1.02; letter-spacing:-0.01em;
+  }
+  .hero h1 em{ font-style:italic; color:var(--burgundy); }
+  .hero-sub{
+    margin-top:1.6rem; max-width:560px; font-size:1.15rem; line-height:1.65; opacity:0.85;
+  }
+  .hero-actions{ display:flex; gap:1rem; margin-top:2.2rem; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono'; font-size:0.8rem; letter-spacing:0.04em;
+    padding:0.85rem 1.4rem; text-decoration:none; border:1px solid var(--ink);
+    transition:background 0.2s, color 0.2s;
+  }
+  .btn.solid{ background:var(--ink); color:var(--paper); }
+  .btn.solid:hover{ background:var(--burgundy); border-color:var(--burgundy); }
+  .btn.ghost:hover{ background:var(--ink); color:var(--paper); }
+
+  .hero-meta{ display:flex; gap:2.4rem; margin-top:3rem; flex-wrap:wrap; }
+  .hero-meta div{ display:flex; flex-direction:column; gap:0.3rem; }
+  .hero-meta .v{ font-family:'Source Serif 4'; font-weight:600; font-size:1rem; }
+  .hero-meta .l{ font-family:'IBM Plex Mono'; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; opacity:0.55; }
+
+  /* ---------- section shell ---------- */
+  section{ position:relative; padding:5.5rem 2rem; max-width:1100px; margin:0 auto; }
+  .movement{
+    display:flex; align-items:baseline; gap:1rem; margin-bottom:0.6rem;
+  }
+  .movement .num{
+    font-family:'Source Serif 4'; font-style:italic; font-weight:600;
+    font-size:1.4rem; color:var(--burgundy);
+  }
+  .movement h2{ font-family:'Source Serif 4'; font-weight:700; font-size:2rem; }
+  .section-intro{ max-width:600px; opacity:0.8; margin:0.8rem 0 2.8rem; line-height:1.6; }
+
+  .subhead{
+    font-family:'IBM Plex Mono'; font-size:0.75rem; letter-spacing:0.1em;
+    text-transform:uppercase; opacity:0.6; margin:2.4rem 0 1.2rem;
+    padding-top:1.2rem; border-top:1px solid var(--paper-line);
+  }
+  .subhead:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
+
+  /* ---------- work case cards ---------- */
+  .cards{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.4rem; }
+  @media (max-width:720px){ .cards{ grid-template-columns:1fr; } }
+
+  .card{
+    background:rgba(255,255,255,0.35); border:1px solid var(--paper-line);
+    padding:1.6rem; display:flex; flex-direction:column; gap:0.9rem;
+  }
+  .card-top{ display:flex; justify-content:space-between; align-items:baseline; }
+  .card-org{ font-family:'Source Serif 4'; font-weight:600; font-size:1.15rem; }
+  .card-date{ font-family:'IBM Plex Mono'; font-size:0.7rem; opacity:0.55; }
+  .card-role{ font-family:'IBM Plex Mono'; font-size:0.76rem; opacity:0.65; text-transform:uppercase; letter-spacing:0.04em; }
+  .card p{ font-size:0.94rem; line-height:1.55; opacity:0.85; }
+  .card-metrics{ display:flex; gap:1.6rem; margin-top:0.4rem; flex-wrap:wrap; }
+  .metric{ display:flex; flex-direction:column; }
+  .metric .n{ font-family:'Source Serif 4'; font-weight:700; font-size:1.5rem; color:var(--burgundy); }
+  .metric .l{ font-family:'IBM Plex Mono'; font-size:0.65rem; opacity:0.6; text-transform:uppercase; }
+
+  .card.placeholder{ border-style:dashed; }
+  .card.placeholder p{ font-style:italic; opacity:0.65; }
+
+  /* ---------- spec sheet (skills/education) ---------- */
+  .spec-sheet{ margin-top:1rem; border-top:1px solid var(--paper-line); }
+  .spec-row{
+    display:flex; justify-content:space-between; gap:2rem; padding:0.85rem 0;
+    border-bottom:1px solid var(--paper-line);
+    font-family:'IBM Plex Mono'; font-size:0.82rem;
+  }
+  .spec-row span:first-child{ opacity:0.55; flex-shrink:0; }
+  .spec-row span:last-child{ text-align:right; }
+
+  /* ---------- violin section ---------- */
+  .violin-grid{ display:grid; grid-template-columns:0.85fr 1.3fr; gap:3.5rem; align-items:start; }
+  @media (max-width:760px){ .violin-grid{ grid-template-columns:1fr; } }
+  .portrait{
+    aspect-ratio:3/4;
+    background:
+      repeating-linear-gradient(0deg, transparent 0 22px, var(--paper-line) 22px 23px),
+      linear-gradient(160deg, var(--ink) 0%, var(--burgundy) 100%);
+  }
+  .awards{ list-style:none; margin-top:1.6rem; }
+  .awards li{
+    padding:0.7rem 0; border-bottom:1px solid var(--paper-line);
+    display:flex; justify-content:space-between; gap:1rem; font-size:0.92rem;
+  }
+  .awards li .yr{ font-family:'IBM Plex Mono'; font-size:0.75rem; opacity:0.55; white-space:nowrap; }
+
+  .recording{
+    margin-top:1.6rem; padding:1.2rem; border:1px dashed var(--paper-line);
+    font-family:'IBM Plex Mono'; font-size:0.8rem; opacity:0.65;
+  }
+
+  /* ---------- play section ---------- */
+  .play-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1.4rem; }
+  @media (max-width:820px){ .play-grid{ grid-template-columns:1fr; } }
+  .play-card{
+    background:var(--paper); border:1px solid var(--paper-line);
+    padding:1.4rem; transform:rotate(var(--tilt, 0deg));
+    transition:transform 0.3s ease;
+  }
+  .play-card:hover{ transform:rotate(0deg) translateY(-3px); }
+  .play-card:nth-child(1){ --tilt:-1.2deg; }
+  .play-card:nth-child(2){ --tilt:0.8deg; }
+  .play-card:nth-child(3){ --tilt:-0.6deg; }
+  .play-thumb{
+    aspect-ratio:4/3; margin-bottom:1rem;
+  }
+  .play-card h3{ font-family:'Source Serif 4'; font-weight:600; font-size:1.1rem; }
+  .play-card p{ font-size:0.85rem; opacity:0.7; margin-top:0.4rem; font-style:italic; }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--ink); color:var(--paper); padding:6rem 2rem 3rem; }
+  .footer-inner{ max-width:1100px; margin:0 auto; }
+  footer h2{
+    font-family:'Source Serif 4'; font-weight:700; font-style:italic;
+    font-size:clamp(2rem, 6vw, 4rem); max-width:700px; line-height:1.05;
+  }
+  .footer-links{ display:flex; gap:1.6rem; margin-top:2.2rem; flex-wrap:wrap; }
+  .footer-links a{
+    font-family:'IBM Plex Mono'; font-size:0.85rem; text-decoration:none;
+    border-bottom:1px solid var(--paper); padding-bottom:2px; opacity:0.9;
+  }
+  .footer-links a:hover{ opacity:1; }
+  .footer-bottom{
+    margin-top:4.5rem; padding-top:1.4rem; border-top:1px solid rgba(236,231,218,0.2);
+    font-family:'IBM Plex Mono'; font-size:0.7rem; opacity:0.5;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">C. May</div>
+  <div class="nav-links">
+    <a href="#work">I. Work</a>
+    <a href="#violin">II. Violin</a>
+    <a href="#play">III. Play</a>
+    <a href="#contact">IV. Contact</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <span class="eyebrow"><span class="dot"></span>Marketing &amp; Product — seeking roles in New York</span>
+  <h1>Cassandra <em>May</em></h1>
+  <p class="hero-sub">
+    Marketing and product strategist trained in systems design, with a parallel life as a
+    concert violinist. I build brand and growth work with the same rigor I bring to a
+    rehearsal score — precise, tested, and made to hold up live.
+  </p>
+  <div class="hero-actions">
+    <!-- EDIT: swap resume.pdf for your actual filename if different -->
+    <a class="btn solid" href="resume.pdf" download>Download Résumé</a>
+    <a class="btn ghost" href="mailto:cassandra.l.may@gmail.com">Get in Touch</a>
+  </div>
+  <div class="hero-meta">
+    <div><span class="v">Carnegie Mellon '26</span><span class="l">Systems Design × Violin Perf.</span></div>
+    <div><span class="v">3.7 GPA</span><span class="l">University &amp; CFA Honors</span></div>
+    <div><span class="v">$5,000</span><span class="l">CMU Study Abroad Photo Award</span></div>
+  </div>
+</section>
+
+<div class="staff"><div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div><div class="line l5"></div><div class="note"></div></div>
+
+<!-- ================= WORK ================= -->
+<section id="work">
+  <div class="movement"><span class="num">I.</span><h2>Work</h2></div>
+  <p class="section-intro">Marketing and product experience — from campaign execution to the
+  data behind the decisions.</p>
+
+  <div class="subhead">Marketing</div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-top"><span class="card-org">West Valley Music</span><span class="card-date">Jun 2024 – Mar 2025</span></div>
+      <span class="card-role">Social Media Manager &amp; Customer Service</span>
+      <p>Designed and produced social ads and posts for a Mountain View instrument retailer,
+      while running day-to-day rentals, sales, and customer service.</p>
+      <div class="card-metrics">
+        <div class="metric"><span class="n">50+</span><span class="l">Ads &amp; posts produced</span></div>
+        <div class="metric"><span class="n">75%</span><span class="l">Viewership growth, mo. 1</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="card-org">Tubics</span><span class="card-date">May – Jul 2025</span></div>
+      <span class="card-role">Digital Marketing &amp; SEO Intern · Vienna, Austria</span>
+      <p>Optimized website pages and blogs via Directus and analyzed performance with Sitebulb
+      and Excel to guide content strategy for client campaigns.</p>
+      <div class="card-metrics">
+        <div class="metric"><span class="n">30+</span><span class="l">Pages optimized</span></div>
+        <div class="metric"><span class="n">25%</span><span class="l">Traffic increase</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Product &amp; Systems</div>
+  <div class="cards">
+    <div class="card placeholder">
+      <div class="card-top"><span class="card-org">Musicians &amp; Gig Opportunities</span><span class="card-date">EDIT: dates</span></div>
+      <span class="card-role">Independent Product Project</span>
+      <p>EDIT: add a short description of the problem, your role, and the outcome — e.g. "A concept
+      for matching independent musicians with local gig openings, from research through wireframes."</p>
+    </div>
+    <div class="card">
+      <div class="card-top"><span class="card-org">Downs Research Lab</span><span class="card-date">Jul 2024 – May 2025</span></div>
+      <span class="card-role">Undergraduate Research Assistant</span>
+      <p>Collected and analyzed admissions-policy datasets using Python and MongoDB for Decision
+      Science research, presenting findings in weekly lab meetings.</p>
+    </div>
+  </div>
+
+  <div class="subhead">Toolkit</div>
+  <div class="spec-sheet">
+    <div class="spec-row"><span>Tools</span><span>Python, PostgreSQL, MongoDB, R, Excel, Figma, Webflow, Canva, Adobe Suite</span></div>
+    <div class="spec-row"><span>Operations</span><span>Event logistics, stakeholder comms, live event support</span></div>
+    <div class="spec-row"><span>Languages</span><span>English (fluent), Chinese (advanced)</span></div>
+  </div>
+</section>
+
+<div class="staff"><div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div><div class="line l5"></div><div class="note"></div></div>
+
+<!-- ================= VIOLIN ================= -->
+<section id="violin">
+  <div class="movement"><span class="num">II.</span><h2>Violin</h2></div>
+  <p class="section-intro">Principal violinist, Carnegie Mellon Philharmonic — the discipline that
+  shows up in everything else I build.</p>
+
+  <div class="violin-grid">
+    <div class="portrait"><!-- EDIT: replace with an <img> of a real performance photo --></div>
+    <div>
+      <p style="line-height:1.7; opacity:0.85;">
+        <!-- EDIT: a short paragraph on your training and teaching, e.g. studio, students,
+        method, what you look for in a piece to program -->
+        I've performed as principal violinist with CMU's pre-professional orchestra since 2024,
+        rehearsing through fast two-week concert cycles for eight or more performances a year.
+      </p>
+
+      <ul class="awards">
+        <li><span>Harry G. Archer Award — top undergraduate performer</span><span class="yr">2025</span></li>
+        <li><span>Pittsburgh Female College Association Award</span><span class="yr">2024, 2026</span></li>
+        <li><span>Pittsburgh Concert Society Award</span><span class="yr">2026</span></li>
+      </ul>
+
+      <div class="recording">
+        EDIT: embed a recording here — e.g. an &lt;audio&gt; tag pointing to an mp3, or an
+        embedded SoundCloud/YouTube player of a performance.
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="staff"><div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div><div class="line l5"></div><div class="note"></div></div>
+
+<!-- ================= PLAY ================= -->
+<section id="play">
+  <div class="movement"><span class="num">III.</span><h2>Play</h2></div>
+  <p class="section-intro">Smaller, weirder projects — because not everything needs a business case.</p>
+
+  <div class="play-grid">
+    <div class="play-card">
+      <div class="play-thumb" style="background:linear-gradient(135deg,#C9A227,#7C2D3B);"></div>
+      <h3>Cardboard Violin</h3>
+      <p>EDIT: one line on what this was and why you made it.</p>
+    </div>
+    <div class="play-card">
+      <div class="play-thumb" style="background:linear-gradient(135deg,#57654F,#1E2233);"></div>
+      <h3>Escape Room Book</h3>
+      <p>EDIT: one line — a puzzle book you wrote/designed?</p>
+    </div>
+    <div class="play-card">
+      <div class="play-thumb" style="background:linear-gradient(135deg,#7C2D3B,#A8842F);"></div>
+      <h3>Modeling</h3>
+      <p>EDIT: link a lookbook, Lunar Gala runway photos, or similar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<footer id="contact">
+  <div class="footer-inner">
+    <span class="eyebrow" style="color:var(--paper); opacity:0.6;">IV. Contact</span>
+    <h2 style="margin-top:1rem;">Let's talk about the<br>next campaign.</h2>
+    <div class="footer-links">
+      <a href="mailto:cassandra.l.may@gmail.com">cassandra.l.may@gmail.com</a>
+      <a href="https://linkedin.com/in/cassandra-l-may" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="resume.pdf" download>Résumé (PDF)</a>
+    </div>
+    <div class="footer-bottom">© 2026 Cassandra May · cassandramay.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
