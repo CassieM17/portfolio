@@ -36,8 +36,8 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--blue-deep); outli
 .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--blue-deep); }
 
 /* ---------- sunflower signature mark ---------- */
-.sunflower-mark{ display:inline-block; width:34px; height:34px; flex-shrink:0; }
-.sunflower-mark.lg{ width:88px; height:88px; }
+.sunflower-mark{ display:inline-block; width:20px; height:20px; flex-shrink:0; }
+.sunflower-mark.lg{ width:60px; height:60px; }
 .sunflower-mark svg{ width:100%; height:100%; display:block; }
 .sunflower-petals{ transform-origin:60px 60px; }
 @media (prefers-reduced-motion: no-preference){
@@ -52,27 +52,27 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--blue-deep); outli
 nav{
   position:fixed; top:0; left:0; right:0; z-index:50;
   display:flex; justify-content:space-between; align-items:center;
-  padding:1.1rem 2.4rem;
+  padding:0.55rem 2rem;
   background:rgba(255,255,255,0.9); backdrop-filter:blur(8px);
   border-bottom:1px solid var(--line);
 }
 .nav-mark{
-  display:flex; align-items:center; gap:0.6rem;
-  font-family:'Fredoka', sans-serif; font-weight:600; font-size:1.15rem;
+  display:flex; align-items:center; gap:0.5rem;
+  font-family:'Fredoka', sans-serif; font-weight:600; font-size:0.95rem;
   color:var(--ink); text-decoration:none;
 }
-.nav-links{ display:flex; gap:0.6rem; }
+.nav-links{ display:flex; gap:0.4rem; }
 .nav-links a{
-  font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.04em;
+  font-family:'IBM Plex Mono', monospace; font-size:0.66rem; letter-spacing:0.04em;
   text-decoration:none; color:var(--ink); opacity:0.75;
-  padding:0.5rem 0.95rem; border-radius:999px; border:1px solid transparent;
+  padding:0.4rem 0.8rem; border-radius:999px; border:1px solid transparent;
   transition:all 0.2s ease;
 }
 .nav-links a:hover, .nav-links a:focus-visible{ opacity:1; background:rgba(110,193,228,0.16); }
 .nav-links a.current{ opacity:1; background:var(--brown); color:var(--white); }
 
 /* ---------- page header ---------- */
-.page-hero{ padding:8.5rem 2.4rem 2.6rem; max-width:1080px; margin:0 auto; position:relative; }
+.page-hero{ padding:6rem 2.4rem 2.6rem; max-width:1080px; margin:0 auto; position:relative; }
 .movement{ display:flex; align-items:center; gap:0.9rem; margin-bottom:0.5rem; }
 .movement h1, .movement h2{
   font-family:'Fredoka', sans-serif; font-weight:600;
@@ -83,7 +83,7 @@ nav{
 /* ---------- home hero ---------- */
 .hero{
   min-height:86vh; display:flex; flex-direction:column; justify-content:center;
-  padding:8.5rem 2.4rem 3rem; max-width:1080px; margin:0 auto; position:relative;
+  padding:6rem 2.4rem 3rem; max-width:1080px; margin:0 auto; position:relative;
 }
 .hero-top{ display:flex; align-items:center; gap:1.4rem; }
 .hero h1{
@@ -167,8 +167,47 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   color:var(--brown); opacity:0.7; background:rgba(139,90,43,0.05);
 }
 
-/* ---------- spec sheet ---------- */
-.spec-sheet{ margin-top:1rem; }
+/* ---------- project cards (Work page — click through, hover preview) ---------- */
+.project-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.6rem; margin-top:1rem; }
+@media (max-width:760px){ .project-grid{ grid-template-columns:1fr; } }
+
+.project-card{
+  position:relative; display:flex; flex-direction:column; justify-content:flex-end;
+  min-height:340px; padding:2.2rem; border-radius:20px; overflow:hidden;
+  text-decoration:none; color:var(--ink); border:1px solid var(--line);
+  background:var(--paper); box-shadow:0 6px 18px rgba(46,134,171,0.08);
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+.project-card:hover{ transform:translateY(-6px); box-shadow:0 14px 34px rgba(46,134,171,0.2); }
+.project-card.opus{ background:linear-gradient(155deg, var(--paper) 0%, rgba(110,193,228,0.18) 100%); }
+.project-card.westvalley{ background:linear-gradient(155deg, var(--paper) 0%, rgba(139,90,43,0.14) 100%); }
+
+.project-card .p-tag{ font-family:'IBM Plex Mono'; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--brown); }
+.project-card h3{ font-family:'Fredoka'; font-weight:600; font-size:1.7rem; margin-top:0.5rem; }
+.project-card .p-hook{ font-size:0.95rem; opacity:0.75; margin-top:0.5rem; max-width:340px; }
+
+.project-preview{
+  position:absolute; inset:0; padding:2.2rem; background:var(--brown-deep); color:var(--white);
+  display:flex; flex-direction:column; justify-content:center;
+  opacity:0; transform:translateY(14px); transition:opacity 0.3s ease, transform 0.3s ease;
+  pointer-events:none;
+}
+.project-card:hover .project-preview{ opacity:1; transform:translateY(0); }
+.project-preview .p-tag{ color:var(--blue); opacity:0.9; }
+.project-preview h3{ color:var(--white); }
+.project-preview p{ font-size:0.92rem; line-height:1.6; opacity:0.92; margin-top:0.7rem; max-width:400px; }
+.project-preview .p-cta{
+  margin-top:1.2rem; font-family:'IBM Plex Mono'; font-size:0.72rem; text-transform:uppercase;
+  letter-spacing:0.05em; display:flex; align-items:center; gap:0.4rem; color:var(--blue);
+}
+
+/* ---------- back link (project detail pages) ---------- */
+.back-link{
+  display:inline-flex; align-items:center; gap:0.4rem; text-decoration:none;
+  font-family:'IBM Plex Mono'; font-size:0.75rem; color:var(--brown); opacity:0.85;
+  margin-bottom:1.6rem;
+}
+.back-link:hover{ opacity:1; color:var(--blue-deep); }
 .spec-row{
   display:flex; justify-content:space-between; gap:2rem; padding:0.9rem 0;
   border-bottom:1px solid var(--line);
@@ -241,7 +280,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 /* ---------- contact page ---------- */
 .contact-hero{
   min-height:74vh; display:flex; flex-direction:column; justify-content:center;
-  padding:8.5rem 2.4rem 4rem; max-width:1080px; margin:0 auto; position:relative;
+  padding:6rem 2.4rem 4rem; max-width:1080px; margin:0 auto; position:relative;
 }
 .contact-hero h1{
   font-family:'Fredoka', sans-serif; font-weight:600;
