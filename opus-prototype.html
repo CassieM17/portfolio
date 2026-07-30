@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opus — App Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B1F2A;
+    --ink-2:#252A38;
+    --ink-3:#2F3547;
+    --parchment:#F7F3EA;
+    --parchment-2:#EFE8D8;
+    --brass:#C08A3E;
+    --brass-light:#E0B975;
+    --crimson:#8B3A42;
+    --sage:#4C7A6F;
+    --text-dark:#22262F;
+    --text-light:#F7F3EA;
+    --text-muted:#8A8578;
+    --line:#E2DAC5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: radial-gradient(ellipse at top, #2b3040, #14161d 70%);
+    font-family:'Inter',sans-serif;
+    display:flex; align-items:center; justify-content:center;
+    min-height:100vh; padding:40px 16px;
+  }
+  .studio-label{
+    position:fixed; top:20px; left:50%; transform:translateX(-50%);
+    color:var(--text-muted); font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  }
+
+  /* ===== iPhone 17 frame — 402 x 874pt logical viewport ===== */
+  .phone{
+    width:402px; height:874px;
+    background:var(--parchment);
+    border-radius:62px;
+    border:9px solid #0d0e12;
+    box-shadow:0 40px 80px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
+    overflow:hidden; position:relative;
+    display:flex; flex-direction:column;
+  }
+  .dynamic-island{
+    position:absolute; top:14px; left:50%; transform:translateX(-50%);
+    width:126px; height:37px; background:#000; border-radius:20px; z-index:50;
+  }
+
+  /* ===== Unified status + header block =====
+     Statusbar and topbar now share one continuous dark surface so the
+     top of the app reads as a single, clearly visible band instead of
+     a thin pale sliver sitting above a dark bar. */
+  .header-block{
+    background:var(--ink); color:var(--text-light); position:relative; overflow:hidden; flex-shrink:0;
+  }
+  .header-block::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:14px;
+    background-image: repeating-linear-gradient(to bottom, rgba(224,185,117,.4) 0, rgba(224,185,117,.4) 1px, transparent 1px, transparent 3.5px);
+  }
+  .statusbar{
+    height:59px; flex-shrink:0; display:flex; align-items:flex-end; justify-content:space-between;
+    padding:0 30px 8px; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:500;
+    color:var(--text-light); letter-spacing:.02em;
+  }
+  .statusbar .signal{ display:flex; align-items:center; gap:5px; }
+  .statusbar svg{ display:block; }
+
+  .topbar{ padding:6px 22px 18px; position:relative; }
+  .brand{
+    font-family:'Fraunces',serif; font-weight:600; font-size:23px; letter-spacing:.01em;
+    display:flex; align-items:center; gap:8px; color:var(--text-light);
+  }
+  .brand .mark{ color:var(--brass-light); font-style:italic; }
+  .topbar .sub{ font-size:12.5px; color:#C7CCDA; margin-top:3px; font-family:'JetBrains Mono',monospace; }
+
+  .screen{
+    flex:1; overflow-y:auto; display:none; flex-direction:column;
+    background:var(--parchment);
+  }
+  .screen.active{display:flex;}
+  .screen::-webkit-scrollbar{display:none;}
+
+  .content{ padding:16px 18px 96px; }
+
+  /* ===== Chips / filters ===== */
+  .chiprow{ display:flex; gap:8px; overflow-x:auto; padding:14px 18px 4px; }
+  .chip{
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; padding:7px 13px;
+    border-radius:20px; border:1px solid var(--line); background:#fff; color:var(--text-dark);
+    white-space:nowrap; flex-shrink:0;
+  }
+  .chip.on{ background:var(--ink); color:var(--brass-light); border-color:var(--ink); }
+
+  /* ===== Gig card ===== */
+  .card{
+    background:#fff; border:1px solid var(--line); border-radius:16px;
+    padding:16px; margin-bottom:14px; position:relative;
+    box-shadow:0 2px 10px rgba(27,31,42,.04);
+  }
+  .card .eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--sage); font-weight:600;
+  }
+  .card h3{
+    font-family:'Fraunces',serif; font-size:19px; font-weight:600; color:var(--ink); margin:4px 0 2px;
+  }
+  .card .meta{ font-size:12.5px; color:var(--text-muted); margin-bottom:10px; }
+  .card .row{ display:flex; align-items:center; justify-content:space-between; margin-top:12px; }
+  .rate{ font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--ink); font-weight:500; }
+  .tagrow{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+  .tag{
+    font-size:10.5px; padding:3px 9px; border-radius:20px; background:var(--parchment-2);
+    color:var(--text-dark); font-family:'JetBrains Mono',monospace;
+  }
+  .mutuals{ display:flex; align-items:center; }
+  .avatar{
+    width:26px; height:26px; border-radius:50%; border:2px solid #fff; margin-left:-8px;
+    display:flex; align-items:center; justify-content:center; font-size:10px; color:#fff; font-weight:600;
+    font-family:'Inter',sans-serif;
+  }
+  .avatar:first-child{ margin-left:0; }
+  .mutual-label{ font-size:11px; color:var(--text-muted); margin-left:8px; }
+
+  .btn{
+    font-family:'Inter',sans-serif; font-weight:600; font-size:13.5px;
+    padding:10px 18px; border-radius:10px; border:none; cursor:pointer;
+    background:var(--ink); color:var(--brass-light);
+  }
+  .btn.ghost{ background:transparent; color:var(--ink); border:1.5px solid var(--ink); }
+  .btn.block{ width:100%; text-align:center; }
+  .btn.crimson{ background:var(--crimson); color:#fff; }
+  .btn-row{ display:flex; gap:10px; }
+  .btn-row .btn{ flex:1; }
+
+  /* ===== Section headers ===== */
+  .section-title{
+    font-family:'Fraunces',serif; font-size:15px; font-weight:600; color:var(--ink);
+    margin:20px 0 10px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .section-title span.see{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--brass); font-weight:500; }
+
+  /* ===== Profile screen ===== */
+  .profile-hero{
+    background:var(--ink); padding:0 20px 24px; color:var(--text-light); position:relative;
+  }
+  .profile-photo{
+    width:88px; height:88px; border-radius:20px; margin-top:14px;
+    background: linear-gradient(135deg, var(--brass), var(--crimson));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:32px; font-weight:600; color:#fff;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+  }
+  .profile-name{ font-family:'Fraunces',serif; font-size:25px; font-weight:600; margin-top:12px; }
+  .profile-tagline{ font-size:12.5px; color:#C7CCDA; margin-top:3px; font-family:'JetBrains Mono',monospace; }
+  .badge-row{ display:flex; gap:8px; margin-top:12px; flex-wrap:wrap; }
+  .badge{
+    font-size:10.5px; padding:4px 10px; border-radius:20px; font-family:'JetBrains Mono',monospace;
+    background:rgba(224,185,117,.14); color:var(--brass-light); border:1px solid rgba(224,185,117,.3);
+  }
+  .stat-strip{
+    display:flex; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin:16px 0;
+  }
+  .stat{ flex:1; text-align:center; padding:12px 4px; border-right:1px solid var(--line); }
+  .stat:last-child{ border-right:none; }
+  .stat b{ display:block; font-family:'Fraunces',serif; font-size:18px; color:var(--ink); }
+  .stat span{ font-size:9.5px; color:var(--text-muted); font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:.06em; }
+
+  .bio{ font-size:13.5px; line-height:1.6; color:var(--text-dark); }
+
+  .media-strip{ display:flex; gap:10px; overflow-x:auto; margin-top:10px; }
+  .media-thumb{
+    width:130px; height:80px; border-radius:10px; flex-shrink:0; padding:10px;
+    background:linear-gradient(135deg,#2F3547,#1B1F2A);
+    display:flex; align-items:flex-end; color:var(--brass-light); font-size:11px;
+    font-family:'JetBrains Mono',monospace; line-height:1.3;
+  }
+
+  .review{
+    border-left:3px solid var(--brass); padding-left:12px; margin-bottom:14px;
+  }
+  .review p{ font-size:13px; color:var(--text-dark); line-height:1.55; font-style:italic; }
+  .review .who{ font-size:11px; color:var(--text-muted); margin-top:5px; font-family:'JetBrains Mono',monospace; }
+
+  /* Network graph */
+  .net-wrap{ background:#fff; border:1px solid var(--line); border-radius:16px; padding:18px; margin-bottom:14px;}
+  .net-node{ display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px dashed var(--line); }
+  .net-node:last-child{ border-bottom:none; }
+  .net-node .avatar{ margin-left:0; width:34px; height:34px; font-size:12px; }
+  .net-node .info b{ display:block; font-size:13px; color:var(--ink); font-family:'Inter',sans-serif; }
+  .net-node .info span{ font-size:11px; color:var(--text-muted); }
+
+  /* Messages */
+  .thread-item{ display:flex; gap:12px; padding:14px 0; border-bottom:1px solid var(--line); align-items:flex-start; }
+  .thread-item .info{ flex:1; }
+  .thread-item .info .top{ display:flex; justify-content:space-between; }
+  .thread-item .info b{ font-size:13.5px; color:var(--ink); font-family:'Inter',sans-serif; }
+  .thread-item .info .time{ font-size:10.5px; color:var(--text-muted); font-family:'JetBrains Mono',monospace; }
+  .thread-item .info p{ font-size:12.5px; color:var(--text-muted); margin-top:2px; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--crimson); flex-shrink:0; margin-top:6px; }
+
+  .bubble{ max-width:75%; padding:10px 14px; border-radius:16px; font-size:13px; margin-bottom:8px; line-height:1.4; }
+  .bubble.them{ background:#fff; border:1px solid var(--line); align-self:flex-start; border-bottom-left-radius:4px; }
+  .bubble.me{ background:var(--ink); color:var(--text-light); align-self:flex-end; border-bottom-right-radius:4px; }
+  .bubble.system{
+    align-self:center; background:var(--parchment-2); color:var(--text-muted); font-family:'JetBrains Mono',monospace; font-size:10.5px;
+    padding:6px 12px; border-radius:20px;
+  }
+
+  /* Bottom nav */
+  .navbar{
+    position:absolute; bottom:0; left:0; right:0; height:82px;
+    background:rgba(247,243,234,.92); backdrop-filter: blur(8px);
+    border-top:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-around; padding-bottom:20px;
+  }
+  .navitem{
+    display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer;
+    color:var(--text-muted); font-size:10px; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:.04em;
+  }
+  .navitem.active{ color:var(--ink); }
+  .navitem .icon{ width:22px; height:22px; }
+  .navitem.active .icon svg{ stroke:var(--brass); }
+  .navitem .icon svg{ stroke:var(--text-muted); }
+
+  /* Gig detail specific */
+  .detail-block{ margin-bottom:16px; }
+  .detail-label{ font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-muted); margin-bottom:4px; }
+  .detail-value{ font-size:13.5px; color:var(--text-dark); }
+  .detail-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+  .back-row{ display:flex; align-items:center; gap:10px; color:var(--brass-light); font-size:12px; font-family:'JetBrains Mono',monospace; cursor:pointer; }
+
+  .ensemble-members{ display:flex; margin-top:10px; }
+  .ensemble-members .avatar{ width:36px; height:36px; font-size:12px; margin-left:-10px; border-width:3px; }
+</style>
+</head>
+<body>
+<div class="studio-label">OPUS — iPHONE 17 MOCKUP</div>
+
+<div class="phone">
+  <div class="dynamic-island"></div>
+
+  <!-- ===================== SCREEN 1: DISCOVER ===================== -->
+  <div class="screen active" id="screen-discover">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="brand">Op<span class="mark">u</span>s</div>
+        <div class="sub">discover &middot; gigs matched to you</div>
+      </div>
+    </div>
+    <div class="chiprow">
+      <div class="chip">All instruments</div>
+      <div class="chip on">Violin</div>
+      <div class="chip">Chamber</div>
+      <div class="chip">This month</div>
+      <div class="chip">$300+</div>
+    </div>
+    <div class="content">
+      <div class="section-title">Because Mezza Quartet plays weddings <span class="see">12 nearby</span></div>
+
+      <div class="card" onclick="showScreen('screen-gigdetail')">
+        <div class="eyebrow">Wedding · Ceremony + Cocktail Hour</div>
+        <h3>String Quartet, Sat Aug 15</h3>
+        <div class="meta">Filoli Gardens, Woodside CA &middot; 5:00–7:30 PM</div>
+        <div class="tagrow">
+          <div class="tag">Violin ×2</div><div class="tag">Viola</div><div class="tag">Cello</div>
+          <div class="tag">Black tie</div>
+        </div>
+        <div class="row">
+          <div class="mutuals">
+            <div class="avatar" style="background:var(--sage)">NG</div>
+            <div class="avatar" style="background:var(--brass)">JL</div>
+            <div class="mutual-label">2 mutual connections</div>
+          </div>
+          <span class="rate">$450/musician</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">House of Worship · Recurring</div>
+        <h3>Sunday Service Cellist</h3>
+        <div class="meta">First Congregational, Palo Alto CA &middot; Weekly</div>
+        <div class="tagrow"><div class="tag">Cello</div><div class="tag">Sight-read</div><div class="tag">Contemporary</div></div>
+        <div class="row">
+          <div class="mutuals">
+            <div class="avatar" style="background:var(--crimson)">MO</div>
+            <div class="mutual-label">Recommended by Prof. Osei</div>
+          </div>
+          <span class="rate">$120/service</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">Fundraiser · One evening</div>
+        <h3>Violin &amp; Piano Recital Set</h3>
+        <div class="meta">The Athenaeum, Pittsburgh PA &middot; 7:00–8:30 PM</div>
+        <div class="tagrow"><div class="tag">Violin</div><div class="tag">Piano</div><div class="tag">Romantic era</div></div>
+        <div class="row">
+          <div class="mutuals">
+            <div class="avatar" style="background:var(--ink-3)">SC</div>
+            <div class="mutual-label">Spencer Cha is applying</div>
+          </div>
+          <span class="rate">$350 flat</span>
+        </div>
+      </div>
+
+      <div class="section-title">Trusted by your network</div>
+      <div class="card">
+        <div class="eyebrow">Chamber Series · Application deadline Aug 3</div>
+        <h3>Contemporary Ensemble Reading</h3>
+        <div class="meta">Community Music Center, SF &middot; Sun Aug 24</div>
+        <div class="row">
+          <div class="mutuals">
+            <div class="avatar" style="background:var(--sage)">NG</div>
+            <div class="avatar" style="background:var(--brass)">JL</div>
+            <div class="avatar" style="background:var(--crimson)">ES</div>
+            <div class="mutual-label">3 connections applied</div>
+          </div>
+          <span class="rate">$275</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: GIG DETAIL ===================== -->
+  <div class="screen" id="screen-gigdetail">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="showScreen('screen-discover')">&larr; back to discover</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">String Quartet — Ceremony</div>
+        <div class="sub">Filoli Gardens · Sat, Aug 15 · 5:00–7:30 PM</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="net-wrap">
+        <div class="detail-label" style="margin-bottom:10px;">Posted by</div>
+        <div class="net-node" style="border:none; padding:0;">
+          <div class="avatar" style="background:var(--sage); width:40px; height:40px; font-size:13px;">EP</div>
+          <div class="info"><b>Elena Petrova, Wedding Planner</b><span>14 gigs booked on Opus &middot; responds in ~2 hrs</span></div>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+        <div class="detail-block"><div class="detail-label">Instruments needed</div><div class="detail-value">2 Violin, Viola, Cello</div></div>
+        <div class="detail-block"><div class="detail-label">Dress code</div><div class="detail-value">Formal / black tie</div></div>
+        <div class="detail-block"><div class="detail-label">Repertoire</div><div class="detail-value">Pachelbel, Bridal chorus, jazz standards for cocktail hour</div></div>
+        <div class="detail-block"><div class="detail-label">Performance length</div><div class="detail-value">2.5 hrs, incl. one break</div></div>
+        <div class="detail-block"><div class="detail-label">Parking</div><div class="detail-value">On-site lot, load-in at Gate B</div></div>
+        <div class="detail-block"><div class="detail-label">Payment</div><div class="detail-value">Venmo, day-of</div></div>
+      </div>
+
+      <div class="section-title">Why this feels safe <span class="see">trust layer</span></div>
+      <div class="net-wrap">
+        <div class="net-node">
+          <div class="avatar" style="background:var(--sage)">NG</div>
+          <div class="info"><b>Nathan Gaynor</b><span>Shares your quartet, "Mezza Quartet"</span></div>
+        </div>
+        <div class="net-node">
+          <div class="avatar" style="background:var(--brass)">JL</div>
+          <div class="info"><b>Josh Lee</b><span>Played 2 weddings with Elena</span></div>
+        </div>
+      </div>
+
+      <div class="section-title">Rate &amp; deadline</div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="row" style="margin-top:0;">
+          <div><div class="detail-label">Budget</div><div class="detail-value" style="font-family:'JetBrains Mono',monospace; font-size:16px;">$450/musician</div></div>
+          <div><div class="detail-label">Apply by</div><div class="detail-value">Aug 3</div></div>
+        </div>
+      </div>
+
+      <button class="btn block crimson" onclick="showScreen('screen-messages-thread')">Apply as Mezza Quartet</button>
+      <div style="height:10px"></div>
+      <button class="btn block ghost">Save for later</button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: NETWORK ===================== -->
+  <div class="screen" id="screen-network">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="brand">Op<span class="mark">u</span>s</div>
+        <div class="sub">your network &middot; the trust layer</div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="section-title">Ensembles you're in</div>
+      <div class="card">
+        <div class="eyebrow">String Quartet</div>
+        <h3>Mezza Quartet</h3>
+        <div class="meta">4 members &middot; Pittsburgh PA &middot; 64 gigs completed</div>
+        <div class="ensemble-members">
+          <div class="avatar" style="background:var(--brass)">You</div>
+          <div class="avatar" style="background:var(--sage)">JL</div>
+          <div class="avatar" style="background:var(--crimson)">NG</div>
+          <div class="avatar" style="background:var(--ink-3)">ES</div>
+        </div>
+        <div class="tagrow"><div class="tag">Classical</div><div class="tag">Weddings</div><div class="tag">Chamber recitals</div></div>
+      </div>
+
+      <div class="card">
+        <div class="eyebrow">Violin / Piano Duo</div>
+        <h3>Grieg Duo</h3>
+        <div class="meta">2 members &middot; Pittsburgh PA &middot; 21 gigs completed</div>
+        <div class="ensemble-members">
+          <div class="avatar" style="background:var(--brass)">You</div>
+          <div class="avatar" style="background:var(--ink-3)">SC</div>
+        </div>
+        <div class="tagrow"><div class="tag">Romantic era</div><div class="tag">Recitals</div><div class="tag">Fundraisers</div></div>
+      </div>
+
+      <div class="section-title">Mutual connections <span class="see">24 total</span></div>
+      <div class="net-wrap">
+        <div class="net-node">
+          <div class="avatar" style="background:var(--sage)">JL</div>
+          <div class="info"><b>Josh Lee</b><span>Violin &middot; Mezza Quartet co-member</span></div>
+        </div>
+        <div class="net-node">
+          <div class="avatar" style="background:var(--crimson)">NG</div>
+          <div class="info"><b>Nathan Gaynor</b><span>Viola &middot; Mezza Quartet co-member</span></div>
+        </div>
+        <div class="net-node">
+          <div class="avatar" style="background:var(--ink-3)">ES</div>
+          <div class="info"><b>Elly Schade</b><span>Cello &middot; Mezza Quartet co-member</span></div>
+        </div>
+        <div class="net-node">
+          <div class="avatar" style="background:var(--brass)">SC</div>
+          <div class="info"><b>Spencer Cha</b><span>Piano &middot; Grieg Duo partner</span></div>
+        </div>
+      </div>
+
+      <div class="section-title">Recommendations received</div>
+      <div class="review">
+        <p>"Punctual, beautifully prepared, and easy to coordinate with day-of. I'd book again without hesitation."</p>
+        <div class="who">— Elena Petrova, Wedding Planner &middot; Jun 2026</div>
+      </div>
+      <div class="review">
+        <p>"One of the most disciplined chamber players I've taught. Handles a last-minute repertoire change with total ease."</p>
+        <div class="who">— Prof. Miriam Osei, Carnegie Mellon School of Music &middot; Mar 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MESSAGES LIST ===================== -->
+  <div class="screen" id="screen-messages">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="brand">Op<span class="mark">u</span>s</div>
+        <div class="sub">messages</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:6px;">
+      <div class="thread-item" onclick="showScreen('screen-messages-thread')">
+        <div class="avatar" style="background:var(--sage); margin-left:0; width:40px; height:40px; font-size:13px;">EP</div>
+        <div class="info">
+          <div class="top"><b>Elena Petrova</b><span class="time">2m</span></div>
+          <p>Perfect, see you at 4:30 for load-in!</p>
+        </div>
+        <div class="dot"></div>
+      </div>
+      <div class="thread-item">
+        <div class="avatar" style="background:var(--ink-3); margin-left:0; width:40px; height:40px; font-size:13px;">SC</div>
+        <div class="info">
+          <div class="top"><b>Spencer Cha</b><span class="time">1h</span></div>
+          <p>You: Sounds good — I'll bring the Grieg Sonata No. 3 parts.</p>
+        </div>
+      </div>
+      <div class="thread-item">
+        <div class="avatar" style="background:var(--crimson); margin-left:0; width:40px; height:40px; font-size:13px;">MO</div>
+        <div class="info">
+          <div class="top"><b>Prof. Miriam Osei</b><span class="time">1d</span></div>
+          <p>Just recommended you to a colleague for a chamber series.</p>
+        </div>
+      </div>
+      <div class="thread-item">
+        <div class="avatar" style="background:var(--brass); margin-left:0; width:40px; height:40px; font-size:13px;">FC</div>
+        <div class="info">
+          <div class="top"><b>First Congregational</b><span class="time">3d</span></div>
+          <p>Marked you as paid for Jul 21 service — $120.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MESSAGE THREAD ===================== -->
+  <div class="screen" id="screen-messages-thread">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="showScreen('screen-messages')">&larr; messages</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Elena Petrova</div>
+        <div class="sub">Filoli Gardens wedding &middot; Aug 15</div>
+      </div>
+    </div>
+    <div class="content" style="display:flex; flex-direction:column;">
+      <div class="bubble system">Application sent &middot; Mezza Quartet</div>
+      <div class="bubble them">Hi! Loved your quartet's recording of the Pachelbel — would you be free for our 5pm ceremony?</div>
+      <div class="bubble me">Yes, we're available. We can also cover cocktail hour standards if useful.</div>
+      <div class="bubble them">That would be wonderful. Budget is $450/musician, load-in at Gate B.</div>
+      <div class="bubble system">Elena marked you as Hired ✓</div>
+      <div class="bubble them">Perfect, see you at 4:30 for load-in!</div>
+      <div class="bubble system">Payment status: Pending → will update after performance</div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: PROFILE ===================== -->
+  <div class="screen" id="screen-profile">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo">CM</div>
+      <div class="profile-name">Cassandra May</div>
+      <div class="profile-tagline">Violin &middot; Pittsburgh, PA &middot; 18 yrs experience</div>
+      <div class="badge-row">
+        <div class="badge">Mezza Quartet</div>
+        <div class="badge">Grieg Duo</div>
+        <div class="badge">Carnegie Mellon BFA</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="stat-strip">
+        <div class="stat"><b>140</b><span>Gigs played</span></div>
+        <div class="stat"><b>5.0</b><span>Rating</span></div>
+        <div class="stat"><b>$250–450</b><span>Typical rate</span></div>
+      </div>
+
+      <div class="section-title">Biography</div>
+      <p class="bio">Freelance violinist with 18 years of performance experience across chamber, orchestral, and private-event settings. BFA in Violin Performance from Carnegie Mellon University. Founding member of the Mezza Quartet, and one half of the Grieg Duo alongside pianist Spencer Cha. Comfortable with formal ceremonies, recital programs, and sight-reading on short notice.</p>
+
+      <div class="section-title">Genres</div>
+      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Chamber</div><div class="tag">Romantic era</div><div class="tag">Weddings</div></div>
+
+      <div class="section-title">Recordings &amp; video</div>
+      <div class="media-strip">
+        <div class="media-thumb">▶ Grieg Sonata No. 3, live</div>
+        <div class="media-thumb">▶ Mezza Quartet reel</div>
+        <div class="media-thumb">▶ Solo recital, CMU</div>
+      </div>
+
+      <div class="section-title">Reviews</div>
+      <div class="review">
+        <p>"Punctual, beautifully prepared, and easy to coordinate with day-of."</p>
+        <div class="who">— Elena Petrova, Wedding Planner</div>
+      </div>
+      <div class="review">
+        <p>"Eighteen years of stage experience and it shows — poised, precise, and generous with the rest of the ensemble."</p>
+        <div class="who">— Prof. Miriam Osei, Carnegie Mellon School of Music</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn">Edit profile</button>
+        <button class="btn ghost">Share profile</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <div class="navitem active" onclick="setNav(this,'screen-discover')">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+      Discover
+    </div>
+    <div class="navitem" onclick="setNav(this,'screen-network')">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><line x1="7.8" y1="7.4" x2="10.6" y2="16"/><line x1="16.2" y1="7.4" x2="13.4" y2="16"/></svg></div>
+      Network
+    </div>
+    <div class="navitem" onclick="setNav(this,'screen-messages')">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      Messages
+    </div>
+    <div class="navitem" onclick="setNav(this,'screen-profile')">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+      Profile
+    </div>
+  </div>
+</div>
+
+<script>
+  function showScreen(id){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById(id).scrollTop = 0;
+  }
+  function setNav(el, id){
+    document.querySelectorAll('.navitem').forEach(n => n.classList.remove('active'));
+    el.classList.add('active');
+    showScreen(id);
+  }
+</script>
+</body>
+</html>
