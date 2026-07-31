@@ -92,7 +92,7 @@ nav{
 }
 .hero h1 .highlight{ color:var(--blue-deep); }
 .hero-sub{ margin-top:1.8rem; max-width:560px; font-size:1.15rem; line-height:1.7; opacity:0.8; }
-.hero-actions{ display:flex; gap:1.1rem; margin-top:2.3rem; flex-wrap:wrap; }
+.hero-actions{ display:flex; gap:1.1rem; margin-top:2.3rem; flex-wrap:wrap; scroll-margin-top:6rem; }
 
 .btn{
   font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.03em;
@@ -181,7 +181,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 
 /* ---------- project cards (Work page — click through, hover preview) ---------- */
-.project-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.6rem; margin-top:1rem; }
+.project-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.6rem; margin-top:1rem; scroll-margin-top:6rem; }
 @media (max-width:760px){ .project-grid{ grid-template-columns:1fr; } }
 
 .project-card{
@@ -285,20 +285,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 
 /* ---------- play page ---------- */
 /* ---------- play page: bulletin board ---------- */
-.bulletin-board{
-  background-color:#C8A164;
-  background-image:
-    radial-gradient(circle at 12% 22%, rgba(74,46,23,0.28) 0 2px, transparent 3px),
-    radial-gradient(circle at 42% 68%, rgba(74,46,23,0.22) 0 2px, transparent 3px),
-    radial-gradient(circle at 78% 12%, rgba(74,46,23,0.25) 0 2px, transparent 3px),
-    radial-gradient(circle at 88% 58%, rgba(74,46,23,0.2) 0 2px, transparent 3px),
-    radial-gradient(circle at 28% 88%, rgba(74,46,23,0.22) 0 2px, transparent 3px),
-    radial-gradient(circle at 62% 38%, rgba(74,46,23,0.18) 0 2px, transparent 3px);
-  background-size:150px 150px;
-  border:10px solid var(--brown-deep);
-  border-radius:18px;
-  padding:2.2rem;
-}
+.bulletin-board{ padding:0; }
 
 .board-grid{ display:grid; grid-template-columns:2fr 1fr; grid-template-rows:auto auto; gap:1.6rem; }
 .board-grid .guide-card{ grid-column:1; grid-row:1; }
@@ -316,7 +303,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   border-radius:10px; box-shadow:0 8px 18px rgba(0,0,0,0.18);
   transform:rotate(var(--tilt, 0deg)); transition:transform 0.2s ease, box-shadow 0.2s ease;
 }
-.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px rgba(0,0,0,0.24); }
+a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px rgba(0,0,0,0.24); }
 .pin-dot{
   position:absolute; top:-9px; left:50%; transform:translateX(-50%);
   width:15px; height:15px; border-radius:50%;
