@@ -103,28 +103,58 @@
 
   <div class="subhead">Media</div>
   <div class="carousel-wrap">
-    <button class="carousel-btn" aria-label="Scroll left" onclick="document.getElementById('violinCarousel').scrollBy({left:-260, behavior:'smooth'})">‹</button>
-    <div class="media-carousel" id="violinCarousel">
-      <div class="carousel-item">
-        <div class="photo-box"><img src="violin-harker.jpg" alt="Cassandra May performing as soloist with orchestra" style="object-position:50% 15%;"></div>
-        <span class="cap">Solo Performance</span>
-      </div>
-      <div class="carousel-item">
-        <div class="photo-box"><img src="violin-mezza-quartet.jpeg" alt="Mezza string quartet on the Carnegie Mellon lawn" style="object-position:50% 35%;"></div>
-        <span class="cap">Mezza String Quartet</span>
-      </div>
-      <div class="carousel-item">
-        <div class="photo-box"><img src="violin-portrait-red.jpg" alt="Cassandra May studio portrait with violin" style="object-position:50% 25%;"></div>
-        <span class="cap">Studio Portrait</span>
-      </div>
-      <div class="carousel-item">
-        <div class="photo-box"><img src="violin-graduation-duo.jpg" alt="Cassandra May with a fellow musician on graduation day" style="object-position:50% 20%;"></div>
-        <span class="cap">Graduation Day</span>
+    <button class="carousel-btn" aria-label="Previous photos" onclick="violinPrev()">‹</button>
+    <div class="carousel-viewport" id="violinViewport">
+      <div class="media-carousel-track" id="violinTrack">
+        <div class="carousel-item">
+          <div class="photo-box"><img src="violin-harker.jpg" alt="Cassandra May performing as soloist with orchestra" style="object-position:50% 15%;"></div>
+          <span class="cap">Solo Performance</span>
+        </div>
+        <div class="carousel-item">
+          <div class="photo-box"><img src="violin-mezza-quartet.jpeg" alt="Mezza string quartet on the Carnegie Mellon lawn" style="object-position:50% 35%;"></div>
+          <span class="cap">Mezza String Quartet</span>
+        </div>
+        <div class="carousel-item">
+          <div class="photo-box"><img src="violin-portrait-red.jpg" alt="Cassandra May studio portrait with violin" style="object-position:50% 25%;"></div>
+          <span class="cap">Studio Portrait</span>
+        </div>
+        <div class="carousel-item">
+          <div class="photo-box"><img src="violin-graduation-duo.jpg" alt="Cassandra May with a fellow musician on graduation day" style="object-position:50% 20%;"></div>
+          <span class="cap">Graduation Day</span>
+        </div>
       </div>
     </div>
-    <button class="carousel-btn" aria-label="Scroll right" onclick="document.getElementById('violinCarousel').scrollBy({left:260, behavior:'smooth'})">›</button>
+    <button class="carousel-btn" aria-label="Next photos" onclick="violinNext()">›</button>
   </div>
 </section>
+
+<script>
+(function(){
+  var viewport = document.getElementById('violinViewport');
+  var track = document.getElementById('violinTrack');
+  var pos = 0;
+
+  function step(){
+    var item = track.children[0];
+    var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+    return item.getBoundingClientRect().width + gap;
+  }
+  function maxScroll(){
+    return Math.max(0, track.scrollWidth - viewport.clientWidth);
+  }
+  function apply(){
+    track.style.transform = 'translateX(-' + pos + 'px)';
+  }
+  window.violinNext = function(){
+    pos = Math.min(pos + step(), maxScroll());
+    apply();
+  };
+  window.violinPrev = function(){
+    pos = Math.max(pos - step(), 0);
+    apply();
+  };
+})();
+</script>
 
 <footer>
   <div class="footer-inner">
