@@ -3,15 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cassandra May — Marketing &amp; Product</title>
+<title>Cassandra May's Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  .gate{
+    min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:1.6rem; padding:2rem; text-align:center;
+  }
+  .gate-mark{ display:flex; align-items:center; gap:0.8rem; }
+  .gate-mark .sunflower-mark{ width:48px; height:48px; }
+  .gate-mark span.title{ font-family:'Fredoka', sans-serif; font-weight:600; font-size:1.5rem; color:var(--ink); }
+  .gate-form{ display:flex; gap:0.6rem; flex-wrap:wrap; justify-content:center; }
+  .gate-form input[type="password"]{
+    font-family:'IBM Plex Mono', monospace; font-size:0.9rem; padding:0.85rem 1.2rem;
+    border:2px solid var(--ink); border-radius:999px; background:var(--white); color:var(--ink);
+    width:220px; outline:none;
+  }
+  .gate-form input[type="password"]:focus{ border-color:var(--blue-deep); }
+  .gate-form button{
+    font-family:'IBM Plex Mono', monospace; font-size:0.82rem; letter-spacing:0.03em;
+    padding:0.85rem 1.5rem; border-radius:999px; border:2px solid var(--ink);
+    background:var(--brown); color:var(--white); cursor:pointer; transition:all 0.2s ease;
+  }
+  .gate-form button:hover{ background:var(--blue-deep); border-color:var(--blue-deep); }
+  .gate-error{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--blue-deep); opacity:0; height:1.2rem;
+  }
+  .gate-error.show{ opacity:1; }
+</style>
 </head>
 <body>
 
-<nav>
-  <a class="nav-mark" href="index.html">
+<div class="gate">
+  <div class="gate-mark">
     <span class="sunflower-mark">
       <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <g class="sunflower-petals">
@@ -34,82 +60,41 @@
         <path d="M47,70 Q60,80 73,70" fill="none" stroke="var(--white)" stroke-width="3" stroke-linecap="round"/>
       </svg>
     </span>
-    Cassandra May
-  </a>
-  <div class="nav-links">
-    <a href="index.html#resume-anchor" class="current">Work</a>
-    <a href="play.html">Play</a>
-    <a href="violin.html">Violin</a>
-    <a href="about.html">About</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <span class="eyebrow"><span class="dot"></span>Marketing &amp; Product — seeking roles in New York</span>
-
-  <h1 style="margin-top:1.2rem;">Cassandra <span class="highlight">May</span></h1>
-
-  <p class="hero-sub">
-    Marketing and product strategist trained in systems design, with a parallel life as a
-    concert violinist.
-    <span style="display:block; margin-top:0.6rem; font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.03em; opacity:0.65;">CMU '26 — Systems Design × Violin</span>
-  </p>
-
-  <!-- ===================== CLICKABLE PROJECT CARDS ===================== -->
-  <div class="project-grid" id="resume-anchor">
-    <a class="project-card opus" href="opus.html">
-      <span class="p-tag">Personal Product Project</span>
-      <h3>Opus</h3>
-      <p class="p-hook">A trusted marketplace for live musicians — research, IA, and database design.</p>
-      <div class="project-preview">
-        <span class="p-tag">Product Design · UX Research · Database Design</span>
-        <h3>Opus</h3>
-        <p>Musicians rely on fragmented, relationship-driven networks to find gigs. Opus combines
-        verified profiles, ensemble booking, and trust-through-network features into one
-        marketplace — built from research through a full relational database model.</p>
-        <span class="p-cta">View case study →</span>
-      </div>
-    </a>
-
-    <a class="project-card westvalley" href="westvalley.html">
-      <span class="p-tag">Marketing &amp; Operations</span>
-      <h3>West Valley Music</h3>
-      <p class="p-hook">Social Media Manager &amp; Customer Service — Mountain View, CA.</p>
-      <div class="project-preview">
-        <span class="p-tag">Jun 2024 – Mar 2025</span>
-        <h3>West Valley Music</h3>
-        <p>Designed and produced 50+ ads and posts for an instrument retailer, growing viewership
-        75% in the first month, while running rentals, sales, and day-to-day customer service.</p>
-        <span class="p-cta">View case study →</span>
-      </div>
-    </a>
+    <span class="title">Cassandra May's Portfolio</span>
   </div>
 
-  <div class="subhead">Also on the Résumé</div>
-  <div class="spec-sheet">
-    <div class="spec-row"><span>Tubics · SEO Intern, Vienna</span><span>30+ pages optimized, 25% traffic increase</span></div>
-    <div class="spec-row"><span>Downs Research Lab</span><span>Python/MongoDB dataset analysis, Decision Science research</span></div>
-  </div>
+  <form class="gate-form" id="gateForm" autocomplete="off">
+    <input type="password" id="gatePassword" placeholder="Password" aria-label="Password" required>
+    <button type="submit">Enter</button>
+  </form>
+  <div class="gate-error" id="gateError">Incorrect password — try again.</div>
+</div>
 
-  <h2 class="section-header">Toolkit</h2>
-  <div class="spec-sheet">
-    <div class="spec-row"><span>Tools</span><span>Python, PostgreSQL, MongoDB, R, Excel, Figma, Webflow, Canva, Adobe Suite</span></div>
-    <div class="spec-row"><span>Operations</span><span>Event logistics, stakeholder comms, live event support</span></div>
-    <div class="spec-row"><span>Languages</span><span>English (fluent), Chinese (advanced)</span></div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-nav">
-      <a href="index.html">Home</a>
-      <a href="violin.html">Violin</a>
-      <a href="play.html">Play</a>
-      <a href="about.html">About</a>
-    </div>
-    <div class="footer-copy">© 2026 Cassandra May · cassandramay.com</div>
-  </div>
-</footer>
+<script>
+  // Note: this is a lightweight front-door, not real security — the password
+  // is visible in this file's source. Fine for keeping casual visitors out,
+  // not for protecting anything truly private.
+  (function(){
+    if (sessionStorage.getItem('cmpUnlocked') === 'true') {
+      window.location.replace('home.html');
+      return;
+    }
+    var form = document.getElementById('gateForm');
+    var input = document.getElementById('gatePassword');
+    var error = document.getElementById('gateError');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (input.value.trim().toLowerCase() === 'sunflower') {
+        sessionStorage.setItem('cmpUnlocked', 'true');
+        window.location.href = 'home.html';
+      } else {
+        error.classList.add('show');
+        input.value = '';
+        input.focus();
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
