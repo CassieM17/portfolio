@@ -136,6 +136,11 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .subhead:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
 
+.section-header{
+  font-family:'Fredoka', sans-serif; font-weight:700; font-size:1.7rem;
+  color:var(--ink); margin:3rem 0 1.2rem; padding-top:1.4rem; border-top:1px solid var(--line);
+}
+
 /* ---------- project cards ---------- */
 .cards{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.5rem; }
 @media (max-width:720px){ .cards{ grid-template-columns:1fr; } }
@@ -180,7 +185,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .project-card:hover{ transform:translateY(-6px); box-shadow:0 14px 34px rgba(46,134,171,0.2); }
 .project-card.opus{ background:linear-gradient(155deg, var(--paper) 0%, rgba(110,193,228,0.18) 100%); }
-.project-card.westvalley{ background:linear-gradient(155deg, var(--paper) 0%, rgba(139,90,43,0.14) 100%); }
+.project-card.westvalley{ background:linear-gradient(155deg, var(--paper) 0%, rgba(139,90,43,0.16) 45%, rgba(139,90,43,0.34) 100%); }
 
 .project-card .p-tag{ font-family:'IBM Plex Mono'; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--brown); }
 .project-card h3{ font-family:'Fredoka'; font-weight:600; font-size:1.7rem; margin-top:0.5rem; }
@@ -263,19 +268,62 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .awards li .yr{ font-family:'IBM Plex Mono'; font-size:0.7rem; opacity:0.6; white-space:nowrap; color:var(--brown); }
 
-.recordings{ display:grid; grid-template-columns:1fr; gap:1.8rem; margin-top:1rem; }
-.recording{ padding:1.3rem; background:var(--paper); border:1px solid var(--line); border-radius:16px; }
-.recording-title{ font-family:'Fredoka'; font-weight:600; font-size:1.05rem; margin-bottom:0.8rem; }
+.recordings{ display:grid; grid-template-columns:repeat(3, 1fr); gap:1rem; margin-top:1rem; }
+@media (max-width:760px){ .recordings{ grid-template-columns:1fr; } }
+.recording{ padding:0.9rem; background:var(--paper); border:1px solid var(--line); border-radius:16px; }
+.recording-title{ font-family:'Fredoka'; font-weight:600; font-size:0.85rem; margin-bottom:0.6rem; }
 .video-frame{ position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; border:1px solid var(--line); }
 .video-frame iframe{ position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
 
 /* ---------- play page ---------- */
-.play-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.8rem; }
-@media (max-width:600px){ .play-grid{ grid-template-columns:1fr; } }
+/* ---------- play page: collage layout ---------- */
+.play-collage{
+  display:grid; grid-template-columns:repeat(6, 1fr); grid-auto-rows:minmax(160px, auto);
+  gap:1.4rem;
+}
+.play-collage .substack-card{ grid-column:1 / -1; }
+.play-collage .item-a{ grid-column:1 / 4; }
+.play-collage .item-b{ grid-column:4 / 7; }
+@media (max-width:700px){
+  .play-collage{ grid-template-columns:1fr; }
+  .play-collage .item-a, .play-collage .item-b{ grid-column:1; }
+}
+
 .play-card{ padding:1.4rem; background:var(--paper); border:1px solid var(--line); border-radius:16px; box-shadow:0 6px 18px rgba(46,134,171,0.06); }
 .play-thumb{ aspect-ratio:4/3; margin-bottom:1.1rem; border-radius:12px; }
 .play-card h3{ font-family:'Fredoka'; font-weight:600; font-size:1.15rem; }
 .play-card p{ font-family:'Inter'; font-size:0.86rem; opacity:0.7; margin-top:0.4rem; line-height:1.5; }
+
+/* substack preview card — styled like a clickable browser window */
+.substack-card{
+  display:block; text-decoration:none; color:inherit; overflow:hidden; padding:0;
+  cursor:pointer; transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.substack-card:hover{ transform:translateY(-4px); box-shadow:0 14px 34px rgba(46,134,171,0.2); }
+.browser-chrome{
+  display:flex; align-items:center; gap:0.5rem; padding:0.7rem 1rem;
+  background:var(--canvas, var(--paper)); border-bottom:1px solid var(--line);
+  background:#EDE6D8;
+}
+.browser-chrome .dot{ width:9px; height:9px; border-radius:50%; }
+.browser-chrome .dot.r{ background:#E1604D; }
+.browser-chrome .dot.y{ background:#E8B84B; }
+.browser-chrome .dot.g{ background:#6FB56B; }
+.browser-chrome .url-bar{
+  margin-left:0.6rem; font-family:'IBM Plex Mono'; font-size:0.72rem; opacity:0.65;
+  background:var(--white); padding:0.25rem 0.7rem; border-radius:999px; border:1px solid var(--line);
+}
+.substack-preview{
+  background:linear-gradient(135deg, var(--brown-deep), var(--blue-deep));
+  color:var(--white); padding:2.6rem 2rem; display:flex; flex-direction:column;
+  align-items:flex-start; gap:0.4rem; min-height:220px; justify-content:center;
+}
+.substack-preview h3{ color:var(--white); font-size:1.4rem; }
+.substack-preview p{ color:var(--white); opacity:0.85; max-width:420px; }
+.substack-preview .p-cta{
+  margin-top:0.8rem; font-family:'IBM Plex Mono'; font-size:0.78rem; text-transform:uppercase;
+  letter-spacing:0.05em; color:var(--blue);
+}
 
 /* ---------- about page ---------- */
 .about-hero{
@@ -284,10 +332,16 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .about-grid{ display:grid; grid-template-columns:1.3fr 0.85fr; gap:3.2rem; align-items:center; margin-top:0.5rem; }
 @media (max-width:820px){ .about-grid{ grid-template-columns:1fr; } }
 .about-photo-frame{
-  border-radius:20px; overflow:hidden; border:1px solid var(--line);
+  position:relative; border-radius:20px; overflow:hidden; border:1px solid var(--line);
   box-shadow:0 10px 30px rgba(46,134,171,0.12); aspect-ratio:3/4;
 }
-.about-photo-frame img{ width:100%; height:100%; display:block; object-fit:cover; object-position:55% 25%; }
+.about-photo-frame img{
+  position:absolute; inset:0; width:100%; height:100%; display:block; object-fit:cover;
+  transition:opacity 0.4s ease;
+}
+.about-photo-frame img.photo-base{ object-position:55% 25%; opacity:1; }
+.about-photo-frame img.photo-hover{ object-position:50% 20%; opacity:0; }
+.about-photo-frame:hover img.photo-hover{ opacity:1; }
 .about-hero h1{
   font-family:'Fredoka', sans-serif; font-weight:600;
   font-size:clamp(2.4rem, 6vw, 3.8rem); line-height:1.1;
