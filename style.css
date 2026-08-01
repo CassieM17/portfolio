@@ -313,7 +313,7 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 
 /* guide-style substack card */
 .guide-card{ --tilt:-1deg; padding:2rem; color:var(--white); text-decoration:none;
-  background:var(--brown-deep);
+  background:linear-gradient(160deg, var(--brown-deep), var(--blue-deep));
   min-height:260px; display:flex; flex-direction:column; justify-content:space-between;
   border:1px solid rgba(255,255,255,0.25);
 }
