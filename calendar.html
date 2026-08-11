@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rethinking Apple Calendar — Cassandra May</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-mark" href="home.html">
+    <span class="sunflower-mark">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g class="sunflower-petals">
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(36 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(72 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(108 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(144 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(180 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(216 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(252 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(288 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(324 60 60)"/>
+        </g>
+        <circle cx="60" cy="60" r="29" fill="var(--brown-deep)"/>
+        <circle cx="49" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
+        <circle cx="49" cy="58" r="1.7" fill="var(--white)"/>
+        <circle cx="71" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
+        <circle cx="71" cy="58" r="1.7" fill="var(--white)"/>
+        <path d="M47,70 Q60,80 73,70" fill="none" stroke="var(--white)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </span>
+    Cassandra May
+  </a>
+  <div class="nav-links">
+    <a href="home.html#resume-anchor" class="current">Work</a>
+    <a href="play.html">Play</a>
+    <a href="violin.html">Violin</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <a class="back-link" href="home.html">&larr; Back to Work</a>
+  <div class="movement"><h1>Apple Calendar</h1></div>
+  <p class="section-intro">A diary study of my own scheduling friction — and what a redesigned week view, month view, and calendar sidebar could look like.</p>
+</div>
+
+<section>
+  <div class="case-study">
+    <span class="eyebrow"><span class="dot"></span>UX Case Study · Independent Research Project</span>
+    <div class="case-title" style="margin-top:0.9rem;">Rethinking Apple Calendar Through One Semester of Real Use</div>
+    <p class="case-question">Apple Calendar's Week and Month views use a rigid, one-size-fits-all
+    visual system that doesn't adapt to how differently people actually use their time — leaving
+    power users with dense, overlapping schedules unable to compress dead time, differentiate
+    event importance, or scan a busy month at a glance.</p>
+
+    <div class="case-meta">
+      <div><span class="l">Role</span><span class="v">Researcher & Designer (solo)</span></div>
+      <div><span class="l">Timeline</span><span class="v">Nov 2023 – Feb 2024</span></div>
+      <div><span class="l">Method</span><span class="v">Autoethnographic diary study</span></div>
+    </div>
+
+    <div class="case-block">
+      <h3>01 · Context</h3>
+      <p>As a Systems Design and Violin Performance dual-degree student at Carnegie Mellon, my
+      calendar is the only thing standing between me and a missed rehearsal, exam, or research
+      deadline. In a given week I'm tracking five academic calendars, a research assistantship,
+      orchestra rehearsals and performances, event-planning commitments, exercise, and a social
+      life — twelve separate calendars layered into one app.</p>
+      <p>Apple Calendar (iCal) is where all of it lives. It works, but over a semester of
+      near-constant use, the same friction kept resurfacing: dead space that couldn't be
+      compressed, a color system too rigid to reflect how I actually organize my life, and views
+      that gave a week-long school break the same visual weight as a 30-minute meeting.</p>
+      <p>Rather than switch tools, I treated my own calendar as a research subject.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>02 · Problem Statement</h3>
+      <div class="opportunity" style="border-left-color:var(--brown);">
+        Apple Calendar's Week and Month views use a rigid, one-size-fits-all visual system that
+        doesn't adapt to how differently people actually use their time — leaving power users with
+        dense, overlapping schedules unable to compress dead time, differentiate event importance,
+        or scan a busy month at a glance.
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>03 · Research Approach</h3>
+      <p>Instead of running interviews or surveys after the fact, I used an
+      <strong>autoethnographic diary-study</strong> method: over several weeks of real use, I
+      annotated live screenshots of my own calendar the moment something didn't work, using
+      on-device markup to circle, label, and sketch fixes directly on top of my actual schedule.
+      Capturing friction in the moment — rather than relying on recalled pain points in a later
+      interview — surfaced complaints I wouldn't have thought to mention if simply asked "what's
+      wrong with your calendar app?"</p>
+      <p style="margin-top:1rem; font-family:'IBM Plex Mono'; font-size:0.8rem; opacity:0.7;">Research artifacts:</p>
+      <ul class="case-list">
+        <li>Week View screenshot, annotated live (November 2023)</li>
+        <li>Month View screenshot, annotated live (January 2024)</li>
+        <li>Calendar sidebar screenshot showing all 12 active calendars (January 2024)</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <h3>04 · Key Findings</h3>
+
+      <div class="subhead">Week View</div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">1</span><h4>No visual hierarchy within a single calendar</h4></div>
+        <p>Every event in a given calendar renders in the same flat color with no bold, italic,
+        or pattern options. To make one deadline stand out from a routine event, the only option
+        is creating an entirely new calendar — overkill for a single event.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Let users apply text weight
+        (bold/italic) or a fill pattern to individual events, without requiring a new calendar.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">2</span><h4>Rigid, one-note color palette</h4></div>
+        <p>Calendars support only a single solid preset color, with no gradients, patterns, or
+        background tinting. The visual language defaults to a white/black/red theme that not
+        every user wants.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Expand the color picker
+        beyond preset dots to include custom hues, subtle patterns, and calendar-level background tints.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">3</span><h4>Dead time can't be collapsed</h4></div>
+        <p>Roughly seven hours every night (sleep) render at the same height as waking hours,
+        pushing the real schedule below the fold in Week view for no reason — nothing is ever
+        scheduled there.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Let users compress
+        ("warp") a defined empty time range, with the collapsed window customizable per user
+        rather than fixed.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">4</span><h4>The "now" indicator is easy to lose</h4></div>
+        <p>Across every view type, the current-time marker blends into a dense grid of
+        overlapping events and colors, making "what's happening right now" harder to answer at a
+        glance than it should be.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>A persistent,
+        higher-contrast "now" marker in every view type, with a floating time chip when the
+        current time is scrolled out of frame.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">5</span><h4>Inconsistent weekend treatment</h4></div>
+        <p>Month view subtly shades weekends as a visual anchor; Week view doesn't carry the same
+        treatment, removing a small but genuinely useful wayfinding cue.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Carry weekend shading
+        into every view, and expose it as a toggle in Settings for users who'd rather turn it off.</div>
+      </div>
+
+      <div class="subhead">Month View</div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">6</span><h4>Multi-day banners compete with real events</h4></div>
+        <p>A week-long banner like "Winter Break" renders at the same visual weight as a 9am
+        lecture, cluttering the grid with context that isn't a "commitment" the way a scheduled
+        meeting is.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Give banner/all-day
+        events a lighter, background treatment — a thin strip or watermark rather than a
+        full-weight bar — so single-instance events stay the visual focus.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">7</span><h4>Date numbers crowd event labels</h4></div>
+        <p>Because the day-of-month number sits inline with the first event of the day, longer
+        event labels get squeezed and truncated unnecessarily.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Let the date number float
+        independently (e.g., top-right corner of the cell) so event text has full width beneath it.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">8</span><h4>No at-a-glance category signal</h4></div>
+        <p>On a day with five or more events, there's no way to tell — without tapping in — what
+        kind of day it is: exam-heavy, music-heavy, social. Every day cell looks equally dense.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>A small row of category
+        icons beneath the date number, color- and icon-coded to each calendar, so a glance at the
+        month grid reveals the shape of the month — with tap-to-expand for the full day list.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">9</span><h4>No seasonal or ambient cues</h4></div>
+        <p>The month grid looks identical whether it's a frozen January or a sunny June, which
+        makes the calendar feel more clinical than it needs to.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Small, optional seasonal
+        iconography (e.g. a snowflake in January, a bloom in March) as a low-cost way to add
+        warmth without adding clutter.</div>
+      </div>
+
+      <div class="subhead">Calendar Sidebar</div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">10</span><h4>Twelve calendars, one visual language</h4></div>
+        <p>Every calendar in the sidebar — Birthdays, Family, Social/Home, Exercise, Violin, CMU
+        Public, Exams, US Holidays, Siri Suggestions, and more — is differentiated only by a
+        small colored dot next to an identical list row. There's no iconography, no grouping, and
+        no way to separate calendars I check daily from ones I rarely touch.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Add lightweight icons per
+        calendar type, let users create custom folders/groups (e.g. "School," "Personal,"
+        "Subscribed"), and support pinning or reordering the calendars used most.</div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>04.5 · Redesign Comparison</h3>
+      <p>Turning the highest-priority findings into an actual side-by-side comparison, using the
+      same real schedule from the diary study.</p>
+
+      <div class="subhead">Week View</div>
+      <div class="compare-pair">
+        <div class="compare-item">
+          <span class="compare-tag before">Before — Current iCal</span>
+          <img src="cal-week-before.png" alt="Before: current iCal Week View, November 2023">
+          <p class="compare-caption">Flat color hierarchy, no weekend shading, dead sleep hours eat the grid, "now" line easy to miss.</p>
+        </div>
+        <div class="compare-item">
+          <span class="compare-tag after">After — Redesigned</span>
+          <img src="cal-week-after.png" alt="After: redesigned Week View, November 2023">
+          <p class="compare-caption">Sleep hours collapse to reclaim space, weekend shading, bold/italic hierarchy, high-contrast "now" marker.</p>
+        </div>
+      </div>
+
+      <div class="subhead">Month View</div>
+      <div class="compare-pair">
+        <div class="compare-item">
+          <span class="compare-tag before">Before — Current iCal</span>
+          <img src="cal-month-before.png" alt="Before: current iCal Month View, January 2024">
+          <p class="compare-caption">Multi-day banner has full weight of a real event, date number crowds text, no way to tell a day's "shape" at a glance.</p>
+        </div>
+        <div class="compare-item">
+          <span class="compare-tag after">After — Redesigned</span>
+          <img src="cal-month-after.png" alt="After: redesigned Month View, January 2024">
+          <p class="compare-caption">Winter Break becomes a thin ribbon (not a full block), date number floats top-right, icon strip signals the "shape" of the day at a glance.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>05 · Prioritization</h3>
+      <p>Plotting the ten findings against rough implementation effort helps sequence a roadmap —
+      small, high-leverage fixes first, with the more structural changes staged for later.</p>
+      <div class="quad-grid">
+        <div class="quad green">
+          <h4>High Impact · Low Effort</h4>
+          <ul>
+            <li>Weekend shading in every view (#5)</li>
+            <li>Higher-contrast "now" indicator (#4)</li>
+            <li>Bold / italic text on events (#1)</li>
+            <li>Floating date number in Month view (#7)</li>
+          </ul>
+        </div>
+        <div class="quad blue">
+          <h4>High Impact · High Effort</h4>
+          <ul>
+            <li>Collapsible / "warped" dead time (#3)</li>
+            <li>Category icon strip in Month view (#8)</li>
+            <li>Lightweight banner treatment for multi-day events (#6)</li>
+          </ul>
+        </div>
+        <div class="quad yellow">
+          <h4>Lower Impact · Low Effort</h4>
+          <ul>
+            <li>Seasonal iconography (#9)</li>
+          </ul>
+        </div>
+        <div class="quad red">
+          <h4>Lower Impact · High Effort</h4>
+          <ul>
+            <li>Full sidebar restructuring with custom folders (#10)</li>
+            <li>Expanded color/pattern system (#2)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>06 · Reflection & Next Steps</h3>
+      <p>This was a solo, single-subject diary study — real, in-the-moment friction, but an n of
+      1. My own habits (heavy color-coding, 12 overlapping calendars, a packed academic schedule)
+      shape which pain points surfaced; someone with a lighter calendar might prioritize
+      differently.</p>
+      <p>With more time, I'd take this in three directions: run the same live-annotation exercise
+      with 5–8 other students with different calendar habits to see which findings generalize
+      beyond my own use; build clickable Figma prototypes for the "high impact / low effort"
+      quadrant and usability-test them against the current iCal flows; and validate the
+      category-icon-strip concept specifically — the most speculative finding here — with a
+      first-click or card-sort test, since it changes the Month view's information density the most.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>07 · Appendix — Research Artifacts</h3>
+      <p>Raw, in-the-moment annotations made directly on live screenshots during actual weeks of use.</p>
+
+      <figure class="figure-block">
+        <img src="calendar-weekview.png" alt="Week View, annotated live during use, November 2023">
+        <figcaption>Fig. 1 — Week View, annotated live during use (November 2023). Gripes 1–5 above were drawn directly from this artifact.</figcaption>
+      </figure>
+
+      <figure class="figure-block">
+        <img src="calendar-monthview.png" alt="Month View, annotated live during use, January 2024">
+        <figcaption>Fig. 2 — Month View, annotated live during use (January 2024), including an early concept sketch for the category-icon-strip idea. Gripes 6–9 above were drawn directly from this artifact.</figcaption>
+      </figure>
+
+      <figure class="figure-block">
+        <img src="calendar-sidebar.png" alt="Calendar sidebar showing all 12 active calendars, January 2024">
+        <figcaption>Fig. 3 — Calendar sidebar showing all 12 active calendars (January 2024). Gripe 10 above was drawn directly from this artifact.</figcaption>
+      </figure>
+
+      <p class="case-note">This case study was produced independently as a personal design exercise and is not affiliated with or endorsed by Apple Inc.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="home.html">Home</a>
+      <a href="home.html#resume-anchor">Work</a>
+      <a href="violin.html">Violin</a>
+      <a href="play.html">Play</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-copy">© 2026 Cassandra May · cassandramay.com</div>
+  </div>
+</footer>
+
+</body>
+</html>
