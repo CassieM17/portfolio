@@ -71,9 +71,10 @@
 
   .topbar{ padding:6px 22px 18px; position:relative; }
   .brand{
-    font-family:'Fraunces',serif; font-weight:600; font-size:23px; letter-spacing:.01em;
-    display:flex; align-items:center; gap:8px; color:var(--text-light);
+    font-family:'Fraunces',serif; font-weight:600; font-size:23px; letter-spacing:-0.02em;
+    display:flex; align-items:center; gap:6px; color:var(--text-light);
   }
+  .brand .clef-icon{ color:var(--brass-light); flex-shrink:0; }
   .brand .mark{ color:var(--brass-light); font-style:italic; }
   .topbar .sub{ font-size:12.5px; color:#C7CCDA; margin-top:3px; font-family:'JetBrains Mono',monospace; }
 
@@ -237,6 +238,68 @@
 
   .ensemble-members{ display:flex; margin-top:10px; }
   .ensemble-members .avatar{ width:36px; height:36px; font-size:12px; margin-left:-10px; border-width:3px; }
+
+  /* ===== Tap hint: pulsing circle showing where to press ===== */
+  .tap-hint{
+    position:absolute; top:14px; right:14px; width:22px; height:22px; z-index:6; pointer-events:none;
+  }
+  .tap-hint .ring{
+    position:absolute; inset:0; border-radius:50%; border:2px solid rgba(255,255,255,.9);
+    animation:tapPulse 1.8s ease-out infinite;
+  }
+  .tap-hint .dot{
+    position:absolute; top:50%; left:50%; width:8px; height:8px; margin:-4px 0 0 -4px;
+    border-radius:50%; background:rgba(255,255,255,.95); box-shadow:0 0 6px rgba(0,0,0,.25);
+  }
+  @keyframes tapPulse{
+    0%{ transform:scale(0.6); opacity:.9; }
+    70%{ transform:scale(1.8); opacity:0; }
+    100%{ transform:scale(1.8); opacity:0; }
+  }
+  .tap-label{
+    position:absolute; top:40px; right:10px; z-index:6; pointer-events:none;
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; color:#fff; background:rgba(27,31,42,.82);
+    padding:4px 8px; border-radius:6px; white-space:nowrap;
+  }
+
+  /* ===== Share sheet ===== */
+  .sheet-overlay{
+    position:absolute; inset:0; background:rgba(20,22,30,.5); z-index:80;
+    display:none; align-items:flex-end; justify-content:center;
+  }
+  .sheet-overlay.open{ display:flex; }
+  .sheet{
+    width:100%; background:var(--parchment); border-radius:24px 24px 0 0; padding:10px 20px 28px;
+    animation:sheetUp .28s ease;
+  }
+  @keyframes sheetUp{ from{ transform:translateY(100%); } to{ transform:translateY(0); } }
+  .sheet-handle{ width:36px; height:4px; border-radius:3px; background:var(--line); margin:6px auto 14px; }
+  .sheet-title{ font-family:'Fraunces',serif; font-size:17px; font-weight:600; color:var(--ink); margin-bottom:14px; }
+  .share-options{ display:flex; gap:12px; margin-bottom:18px; }
+  .share-opt{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer;
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-dark);
+  }
+  .share-opt .icon-circle{
+    width:52px; height:52px; border-radius:50%; background:#fff; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; color:var(--ink);
+  }
+  .share-opt.sent .icon-circle{ background:var(--sage); border-color:var(--sage); color:#fff; }
+
+  /* ===== Available-for chips ===== */
+  .tag.avail{ cursor:pointer; border:1px solid var(--line); background:#fff; transition:all .15s ease; }
+  .tag.avail.on{ background:var(--ink); color:var(--brass-light); border-color:var(--ink); }
+  .tag.avail.hidden{ display:none; }
+  .tag.avail.more{ background:var(--parchment-2); color:var(--text-muted); }
+
+  .list-row{
+    display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .list-row:last-child{ border-bottom:none; }
+  .list-row .info{ flex:1; }
+  .list-row .info b{ display:block; font-size:13.5px; color:var(--ink); font-family:'Inter',sans-serif; }
+  .list-row .info span{ font-size:11.5px; color:var(--text-muted); }
+  .list-row .chev{ color:var(--text-muted); }
 </style>
 </head>
 <body>
@@ -256,7 +319,7 @@
         </div>
       </div>
       <div class="topbar">
-        <div class="brand">Op<span class="mark">u</span>s</div>
+        <div class="brand"><svg class="clef-icon" viewBox="0 0 28 44" width="15" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4 C10 4 7 10 11 15 C15 20 21 17 20 11 C19 7 14 7 14 11 C14 14 17 15 18 13"/><path d="M18 13 C16 20 15 28 15 35"/><path d="M15 35 C15 41 9 42 7 37 C5 33 10 30 13 33"/></svg>Op<span class="mark">u</span>s</div>
         <div class="sub">discover &middot; gigs matched to you</div>
       </div>
     </div>
@@ -270,7 +333,9 @@
     <div class="content">
       <div class="section-title">Because Mezza Quartet plays weddings <span class="see">12 nearby</span></div>
 
-      <div class="card" onclick="showScreen('screen-gigdetail')">
+      <div class="card" onclick="showScreen('screen-gigdetail')" style="position:relative;">
+        <div class="tap-hint"><span class="ring"></span><span class="dot"></span></div>
+        <div class="tap-label">tap a card</div>
         <div class="eyebrow">Wedding · Ceremony + Cocktail Hour</div>
         <h3>String Quartet, Sat Aug 15</h3>
         <div class="meta">Filoli Gardens, Woodside CA &middot; 5:00–7:30 PM</div>
@@ -405,13 +470,13 @@
         </div>
       </div>
       <div class="topbar">
-        <div class="brand">Op<span class="mark">u</span>s</div>
-        <div class="sub">your network &middot; the trust layer</div>
+        <div class="brand"><svg class="clef-icon" viewBox="0 0 28 44" width="15" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4 C10 4 7 10 11 15 C15 20 21 17 20 11 C19 7 14 7 14 11 C14 14 17 15 18 13"/><path d="M18 13 C16 20 15 28 15 35"/><path d="M15 35 C15 41 9 42 7 37 C5 33 10 30 13 33"/></svg>Op<span class="mark">u</span>s</div>
+        <div class="sub">your network</div>
       </div>
     </div>
     <div class="content">
       <div class="section-title">Ensembles you're in</div>
-      <div class="card">
+      <div class="card" onclick="showScreen('screen-ensemble-mezza')" style="cursor:pointer;">
         <div class="eyebrow">String Quartet</div>
         <h3>Mezza Quartet</h3>
         <div class="meta">4 members &middot; Pittsburgh PA &middot; 64 gigs completed</div>
@@ -424,7 +489,7 @@
         <div class="tagrow"><div class="tag">Classical</div><div class="tag">Weddings</div><div class="tag">Chamber recitals</div></div>
       </div>
 
-      <div class="card">
+      <div class="card" onclick="showScreen('screen-ensemble-grieg')" style="cursor:pointer;">
         <div class="eyebrow">Violin / Piano Duo</div>
         <h3>Grieg Duo</h3>
         <div class="meta">2 members &middot; Pittsburgh PA &middot; 21 gigs completed</div>
@@ -478,7 +543,7 @@
         </div>
       </div>
       <div class="topbar">
-        <div class="brand">Op<span class="mark">u</span>s</div>
+        <div class="brand"><svg class="clef-icon" viewBox="0 0 28 44" width="15" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4 C10 4 7 10 11 15 C15 20 21 17 20 11 C19 7 14 7 14 11 C14 14 17 15 18 13"/><path d="M18 13 C16 20 15 28 15 35"/><path d="M15 35 C15 41 9 42 7 37 C5 33 10 30 13 33"/></svg>Op<span class="mark">u</span>s</div>
         <div class="sub">messages</div>
       </div>
     </div>
@@ -558,8 +623,8 @@
       <div class="profile-name">Cassandra May</div>
       <div class="profile-tagline">Violin &middot; Pittsburgh, PA &middot; 18 yrs experience</div>
       <div class="badge-row">
-        <div class="badge">Mezza Quartet</div>
-        <div class="badge">Grieg Duo</div>
+        <div class="badge" onclick="showScreen('screen-ensemble-mezza')" style="cursor:pointer;">Mezza Quartet</div>
+        <div class="badge" onclick="showScreen('screen-ensemble-grieg')" style="cursor:pointer;">Grieg Duo</div>
         <div class="badge">Carnegie Mellon BFA</div>
       </div>
     </div>
@@ -574,13 +639,37 @@
       <p class="bio">Freelance violinist with 18 years of performance experience across chamber, orchestral, and private-event settings. BFA in Violin Performance from Carnegie Mellon University. Founding member of the Mezza Quartet, and one half of the Grieg Duo alongside pianist Spencer Cha. Comfortable with formal ceremonies, recital programs, and sight-reading on short notice.</p>
 
       <div class="section-title">Genres</div>
-      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Chamber</div><div class="tag">Romantic era</div><div class="tag">Weddings</div></div>
+      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Jazz</div><div class="tag">Pop</div></div>
 
-      <div class="section-title">Recordings &amp; video</div>
+      <div class="section-title">Available For</div>
+      <div class="tagrow">
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Weddings</div>
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Corporate Events</div>
+        <div class="tag avail" onclick="this.classList.toggle('on')">Funerals</div>
+        <div class="tag avail" onclick="this.classList.toggle('on')">Recitals</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Religious Services</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Session Work</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Teaching</div>
+        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      </div>
+
+      <div class="section-title">Media</div>
       <div class="media-strip">
         <div class="media-thumb">▶ Grieg Sonata No. 3, live</div>
         <div class="media-thumb">▶ Mezza Quartet reel</div>
         <div class="media-thumb">▶ Solo recital, CMU</div>
+      </div>
+
+      <div class="section-title" style="margin-top:16px;">Ensembles</div>
+      <div class="list-row" onclick="showScreen('screen-ensemble-mezza')">
+        <div class="avatar" style="background:var(--brass); margin-left:0; width:38px; height:38px; font-size:12px;">MQ</div>
+        <div class="info"><b>Mezza Quartet</b><span>String Quartet &middot; 4 members</span></div>
+        <div class="chev">&rsaquo;</div>
+      </div>
+      <div class="list-row" onclick="showScreen('screen-ensemble-grieg')">
+        <div class="avatar" style="background:var(--sage); margin-left:0; width:38px; height:38px; font-size:12px;">GD</div>
+        <div class="info"><b>Grieg Duo</b><span>Violin / Piano Duo &middot; 2 members</span></div>
+        <div class="chev">&rsaquo;</div>
       </div>
 
       <div class="section-title">Reviews</div>
@@ -595,10 +684,361 @@
 
       <div class="btn-row" style="margin-top:8px;">
         <button class="btn">Edit profile</button>
-        <button class="btn ghost">Share profile</button>
+        <button class="btn ghost" onclick="openSheet()">Share profile</button>
       </div>
     </div>
   </div>
+
+  <!-- ===================== SCREEN: ENSEMBLE — MEZZA QUARTET ===================== -->
+  <div class="screen" id="screen-ensemble-mezza">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" style="border-radius:20px;">MQ</div>
+      <div class="profile-name">Mezza Quartet</div>
+      <div class="profile-tagline">String Quartet &middot; Pittsburgh, PA &middot; 64 gigs completed</div>
+      <div class="badge-row">
+        <div class="badge">Classical</div>
+        <div class="badge">Weddings</div>
+        <div class="badge">Chamber Recitals</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Biography</div>
+      <p class="bio">Founded in 2023 at Carnegie Mellon, the Mezza Quartet performs classical and contemporary repertoire for weddings, chamber recitals, and private events across Pittsburgh. Known for tight ensemble balance and a repertoire that ranges from Pachelbel to arranged pop standards for cocktail hours.</p>
+
+      <div class="section-title">Available For</div>
+      <div class="tagrow">
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Weddings</div>
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Chamber Recitals</div>
+        <div class="tag avail" onclick="this.classList.toggle('on')">Corporate Events</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Funerals</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Religious Services</div>
+        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      </div>
+
+      <div class="section-title">Media</div>
+      <div class="media-strip">
+        <div class="media-thumb">▶ Mezza Quartet reel</div>
+        <div class="media-thumb">▶ Pachelbel Canon, live</div>
+        <div class="media-thumb">▶ Filoli Gardens wedding</div>
+      </div>
+
+      <div class="section-title">Members</div>
+      <div class="list-row" onclick="showScreen('screen-profile')">
+        <div class="avatar" style="background:var(--brass); margin-left:0; width:38px; height:38px; font-size:12px;">CM</div>
+        <div class="info"><b>Cassandra May</b><span>Violin I</span></div>
+        <div class="chev">&rsaquo;</div>
+      </div>
+      <div class="list-row" onclick="showScreen('screen-musician-josh')">
+        <div class="avatar" style="background:var(--sage); margin-left:0; width:38px; height:38px; font-size:12px;">JL</div>
+        <div class="info"><b>Josh Lee</b><span>Violin II</span></div>
+        <div class="chev">&rsaquo;</div>
+      </div>
+      <div class="list-row" onclick="showScreen('screen-musician-nathan')">
+        <div class="avatar" style="background:var(--crimson); margin-left:0; width:38px; height:38px; font-size:12px;">NG</div>
+        <div class="info"><b>Nathan Gaynor</b><span>Viola</span></div>
+        <div class="chev">&rsaquo;</div>
+      </div>
+      <div class="list-row" onclick="showScreen('screen-musician-elly')">
+        <div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:12px;">ES</div>
+        <div class="info"><b>Elly Schade</b><span>Cello</span></div>
+        <div class="chev">&rsaquo;</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn">Book Mezza Quartet</button>
+        <button class="btn ghost" onclick="openSheet()">Share</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: ENSEMBLE — GRIEG DUO ===================== -->
+  <div class="screen" id="screen-ensemble-grieg">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" style="border-radius:20px; background:linear-gradient(135deg, var(--sage), var(--ink-3));">GD</div>
+      <div class="profile-name">Grieg Duo</div>
+      <div class="profile-tagline">Violin / Piano Duo &middot; Pittsburgh, PA &middot; 21 gigs completed</div>
+      <div class="badge-row">
+        <div class="badge">Romantic Era</div>
+        <div class="badge">Recitals</div>
+        <div class="badge">Fundraisers</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Biography</div>
+      <p class="bio">A violin and piano duo formed by Cassandra May and Spencer Cha, focused on Romantic-era repertoire — Grieg, Brahms, Franck — for recital programs and fundraiser evenings. Regularly performs at the Athenaeum and area chamber series.</p>
+
+      <div class="section-title">Available For</div>
+      <div class="tagrow">
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Recitals</div>
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Fundraisers</div>
+        <div class="tag avail" onclick="this.classList.toggle('on')">Weddings</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Corporate Events</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Private Parties</div>
+        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      </div>
+
+      <div class="section-title">Media</div>
+      <div class="media-strip">
+        <div class="media-thumb">▶ Grieg Sonata No. 3, live</div>
+        <div class="media-thumb">▶ The Athenaeum recital</div>
+      </div>
+
+      <div class="section-title">Members</div>
+      <div class="list-row" onclick="showScreen('screen-profile')">
+        <div class="avatar" style="background:var(--brass); margin-left:0; width:38px; height:38px; font-size:12px;">CM</div>
+        <div class="info"><b>Cassandra May</b><span>Violin</span></div>
+        <div class="chev">&rsaquo;</div>
+      </div>
+      <div class="list-row" onclick="showScreen('screen-musician-spencer')">
+        <div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:12px;">SC</div>
+        <div class="info"><b>Spencer Cha</b><span>Piano</span></div>
+        <div class="chev">&rsaquo;</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn">Book Grieg Duo</button>
+        <button class="btn ghost" onclick="openSheet()">Share</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MUSICIAN — JOSH LEE ===================== -->
+  <div class="screen" id="screen-musician-josh">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back to Mezza Quartet</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" style="background:linear-gradient(135deg, var(--sage), var(--ink-3));">JL</div>
+      <div class="profile-name">Josh Lee</div>
+      <div class="profile-tagline">Violin &middot; Pittsburgh, PA &middot; 9 yrs experience</div>
+      <div class="badge-row">
+        <div class="badge" onclick="showScreen('screen-ensemble-mezza')" style="cursor:pointer;">Mezza Quartet</div>
+        <div class="badge">CMU School of Music</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Biography</div>
+      <p class="bio">Second violinist with the Mezza Quartet since its founding. Studies violin performance at Carnegie Mellon, with a background in orchestral and chamber playing. Comfortable second-chair support and quick to adapt on unfamiliar repertoire.</p>
+
+      <div class="section-title">Genres</div>
+      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Chamber</div><div class="tag">Film Scores</div></div>
+
+      <div class="section-title">Available For</div>
+      <div class="tagrow">
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Weddings</div>
+        <div class="tag avail" onclick="this.classList.toggle('on')">Recitals</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Funerals</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Session Work</div>
+        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn">Message</button>
+        <button class="btn ghost" onclick="openSheet()">Share profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MUSICIAN — NATHAN GAYNOR ===================== -->
+  <div class="screen" id="screen-musician-nathan">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back to Mezza Quartet</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" style="background:linear-gradient(135deg, var(--crimson), var(--ink-3));">NG</div>
+      <div class="profile-name">Nathan Gaynor</div>
+      <div class="profile-tagline">Viola &middot; Pittsburgh, PA &middot; 11 yrs experience</div>
+      <div class="badge-row">
+        <div class="badge" onclick="showScreen('screen-ensemble-mezza')" style="cursor:pointer;">Mezza Quartet</div>
+        <div class="badge">CMU School of Music</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Biography</div>
+      <p class="bio">Violist with the Mezza Quartet, previously with the Pittsburgh Youth Symphony. Enjoys the inner-voice role of the viola in string quartet writing, and occasionally arranges pop and film repertoire for the group's cocktail-hour sets.</p>
+
+      <div class="section-title">Genres</div>
+      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Contemporary</div><div class="tag">Pop Arrangements</div></div>
+
+      <div class="section-title">Available For</div>
+      <div class="tagrow">
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Weddings</div>
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Corporate Events</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Funerals</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Teaching</div>
+        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn">Message</button>
+        <button class="btn ghost" onclick="openSheet()">Share profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MUSICIAN — ELLY SCHADE ===================== -->
+  <div class="screen" id="screen-musician-elly">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back to Mezza Quartet</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" style="background:linear-gradient(135deg, var(--ink-3), var(--ink));">ES</div>
+      <div class="profile-name">Elly Schade</div>
+      <div class="profile-tagline">Cello &middot; Pittsburgh, PA &middot; 13 yrs experience</div>
+      <div class="badge-row">
+        <div class="badge" onclick="showScreen('screen-ensemble-mezza')" style="cursor:pointer;">Mezza Quartet</div>
+        <div class="badge">CMU School of Music</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Biography</div>
+      <p class="bio">Cellist anchoring the Mezza Quartet's low end since 2023. Also active as a freelance orchestral player around Pittsburgh, with a particular love of Romantic-era chamber writing and a steady hand for wedding ceremony timing.</p>
+
+      <div class="section-title">Genres</div>
+      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Romantic Era</div><div class="tag">Chamber</div></div>
+
+      <div class="section-title">Available For</div>
+      <div class="tagrow">
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Weddings</div>
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Chamber Recitals</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Religious Services</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Session Work</div>
+        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn">Message</button>
+        <button class="btn ghost" onclick="openSheet()">Share profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: MUSICIAN — SPENCER CHA ===================== -->
+  <div class="screen" id="screen-musician-spencer">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back to Grieg Duo</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" style="background:linear-gradient(135deg, var(--ink-3), var(--sage));">SC</div>
+      <div class="profile-name">Spencer Cha</div>
+      <div class="profile-tagline">Piano &middot; Pittsburgh, PA &middot; 15 yrs experience</div>
+      <div class="badge-row">
+        <div class="badge" onclick="showScreen('screen-ensemble-grieg')" style="cursor:pointer;">Grieg Duo</div>
+        <div class="badge">CMU School of Music</div>
+      </div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Biography</div>
+      <p class="bio">Collaborative pianist and one half of the Grieg Duo alongside Cassandra May. Focused on Romantic-era sonata repertoire and comfortable accompanying singers and instrumentalists across recital and fundraiser settings.</p>
+
+      <div class="section-title">Genres</div>
+      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Romantic Era</div><div class="tag">Jazz</div></div>
+
+      <div class="section-title">Available For</div>
+      <div class="tagrow">
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Recitals</div>
+        <div class="tag avail on" onclick="this.classList.toggle('on')">Fundraisers</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Weddings</div>
+        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Teaching</div>
+        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      </div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn">Message</button>
+        <button class="btn ghost" onclick="openSheet()">Share profile</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SHARE SHEET (overlay) ===================== -->
+  <div class="sheet-overlay" id="shareSheet" onclick="closeSheet(event)">
+    <div class="sheet" onclick="event.stopPropagation()">
+      <div class="sheet-handle"></div>
+      <div class="sheet-title">Share Profile</div>
+      <div class="share-options">
+        <div class="share-opt" onclick="this.classList.toggle('sent')">
+          <div class="icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          Text Message
+        </div>
+        <div class="share-opt" onclick="this.classList.toggle('sent')">
+          <div class="icon-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          </div>
+          Email
+        </div>
+        <div class="share-opt" onclick="this.classList.toggle('sent')">
+          <div class="icon-circle">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </div>
+          Copy Link
+        </div>
+      </div>
+      <button class="btn ghost block" onclick="closeSheet()">Cancel</button>
+    </div>
+  </div>
+
 
   <div class="navbar">
     <div class="navitem active" onclick="setNav(this,'screen-discover')">
@@ -621,15 +1061,37 @@
 </div>
 
 <script>
+  var navHistory = ['screen-discover'];
+
   function showScreen(id){
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     document.getElementById(id).scrollTop = 0;
+    if(navHistory[navHistory.length - 1] !== id){ navHistory.push(id); }
+  }
+  function goBack(){
+    if(navHistory.length > 1){ navHistory.pop(); }
+    var prev = navHistory[navHistory.length - 1] || 'screen-discover';
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(prev).classList.add('active');
+    document.getElementById(prev).scrollTop = 0;
   }
   function setNav(el, id){
     document.querySelectorAll('.navitem').forEach(n => n.classList.remove('active'));
     el.classList.add('active');
+    navHistory = [id];
     showScreen(id);
+  }
+  function revealMore(btn){
+    var hidden = btn.parentElement.querySelectorAll('.tag.avail.hidden');
+    hidden.forEach(function(h){ h.classList.remove('hidden'); });
+    btn.remove();
+  }
+  function openSheet(){
+    document.getElementById('shareSheet').classList.add('open');
+  }
+  function closeSheet(e){
+    document.getElementById('shareSheet').classList.remove('open');
   }
 </script>
 </body>
