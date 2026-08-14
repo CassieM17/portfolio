@@ -54,8 +54,8 @@
   <div class="case-study">
     <span class="eyebrow"><span class="dot"></span>UX Case Study · Independent Research Project</span>
     <div class="case-title" style="margin-top:0.9rem;">Rethinking Apple Calendar Through One Semester of Real Use</div>
-    <p class="case-question">Apple Calendar's Week and Month views use a rigid, one-size-fits-all
-    visual system that doesn't adapt to how differently people actually use their time — leaving
+    <p class="case-question">Apple Calendar's Week and Month views use a one-size-fits-all
+    visual system that doesn't adapt to how differently people actually use their time. It leaves
     power users with dense, overlapping schedules unable to compress dead time, differentiate
     event importance, or scan a busy month at a glance.</p>
 
@@ -67,37 +67,34 @@
 
     <div class="case-block">
       <h3>01 · Context</h3>
-      <p>As a Systems Design and Violin Performance dual-degree student at Carnegie Mellon, my
-      calendar is the only thing standing between me and a missed rehearsal, exam, or research
-      deadline. In a given week I'm tracking five academic calendars, a research assistantship,
-      orchestra rehearsals and performances, event-planning commitments, exercise, and a social
-      life — twelve separate calendars layered into one app.</p>
-      <p>Apple Calendar (iCal) is where all of it lives. It works, but over a semester of
-      near-constant use, the same friction kept resurfacing: dead space that couldn't be
-      compressed, a color system too rigid to reflect how I actually organize my life, and views
-      that gave a week-long school break the same visual weight as a 30-minute meeting.</p>
+      <p>As a busy student, my calendar is the only thing standing between me and a missed
+      rehearsal, exam, or research deadline. In a given week I'm tracking five academic calendars,
+      a research assistantship, orchestra rehearsals and performances, event-planning
+      commitments, exercise, a social life... all on a simple calendar doing its very best.</p>
+      <p>Apple Calendar (iCal) is where all of it lives, and I like it. It works, but over a
+      semester of near-constant use, the same friction kept resurfacing: dead space that
+      couldn't be compressed, a color system too rigid to reflect how I actually organize my
+      life, and views that gave a week-long school break the same visual weight as a 30-minute
+      meeting.</p>
       <p>Rather than switch tools, I treated my own calendar as a research subject.</p>
     </div>
 
     <div class="case-block">
       <h3>02 · Problem Statement</h3>
       <div class="opportunity" style="border-left-color:var(--brown);">
-        Apple Calendar's Week and Month views use a rigid, one-size-fits-all visual system that
-        doesn't adapt to how differently people actually use their time — leaving power users with
-        dense, overlapping schedules unable to compress dead time, differentiate event importance,
-        or scan a busy month at a glance.
+        Apple Calendar's Week and Month views use a one-size-fits-all visual system that doesn't
+        adapt to how differently people actually use their time. It leaves power users with dense,
+        overlapping schedules unable to compress dead time, differentiate event importance, or
+        scan a busy month at a glance.
       </div>
     </div>
 
     <div class="case-block">
       <h3>03 · Research Approach</h3>
-      <p>Instead of running interviews or surveys after the fact, I used an
-      <strong>autoethnographic diary-study</strong> method: over several weeks of real use, I
-      annotated live screenshots of my own calendar the moment something didn't work, using
-      on-device markup to circle, label, and sketch fixes directly on top of my actual schedule.
-      Capturing friction in the moment — rather than relying on recalled pain points in a later
-      interview — surfaced complaints I wouldn't have thought to mention if simply asked "what's
-      wrong with your calendar app?"</p>
+      <p>I used an <strong>autoethnographic diary-study</strong> method: over several weeks of
+      my use, I annotated live screenshots of my own calendar the moment something didn't work,
+      using on-device markup to circle, label, and sketch fixes directly on top of my actual
+      schedule.</p>
       <p style="margin-top:1rem; font-family:'IBM Plex Mono'; font-size:0.8rem; opacity:0.7;">Research artifacts:</p>
       <ul class="case-list">
         <li>Week View screenshot, annotated live (November 2023)</li>
@@ -210,38 +207,219 @@
     </div>
 
     <div class="case-block">
-      <h3>04.5 · Redesign Comparison</h3>
-      <p>Turning the highest-priority findings into an actual side-by-side comparison, using the
-      same real schedule from the diary study.</p>
+      <h3>04.5 · Try the Redesign</h3>
+      <p>Turning the highest-priority findings into something you can actually click through,
+      using the same real schedule from the diary study.</p>
 
       <div class="subhead">Week View</div>
-      <div class="compare-pair">
-        <div class="compare-item">
-          <span class="compare-tag before">Before — Current iCal</span>
-          <img src="cal-week-before.png" alt="Before: current iCal Week View, November 2023">
-          <p class="compare-caption">Flat color hierarchy, no weekend shading, dead sleep hours eat the grid, "now" line easy to miss.</p>
+      <div class="mini-before">
+        <span class="compare-tag before">Before — Current iCal</span>
+        <img src="cal-week-before.png" alt="Before: current iCal Week View, November 2023">
+      </div>
+      <p style="font-size:0.9rem; opacity:0.8; margin-bottom:0.4rem;">Click the toggles below to apply each fix to the real schedule from the diary study — same data, one change at a time.</p>
+      <div class="toggle-row">
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-collapse-off', !this.checked)"> Collapse dead time</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-weekend-on', this.checked)"> Weekend shading</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-hierarchy-on', this.checked)"> Bold / italic hierarchy</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-now-hi', this.checked)"> High-contrast "now"</label>
+      </div>
+
+      <div id="wiFrame" class="wi-frame wi-weekend-on wi-hierarchy-on wi-now-hi">
+        <div class="wi-topbar">
+          <div class="wi-icons"><span class="wi-dot"></span><span class="wi-dot2"></span><span class="wi-dot2"></span><span class="wi-dot2"></span></div>
+          <div class="wi-segctrl"><span>Day</span><span class="active">Week</span><span>Month</span><span>Year</span></div>
+          <div>Wed, Nov 29 &middot; 11:20 AM&nbsp;&nbsp;Today</div>
         </div>
-        <div class="compare-item">
-          <span class="compare-tag after">After — Redesigned</span>
-          <img src="cal-week-after.png" alt="After: redesigned Week View, November 2023">
-          <p class="compare-caption">Sleep hours collapse to reclaim space, weekend shading, bold/italic hierarchy, high-contrast "now" marker.</p>
+        <div class="wi-monthtitle">November 2023</div>
+        <div class="wi-legend">
+          <div><span class="sw" style="background:#4a86e0;"></span>Academics</div>
+          <div><span class="sw" style="background:#9b6bc7;"></span>Violin</div>
+          <div><span class="sw" style="background:#e3934f;"></span>Research</div>
+          <div><span class="sw" style="background:#3fb1c2;"></span>Social</div>
+          <div><span class="sw" style="background:#9099a8;"></span>Personal</div>
+          <div><span class="sw" style="background:#2f3f66;"></span>Deadline</div>
+        </div>
+        <div class="wi-gridwrap">
+          <div class="wi-dayheader">
+            <div class="wi-dh" style="left:calc(38px + 0*((100% - 38px)/7));">Sun 26</div>
+            <div class="wi-dh" style="left:calc(38px + 1*((100% - 38px)/7));">Mon 27</div>
+            <div class="wi-dh" style="left:calc(38px + 2*((100% - 38px)/7));">Tue 28</div>
+            <div class="wi-dh" style="left:calc(38px + 3*((100% - 38px)/7));">Wed 29</div>
+            <div class="wi-dh" style="left:calc(38px + 4*((100% - 38px)/7));">Thu 30</div>
+            <div class="wi-dh" style="left:calc(38px + 5*((100% - 38px)/7));">Fri 1</div>
+            <div class="wi-dh weekend" style="left:calc(38px + 6*((100% - 38px)/7));">Sat 2</div>
+          </div>
+          <div class="wi-viewport">
+            <div class="wi-weekendcol" style="left:calc(38px + 6*((100% - 38px)/7)); width:calc((100% - 38px)/7);"></div>
+            <div class="wi-sleepband">12:00 &ndash; 7:00 AM &middot; Sleep (tap to expand)</div>
+            <div class="wi-eventslayer" id="wiEventsLayer"></div>
+          </div>
         </div>
       </div>
 
+      <script>
+      (function(){
+        var weekEvents = [
+          {d:0,top:436,h:40,cal:'social',t:'thai food w/ jayden'},
+          {d:0,top:596,h:20,cal:'deadline',t:'rpc poster due',bold:1},
+          {d:1,top:116,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:1,top:196,h:40,cal:'academics',t:'Writing about Data'},
+          {d:1,top:316,h:20,cal:'personal',t:'submit TLA form',italic:1},
+          {d:1,top:416,h:40,cal:'violin',t:'practice'},
+          {d:1,top:516,h:60,cal:'research',t:'EUREKA! Discovery pres.',bold:1},
+          {d:2,top:136,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:2,top:256,h:20,cal:'personal',t:'amazon / xmas cards',italic:1},
+          {d:2,top:356,h:30,cal:'academics',t:'talk to advisor'},
+          {d:2,top:436,h:40,cal:'violin',t:'rehearse w/ brian'},
+          {d:2,top:536,h:60,cal:'violin',t:'van der sloot studio class',bold:1},
+          {d:3,top:116,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:3,top:196,h:40,cal:'academics',t:'Writing about Data'},
+          {d:3,top:276,h:40,cal:'violin',t:'chamber coaching'},
+          {d:3,top:376,h:40,cal:'social',t:'dinner w/ jayden',italic:1},
+          {d:3,top:516,h:20,cal:'deadline',t:'ucla app',bold:1},
+          {d:4,top:116,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:4,top:316,h:40,cal:'violin',t:'canterbury place gig'},
+          {d:4,top:436,h:80,cal:'social',t:'hang out w/ jayden',italic:1},
+          {d:4,top:596,h:20,cal:'deadline',t:'apply to ucla',bold:1},
+          {d:5,top:76,h:20,cal:'personal',t:'call jasmin, get package',italic:1},
+          {d:5,top:256,h:40,cal:'academics',t:'de fer'},
+          {d:5,top:356,h:40,cal:'social',t:'scottys market'},
+          {d:5,top:556,h:20,cal:'personal',t:'laundry, take out trash',italic:1},
+          {d:5,top:616,h:60,cal:'social',t:'harry potter w/ alex',italic:1},
+          {d:6,top:276,h:60,cal:'social',t:'capital grains brunch',italic:1},
+          {d:6,top:536,h:100,cal:'social',t:'bbq w/ raghav, julian, jess+'},
+          {d:6,top:636,h:60,cal:'deadline',t:'study for rpc',bold:1}
+        ];
+        var gridlines = [36,116,196,276,356,436,516,596,676];
+        var tlabels = [
+          {top:112,label:'9 AM'},{top:192,label:'11 AM'},{top:272,label:'1 PM'},{top:352,label:'3 PM'},
+          {top:432,label:'5 PM'},{top:512,label:'7 PM'},{top:592,label:'9 PM'},{top:672,label:'11 PM'}
+        ];
+        var layer = document.getElementById('wiEventsLayer');
+        var colWidth = 'calc((100% - 38px)/7)';
+        function colLeft(d){ return 'calc(38px + ' + d + '*((100% - 38px)/7))'; }
+        var html = '';
+        gridlines.forEach(function(g){
+          html += '<div class="wi-gridline" style="top:' + g + 'px;"></div>';
+        });
+        tlabels.forEach(function(tl){
+          html += '<div class="wi-tlabel" style="top:' + tl.top + 'px;">' + tl.label + '</div>';
+        });
+        weekEvents.forEach(function(ev){
+          html += '<div class="wi-event wi-c-' + ev.cal + '" data-bold="' + (ev.bold?1:0) + '" data-italic="' + (ev.italic?1:0) + '" style="top:' + ev.top + 'px; height:' + ev.h + 'px; left:' + colLeft(ev.d) + '; width:' + colWidth + ';">' + ev.t + '</div>';
+        });
+        // now marker: Wed (col3) 11:20am -> compact top 209
+        html += '<div class="wi-now" style="top:209px; left:' + colLeft(3) + '; width:' + colWidth + ';"></div>';
+        html += '<div class="wi-nowdot" style="top:209px; left:calc(38px + 3*((100% - 38px)/7));"></div>';
+        html += '<div class="wi-nowlabel" style="top:203px; left:0;">11:20</div>';
+        layer.innerHTML = html;
+      })();
+      </script>
+
       <div class="subhead">Month View</div>
-      <div class="compare-pair">
-        <div class="compare-item">
-          <span class="compare-tag before">Before — Current iCal</span>
-          <img src="cal-month-before.png" alt="Before: current iCal Month View, January 2024">
-          <p class="compare-caption">Multi-day banner has full weight of a real event, date number crowds text, no way to tell a day's "shape" at a glance.</p>
-        </div>
-        <div class="compare-item">
-          <span class="compare-tag after">After — Redesigned</span>
-          <img src="cal-month-after.png" alt="After: redesigned Month View, January 2024">
-          <p class="compare-caption">Winter Break becomes a thin ribbon (not a full block), date number floats top-right, icon strip signals the "shape" of the day at a glance.</p>
-        </div>
+      <div class="mini-before">
+        <span class="compare-tag before">Before — Current iCal</span>
+        <img src="cal-month-before.png" alt="Before: current iCal Month View, January 2024">
       </div>
+      <p style="font-size:0.9rem; opacity:0.8; margin-bottom:0.4rem;">Same idea for Month view — toggle each fix on and off.</p>
+      <div class="toggle-row">
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-ribbon-on', this.checked)"> Lightweight banner</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-datenum-on', this.checked)"> Floating date number</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-icons-on', this.checked)"> Category icon strip</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-weekend-on', this.checked)"> Weekend shading</label>
+      </div>
+
+      <div id="miFrame" class="mi-frame mi-ribbon-on mi-datenum-on mi-icons-on mi-weekend-on">
+        <div class="mi-topbar">
+          <div class="mi-icons"><span class="wi-dot"></span><span class="wi-dot2"></span><span class="wi-dot2"></span><span class="wi-dot2"></span></div>
+          <div class="mi-segctrl"><span>Day</span><span>Week</span><span class="active">Month</span><span>Year</span></div>
+          <div>Tue, Jan 16&nbsp;&nbsp;Today</div>
+        </div>
+        <div class="mi-monthtitle">January 2024</div>
+        <div class="mi-legend">
+          <div><span class="sw" style="background:#4a86e0;"></span>Academics</div>
+          <div><span class="sw" style="background:#9b6bc7;"></span>Violin</div>
+          <div><span class="sw" style="background:#3fb1c2;"></span>Social</div>
+          <div><span class="sw" style="background:#9099a8;"></span>Personal</div>
+          <div><span class="sw" style="background:#d9548a;"></span>Birthday</div>
+          <div><span class="sw" style="background:#2f3f66;"></span>Deadline</div>
+        </div>
+        <div class="mi-dayheader"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div class="weekend">Sat</div></div>
+        <div class="mi-grid" id="miGrid"></div>
+      </div>
+
+      <script>
+      (function(){
+        var C = function(cls, txt){ return [cls, txt]; };
+        var cells = [
+          {n:31, dim:1, wknd:1},
+          {n:1, wbreak:1, icons:['personal'], ev:[C('personal',"New Year's Day"),C('personal','las vegas trip')]},
+          {n:2, wbreak:1, icons:['personal'], ev:[C('personal','leave for vegas')]},
+          {n:3, wbreak:1},
+          {n:4, wbreak:1, icons:['personal'], ev:[C('personal','rigo comes back')]},
+          {n:5, wbreak:1, icons:['personal'], ev:[C('personal','see rigo')]},
+          {n:6, wbreak:1, wknd:1, icons:['social'], ev:[C('social','harker alumni soccer')]},
+
+          {n:7, wknd:1, icons:['birthday'], ev:[C('birthday',"Ashley Ryan's Bday"),C('birthday',"Michelle Jin's Bday")]},
+          {n:8, icons:['birthday','academics','personal'], ev:[C('birthday',"Dawson Chen's Bday"),C('academics','harker classes start'),C('personal','dermatology appt')]},
+          {n:9, icons:['personal','social'], ev:[C('personal','roland appt'),C('social','climbing w/ andromeda')]},
+          {n:10, icons:['violin','personal'], ev:[C('violin','practice'),C('personal','opto appt')]},
+          {n:11, icons:['violin','personal'], ev:[C('violin','practice'),C('personal','record')]},
+          {n:12, icons:['personal'], ev:[C('personal','photoshoot'),C('personal','call yunah')]},
+          {n:13, wknd:1},
+
+          {n:14, wknd:1},
+          {n:15, icons:['deadline'], ev:[C('deadline','Martin Luther King Jr. Day'),C('deadline','music@menlo deadline')]},
+          {n:16, today:1, icons:['birthday','academics','violin'], ev:[C('birthday',"Lexi Wong's Birthday"),C('academics','Integration and Approx'),C('academics','Reasoning w/ Data')]},
+          {n:17, icons:['personal'], ev:[C('personal','flight to Denver'),C('personal','flight to Pittsburgh')]},
+          {n:18, icons:['academics'], ev:[C('academics','Integration and Approx'),C('academics','Intro to Psych')]},
+          {n:19},
+          {n:20, wknd:1},
+
+          {n:21, wknd:1, icons:['birthday'], ev:[C('birthday',"Uncle Jay's Birthday")]},
+          {n:22, icons:['academics'], ev:[C('academics','Integration and Approx'),C('academics','Reasoning w/ Data')]},
+          {n:23, icons:['academics','violin'], ev:[C('academics','Intro to Psych'),C('violin','Major Instrumental Ens.')]},
+          {n:24, icons:['birthday','academics'], ev:[C('birthday',"Harika Parimi's Bday"),C('academics','Integration and Approx')]},
+          {n:25, icons:['academics'], ev:[C('academics','Reasoning w/ Data'),C('academics','Principles of Micro')]},
+          {n:26, icons:['academics'], ev:[C('academics','Integration and Approx')]},
+          {n:27, wknd:1},
+
+          {n:28, wknd:1},
+          {n:29, icons:['academics'], ev:[C('academics','Integration and Approx')]},
+          {n:30, icons:['deadline','academics'], ev:[C('deadline','deadline: univ. minnesota'),C('academics','Reasoning w/ Data')]},
+          {n:31, icons:['academics','violin'], ev:[C('academics','Principles of Micro'),C('violin','Violin Studio Perf.')]},
+          {n:1, dim:1, ev:[C('deadline','Black History Month')]},
+          {n:2, dim:1, wknd:1, ev:[C('personal','Groundhog Day')]},
+          {n:3, dim:1, wknd:1}
+        ];
+        var iconClass = {academics:'mi-dot-academics',violin:'mi-dot-violin',social:'mi-dot-social',personal:'mi-dot-personal',birthday:'mi-dot-birthday',deadline:'mi-dot-deadline'};
+        var grid = document.getElementById('miGrid');
+        var html = '';
+        cells.forEach(function(c){
+          var cls = 'mi-cell';
+          if(c.dim) cls += ' dim';
+          if(c.wknd) cls += ' wknd';
+          if(c.wbreak) cls += ' wbreak';
+          if(c.today) cls += '';
+          var style = c.today ? ' style="border:1.5px solid #4a86e0;"' : '';
+          html += '<div class="' + cls + '"' + style + '>';
+          if(c.wbreak){ html += '<div class="mi-banner" data-label="WINTER BREAK">WINTER BREAK</div>'; }
+          html += '<div class="mi-datenum-row"><span class="mi-daynum' + (c.today ? ' today' : '') + '">' + c.n + '</span></div>';
+          if(c.icons && c.icons.length){
+            html += '<div class="mi-icons">';
+            c.icons.forEach(function(ic){ html += '<span class="mi-icondot ' + iconClass[ic] + '"></span>'; });
+            html += '</div>';
+          }
+          if(c.ev){
+            c.ev.forEach(function(e){ html += '<div class="mi-ev mi-c-' + e[0] + '">' + e[1] + '</div>'; });
+          }
+          html += '</div>';
+        });
+        grid.innerHTML = html;
+      })();
+      </script>
     </div>
+
 
     <div class="case-block">
       <h3>05 · Prioritization</h3>
@@ -299,20 +477,22 @@
       <h3>07 · Appendix — Research Artifacts</h3>
       <p>Raw, in-the-moment annotations made directly on live screenshots during actual weeks of use.</p>
 
-      <figure class="figure-block">
-        <img src="calendar-weekview.png" alt="Week View, annotated live during use, November 2023">
-        <figcaption>Fig. 1 — Week View, annotated live during use (November 2023). Gripes 1–5 above were drawn directly from this artifact.</figcaption>
-      </figure>
+      <div class="figure-row">
+        <figure class="figure-block">
+          <img src="calendar-weekview.png" alt="Week View, annotated live during use, November 2023">
+          <figcaption>Fig. 1 — Week View, annotated live (Nov 2023). Gripes 1–5 came from this artifact.</figcaption>
+        </figure>
 
-      <figure class="figure-block">
-        <img src="calendar-monthview.png" alt="Month View, annotated live during use, January 2024">
-        <figcaption>Fig. 2 — Month View, annotated live during use (January 2024), including an early concept sketch for the category-icon-strip idea. Gripes 6–9 above were drawn directly from this artifact.</figcaption>
-      </figure>
+        <figure class="figure-block">
+          <img src="calendar-monthview.png" alt="Month View, annotated live during use, January 2024">
+          <figcaption>Fig. 2 — Month View, annotated live (Jan 2024), incl. an early sketch for the category-icon-strip idea. Gripes 6–9 came from this artifact.</figcaption>
+        </figure>
 
-      <figure class="figure-block">
-        <img src="calendar-sidebar.png" alt="Calendar sidebar showing all 12 active calendars, January 2024">
-        <figcaption>Fig. 3 — Calendar sidebar showing all 12 active calendars (January 2024). Gripe 10 above was drawn directly from this artifact.</figcaption>
-      </figure>
+        <figure class="figure-block">
+          <img src="calendar-sidebar.png" alt="Calendar sidebar showing all 12 active calendars, January 2024">
+          <figcaption>Fig. 3 — Calendar sidebar, all 12 active calendars (Jan 2024). Gripe 10 came from this artifact.</figcaption>
+        </figure>
+      </div>
 
       <p class="case-note">This case study was produced independently as a personal design exercise and is not affiliated with or endorsed by Apple Inc.</p>
     </div>
