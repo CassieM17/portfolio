@@ -65,8 +65,8 @@
     </div>
 
     <div class="preview-strip">
-      <img src="cal-week-after.png" alt="Preview of the redesigned Week View">
-      <img src="cal-month-after.png" alt="Preview of the redesigned Month View">
+      <img class="zoomable" src="cal-week-after.png" alt="Preview of the redesigned Week View">
+      <img class="zoomable" src="cal-month-after.png" alt="Preview of the redesigned Month View">
     </div>
 
     <div class="case-block">
@@ -218,7 +218,7 @@
       <div class="subhead">Week View</div>
       <div class="mini-before">
         <span class="compare-tag before">Before — Current iCal</span>
-        <img src="cal-week-before.png" alt="Before: current iCal Week View, November 2023">
+        <img class="zoomable" src="cal-week-before.png" alt="Before: current iCal Week View, November 2023">
       </div>
       <p style="font-size:0.9rem; opacity:0.8; margin-bottom:0.4rem;">Click the toggles below to apply each fix to the real schedule from the diary study — same data, one change at a time.</p>
       <div class="toggle-row">
@@ -323,7 +323,7 @@
       <div class="subhead">Month View</div>
       <div class="mini-before">
         <span class="compare-tag before">Before — Current iCal</span>
-        <img src="cal-month-before.png" alt="Before: current iCal Month View, January 2024">
+        <img class="zoomable" src="cal-month-before.png" alt="Before: current iCal Month View, January 2024">
       </div>
       <p style="font-size:0.9rem; opacity:0.8; margin-bottom:0.4rem;">Same idea for Month view — toggle each fix on and off.</p>
       <div class="toggle-row">
@@ -427,8 +427,7 @@
 
     <div class="case-block">
       <h3>05 · Prioritization</h3>
-      <p>Plotting the ten findings against rough implementation effort helps sequence a roadmap —
-      small, high-leverage fixes first, with the more structural changes staged for later.</p>
+      <p>Plotting the ten findings against rough implementation effort helps sequence a roadmap.</p>
       <div class="quad-grid">
         <div class="quad green">
           <h4>High Impact · Low Effort</h4>
@@ -465,16 +464,13 @@
 
     <div class="case-block">
       <h3>06 · Reflection & Next Steps</h3>
-      <p>This was a solo, single-subject diary study — real, in-the-moment friction, but an n of
-      1. My own habits (heavy color-coding, 12 overlapping calendars, a packed academic schedule)
-      shape which pain points surfaced; someone with a lighter calendar might prioritize
-      differently.</p>
+      <p>This was a solo, single-subject diary study, essentially n of 1. My own habits shape
+      which pain points surfaced; someone with a lighter calendar might prioritize differently.</p>
       <p>With more time, I'd take this in three directions: run the same live-annotation exercise
-      with 5–8 other students with different calendar habits to see which findings generalize
+      with 5-8 other students with different calendar habits to see which findings generalize
       beyond my own use; build clickable Figma prototypes for the "high impact / low effort"
       quadrant and usability-test them against the current iCal flows; and validate the
-      category-icon-strip concept specifically — the most speculative finding here — with a
-      first-click or card-sort test, since it changes the Month view's information density the most.</p>
+      category-icon-strip concept specifically.</p>
     </div>
 
     <div class="case-block">
@@ -483,17 +479,17 @@
 
       <div class="figure-row">
         <figure class="figure-block">
-          <img src="calendar-weekview.png" alt="Week View, annotated live during use, November 2023">
+          <img class="zoomable" src="calendar-weekview.png" alt="Week View, annotated live during use, November 2023">
           <figcaption>Fig. 1 — Week View, annotated live (Nov 2023). Gripes 1–5 came from this artifact.</figcaption>
         </figure>
 
         <figure class="figure-block">
-          <img src="calendar-monthview.png" alt="Month View, annotated live during use, January 2024">
+          <img class="zoomable" src="calendar-monthview.png" alt="Month View, annotated live during use, January 2024">
           <figcaption>Fig. 2 — Month View, annotated live (Jan 2024), incl. an early sketch for the category-icon-strip idea. Gripes 6–9 came from this artifact.</figcaption>
         </figure>
 
         <figure class="figure-block">
-          <img src="calendar-sidebar.png" alt="Calendar sidebar showing all 12 active calendars, January 2024">
+          <img class="zoomable" src="calendar-sidebar.png" alt="Calendar sidebar showing all 12 active calendars, January 2024">
           <figcaption>Fig. 3 — Calendar sidebar, all 12 active calendars (Jan 2024). Gripe 10 came from this artifact.</figcaption>
         </figure>
       </div>
@@ -516,5 +512,6 @@
   </div>
 </footer>
 
+<script src="lightbox.js"></script>
 </body>
 </html>

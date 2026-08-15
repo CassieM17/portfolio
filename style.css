@@ -629,3 +629,29 @@ footer{ background:var(--brown-deep); color:var(--white); padding:3rem 2.4rem; m
   box-shadow:0 8px 22px rgba(46,134,171,0.12);
 }
 @media (max-width:640px){ .preview-strip{ flex-direction:column; } .preview-strip img{ width:100%; } }
+
+/* ============================================================
+   Zoomable images + lightbox (photography, case studies, violin)
+   Cursor is a custom circle-plus icon; click opens a full-screen
+   lightbox; close via the X button, Escape key, or clicking outside.
+   ============================================================ */
+img.zoomable{
+  cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2234%22%20height%3D%2234%22%3E%3Ccircle%20cx%3D%2217%22%20cy%3D%2217%22%20r%3D%2214%22%20fill%3D%22rgba%2828%2C22%2C16%2C0.72%29%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22/%3E%3Cpath%20d%3D%22M17%2011v12M11%2017h12%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") 17 17, zoom-in;
+}
+.lightbox-overlay{
+  position:fixed; inset:0; background:rgba(15,12,8,0.92); z-index:1000;
+  display:flex; align-items:center; justify-content:center; padding:3rem 2rem;
+  opacity:0; visibility:hidden; transition:opacity 0.25s ease;
+}
+.lightbox-overlay.open{ opacity:1; visibility:visible; }
+.lightbox-img{
+  max-width:90vw; max-height:88vh; border-radius:8px; box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  cursor:default;
+}
+.lightbox-close{
+  position:fixed; top:1.4rem; right:1.4rem; width:44px; height:44px; border-radius:50%;
+  background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.3);
+  font-size:1.7rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:background 0.2s ease; z-index:1001;
+}
+.lightbox-close:hover{ background:rgba(255,255,255,0.25); }
