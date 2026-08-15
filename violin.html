@@ -87,22 +87,25 @@
       </div>
     </div>
     <div class="recording">
-      <div class="recording-title">Debussy string quartet</div>
+      <div class="recording-title">Paganini Caprice No. 4</div>
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/Bt2UU05AKKU" title="Debussy String Quartet" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/4dGIdGZN_k8" title="Paganini Caprice No. 4" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
     <div class="recording">
-      <div class="recording-title">Paganini balance board</div>
+      <div class="recording-title">Paganini Violin Concerto No. 1</div>
       <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/BwbNIu7SiIk" title="Paganini Balance Board" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/saWaSE0726Y" title="Paganini Violin Concerto No. 1" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </div>
 
   <div class="subhead">Media</div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8L5 12l4 4"/><path d="M15 8l4 4-4 4"/></svg>
+    drag or scroll to see more
+  </div>
   <div class="carousel-wrap">
-    <button class="carousel-btn" aria-label="Previous photos" onclick="violinPrev()">‹</button>
     <div class="carousel-viewport" id="violinViewport">
       <div class="media-carousel-track" id="violinTrack">
         <div class="carousel-item">
@@ -123,35 +126,31 @@
         </div>
       </div>
     </div>
-    <button class="carousel-btn" aria-label="Next photos" onclick="violinNext()">›</button>
   </div>
 </section>
 
 <script>
 (function(){
   var viewport = document.getElementById('violinViewport');
-  var track = document.getElementById('violinTrack');
-  var pos = 0;
+  var isDown = false;
+  var startX, scrollStart;
 
-  function step(){
-    var item = track.children[0];
-    var gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
-    return item.getBoundingClientRect().width + gap;
-  }
-  function maxScroll(){
-    return Math.max(0, track.scrollWidth - viewport.clientWidth);
-  }
-  function apply(){
-    track.style.transform = 'translateX(-' + pos + 'px)';
-  }
-  window.violinNext = function(){
-    pos = Math.min(pos + step(), maxScroll());
-    apply();
-  };
-  window.violinPrev = function(){
-    pos = Math.max(pos - step(), 0);
-    apply();
-  };
+  viewport.addEventListener('mousedown', function(e){
+    isDown = true;
+    viewport.classList.add('dragging');
+    startX = e.pageX;
+    scrollStart = viewport.scrollLeft;
+  });
+  window.addEventListener('mouseup', function(){
+    isDown = false;
+    viewport.classList.remove('dragging');
+  });
+  window.addEventListener('mousemove', function(e){
+    if(!isDown) return;
+    e.preventDefault();
+    var dx = e.pageX - startX;
+    viewport.scrollLeft = scrollStart - dx;
+  });
 })();
 </script>
 
