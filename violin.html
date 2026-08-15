@@ -133,10 +133,11 @@
 (function(){
   var viewport = document.getElementById('violinViewport');
   var isDown = false;
-  var startX, scrollStart;
+  var startX, scrollStart, moved;
 
   viewport.addEventListener('mousedown', function(e){
     isDown = true;
+    moved = 0;
     viewport.classList.add('dragging');
     startX = e.pageX;
     scrollStart = viewport.scrollLeft;
@@ -149,8 +150,17 @@
     if(!isDown) return;
     e.preventDefault();
     var dx = e.pageX - startX;
+    moved = Math.max(moved, Math.abs(dx));
     viewport.scrollLeft = scrollStart - dx;
   });
+  // If the mouse actually dragged (rather than just clicked), suppress the
+  // click that follows so it doesn't accidentally trigger the zoom lightbox.
+  viewport.addEventListener('click', function(e){
+    if(moved > 5){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
 })();
 </script>
 

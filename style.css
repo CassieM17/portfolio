@@ -438,7 +438,7 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
   width:100%; aspect-ratio:3/4; border-radius:14px; overflow:hidden;
   border:1px solid var(--line); box-shadow:0 6px 18px rgba(46,134,171,0.1);
 }
-.carousel-item .photo-box img{ width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
+.carousel-item .photo-box img{ width:100%; height:100%; object-fit:cover; display:block; }
 .carousel-item .cap{ font-family:'IBM Plex Mono'; font-size:0.7rem; opacity:0.65; text-align:center; }
 
 .gallery-strip.two-col{ grid-template-columns:repeat(2, 1fr); }
