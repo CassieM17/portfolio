@@ -9,7 +9,7 @@
 :root{
   --paper: #F5F3EE;
   --ink: #0A0A0A;
-  --accent: #0E7A4A;      /* deep emerald green — swap this one value to try other accents */
+  --accent: #B5451F;      /* rust — swap this one value to try other accents */
   --line: rgba(10,10,10,0.16);
   --line-strong: rgba(10,10,10,0.85);
 }
