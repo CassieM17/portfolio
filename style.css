@@ -63,7 +63,7 @@ nav{
   font-family:'Anton', sans-serif; font-weight:400; font-size:1.05rem; text-transform:uppercase; letter-spacing:0.01em;
   color:var(--ink); text-decoration:none;
 }
-.nav-links{ display:flex; gap:0.4rem; }
+.nav-links{ display:flex; gap:1.6rem; }
 .nav-links a{
   font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.06em;
   text-transform:uppercase; text-decoration:none; color:var(--ink); opacity:0.65;
@@ -101,7 +101,7 @@ nav{
   margin-top:0.5rem; line-height:1.2;
 }
 .hero-meta-line{
-  font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.03em; opacity:0.65;
+  font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.03em; color:rgba(10,10,10,0.65);
   margin-top:1.4rem;
 }
 .hero-sub{ margin-top:1.4rem; max-width:640px; font-size:1.15rem; line-height:1.7; opacity:0.82; }
@@ -534,6 +534,8 @@ footer{ background:var(--brown-deep); color:var(--white); padding:3rem 2.4rem; m
 .footer-nav a{ font-family:'IBM Plex Mono'; font-size:0.72rem; text-decoration:none; opacity:0.8; }
 .footer-nav a:hover{ opacity:1; color:var(--blue); }
 .footer-copy{ font-family:'IBM Plex Mono'; font-size:0.68rem; opacity:0.6; }
+.footer-copy a{ color:inherit; text-decoration:underline; text-underline-offset:2px; }
+.footer-copy a:hover{ color:var(--brown); opacity:1; }
 
 /* ============================================================
    Interactive calendar demo (Apple Calendar case study)
