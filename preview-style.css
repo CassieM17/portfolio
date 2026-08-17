@@ -9,7 +9,7 @@
 :root{
   --paper: #F5F3EE;
   --ink: #0A0A0A;
-  --accent: #E8390B;      /* vermillion — swap this one value to try other accents */
+  --accent: #0E7A4A;      /* deep emerald green — swap this one value to try other accents */
   --line: rgba(10,10,10,0.16);
   --line-strong: rgba(10,10,10,0.85);
 }
@@ -90,12 +90,11 @@ nav{
 }
 
 /* ---------- project grid ---------- */
-.project-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:0; margin-top:0; scroll-margin-top:6rem; border:2px solid var(--ink); border-top:none; }
+.project-grid{ display:grid; grid-template-columns:repeat(2, 1fr); gap:1.8rem; margin-top:0; scroll-margin-top:6rem; }
 @media (max-width:760px){ .project-grid{ grid-template-columns:1fr; } }
 
-.project-card{ display:block; text-decoration:none; color:var(--ink); border-top:2px solid var(--ink); position:relative; }
-.project-card:nth-child(odd){ border-right:2px solid var(--ink); }
-@media (max-width:760px){ .project-card:nth-child(odd){ border-right:none; } }
+.project-card{ display:block; text-decoration:none; color:var(--ink); border:2px solid var(--ink); position:relative; transition:transform 0.2s ease, box-shadow 0.2s ease; }
+.project-card:hover{ transform:translateY(-4px); box-shadow:6px 6px 0 var(--ink); }
 .preview-link{ display:block; text-decoration:none; }
 
 .motion-preview{
