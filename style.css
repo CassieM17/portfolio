@@ -242,7 +242,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .scroll-col{ position:relative; width:100%; }
 .scroll-col img{ width:100%; display:block; }
 .motion-preview.substack-scroll .scroll-col{
-  position:absolute; top:0; left:0; animation:scrollDownSubstack 17s linear infinite;
+  position:absolute; top:0; left:0; animation:scrollDownSubstack 24s linear infinite;
 }
 @keyframes scrollDownSubstack{ 0%{ transform:translateY(0); } 100%{ transform:translateY(-50%); } }
 
