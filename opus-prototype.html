@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>Opus — App Mockup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
     --text-muted:#8A8578;
     --line:#E2DAC5;
   }
-  *{box-sizing:border-box; margin:0; padding:0;}
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent;}
   body{
     background: radial-gradient(ellipse at top, #2b3040, #14161d 70%);
     font-family:'Inter',sans-serif;
@@ -88,9 +88,9 @@
   .content{ padding:16px 18px 96px; }
 
   /* ===== Chips / filters ===== */
-  .chiprow{ display:flex; gap:8px; overflow-x:auto; padding:14px 18px 4px; }
+  .chiprow{ display:flex; gap:8px; overflow-x:auto; padding:16px 18px 10px; flex-shrink:0; }
   .chip{
-    font-family:'JetBrains Mono',monospace; font-size:11.5px; padding:7px 13px;
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:9px 16px;
     border-radius:20px; border:1px solid var(--line); background:#fff; color:var(--text-dark);
     white-space:nowrap; flex-shrink:0;
   }
@@ -300,6 +300,347 @@
   .list-row .info b{ display:block; font-size:13.5px; color:var(--ink); font-family:'Inter',sans-serif; }
   .list-row .info span{ font-size:11.5px; color:var(--text-muted); }
   .list-row .chev{ color:var(--text-muted); }
+
+  /* ===== Settings gear + profile switcher ===== */
+  .settings-gear{
+    position:absolute; top:16px; right:18px; width:34px; height:34px; border-radius:50%;
+    background:rgba(247,243,234,.12); border:1px solid rgba(247,243,234,.22); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--text-light);
+  }
+  .profile-switcher{
+    display:flex; gap:10px; padding:14px 20px 0; overflow-x:auto; background:var(--ink);
+  }
+  .switcher-item{
+    display:flex; flex-direction:column; align-items:center; gap:5px; cursor:pointer; flex-shrink:0; width:52px;
+  }
+  .switcher-item .sw-avatar{
+    width:44px; height:44px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:15px; color:#fff; border:2px solid transparent;
+  }
+  .switcher-item.active .sw-avatar{ border-color:var(--brass-light); }
+  .switcher-item span{ font-size:9px; color:#C7CCDA; font-family:'JetBrains Mono',monospace; text-align:center; line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:52px; }
+  .switcher-item.add .sw-avatar{
+    background:transparent; border:1.5px dashed rgba(247,243,234,.4); color:rgba(247,243,234,.6); font-size:20px; font-weight:400;
+  }
+
+  /* ===== Settings screen ===== */
+  .settings-section-label{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--text-muted); margin:22px 0 8px;
+  }
+  .settings-section-label:first-child{ margin-top:4px; }
+  .profile-row{
+    display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--line);
+  }
+  .profile-row .sw-avatar{
+    width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; font-size:14px; color:#fff; flex-shrink:0;
+  }
+  .profile-row .info{ flex:1; cursor:pointer; }
+  .profile-row .info b{ display:block; font-size:13.5px; color:var(--ink); font-family:'Inter',sans-serif; }
+  .profile-row .info span{ font-size:11.5px; color:var(--text-muted); }
+  .active-pill{
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; padding:4px 9px; border-radius:20px;
+    background:var(--sage); color:#fff; text-transform:uppercase; letter-spacing:.05em; flex-shrink:0;
+  }
+  .switch-pill{
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; padding:4px 9px; border-radius:20px;
+    background:var(--parchment-2); color:var(--text-dark); border:1px solid var(--line); flex-shrink:0; cursor:pointer;
+  }
+  .switch-pill.pending{
+    background:rgba(192,138,62,.12); color:var(--brass); border-color:rgba(192,138,62,.35); white-space:nowrap;
+  }
+  .add-profile-row{
+    display:flex; align-items:center; gap:12px; padding:13px; margin-top:2px; cursor:pointer;
+    border:1.5px dashed var(--brass); border-radius:14px; background:rgba(192,138,62,.06);
+  }
+  .add-profile-row .plus-circle{
+    width:38px; height:38px; border-radius:50%; background:var(--ink); color:var(--brass-light);
+    display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0;
+  }
+  .add-profile-row b{ display:block; font-size:13px; color:var(--ink); font-family:'Inter',sans-serif; }
+  .add-profile-row span{ font-size:11px; color:var(--text-muted); }
+  .settings-row{
+    display:flex; align-items:center; justify-content:space-between; padding:13px 0; border-bottom:1px solid var(--line); cursor:pointer;
+  }
+  .settings-row .label{ font-size:13.5px; color:var(--ink); font-family:'Inter',sans-serif; font-weight:500; }
+  .settings-row .val{ font-size:11.5px; color:var(--text-muted); display:flex; align-items:center; gap:6px; }
+  .verified-check{ color:var(--sage); display:flex; align-items:center; gap:3px; font-family:'JetBrains Mono',monospace; font-size:10px; }
+  .logout-row{ color:var(--crimson); font-weight:600; font-size:13.5px; padding:16px 0; text-align:center; cursor:pointer; font-family:'Inter',sans-serif; }
+
+  /* ===== Wizard (New Profile flow) ===== */
+  .wiz-progress-track{ height:4px; border-radius:3px; background:rgba(247,243,234,.16); margin-top:10px; overflow:hidden; }
+  .wiz-progress-fill{ height:100%; background:var(--brass-light); border-radius:3px; width:0%; transition:width .25s ease; }
+  .wiz-step-count{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:#C7CCDA; margin-top:8px; }
+
+  .wiz-content{ display:flex; flex-direction:column; padding-bottom:110px; }
+  .wiz-step{ display:none; flex-direction:column; }
+  .wiz-step.active{ display:flex; }
+
+  .wiz-icon-badge{
+    width:56px; height:56px; border-radius:16px; background:linear-gradient(135deg, var(--brass), var(--crimson));
+    display:flex; align-items:center; justify-content:center; color:#fff; margin-bottom:16px;
+  }
+  .wiz-title{ font-family:'Fraunces',serif; font-size:22px; font-weight:600; color:var(--ink); margin-bottom:8px; line-height:1.2; }
+  .wiz-sub{ font-size:13.5px; color:var(--text-muted); line-height:1.55; margin-bottom:22px; }
+
+  .field-label{ font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-muted); margin:16px 0 7px; }
+  .field-label:first-of-type{ margin-top:0; }
+  .field-input, .field-select, .field-textarea{
+    width:100%; font-family:'Inter',sans-serif; font-size:14.5px; color:var(--text-dark);
+    background:#fff; border:1.5px solid var(--line); border-radius:12px; padding:13px 14px;
+  }
+  .field-input:focus, .field-select:focus, .field-textarea:focus{ outline:none; border-color:var(--brass); }
+  .field-textarea{ resize:none; font-family:'Inter',sans-serif; line-height:1.5; min-height:96px; }
+  .field-row{ display:flex; gap:10px; }
+  .field-row .field-input{ flex:1; }
+  .field-hint{ font-size:11px; color:var(--text-muted); margin-top:6px; }
+  .char-count{ font-size:10.5px; color:var(--text-muted); text-align:right; margin-top:4px; font-family:'JetBrains Mono',monospace; }
+
+  .phone-input-row{ display:flex; gap:8px; align-items:center; }
+  .country-code{
+    font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--text-dark); background:#fff;
+    border:1.5px solid var(--line); border-radius:12px; padding:13px 12px; flex-shrink:0;
+  }
+
+  .otp-row{ display:flex; gap:8px; margin:6px 0 4px; }
+  .otp-box{
+    width:100%; aspect-ratio:1/1; text-align:center; font-family:'JetBrains Mono',monospace; font-size:20px;
+    border:1.5px solid var(--line); border-radius:12px; background:#fff; color:var(--ink);
+  }
+  .otp-box:focus{ outline:none; border-color:var(--brass); }
+  .resend-link{ font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--brass); margin-top:14px; cursor:pointer; display:inline-block; }
+
+  .chip-select{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+  .chip-pick{
+    font-family:'JetBrains Mono',monospace; font-size:12px; padding:9px 14px; border-radius:20px;
+    border:1.5px solid var(--line); background:#fff; color:var(--text-dark); cursor:pointer;
+  }
+  .chip-pick.on{ background:var(--ink); color:var(--brass-light); border-color:var(--ink); }
+
+  .instrument-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:4px; }
+  .instrument-opt{
+    display:flex; align-items:center; gap:10px; padding:12px; border-radius:12px; border:1.5px solid var(--line);
+    background:#fff; cursor:pointer; font-size:13px; color:var(--text-dark); font-family:'Inter',sans-serif;
+  }
+  .instrument-opt.on{ border-color:var(--ink); background:var(--parchment-2); font-weight:600; color:var(--ink); }
+
+  .wiz-footer{
+    position:absolute; bottom:0; left:0; right:0; padding:14px 20px 26px; background:rgba(247,243,234,.94);
+    backdrop-filter:blur(8px); border-top:1px solid var(--line);
+  }
+  .wiz-footer .btn{ opacity:1; }
+  .wiz-footer .btn:disabled{ opacity:.4; cursor:not-allowed; }
+  .wiz-skip{ text-align:center; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-muted); margin-top:10px; cursor:pointer; }
+
+  .photo-preview{
+    width:104px; height:104px; border-radius:26px; margin:6px auto 18px; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-size:36px; font-weight:600; color:#fff; overflow:hidden;
+    background:linear-gradient(135deg, var(--brass), var(--crimson));
+  }
+  .photo-preview img{ width:100%; height:100%; object-fit:cover; }
+  .photo-upload-btn{ display:block; text-align:center; }
+
+  .review-card{ background:#fff; border:1px solid var(--line); border-radius:14px; padding:14px 16px; margin-bottom:10px; }
+  .review-card .rl{ font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--text-muted); }
+  .review-card .rv{ font-size:13.5px; color:var(--ink); margin-top:3px; font-family:'Inter',sans-serif; }
+
+  .wiz-success{ align-items:center; text-align:center; padding-top:40px; }
+  .success-check{
+    width:78px; height:78px; border-radius:50%; background:var(--sage); color:#fff;
+    display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+  }
+
+  .empty-note{
+    font-size:12.5px; color:var(--text-muted); line-height:1.55; background:var(--parchment-2);
+    border-radius:12px; padding:14px; font-family:'Inter',sans-serif;
+  }
+
+  /* ===== Alert modal (used for delete-profile / network-connection confirms) ===== */
+  .alert-overlay{
+    position:absolute; inset:0; background:rgba(20,22,30,.55); z-index:95;
+    display:none; align-items:center; justify-content:center; padding:0 40px;
+  }
+  .alert-overlay.open{ display:flex; }
+  .alert-box{
+    width:100%; max-width:300px; background:var(--parchment); border-radius:18px; overflow:hidden;
+    box-shadow:0 20px 50px rgba(0,0,0,.4); animation:alertPop .16s ease;
+  }
+  @keyframes alertPop{ from{ transform:scale(.92); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .alert-title{ font-family:'Fraunces',serif; font-size:16.5px; font-weight:600; color:var(--ink); text-align:center; padding:22px 20px 6px; }
+  .alert-message{ font-size:12.5px; color:var(--text-muted); text-align:center; padding:0 20px 20px; line-height:1.55; }
+  .alert-buttons{ display:flex; border-top:1px solid var(--line); }
+  .alert-btn{
+    flex:1; border:none; background:transparent; padding:14px 8px; font-family:'Inter',sans-serif;
+    font-size:13.5px; font-weight:600; color:var(--ink); cursor:pointer;
+  }
+  .alert-btn + .alert-btn{ border-left:1px solid var(--line); }
+  .alert-btn.primary{ color:var(--sage); }
+  .alert-btn.primary.danger{ color:var(--crimson); }
+
+  /* ===== Settings: delete-profile icon ===== */
+  .row-delete-btn{
+    width:30px; height:30px; border-radius:8px; border:1px solid var(--line); background:#fff;
+    color:var(--text-muted); display:flex; align-items:center; justify-content:center; cursor:pointer;
+    flex-shrink:0; margin-left:6px;
+  }
+  .row-delete-btn:hover{ color:var(--crimson); border-color:var(--crimson); }
+
+  /* ===== Network: connection rows, recommend icon ===== */
+  .net-node .info{ flex:1; }
+  .recommend-btn{
+    width:30px; height:30px; border-radius:8px; border:1px solid var(--line); background:#fff;
+    color:var(--text-muted); display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
+  }
+  .recommend-btn:hover{ color:var(--brass); border-color:var(--brass); }
+  .add-btn{
+    font-family:'JetBrains Mono',monospace; font-size:10.5px; padding:7px 13px; border-radius:20px;
+    background:var(--ink); color:var(--brass-light); border:none; cursor:pointer; flex-shrink:0;
+  }
+  .see.clickable{ cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
+  .see.mini-add{ cursor:pointer; }
+
+  /* ===== Discover: "+" button to open the Organize Event popup ===== */
+  .discover-plus-btn{
+    position:absolute; top:16px; right:18px; width:34px; height:34px; border-radius:50%;
+    background:rgba(247,243,234,.12); border:1px solid rgba(247,243,234,.22); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--text-light);
+  }
+
+  /* ===== Profile: Organize Event button ===== */
+  .organize-event-btn{
+    position:absolute; top:16px; right:60px; display:flex; align-items:center; gap:5px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; padding:8px 11px; border-radius:20px;
+    background:rgba(224,185,117,.14); color:var(--brass-light); border:1px solid rgba(224,185,117,.3); cursor:pointer;
+    white-space:nowrap;
+  }
+
+  /* ===== Full-screen popup modals (Organize Event, Create/Join Ensemble) ===== */
+  .modal-overlay{
+    position:absolute; inset:0; background:rgba(20,22,30,.55); z-index:90;
+    display:none; align-items:flex-end; justify-content:center;
+  }
+  .modal-overlay.open{ display:flex; }
+  .modal-sheet{
+    width:100%; height:94%; background:var(--parchment); border-radius:24px 24px 0 0;
+    display:flex; flex-direction:column; overflow:hidden; animation:sheetUp .3s ease;
+  }
+  .modal-sheet .header-block{ flex-shrink:0; }
+  .modal-close{
+    position:absolute; top:16px; right:18px; width:30px; height:30px; border-radius:50%;
+    background:rgba(247,243,234,.12); border:1px solid rgba(247,243,234,.22); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--text-light); font-size:15px; line-height:1;
+  }
+  .modal-sheet .wiz-content{ flex:1; overflow-y:auto; padding-bottom:24px; }
+  .modal-sheet .wiz-footer{ position:relative; flex-shrink:0; bottom:auto; }
+
+  /* ===== Modal in-header tab switcher (Create New / Join Existing) ===== */
+  .modal-tabs{ display:flex; gap:6px; margin-top:10px; }
+  .modal-tab-btn{
+    font-family:'JetBrains Mono',monospace; font-size:11px; padding:7px 13px; border-radius:20px;
+    background:transparent; color:#C7CCDA; border:1px solid rgba(247,243,234,.22); cursor:pointer;
+  }
+  .modal-tab-btn.active{ background:rgba(224,185,117,.14); color:var(--brass-light); border-color:rgba(224,185,117,.3); }
+
+  /* ===== Organizer toggle (wizard + edit profile) ===== */
+  .organizer-toggle{
+    display:flex; align-items:center; gap:10px; padding:12px; border-radius:12px; border:1.5px solid var(--line);
+    background:#fff; cursor:pointer; margin:4px 0 14px; font-size:12.5px; color:var(--text-dark); line-height:1.4;
+  }
+  .organizer-toggle.on{ border-color:var(--ink); background:var(--parchment-2); }
+  .organizer-toggle .check{
+    width:19px; height:19px; border-radius:5px; border:1.5px solid var(--line); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; color:#fff; background:#fff;
+  }
+  .organizer-toggle.on .check{ background:var(--ink); border-color:var(--ink); }
+  .organizer-toggle .check svg{ opacity:0; }
+  .organizer-toggle.on .check svg{ opacity:1; }
+  .disabled-grid{ opacity:.4; pointer-events:none; }
+
+  /* =====================================================================
+     MOBILE — when this file is opened on an actual phone (not viewed as a
+     desktop mockup), drop the decorative frame/bezel/shadow entirely and
+     let the app fill the real screen edge-to-edge, using safe-area insets
+     so content clears the notch and home indicator like a real app would.
+  ===================================================================== */
+  @media (max-width: 520px){
+    body{
+      padding:0; margin:0; background:var(--ink);
+      align-items:stretch; justify-content:stretch;
+      min-height:100vh; min-height:100dvh;
+    }
+    .studio-label{ display:none; }
+    .phone{
+      width:100vw; height:100vh; height:100dvh;
+      border-radius:0; border:none; box-shadow:none; transform:none;
+    }
+    .dynamic-island{ display:none; }
+    .statusbar{
+      height:calc(59px + env(safe-area-inset-top, 0px));
+      padding-top:env(safe-area-inset-top, 0px);
+    }
+    .navbar{
+      height:calc(82px + env(safe-area-inset-bottom, 0px));
+      padding-bottom:calc(20px + env(safe-area-inset-bottom, 0px));
+    }
+    .wiz-footer{
+      padding-bottom:calc(26px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
+  /* ===== Profile: Contact Info button + popover card ===== */
+  .contact-info-btn{
+    position:absolute; top:16px; left:18px; display:flex; align-items:center; gap:5px;
+    font-family:'JetBrains Mono',monospace; font-size:10px; padding:8px 11px; border-radius:20px;
+    background:rgba(247,243,234,.12); color:var(--text-light); border:1px solid rgba(247,243,234,.22); cursor:pointer;
+    white-space:nowrap; z-index:5;
+  }
+  .contact-info-card{
+    display:none; position:absolute; top:52px; left:18px; background:#fff; color:var(--text-dark);
+    border-radius:14px; padding:6px 14px; box-shadow:0 14px 32px rgba(0,0,0,.3); z-index:20; min-width:200px;
+  }
+  .contact-info-card.open{ display:block; }
+  .contact-row{ display:flex; flex-direction:column; gap:1px; padding:9px 0; }
+  .contact-row + .contact-row{ border-top:1px solid var(--line); }
+  .contact-row .contact-label{
+    color:var(--text-muted); font-family:'JetBrains Mono',monospace; font-size:9.5px;
+    text-transform:uppercase; letter-spacing:.06em;
+  }
+  .contact-row .contact-val{ font-size:13px; color:var(--ink); font-family:'Inter',sans-serif; margin-top:2px; }
+
+  /* ===== Discover: search row + filter button ===== */
+  .discover-search-row{ display:flex; gap:8px; padding:14px 18px 0; flex-shrink:0; align-items:center; }
+  .discover-search-row .field-input{ flex:1; margin-bottom:0; }
+  .filter-icon-btn{
+    flex-shrink:0; width:46px; height:46px; border-radius:12px;
+    background:var(--ink); border:1px solid var(--ink); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--brass-light); position:relative;
+  }
+  .filter-icon-btn.has-filters::after{
+    content:''; position:absolute; top:6px; right:6px; width:7px; height:7px; border-radius:50%;
+    background:var(--crimson); border:1.5px solid #fff;
+  }
+
+  /* ===== Events tab ===== */
+  .events-create-row{
+    display:flex; align-items:center; gap:12px; padding:13px; margin:14px 18px 4px; cursor:pointer;
+    border:1.5px dashed var(--brass); border-radius:14px; background:rgba(192,138,62,.06);
+  }
+  .events-create-row .plus-circle{
+    width:38px; height:38px; border-radius:50%; background:var(--ink); color:var(--brass-light);
+    display:flex; align-items:center; justify-content:center; font-size:19px; flex-shrink:0;
+  }
+  .events-create-row b{ display:block; font-size:13px; color:var(--ink); font-family:'Inter',sans-serif; }
+  .events-create-row span{ font-size:11px; color:var(--text-muted); }
+  .status-pill{
+    font-family:'JetBrains Mono',monospace; font-size:9.5px; padding:4px 9px; border-radius:20px; flex-shrink:0;
+    background:rgba(76,122,111,.14); color:var(--sage); border:1px solid rgba(76,122,111,.35); white-space:nowrap;
+  }
+  .past-event-row{ padding:12px 0; border-bottom:1px solid var(--line); }
+  .past-event-row:last-child{ border-bottom:none; }
+  .attendee-strip{ display:flex; gap:5px; align-items:center; flex-wrap:wrap; margin-top:8px; }
+  .attendee-strip .avatar{ margin-left:0; width:26px; height:26px; font-size:9px; }
+  .attendee-names{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-muted); margin-left:2px; }
 </style>
 </head>
 <body>
@@ -320,81 +661,179 @@
       </div>
       <div class="topbar">
         <div class="brand"><svg class="clef-icon" viewBox="0 0 28 44" width="15" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4 C10 4 7 10 11 15 C15 20 21 17 20 11 C19 7 14 7 14 11 C14 14 17 15 18 13"/><path d="M18 13 C16 20 15 28 15 35"/><path d="M15 35 C15 41 9 42 7 37 C5 33 10 30 13 33"/></svg>Op<span class="mark">u</span>s</div>
-        <div class="sub">discover &middot; gigs matched to you</div>
+        <div class="sub">discover</div>
       </div>
+    </div>
+    <div class="discover-search-row">
+      <input class="field-input" type="text" id="discoverSearch" placeholder="Search events, gig types, locations..." oninput="renderDiscoverFeed()">
+      <button class="filter-icon-btn" id="discoverFilterBtn" onclick="openDiscoverFilterModal()" aria-label="Filter opportunities">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/><circle cx="9" cy="6" r="1.8" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="10" cy="18" r="1.8" fill="currentColor" stroke="none"/></svg>
+      </button>
     </div>
     <div class="chiprow">
-      <div class="chip">All instruments</div>
-      <div class="chip on">Violin</div>
-      <div class="chip">Chamber</div>
-      <div class="chip">This month</div>
-      <div class="chip">$300+</div>
+      <div class="chip on" id="scopeChipNetwork" onclick="setDiscoverScope('network')">In-Network</div>
+      <div class="chip" id="scopeChipPublic" onclick="setDiscoverScope('public')">Public</div>
     </div>
     <div class="content">
-      <div class="section-title">Because Mezza Quartet plays weddings <span class="see">12 nearby</span></div>
+      <div id="discoverFeed"></div>
+    </div>
+  </div>
 
-      <div class="card" onclick="showScreen('screen-gigdetail')" style="position:relative;">
-        <div class="tap-hint"><span class="ring"></span><span class="dot"></span></div>
-        <div class="tap-label">tap a card</div>
-        <div class="eyebrow">Wedding · Ceremony + Cocktail Hour</div>
-        <h3>String Quartet, Sat Aug 15</h3>
-        <div class="meta">Filoli Gardens, Woodside CA &middot; 5:00–7:30 PM</div>
-        <div class="tagrow">
-          <div class="tag">Violin ×2</div><div class="tag">Viola</div><div class="tag">Cello</div>
-          <div class="tag">Black tie</div>
-        </div>
-        <div class="row">
-          <div class="mutuals">
-            <div class="avatar" style="background:var(--sage)">NG</div>
-            <div class="avatar" style="background:var(--brass)">JL</div>
-            <div class="mutual-label">2 mutual connections</div>
+  <!-- ===================== DISCOVER FILTERS — full-screen popup modal ===================== -->
+  <div class="modal-overlay" id="discoverFilterModal" onclick="closeDiscoverFilterModal()">
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div class="header-block">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="signal">
+            <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+            <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
           </div>
-          <span class="rate">$450/musician</span>
+        </div>
+        <div class="topbar">
+          <button class="modal-close" onclick="closeDiscoverFilterModal()" aria-label="Close">&#10005;</button>
+          <div class="brand" style="margin-top:10px; font-size:19px;">Filter Opportunities</div>
         </div>
       </div>
+      <div class="content wiz-content">
+        <div class="field-label" style="margin-top:6px;">Instruments</div>
+        <div class="chip-select" id="filterInstrumentGrid"></div>
 
-      <div class="card">
-        <div class="eyebrow">House of Worship · Recurring</div>
-        <h3>Sunday Service Cellist</h3>
-        <div class="meta">First Congregational, Palo Alto CA &middot; Weekly</div>
-        <div class="tagrow"><div class="tag">Cello</div><div class="tag">Sight-read</div><div class="tag">Contemporary</div></div>
-        <div class="row">
-          <div class="mutuals">
-            <div class="avatar" style="background:var(--crimson)">MO</div>
-            <div class="mutual-label">Recommended by Prof. Osei</div>
+        <div class="field-label">Number of players</div>
+        <div class="chip-select" id="filterPlayersGrid"></div>
+
+        <div class="field-label">Location</div>
+        <input class="field-input" type="text" id="filterLocation" placeholder="e.g. Pittsburgh, PA">
+      </div>
+      <div class="wiz-footer" style="display:flex; gap:10px;">
+        <button class="btn ghost" style="flex:1;" onclick="clearDiscoverFilters()">Clear</button>
+        <button class="btn" style="flex:2;" onclick="applyDiscoverFilters()">Apply Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ORGANIZE EVENT — full-screen popup modal ===================== -->
+  <div class="modal-overlay" id="organizeModal" onclick="closeOrganizeModal()">
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div class="header-block">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="signal">
+            <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+            <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
           </div>
-          <span class="rate">$120/service</span>
+        </div>
+        <div class="topbar">
+          <button class="modal-close" onclick="closeOrganizeModal()" aria-label="Close">&#10005;</button>
+          <div class="brand" style="margin-top:10px; font-size:19px;">Organize an Event</div>
         </div>
       </div>
+      <div class="content wiz-content">
+        <div class="field-label" style="margin-top:6px;">Event title</div>
+        <input class="field-input" type="text" id="orgTitle" placeholder="e.g. Fall Wedding Ceremony">
 
-      <div class="card">
-        <div class="eyebrow">Fundraiser · One evening</div>
-        <h3>Violin &amp; Piano Recital Set</h3>
-        <div class="meta">The Athenaeum, Pittsburgh PA &middot; 7:00–8:30 PM</div>
-        <div class="tagrow"><div class="tag">Violin</div><div class="tag">Piano</div><div class="tag">Romantic era</div></div>
-        <div class="row">
-          <div class="mutuals">
-            <div class="avatar" style="background:var(--ink-3)">SC</div>
-            <div class="mutual-label">Spencer Cha is applying</div>
+        <div class="field-label">Location</div>
+        <input class="field-input" type="text" id="orgLocation" placeholder="e.g. Filoli Gardens, Woodside CA">
+
+        <div class="field-label">Date &amp; time</div>
+        <input class="field-input" type="text" id="orgWhen" placeholder="e.g. Sat, Nov 14 · 5:00–7:30 PM">
+
+        <div class="field-label">Type of gig</div>
+        <div class="chip-select" id="orgTypeGrid"></div>
+
+        <div class="field-label">Desired musicians / instruments</div>
+        <div class="chip-select" id="orgMusiciansGrid"></div>
+
+        <div class="field-label">Compensation expectations</div>
+        <input class="field-input" type="text" id="orgCompensation" placeholder="e.g. $450/musician or $1,200 flat">
+
+        <div class="field-label">Notes</div>
+        <textarea class="field-textarea" id="orgNotes" maxlength="400" placeholder="Anything else musicians should know — parking, dress code, repertoire requests..."></textarea>
+      </div>
+      <div class="wiz-footer">
+        <button class="btn block" onclick="submitOrganizeEvent()">Post Event</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CREATE/JOIN ENSEMBLE — full-screen popup modal ===================== -->
+  <div class="modal-overlay" id="ensembleModal" onclick="closeEnsembleModal()">
+    <div class="modal-sheet" onclick="event.stopPropagation()">
+      <div class="header-block">
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="signal">
+            <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+            <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
           </div>
-          <span class="rate">$350 flat</span>
+        </div>
+        <div class="topbar">
+          <button class="modal-close" onclick="closeEnsembleModal()" aria-label="Close">&#10005;</button>
+          <div class="brand" style="margin-top:10px; font-size:19px;">Ensembles</div>
+          <div class="modal-tabs">
+            <button class="modal-tab-btn active" id="ensTabCreateBtn" onclick="switchEnsembleTab('create')">Create New</button>
+            <button class="modal-tab-btn" id="ensTabJoinBtn" onclick="switchEnsembleTab('join')">Join Existing</button>
+          </div>
         </div>
       </div>
+      <div class="content wiz-content">
+        <div id="ensCreatePane">
+          <div class="field-label" style="margin-top:6px;">Ensemble name</div>
+          <input class="field-input" type="text" id="ensName" placeholder="e.g. Riverside String Trio">
 
-      <div class="section-title">Trusted by your network</div>
-      <div class="card">
-        <div class="eyebrow">Chamber Series · Application deadline Aug 3</div>
-        <h3>Contemporary Ensemble Reading</h3>
-        <div class="meta">Community Music Center, SF &middot; Sun Aug 24</div>
-        <div class="row">
-          <div class="mutuals">
-            <div class="avatar" style="background:var(--sage)">NG</div>
-            <div class="avatar" style="background:var(--brass)">JL</div>
-            <div class="avatar" style="background:var(--crimson)">ES</div>
-            <div class="mutual-label">3 connections applied</div>
-          </div>
-          <span class="rate">$275</span>
+          <div class="field-label">Type</div>
+          <div class="chip-select" id="ensTypeGrid"></div>
+
+          <div class="field-label">Genres</div>
+          <div class="chip-select" id="ensGenreGrid"></div>
+
+          <div class="field-label">Bio</div>
+          <textarea class="field-textarea" id="ensBio" maxlength="400" placeholder="Tell organizers what makes this ensemble unique..."></textarea>
         </div>
+        <div id="ensJoinPane" style="display:none;">
+          <input class="field-input" type="text" id="ensembleSearch" placeholder="Search by ensemble name or type..." oninput="renderEnsembleDirectory()" style="margin-top:6px;">
+          <div id="ensembleDirectoryResults" style="margin-top:16px;"></div>
+        </div>
+      </div>
+      <div class="wiz-footer" id="ensCreateFooter">
+        <button class="btn block" onclick="submitCreateEnsemble()">Create Ensemble</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: ENSEMBLE DETAIL (dynamic — created/joined ensembles) ===================== -->
+  <div class="screen" id="screen-ensemble-detail">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" id="ensembleDetailPhoto" style="border-radius:20px;">EN</div>
+      <div class="profile-name" id="ensembleDetailName">Ensemble</div>
+      <div class="profile-tagline" id="ensembleDetailTagline"></div>
+      <div class="badge-row" id="ensembleDetailBadges"></div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Biography</div>
+      <p class="bio" id="ensembleDetailBio"></p>
+
+      <div class="section-title">Media</div>
+      <div id="ensembleDetailMedia"></div>
+
+      <div class="section-title">Members</div>
+      <div id="ensembleDetailMembers"></div>
+
+      <div class="btn-row" style="margin-top:8px;">
+        <button class="btn" id="ensembleDetailBookBtn">Book</button>
+        <button class="btn ghost" onclick="openSheet()">Share</button>
       </div>
     </div>
   </div>
@@ -453,7 +892,7 @@
         </div>
       </div>
 
-      <button class="btn block crimson" onclick="showScreen('screen-messages-thread')">Apply as Mezza Quartet</button>
+      <button class="btn block crimson" onclick="applyToGig()">Apply as Mezza Quartet</button>
       <div style="height:10px"></div>
       <button class="btn block ghost">Save for later</button>
     </div>
@@ -471,69 +910,25 @@
       </div>
       <div class="topbar">
         <div class="brand"><svg class="clef-icon" viewBox="0 0 28 44" width="15" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4 C10 4 7 10 11 15 C15 20 21 17 20 11 C19 7 14 7 14 11 C14 14 17 15 18 13"/><path d="M18 13 C16 20 15 28 15 35"/><path d="M15 35 C15 41 9 42 7 37 C5 33 10 30 13 33"/></svg>Op<span class="mark">u</span>s</div>
-        <div class="sub">your network</div>
+        <div class="sub">my network</div>
       </div>
     </div>
     <div class="content">
-      <div class="section-title">Ensembles you're in</div>
-      <div class="card" onclick="showScreen('screen-ensemble-mezza')" style="cursor:pointer;">
-        <div class="eyebrow">String Quartet</div>
-        <h3>Mezza Quartet</h3>
-        <div class="meta">4 members &middot; Pittsburgh PA &middot; 64 gigs completed</div>
-        <div class="ensemble-members">
-          <div class="avatar" style="background:var(--brass)">You</div>
-          <div class="avatar" style="background:var(--sage)">JL</div>
-          <div class="avatar" style="background:var(--crimson)">NG</div>
-          <div class="avatar" style="background:var(--ink-3)">ES</div>
-        </div>
-        <div class="tagrow"><div class="tag">Classical</div><div class="tag">Weddings</div><div class="tag">Chamber recitals</div></div>
-      </div>
+      <input class="field-input" type="text" id="networkSearch" placeholder="Search people by name or phone number..." oninput="renderNetworkSearch()" style="margin-bottom:14px;">
+      <div id="networkSearchResults"></div>
 
-      <div class="card" onclick="showScreen('screen-ensemble-grieg')" style="cursor:pointer;">
-        <div class="eyebrow">Violin / Piano Duo</div>
-        <h3>Grieg Duo</h3>
-        <div class="meta">2 members &middot; Pittsburgh PA &middot; 21 gigs completed</div>
-        <div class="ensemble-members">
-          <div class="avatar" style="background:var(--brass)">You</div>
-          <div class="avatar" style="background:var(--ink-3)">SC</div>
-        </div>
-        <div class="tagrow"><div class="tag">Romantic era</div><div class="tag">Recitals</div><div class="tag">Fundraisers</div></div>
-      </div>
+      <div id="networkMainSections">
+        <div class="section-title">Connections <span class="see clickable" id="mutualCountLabel" onclick="showScreen('screen-allconnections')">24 total</span></div>
+        <div class="net-wrap" id="mutualPreviewWrap"></div>
 
-      <div class="section-title">Mutual connections <span class="see">24 total</span></div>
-      <div class="net-wrap">
-        <div class="net-node">
-          <div class="avatar" style="background:var(--sage)">JL</div>
-          <div class="info"><b>Josh Lee</b><span>Violin &middot; Mezza Quartet co-member</span></div>
-        </div>
-        <div class="net-node">
-          <div class="avatar" style="background:var(--crimson)">NG</div>
-          <div class="info"><b>Nathan Gaynor</b><span>Viola &middot; Mezza Quartet co-member</span></div>
-        </div>
-        <div class="net-node">
-          <div class="avatar" style="background:var(--ink-3)">ES</div>
-          <div class="info"><b>Elly Schade</b><span>Cello &middot; Mezza Quartet co-member</span></div>
-        </div>
-        <div class="net-node">
-          <div class="avatar" style="background:var(--brass)">SC</div>
-          <div class="info"><b>Spencer Cha</b><span>Piano &middot; Grieg Duo partner</span></div>
-        </div>
-      </div>
-
-      <div class="section-title">Recommendations received</div>
-      <div class="review">
-        <p>"Punctual, beautifully prepared, and easy to coordinate with day-of. I'd book again without hesitation."</p>
-        <div class="who">— Elena Petrova, Wedding Planner &middot; Jun 2026</div>
-      </div>
-      <div class="review">
-        <p>"One of the most disciplined chamber players I've taught. Handles a last-minute repertoire change with total ease."</p>
-        <div class="who">— Prof. Miriam Osei, Carnegie Mellon School of Music &middot; Mar 2026</div>
+        <div class="section-title" style="margin-top:16px;">Ensembles<span class="see clickable mini-add" onclick="openEnsembleModal()">+ Create/Join</span></div>
+        <div id="networkEnsembles"></div>
       </div>
     </div>
   </div>
 
-  <!-- ===================== SCREEN: MESSAGES LIST ===================== -->
-  <div class="screen" id="screen-messages">
+  <!-- ===================== SCREEN: ALL CONNECTIONS ===================== -->
+  <div class="screen" id="screen-allconnections">
     <div class="header-block">
       <div class="statusbar">
         <span>9:41</span>
@@ -543,69 +938,16 @@
         </div>
       </div>
       <div class="topbar">
-        <div class="brand"><svg class="clef-icon" viewBox="0 0 28 44" width="15" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4 C10 4 7 10 11 15 C15 20 21 17 20 11 C19 7 14 7 14 11 C14 14 17 15 18 13"/><path d="M18 13 C16 20 15 28 15 35"/><path d="M15 35 C15 41 9 42 7 37 C5 33 10 30 13 33"/></svg>Op<span class="mark">u</span>s</div>
-        <div class="sub">messages</div>
+        <div class="back-row" onclick="showScreen('screen-network')">&larr; network</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Connections</div>
+        <div class="sub" id="allConnectionsSub">everyone you're connected to</div>
       </div>
     </div>
-    <div class="content" style="padding-top:6px;">
-      <div class="thread-item" onclick="showScreen('screen-messages-thread')">
-        <div class="avatar" style="background:var(--sage); margin-left:0; width:40px; height:40px; font-size:13px;">EP</div>
-        <div class="info">
-          <div class="top"><b>Elena Petrova</b><span class="time">2m</span></div>
-          <p>Perfect, see you at 4:30 for load-in!</p>
-        </div>
-        <div class="dot"></div>
-      </div>
-      <div class="thread-item">
-        <div class="avatar" style="background:var(--ink-3); margin-left:0; width:40px; height:40px; font-size:13px;">SC</div>
-        <div class="info">
-          <div class="top"><b>Spencer Cha</b><span class="time">1h</span></div>
-          <p>You: Sounds good — I'll bring the Grieg Sonata No. 3 parts.</p>
-        </div>
-      </div>
-      <div class="thread-item">
-        <div class="avatar" style="background:var(--crimson); margin-left:0; width:40px; height:40px; font-size:13px;">MO</div>
-        <div class="info">
-          <div class="top"><b>Prof. Miriam Osei</b><span class="time">1d</span></div>
-          <p>Just recommended you to a colleague for a chamber series.</p>
-        </div>
-      </div>
-      <div class="thread-item">
-        <div class="avatar" style="background:var(--brass); margin-left:0; width:40px; height:40px; font-size:13px;">FC</div>
-        <div class="info">
-          <div class="top"><b>First Congregational</b><span class="time">3d</span></div>
-          <p>Marked you as paid for Jul 21 service — $120.</p>
-        </div>
-      </div>
+    <div class="content">
+      <div class="net-wrap" id="allConnectionsList" style="margin-bottom:8px;"></div>
     </div>
   </div>
 
-  <!-- ===================== SCREEN: MESSAGE THREAD ===================== -->
-  <div class="screen" id="screen-messages-thread">
-    <div class="header-block">
-      <div class="statusbar">
-        <span>9:41</span>
-        <div class="signal">
-          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
-          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
-        </div>
-      </div>
-      <div class="topbar">
-        <div class="back-row" onclick="showScreen('screen-messages')">&larr; messages</div>
-        <div class="brand" style="margin-top:10px; font-size:19px;">Elena Petrova</div>
-        <div class="sub">Filoli Gardens wedding &middot; Aug 15</div>
-      </div>
-    </div>
-    <div class="content" style="display:flex; flex-direction:column;">
-      <div class="bubble system">Application sent &middot; Mezza Quartet</div>
-      <div class="bubble them">Hi! Loved your quartet's recording of the Pachelbel — would you be free for our 5pm ceremony?</div>
-      <div class="bubble me">Yes, we're available. We can also cover cocktail hour standards if useful.</div>
-      <div class="bubble them">That would be wonderful. Budget is $450/musician, load-in at Gate B.</div>
-      <div class="bubble system">Elena marked you as Hired ✓</div>
-      <div class="bubble them">Perfect, see you at 4:30 for load-in!</div>
-      <div class="bubble system">Payment status: Pending → will update after performance</div>
-    </div>
-  </div>
 
   <!-- ===================== SCREEN: PROFILE ===================== -->
   <div class="screen" id="screen-profile">
@@ -617,75 +959,460 @@
           <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
         </div>
       </div>
+      <div id="profileSwitcher" class="profile-switcher" style="display:none; padding-bottom:14px;"></div>
     </div>
     <div class="profile-hero" style="margin-top:-1px;">
-      <div class="profile-photo">CM</div>
-      <div class="profile-name">Cassandra May</div>
-      <div class="profile-tagline">Violin &middot; Pittsburgh, PA &middot; 18 yrs experience</div>
-      <div class="badge-row">
-        <div class="badge" onclick="showScreen('screen-ensemble-mezza')" style="cursor:pointer;">Mezza Quartet</div>
-        <div class="badge" onclick="showScreen('screen-ensemble-grieg')" style="cursor:pointer;">Grieg Duo</div>
-        <div class="badge">Carnegie Mellon BFA</div>
+      <button class="contact-info-btn" onclick="toggleContactInfo(event)" aria-label="Contact information">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        Contact
+      </button>
+      <div class="contact-info-card" id="contactInfoCard">
+        <div class="contact-row"><div class="contact-label">Email</div><div class="contact-val" id="contactEmailVal">—</div></div>
+        <div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val" id="contactPhoneVal">—</div></div>
+      </div>
+      <button class="organize-event-btn" onclick="openOrganizeModal()" aria-label="Organize an event">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
+        Organize Event
+      </button>
+      <button class="settings-gear" onclick="openSettings()" aria-label="Settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      </button>
+      <div class="profile-photo" id="profilePhoto">CM</div>
+      <div class="profile-name" id="profileName">Cassandra May</div>
+      <div class="profile-tagline" id="profileTagline">Violin &middot; Pittsburgh, PA &middot; 18 yrs experience</div>
+      <div class="badge-row" id="profileBadges"></div>
+    </div>
+    <div class="content" style="padding-top:0;" id="profileContent"></div>
+  </div>
+
+  <!-- ===================== SCREEN: SETTINGS ===================== -->
+  <div class="screen" id="screen-settings">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="showScreen('screen-profile')">&larr; profile</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Settings</div>
       </div>
     </div>
-    <div class="content" style="padding-top:0;">
-      <div class="stat-strip">
-        <div class="stat"><b>140</b><span>Gigs played</span></div>
-        <div class="stat"><b>5.0</b><span>Rating</span></div>
-        <div class="stat"><b>$250–450</b><span>Typical rate</span></div>
+    <div class="content">
+      <div class="settings-section-label">Your Profiles</div>
+      <div id="settingsProfileList"></div>
+      <div class="add-profile-row" onclick="enterWizard()">
+        <div class="plus-circle">+</div>
+        <div>
+          <b>New Profile</b>
+          <span>Create another profile linked to this phone number</span>
+        </div>
       </div>
 
-      <div class="section-title">Biography</div>
-      <p class="bio">Freelance violinist with 18 years of performance experience across chamber, orchestral, and private-event settings. BFA in Violin Performance from Carnegie Mellon University. Founding member of the Mezza Quartet, and one half of the Grieg Duo alongside pianist Spencer Cha. Comfortable with formal ceremonies, recital programs, and sight-reading on short notice.</p>
-
-      <div class="section-title">Genres</div>
-      <div class="tagrow"><div class="tag">Classical</div><div class="tag">Jazz</div><div class="tag">Pop</div></div>
-
-      <div class="section-title">Available For</div>
-      <div class="tagrow">
-        <div class="tag avail on" onclick="this.classList.toggle('on')">Weddings</div>
-        <div class="tag avail on" onclick="this.classList.toggle('on')">Corporate Events</div>
-        <div class="tag avail" onclick="this.classList.toggle('on')">Funerals</div>
-        <div class="tag avail" onclick="this.classList.toggle('on')">Recitals</div>
-        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Religious Services</div>
-        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Session Work</div>
-        <div class="tag avail hidden" onclick="this.classList.toggle('on')">Teaching</div>
-        <div class="tag avail more" onclick="revealMore(this)">+ More</div>
+      <div class="settings-section-label">Account</div>
+      <div class="settings-row">
+        <span class="label">Phone number</span>
+        <span class="val" id="settingsPhoneVal">&middot;&middot;&middot;&middot;&middot;&middot;</span>
+      </div>
+      <div class="settings-row">
+        <span class="label">Payment &amp; payouts</span>
+        <span class="val">&rsaquo;</span>
+      </div>
+      <div class="settings-row">
+        <span class="label">Notifications</span>
+        <span class="val">&rsaquo;</span>
+      </div>
+      <div class="settings-row">
+        <span class="label">Privacy &amp; trust</span>
+        <span class="val">&rsaquo;</span>
+      </div>
+      <div class="settings-row" style="border-bottom:none;">
+        <span class="label">Help &amp; support</span>
+        <span class="val">&rsaquo;</span>
       </div>
 
-      <div class="section-title">Media</div>
-      <div class="media-strip">
-        <div class="media-thumb">▶ Grieg Sonata No. 3, live</div>
-        <div class="media-thumb">▶ Mezza Quartet reel</div>
-        <div class="media-thumb">▶ Solo recital, CMU</div>
+      <div class="logout-row">Log Out</div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: NEW PROFILE WIZARD ===================== -->
+  <div class="screen" id="screen-newprofile">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" id="wizBackRow" onclick="wizardBack()">&larr; cancel</div>
+        <div class="wiz-progress-track" id="wizProgressTrack">
+          <div class="wiz-progress-fill" id="wizProgressFill"></div>
+        </div>
+        <div class="wiz-step-count" id="wizStepCount"></div>
+      </div>
+    </div>
+
+    <div class="content wiz-content">
+
+      <!-- step 0: intro -->
+      <div class="wiz-step" data-step="0">
+        <div class="wiz-icon-badge">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/><path d="M18 4v4M16 6h4" stroke="var(--brass-light)"/></svg>
+        </div>
+        <div class="wiz-title">Create a new profile</div>
+        <div class="wiz-sub">Set up another musician or ensemble identity under your account. It only takes a couple minutes, and it's linked to your phone number to keep every profile on Opus verified.</div>
+        <div class="empty-note">You'll be asked to verify your phone number, then add your instrument, experience, genres, availability, rate, a short bio, and an optional photo.</div>
       </div>
 
-      <div class="section-title" style="margin-top:16px;">Ensembles</div>
-      <div class="list-row" onclick="showScreen('screen-ensemble-mezza')">
-        <div class="avatar" style="background:var(--brass); margin-left:0; width:38px; height:38px; font-size:12px;">MQ</div>
-        <div class="info"><b>Mezza Quartet</b><span>String Quartet &middot; 4 members</span></div>
-        <div class="chev">&rsaquo;</div>
-      </div>
-      <div class="list-row" onclick="showScreen('screen-ensemble-grieg')">
-        <div class="avatar" style="background:var(--sage); margin-left:0; width:38px; height:38px; font-size:12px;">GD</div>
-        <div class="info"><b>Grieg Duo</b><span>Violin / Piano Duo &middot; 2 members</span></div>
-        <div class="chev">&rsaquo;</div>
-      </div>
-
-      <div class="section-title">Reviews</div>
-      <div class="review">
-        <p>"Punctual, beautifully prepared, and easy to coordinate with day-of."</p>
-        <div class="who">— Elena Petrova, Wedding Planner</div>
-      </div>
-      <div class="review">
-        <p>"Eighteen years of stage experience and it shows — poised, precise, and generous with the rest of the ensemble."</p>
-        <div class="who">— Prof. Miriam Osei, Carnegie Mellon School of Music</div>
+      <!-- step 1: phone -->
+      <div class="wiz-step" data-step="1">
+        <div class="wiz-title">What's your number?</div>
+        <div class="wiz-sub">We'll text a 6-digit code to verify it's really you. Your number is never shown to organizers.</div>
+        <div class="field-label">Phone number</div>
+        <div class="phone-input-row">
+          <div class="country-code">+1</div>
+          <input class="field-input" type="tel" id="wizPhone" placeholder="(555) 555-0123" oninput="wizardValidate()">
+        </div>
       </div>
 
-      <div class="btn-row" style="margin-top:8px;">
-        <button class="btn">Edit profile</button>
-        <button class="btn ghost" onclick="openSheet()">Share profile</button>
+      <!-- step 2: verify -->
+      <div class="wiz-step" data-step="2">
+        <div class="wiz-title">Enter your code</div>
+        <div class="wiz-sub">We sent a 6-digit code to <span id="wizPhoneDisplay">your number</span>.</div>
+        <div class="otp-row">
+          <input class="otp-box" maxlength="1" inputmode="numeric" oninput="otpAdvance(this)">
+          <input class="otp-box" maxlength="1" inputmode="numeric" oninput="otpAdvance(this)">
+          <input class="otp-box" maxlength="1" inputmode="numeric" oninput="otpAdvance(this)">
+          <input class="otp-box" maxlength="1" inputmode="numeric" oninput="otpAdvance(this)">
+          <input class="otp-box" maxlength="1" inputmode="numeric" oninput="otpAdvance(this)">
+          <input class="otp-box" maxlength="1" inputmode="numeric" oninput="otpAdvance(this)">
+        </div>
+        <span class="resend-link" onclick="return false;">Didn't get it? Resend code</span>
       </div>
+
+      <!-- step 3: name + instrument -->
+      <div class="wiz-step" data-step="3">
+        <div class="wiz-title">The basics</div>
+        <div class="wiz-sub">This is how organizers will see this profile.</div>
+        <div class="field-label">Full name or profile name</div>
+        <input class="field-input" type="text" id="wizName" placeholder="e.g. Cassandra May" oninput="wizardValidate()">
+        <div class="field-label">Instrument(s) — pick as many as apply</div>
+        <div class="organizer-toggle" id="wizOrganizerToggle" onclick="toggleOrganizer('wiz')">
+          <div class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+          <div>I don't play an instrument — I'm an event organizer</div>
+        </div>
+        <div class="instrument-grid" id="wizInstrumentGrid"></div>
+      </div>
+
+      <!-- step 4: experience + location -->
+      <div class="wiz-step" data-step="4">
+        <div class="wiz-title">Experience &amp; location</div>
+        <div class="wiz-sub">Helps organizers gauge fit at a glance.</div>
+        <div class="field-label">Years of experience</div>
+        <input class="field-input" type="number" min="0" max="60" id="wizYears" placeholder="e.g. 8" oninput="wizardValidate()">
+        <div class="field-label">City &amp; state</div>
+        <input class="field-input" type="text" id="wizLocation" placeholder="e.g. Pittsburgh, PA" oninput="wizardValidate()">
+      </div>
+
+      <!-- step 5: genres -->
+      <div class="wiz-step" data-step="5">
+        <div class="wiz-title">Genres</div>
+        <div class="wiz-sub">Pick everything that applies — you can change this later.</div>
+        <div class="chip-select" id="wizGenreGrid"></div>
+      </div>
+
+      <!-- step 6: available for -->
+      <div class="wiz-step" data-step="6">
+        <div class="wiz-title">Available for</div>
+        <div class="wiz-sub">What kinds of gigs do you want to be matched with?</div>
+        <div class="chip-select" id="wizAvailGrid"></div>
+      </div>
+
+      <!-- step 7: rate -->
+      <div class="wiz-step" data-step="7">
+        <div class="wiz-title">Typical rate</div>
+        <div class="wiz-sub">A range is fine — you can quote exact rates per gig later.</div>
+        <div class="field-row">
+          <div style="flex:1;">
+            <div class="field-label">Min ($)</div>
+            <input class="field-input" type="number" min="0" id="wizRateMin" placeholder="200">
+          </div>
+          <div style="flex:1;">
+            <div class="field-label">Max ($)</div>
+            <input class="field-input" type="number" min="0" id="wizRateMax" placeholder="450">
+          </div>
+        </div>
+        <div class="field-hint">Shown as your typical rate on your profile.</div>
+      </div>
+
+      <!-- step 8: bio -->
+      <div class="wiz-step" data-step="8">
+        <div class="wiz-title">Short bio</div>
+        <div class="wiz-sub">A couple sentences about your background and what you play.</div>
+        <textarea class="field-textarea" id="wizBio" maxlength="280" placeholder="e.g. Freelance cellist based in Pittsburgh, focused on chamber and wedding repertoire..." oninput="wizardBioCount()"></textarea>
+        <div class="char-count"><span id="wizBioCount">0</span>/280</div>
+      </div>
+
+      <!-- step 9: photo -->
+      <div class="wiz-step" data-step="9">
+        <div class="wiz-title">Add a photo</div>
+        <div class="wiz-sub">Profiles with a photo get more responses from organizers. Optional for now.</div>
+        <div class="photo-preview" id="wizPhotoPreview">?</div>
+        <label class="btn ghost block photo-upload-btn" style="cursor:pointer;">
+          Choose a photo
+          <input type="file" accept="image/*" id="wizPhotoInput" style="display:none;" onchange="wizardPhotoChosen(event)">
+        </label>
+      </div>
+
+      <!-- step 10: review -->
+      <div class="wiz-step" data-step="10">
+        <div class="wiz-title">Review &amp; create</div>
+        <div class="wiz-sub">Here's what organizers will see. You can edit anything later from your profile.</div>
+        <div id="wizReview"></div>
+      </div>
+
+      <!-- step 11: success -->
+      <div class="wiz-step wiz-success" data-step="11">
+        <div class="success-check">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <div class="wiz-title">Profile created</div>
+        <div class="wiz-sub">Your new profile is live and linked to your phone number. Switch between profiles anytime from Settings.</div>
+      </div>
+
+    </div>
+
+    <div class="wiz-footer">
+      <button class="btn block" id="wizContinueBtn" onclick="wizardNext()">Get started</button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: EDIT PROFILE ===================== -->
+  <div class="screen" id="screen-editprofile">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="exitEditProfile()">&larr; cancel</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Edit Profile</div>
+      </div>
+    </div>
+    <div class="content wiz-content">
+      <div class="field-label" style="margin-top:6px;">Name</div>
+      <input class="field-input" type="text" id="editName">
+
+      <div class="field-label">Instrument(s) — pick as many as apply</div>
+      <div class="organizer-toggle" id="editOrganizerToggle" onclick="toggleOrganizer('edit')">
+        <div class="check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div>I don't play an instrument — I'm an event organizer</div>
+      </div>
+      <div class="instrument-grid" id="editInstrumentGrid"></div>
+
+      <div class="field-row">
+        <div style="flex:1;">
+          <div class="field-label">Years of experience</div>
+          <input class="field-input" type="number" min="0" max="60" id="editYears">
+        </div>
+        <div style="flex:1;">
+          <div class="field-label">City &amp; state</div>
+          <input class="field-input" type="text" id="editLocation">
+        </div>
+      </div>
+
+      <div class="field-label">Credential / school (optional)</div>
+      <input class="field-input" type="text" id="editCredential" placeholder="e.g. Carnegie Mellon BFA">
+
+      <div class="field-label">Genres</div>
+      <div class="chip-select" id="editGenreGrid"></div>
+
+      <div class="field-label">Available for</div>
+      <div class="chip-select" id="editAvailGrid"></div>
+
+      <div class="field-label">Typical rate</div>
+      <div class="field-row">
+        <div style="flex:1;">
+          <input class="field-input" type="number" min="0" id="editRateMin" placeholder="Min $">
+        </div>
+        <div style="flex:1;">
+          <input class="field-input" type="number" min="0" id="editRateMax" placeholder="Max $">
+        </div>
+      </div>
+
+      <div class="field-label">Bio</div>
+      <textarea class="field-textarea" id="editBio" maxlength="400" oninput="editBioCount()"></textarea>
+      <div class="char-count"><span id="editBioCount">0</span>/400</div>
+
+      <div class="field-label">Photo</div>
+      <div class="photo-preview" id="editPhotoPreview">?</div>
+      <label class="btn ghost block photo-upload-btn" style="cursor:pointer;">
+        Choose a photo
+        <input type="file" accept="image/*" id="editPhotoInput" style="display:none;" onchange="editPhotoChosen(event)">
+      </label>
+    </div>
+    <div class="wiz-footer">
+      <button class="btn block" onclick="saveEditProfile()">Save Changes</button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: WRITE A RECOMMENDATION ===================== -->
+  <div class="screen" id="screen-recommend">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="exitRecommend()">&larr; cancel</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Write a Recommendation</div>
+        <div class="sub" id="recommendTargetLabel">For —</div>
+      </div>
+    </div>
+    <div class="content wiz-content">
+      <div class="field-label" style="margin-top:6px;">Your recommendation</div>
+      <textarea class="field-textarea" id="recText" maxlength="400" oninput="recommendBioCount()" placeholder="Share what it's like to work with them..."></textarea>
+      <div class="char-count"><span id="recTextCount">0</span>/400</div>
+
+      <div class="field-label">Your relationship (optional)</div>
+      <input class="field-input" type="text" id="recRole" placeholder="e.g. Bandmate, Wedding Planner">
+    </div>
+    <div class="wiz-footer">
+      <button class="btn block" onclick="submitRecommendation()">Post Recommendation</button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: ADD MEDIA ===================== -->
+  <div class="screen" id="screen-addmedia">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="exitAddMedia()">&larr; cancel</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Add Media</div>
+      </div>
+    </div>
+    <div class="content wiz-content">
+      <div class="field-label" style="margin-top:6px;">Caption</div>
+      <input class="field-input" type="text" id="mediaCaption" placeholder="e.g. Live at Filoli Gardens wedding">
+
+      <div class="field-label">File (optional, for demo)</div>
+      <label class="btn ghost block photo-upload-btn" style="cursor:pointer;">
+        Choose a file
+        <input type="file" accept="audio/*,video/*,image/*" id="mediaFileInput" style="display:none;" onchange="mediaFileChosen(event)">
+      </label>
+      <div class="field-hint" id="mediaFileName">No file chosen</div>
+    </div>
+    <div class="wiz-footer">
+      <button class="btn block" onclick="submitAddMedia()">Add Media</button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: EVENTS TAB ===================== -->
+  <div class="screen" id="screen-events">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="brand"><svg class="clef-icon" viewBox="0 0 28 44" width="15" height="24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 4 C10 4 7 10 11 15 C15 20 21 17 20 11 C19 7 14 7 14 11 C14 14 17 15 18 13"/><path d="M18 13 C16 20 15 28 15 35"/><path d="M15 35 C15 41 9 42 7 37 C5 33 10 30 13 33"/></svg>Op<span class="mark">u</span>s</div>
+        <div class="sub">your events</div>
+      </div>
+    </div>
+    <div class="events-create-row" onclick="openOrganizeModal()">
+      <div class="plus-circle">+</div>
+      <div>
+        <b>Organize an Event</b>
+        <span>Post a gig and find musicians to fill it</span>
+      </div>
+    </div>
+    <div class="content">
+      <div class="section-title">Events You're Organizing<span class="see clickable" id="pastEventsCount" onclick="openPastEvents()">0 past</span></div>
+      <div id="upcomingEventsList"></div>
+
+      <div class="section-title" style="margin-top:22px;">My Events</div>
+      <div id="myEventsBookedList"></div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: PAST EVENTS ===================== -->
+  <div class="screen" id="screen-pastevents">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="showScreen('screen-events')">&larr; events</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Past Events</div>
+        <div class="sub">who performed</div>
+      </div>
+    </div>
+    <div class="content">
+      <div id="pastEventsList"></div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: EVENTS ORGANIZED (LIST) ===================== -->
+  <div class="screen" id="screen-myevents">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="showScreen('screen-profile')">&larr; profile</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;">Events Organized</div>
+      </div>
+    </div>
+    <div class="content">
+      <div id="myEventsList"></div>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: EVENT DETAIL ===================== -->
+  <div class="screen" id="screen-eventdetail">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;" id="eventDetailTitle">Event</div>
+        <div class="sub" id="eventDetailSub"></div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="detail-grid" id="eventDetailBody" style="margin-top:6px;"></div>
     </div>
   </div>
 
@@ -865,10 +1592,11 @@
         <div class="tag avail more" onclick="revealMore(this)">+ More</div>
       </div>
 
-      <div class="btn-row" style="margin-top:8px;">
-        <button class="btn">Message</button>
-        <button class="btn ghost" onclick="openSheet()">Share profile</button>
-      </div>
+      <div class="section-title">Reviews</div>
+      <div id="musicianReviews-josh"></div>
+
+      <button class="btn block" style="margin-top:8px;" onclick="openSheet()">Share profile</button>
+      <button class="btn ghost block" style="margin-top:10px;" onclick="openRecommend({musicianId:'josh', name:'Josh Lee'})">Write a recommendation</button>
     </div>
   </div>
 
@@ -911,10 +1639,11 @@
         <div class="tag avail more" onclick="revealMore(this)">+ More</div>
       </div>
 
-      <div class="btn-row" style="margin-top:8px;">
-        <button class="btn">Message</button>
-        <button class="btn ghost" onclick="openSheet()">Share profile</button>
-      </div>
+      <div class="section-title">Reviews</div>
+      <div id="musicianReviews-nathan"></div>
+
+      <button class="btn block" style="margin-top:8px;" onclick="openSheet()">Share profile</button>
+      <button class="btn ghost block" style="margin-top:10px;" onclick="openRecommend({musicianId:'nathan', name:'Nathan Gaynor'})">Write a recommendation</button>
     </div>
   </div>
 
@@ -957,10 +1686,11 @@
         <div class="tag avail more" onclick="revealMore(this)">+ More</div>
       </div>
 
-      <div class="btn-row" style="margin-top:8px;">
-        <button class="btn">Message</button>
-        <button class="btn ghost" onclick="openSheet()">Share profile</button>
-      </div>
+      <div class="section-title">Reviews</div>
+      <div id="musicianReviews-elly"></div>
+
+      <button class="btn block" style="margin-top:8px;" onclick="openSheet()">Share profile</button>
+      <button class="btn ghost block" style="margin-top:10px;" onclick="openRecommend({musicianId:'elly', name:'Elly Schade'})">Write a recommendation</button>
     </div>
   </div>
 
@@ -1003,10 +1733,11 @@
         <div class="tag avail more" onclick="revealMore(this)">+ More</div>
       </div>
 
-      <div class="btn-row" style="margin-top:8px;">
-        <button class="btn">Message</button>
-        <button class="btn ghost" onclick="openSheet()">Share profile</button>
-      </div>
+      <div class="section-title">Reviews</div>
+      <div id="musicianReviews-spencer"></div>
+
+      <button class="btn block" style="margin-top:8px;" onclick="openSheet()">Share profile</button>
+      <button class="btn ghost block" style="margin-top:10px;" onclick="openRecommend({musicianId:'spencer', name:'Spencer Cha'})">Write a recommendation</button>
     </div>
   </div>
 
@@ -1039,21 +1770,32 @@
     </div>
   </div>
 
+  <!-- ===================== ALERT MODAL (overlay) ===================== -->
+  <div class="alert-overlay" id="alertOverlay">
+    <div class="alert-box">
+      <div class="alert-title" id="alertTitle"></div>
+      <div class="alert-message" id="alertMessage"></div>
+      <div class="alert-buttons">
+        <button class="alert-btn" id="alertCancelBtn">Cancel</button>
+        <button class="alert-btn primary" id="alertConfirmBtn">OK</button>
+      </div>
+    </div>
+  </div>
 
   <div class="navbar">
-    <div class="navitem active" onclick="setNav(this,'screen-discover')">
+    <div class="navitem active" id="navDiscoverItem" onclick="setNav(this,'screen-discover')">
       <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
       Discover
     </div>
+    <div class="navitem" id="navEventsItem" onclick="setNav(this,'screen-events')">
+      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><line x1="3" y1="9.5" x2="21" y2="9.5"/><line x1="8" y1="2.5" x2="8" y2="6.5"/><line x1="16" y1="2.5" x2="16" y2="6.5"/></svg></div>
+      Events
+    </div>
     <div class="navitem" onclick="setNav(this,'screen-network')">
       <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><line x1="7.8" y1="7.4" x2="10.6" y2="16"/><line x1="16.2" y1="7.4" x2="13.4" y2="16"/></svg></div>
-      Network
+      My Network
     </div>
-    <div class="navitem" onclick="setNav(this,'screen-messages')">
-      <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
-      Messages
-    </div>
-    <div class="navitem" onclick="setNav(this,'screen-profile')">
+    <div class="navitem" id="navProfileItem" onclick="setNav(this,'screen-profile')">
       <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></div>
       Profile
     </div>
@@ -1062,12 +1804,21 @@
 
 <script>
   var navHistory = ['screen-discover'];
+  // Screens with a fixed bottom form-footer (.wiz-footer) need the tab bar hidden
+  // so the two fixed bars don't stack on top of each other.
+  var FOCUSED_SCREENS = ['screen-newprofile', 'screen-editprofile', 'screen-recommend', 'screen-addmedia'];
+
+  function applyNavbarVisibility(id){
+    var navbar = document.querySelector('.navbar');
+    if(navbar) navbar.style.display = FOCUSED_SCREENS.indexOf(id) > -1 ? 'none' : '';
+  }
 
   function showScreen(id){
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     document.getElementById(id).scrollTop = 0;
     if(navHistory[navHistory.length - 1] !== id){ navHistory.push(id); }
+    applyNavbarVisibility(id);
   }
   function goBack(){
     if(navHistory.length > 1){ navHistory.pop(); }
@@ -1075,6 +1826,7 @@
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(prev).classList.add('active');
     document.getElementById(prev).scrollTop = 0;
+    applyNavbarVisibility(prev);
   }
   function setNav(el, id){
     document.querySelectorAll('.navitem').forEach(n => n.classList.remove('active'));
@@ -1093,6 +1845,1623 @@
   function closeSheet(e){
     document.getElementById('shareSheet').classList.remove('open');
   }
+
+  function applyToGig(){
+    showAlert({
+      title:'Application sent',
+      message:'Elena Petrova will review your application and reach out with next steps.',
+      confirmText:'Nice', singleButton:true
+    });
+  }
+
+  /* =====================================================================
+     PROFILES — data model + rendering
+     Profile screen content is generated from this array so a brand-new
+     profile created through the "New Profile" wizard renders with the
+     same layout/empty-states as the seeded Cassandra May profile.
+  ===================================================================== */
+  var accountPhone = '(412) 555-0182';
+  var accountEmail = 'cassandra.may@opusmusic.app';
+
+  var profiles = [
+    {
+      initials: 'CM',
+      photoColor: 'linear-gradient(135deg, var(--brass), var(--crimson))',
+      photoUrl: null,
+      name: 'Cassandra May',
+      instruments: ['Violin'],
+      isOrganizer: false,
+      location: 'Pittsburgh, PA',
+      years: '18',
+      credential: '',
+      rateMin: '250',
+      rateMax: '450',
+      gigsPlayed: 140,
+      rating: 5.0,
+      bio: 'Freelance violinist with 18 years of performance experience across chamber, orchestral, and private-event settings. Founding member of the Mezza Quartet, and one half of the Grieg Duo alongside pianist Spencer Cha. Comfortable with formal ceremonies, recital programs, and sight-reading on short notice.',
+      genres: ['Classical', 'Jazz', 'Pop'],
+      availableOn: ['Weddings', 'Corporate Events'],
+      availableOff: ['Funerals', 'Recitals'],
+      availableHidden: ['Religious Services', 'Session Work', 'Teaching'],
+      media: ['▶ Grieg Sonata No. 3, live', '▶ Mezza Quartet reel', '▶ Solo recital, CMU'],
+      ensembles: [
+        {
+          id:'mezza', initials:'MQ', color:'var(--brass)', name:'Mezza Quartet',
+          type:'String Quartet', location:'Pittsburgh, PA', gigsCompleted:64,
+          genres:['Classical','Weddings','Chamber recitals'],
+          members:[
+            { name:'You', role:'Violin I', initials:'You', color:'var(--brass)', isYou:true },
+            { name:'Josh Lee', role:'Violin II', initials:'JL', color:'var(--sage)' },
+            { name:'Nathan Gaynor', role:'Viola', initials:'NG', color:'var(--crimson)' },
+            { name:'Elly Schade', role:'Cello', initials:'ES', color:'var(--ink-3)' }
+          ],
+          sub:'String Quartet &middot; 4 members', custom:false,
+          onclick:"showScreen('screen-ensemble-mezza')"
+        },
+        {
+          id:'grieg', initials:'GD', color:'var(--sage)', name:'Grieg Duo',
+          type:'Violin / Piano Duo', location:'Pittsburgh, PA', gigsCompleted:21,
+          genres:['Romantic era','Recitals','Fundraisers'],
+          members:[
+            { name:'You', role:'Violin', initials:'You', color:'var(--brass)', isYou:true },
+            { name:'Spencer Cha', role:'Piano', initials:'SC', color:'var(--ink-3)' }
+          ],
+          sub:'Violin / Piano Duo &middot; 2 members', custom:false,
+          onclick:"showScreen('screen-ensemble-grieg')"
+        }
+      ],
+      reviews: [
+        { text:'"Punctual, beautifully prepared, and easy to coordinate with day-of."', who:'— Elena Petrova, Wedding Planner' },
+        { text:'"Eighteen years of stage experience and it shows — poised, precise, and generous with the rest of the ensemble."', who:'— Prof. Miriam Osei, Carnegie Mellon School of Music' }
+      ],
+      eventsOrganized: [
+        { title:'Fall Fundraiser Strings', location:'The Frick Pittsburgh, Pittsburgh PA', when:'Sat, Sep 12 · 6:00–8:00 PM', gigType:'Fundraiser', desiredMusicians:['Violin','Cello'], compensation:'$300/musician', status:'upcoming', notes:'Cocktail-hour background music, string duo or trio preferred.' },
+        { title:'CMU Alumni Chamber Night', location:'Kresge Recital Hall, Pittsburgh PA', when:'Sat, Oct 3 · 7:00–9:00 PM', gigType:'Recital', desiredMusicians:['Violin','Viola','Cello'], compensation:'$200/musician', status:'past', notes:'', attendees:[
+          { name:'Josh Lee', initials:'JL', color:'var(--sage)' },
+          { name:'Nathan Gaynor', initials:'NG', color:'var(--crimson)' },
+          { name:'Elly Schade', initials:'ES', color:'var(--ink-3)' }
+        ] }
+      ],
+      bookedGigs: [
+        { title:'String Quartet, Sat Aug 15', location:'Filoli Gardens, Woodside CA', when:'Sat, Aug 15 · 4:00–6:30 PM', role:'Violin', organizer:'Elena Petrova' }
+      ],
+      isNew: false,
+      phone: accountPhone,
+      email: accountEmail
+    }
+  ];
+  var currentProfileIndex = 0;
+
+  function escapeHtml(s){
+    var div = document.createElement('div');
+    div.textContent = s == null ? '' : String(s);
+    return div.innerHTML;
+  }
+
+  function primaryRoleLabel(p){
+    if(p.isOrganizer) return 'Event Organizer';
+    if(p.instruments && p.instruments.length) return p.instruments.join(', ');
+    return 'Musician';
+  }
+  function buildTagline(p){
+    return escapeHtml(primaryRoleLabel(p)) + ' &middot; ' + escapeHtml(p.location || 'Location not set')
+      + (p.years ? (' &middot; ' + escapeHtml(p.years) + ' yrs experience') : '');
+  }
+  function buildBadges(p){
+    var badges = p.ensembles.map(function(e){ return { label:e.name, onclick:e.onclick }; });
+    if(p.credential) badges.push({ label:p.credential });
+    if(p.isOrganizer) badges.push({ label:'Event Organizer' });
+    if(p.isNew && p.ensembles.length === 0 && !p.isOrganizer) badges.push({ label:'New on Opus' });
+    return badges;
+  }
+  function buildRateLabel(p){
+    if(!p.rateMin && !p.rateMax) return 'Not set yet';
+    return '$' + (p.rateMin || p.rateMax) + '–' + (p.rateMax || p.rateMin);
+  }
+  function buildStats(p){
+    return [
+      { value:String(p.gigsPlayed || 0), label:'Gigs played' },
+      (p.rating != null ? { value:p.rating.toFixed(1), label:'Rating' } : { value:'New', label:'On Opus' }),
+      { value:buildRateLabel(p), label:'Typical rate' }
+    ];
+  }
+
+  function switchProfile(i){
+    currentProfileIndex = i;
+    renderActiveProfile();
+    renderNetworkEnsembles();
+    renderEventsScreen();
+    showScreen('screen-profile');
+  }
+
+  function renderSwitcher(){
+    var el = document.getElementById('profileSwitcher');
+    if(profiles.length <= 1){ el.style.display = 'none'; el.innerHTML = ''; return; }
+    el.style.display = 'flex';
+    var html = profiles.map(function(p, i){
+      var photoHtml = p.photoUrl ? '<img src="'+p.photoUrl+'">' : p.initials;
+      return '<div class="switcher-item'+(i===currentProfileIndex?' active':'')+'" onclick="switchProfile('+i+')">'
+        + '<div class="sw-avatar" style="background:'+(p.photoUrl?'transparent':p.photoColor)+'; overflow:hidden;">'+photoHtml+'</div>'
+        + '<span>'+escapeHtml(p.name.split(' ')[0])+'</span></div>';
+    }).join('');
+    html += '<div class="switcher-item add" onclick="enterWizard()"><div class="sw-avatar">+</div><span>New</span></div>';
+    el.innerHTML = html;
+  }
+
+  function renderActiveProfile(){
+    var p = profiles[currentProfileIndex];
+
+    var photoEl = document.getElementById('profilePhoto');
+    if(p.photoUrl){
+      photoEl.style.background = 'transparent';
+      photoEl.innerHTML = '<img src="'+p.photoUrl+'" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">';
+    } else {
+      photoEl.style.background = p.photoColor;
+      photoEl.innerHTML = '';
+      photoEl.textContent = p.initials;
+    }
+
+    document.getElementById('profileName').textContent = p.name;
+    document.getElementById('profileTagline').innerHTML = buildTagline(p);
+    document.getElementById('profileBadges').innerHTML = buildBadges(p).map(function(b){
+      return '<div class="badge"'+(b.onclick ? ' onclick="'+b.onclick+'" style="cursor:pointer;"' : '')+'>'+escapeHtml(b.label)+'</div>';
+    }).join('');
+
+    var statsHtml = '<div class="stat-strip">' + buildStats(p).map(function(s){
+      return '<div class="stat"><b>'+escapeHtml(s.value)+'</b><span>'+escapeHtml(s.label)+'</span></div>';
+    }).join('') + '</div>';
+
+    var bioHtml = '<div class="section-title">Biography</div><p class="bio">'+escapeHtml(p.bio)+'</p>';
+
+    var genresHtml = '<div class="section-title">Genres</div><div class="tagrow">'
+      + (p.genres.length
+          ? p.genres.map(function(g){ return '<div class="tag">'+escapeHtml(g)+'</div>'; }).join('')
+          : '<div class="empty-note">No genres added yet.</div>')
+      + '</div>';
+
+    var availChips = p.availableOn.map(function(a){ return '<div class="tag avail on" onclick="this.classList.toggle(\'on\')">'+escapeHtml(a)+'</div>'; }).join('')
+      + p.availableOff.map(function(a){ return '<div class="tag avail" onclick="this.classList.toggle(\'on\')">'+escapeHtml(a)+'</div>'; }).join('')
+      + p.availableHidden.map(function(a){ return '<div class="tag avail hidden" onclick="this.classList.toggle(\'on\')">'+escapeHtml(a)+'</div>'; }).join('')
+      + (p.availableHidden.length ? '<div class="tag avail more" onclick="revealMore(this)">+ More</div>' : '');
+    var availHtml = '<div class="section-title">Available For</div><div class="tagrow">'+availChips+'</div>';
+
+    var mediaHtml = '<div class="section-title">Media<span class="see clickable mini-add" onclick="openAddMedia()">+ Add</span></div>';
+    if(p.media.length){
+      mediaHtml += '<div class="media-strip">' + p.media.map(function(m){ return '<div class="media-thumb">'+escapeHtml(m)+'</div>'; }).join('') + '</div>';
+    } else {
+      mediaHtml += '<div class="empty-note">No media yet — add a recording or reel to help organizers hear you play.</div>';
+    }
+
+    var ensemblesHtml = '<div class="section-title" style="margin-top:16px;">Ensembles<span class="see clickable mini-add" onclick="openEnsembleModal()">+ Create/Join</span></div>';
+    if(p.ensembles.length){
+      ensemblesHtml += p.ensembles.map(function(e){
+        return '<div class="list-row" onclick="'+e.onclick+'"><div class="avatar" style="background:'+e.color+'; margin-left:0; width:38px; height:38px; font-size:12px;">'+e.initials+'</div><div class="info"><b>'+escapeHtml(e.name)+'</b><span>'+e.sub+'</span></div><div class="chev">&rsaquo;</div></div>';
+      }).join('');
+    } else {
+      ensemblesHtml += '<div class="empty-note">You haven\'t joined or created an ensemble on this profile yet.</div>';
+    }
+
+    var eventsList = p.eventsOrganized || [];
+    var eventsHtml;
+    if(eventsList.length){
+      eventsHtml = '<div class="section-title" style="margin-top:16px;">Events Organized<span class="see clickable" onclick="openMyEvents()">'+eventsList.length+' organized</span></div>'
+        + eventsList.slice(0, 3).map(function(ev, i){
+            return '<div class="list-row" onclick="openEventDetail('+i+')"><div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((ev.gigType||'EV').slice(0,2).toUpperCase())+'</div><div class="info"><b>'+escapeHtml(ev.title)+'</b><span>'+escapeHtml(ev.location)+'</span></div><div class="chev">&rsaquo;</div></div>';
+          }).join('');
+    } else {
+      eventsHtml = '<div class="section-title" style="margin-top:16px;">Events Organized</div><div class="empty-note">You haven\'t organized any events yet. Tap "Organize Event" above to post one.</div>';
+    }
+
+    var reviewsHtml;
+    if(p.reviews.length){
+      reviewsHtml = '<div class="section-title">Reviews</div>' + p.reviews.map(function(r){
+        return '<div class="review"><p>'+r.text+'</p><div class="who">'+r.who+'</div></div>';
+      }).join('');
+    } else {
+      reviewsHtml = '<div class="section-title">Reviews</div><div class="empty-note">No reviews yet — they\'ll appear here after your first completed gig on Opus.</div>';
+    }
+
+    var buttonsHtml = '<div class="btn-row" style="margin-top:8px;"><button class="btn" onclick="openEditProfile()">Edit profile</button><button class="btn ghost" onclick="openSheet()">Share profile</button></div>';
+
+    document.getElementById('profileContent').innerHTML = statsHtml + bioHtml + genresHtml + availHtml + mediaHtml + ensemblesHtml + eventsHtml + reviewsHtml + buttonsHtml;
+
+    renderSwitcher();
+  }
+
+  /* =====================================================================
+     CONTACT INFO — small popover on the Profile header
+  ===================================================================== */
+  function toggleContactInfo(e){
+    if(e) e.stopPropagation();
+    var card = document.getElementById('contactInfoCard');
+    var p = profiles[currentProfileIndex];
+    document.getElementById('contactEmailVal').textContent = p.email || accountEmail;
+    document.getElementById('contactPhoneVal').textContent = p.phone || accountPhone;
+    card.classList.toggle('open');
+  }
+  document.addEventListener('click', function(e){
+    var card = document.getElementById('contactInfoCard');
+    if(card && card.classList.contains('open') && !e.target.closest('.contact-info-btn') && !e.target.closest('.contact-info-card')){
+      card.classList.remove('open');
+    }
+  });
+
+  /* =====================================================================
+     DISCOVER FEED — searchable gig / opportunity cards
+  ===================================================================== */
+  var GIGS = [
+    {
+      id:'gig1', eyebrow:'Wedding · Tomorrow', title:'String Quartet, Sat Aug 15',
+      meta:'Filoli Gardens, Woodside CA · 2.5 hrs', tags:['Wedding','Classical','Formal'],
+      mutuals:[{initials:'NG',color:'var(--sage)'},{initials:'JL',color:'var(--brass)'}],
+      mutualLabel:'2 mutual connections applying', rate:'$450/musician',
+      clickable:true, onclick:"showScreen('screen-gigdetail')",
+      scope:'network', instruments:['Violin','Viola','Cello'], numPlayers:4, location:'Woodside, CA'
+    },
+    {
+      id:'gig2', eyebrow:'Religious Service · Sunday', title:'Sunday Service Cellist',
+      meta:'First Congregational Church, Pittsburgh PA', tags:['Religious Service','Classical'],
+      mutuals:[], mutualLabel:'', rate:'$120/service',
+      scope:'public', instruments:['Cello'], numPlayers:1, location:'Pittsburgh, PA'
+    },
+    {
+      id:'gig3', eyebrow:'Recital · Next Week', title:'Violin & Piano Recital Set',
+      meta:'The Athenaeum, Pittsburgh PA', tags:['Recital','Classical'],
+      mutuals:[], mutualLabel:'', rate:'$350 flat',
+      scope:'public', instruments:['Violin','Piano'], numPlayers:2, location:'Pittsburgh, PA'
+    },
+    {
+      id:'gig4', eyebrow:'Session Work · Trusted by your network', title:'Contemporary Ensemble Reading',
+      meta:'Community Music Center, San Francisco CA', tags:['Session Work','Contemporary'],
+      mutuals:[{initials:'ES',color:'var(--ink-3)'}], mutualLabel:'Elly Suzuki recommends', rate:'$275',
+      scope:'network', instruments:['Violin','Viola','Cello','Bass'], numPlayers:5, location:'San Francisco, CA'
+    }
+  ];
+
+  function gigCardHtml(g){
+    var rowHtml;
+    if(g.mutuals.length){
+      rowHtml = '<div class="row"><div class="mutuals">'
+        + g.mutuals.map(function(m){ return '<div class="avatar" style="background:'+m.color+'">'+m.initials+'</div>'; }).join('')
+        + '<span class="mutual-label">'+escapeHtml(g.mutualLabel)+'</span></div><span class="rate">'+escapeHtml(g.rate)+'</span></div>';
+    } else {
+      rowHtml = '<div class="row"><span></span><span class="rate">'+escapeHtml(g.rate)+'</span></div>';
+    }
+    return '<div class="card"'+(g.clickable ? ' onclick="'+g.onclick+'" style="cursor:pointer;"' : '')+'>'
+      + '<div class="eyebrow">'+escapeHtml(g.eyebrow)+'</div>'
+      + '<h3>'+escapeHtml(g.title)+'</h3>'
+      + '<div class="meta">'+escapeHtml(g.meta)+'</div>'
+      + '<div class="tagrow">'+g.tags.map(function(t){ return '<div class="tag">'+escapeHtml(t)+'</div>'; }).join('')+'</div>'
+      + rowHtml
+      + '</div>';
+  }
+
+  var discoverScope = 'network';
+  var discoverFilters = { instruments:[], players:[], location:'' };
+
+  function setDiscoverScope(scope){
+    discoverScope = scope;
+    document.getElementById('scopeChipNetwork').classList.toggle('on', scope === 'network');
+    document.getElementById('scopeChipPublic').classList.toggle('on', scope === 'public');
+    renderDiscoverFeed();
+  }
+
+  function playerBucket(n){
+    if(n >= 5) return '5+';
+    return String(n);
+  }
+
+  function renderDiscoverFeed(){
+    var q = (document.getElementById('discoverSearch').value || '').trim().toLowerCase();
+    var results = GIGS.filter(function(g){
+      if(g.scope !== discoverScope) return false;
+      if(discoverFilters.instruments.length && !discoverFilters.instruments.some(function(i){ return g.instruments.indexOf(i) > -1; })) return false;
+      if(discoverFilters.players.length && discoverFilters.players.indexOf(playerBucket(g.numPlayers)) === -1) return false;
+      if(discoverFilters.location && g.location.toLowerCase().indexOf(discoverFilters.location.toLowerCase()) === -1) return false;
+      if(!q) return true;
+      var hay = (g.eyebrow+' '+g.title+' '+g.meta+' '+g.tags.join(' ')).toLowerCase();
+      return hay.indexOf(q) > -1;
+    });
+    var el = document.getElementById('discoverFeed');
+    if(results.length){
+      el.innerHTML = results.map(gigCardHtml).join('');
+    } else {
+      var qVal = document.getElementById('discoverSearch').value.trim();
+      el.innerHTML = qVal
+        ? '<div class="empty-note">No opportunities match &ldquo;'+escapeHtml(qVal)+'&rdquo;. Try a different search.</div>'
+        : '<div class="empty-note">No '+(discoverScope === 'network' ? 'in-network' : 'public')+' opportunities match your filters right now.</div>';
+    }
+  }
+
+  /* =====================================================================
+     DISCOVER FILTERS — full-screen popup modal (instruments, players, location)
+  ===================================================================== */
+  var PLAYER_COUNTS = ['1','2','3','4','5+'];
+
+  function toggleFilterMulti(el, arr, val){
+    el.classList.toggle('on');
+    var idx = arr.indexOf(val);
+    if(el.classList.contains('on')){ if(idx === -1) arr.push(val); }
+    else { if(idx > -1) arr.splice(idx, 1); }
+  }
+
+  function buildDiscoverFilterGrids(){
+    document.getElementById('filterInstrumentGrid').innerHTML = INSTRUMENTS.map(function(inst){
+      var on = discoverFilters.instruments.indexOf(inst) > -1;
+      return '<div class="chip-pick'+(on?' on':'')+'" onclick="toggleFilterMulti(this, discoverFilters.instruments, \''+inst+'\')">'+inst+'</div>';
+    }).join('');
+    document.getElementById('filterPlayersGrid').innerHTML = PLAYER_COUNTS.map(function(n){
+      var on = discoverFilters.players.indexOf(n) > -1;
+      return '<div class="chip-pick'+(on?' on':'')+'" onclick="toggleFilterMulti(this, discoverFilters.players, \''+n+'\')">'+n+'</div>';
+    }).join('');
+    document.getElementById('filterLocation').value = discoverFilters.location;
+  }
+
+  function openDiscoverFilterModal(){
+    buildDiscoverFilterGrids();
+    document.getElementById('discoverFilterModal').classList.add('open');
+  }
+
+  function closeDiscoverFilterModal(){
+    document.getElementById('discoverFilterModal').classList.remove('open');
+  }
+
+  function applyDiscoverFilters(){
+    discoverFilters.location = document.getElementById('filterLocation').value.trim();
+    var hasFilters = discoverFilters.instruments.length || discoverFilters.players.length || discoverFilters.location;
+    document.getElementById('discoverFilterBtn').classList.toggle('has-filters', !!hasFilters);
+    closeDiscoverFilterModal();
+    renderDiscoverFeed();
+  }
+
+  function clearDiscoverFilters(){
+    discoverFilters = { instruments:[], players:[], location:'' };
+    document.getElementById('discoverFilterBtn').classList.remove('has-filters');
+    buildDiscoverFilterGrids();
+    renderDiscoverFeed();
+  }
+
+  /* =====================================================================
+     SETTINGS
+  ===================================================================== */
+  function openSettings(){
+    renderSettingsProfiles();
+    document.getElementById('settingsPhoneVal').innerHTML =
+      '<span class="verified-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Verified</span> ' + accountPhone;
+    showScreen('screen-settings');
+  }
+
+  function renderSettingsProfiles(){
+    var wrap = document.getElementById('settingsProfileList');
+    wrap.innerHTML = profiles.map(function(p, i){
+      var pillHtml = i === currentProfileIndex
+        ? '<span class="active-pill">Active</span>'
+        : '<span class="switch-pill" onclick="switchProfile('+i+')">Switch</span>';
+      var photoHtml = p.photoUrl ? '<img src="'+p.photoUrl+'">' : p.initials;
+      return '<div class="profile-row">'
+        + '<div class="sw-avatar" style="background:'+(p.photoUrl?'transparent':p.photoColor)+'; overflow:hidden;">'+photoHtml+'</div>'
+        + '<div class="info" onclick="switchProfile('+i+')"><b>'+escapeHtml(p.name)+'</b><span>'+escapeHtml(primaryRoleLabel(p))+'</span></div>'
+        + pillHtml
+        + '<button class="row-delete-btn" onclick="confirmDeleteProfile('+i+')" aria-label="Delete profile"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg></button>'
+        + '</div>';
+    }).join('');
+  }
+
+  function confirmDeleteProfile(i){
+    if(profiles.length <= 1){
+      showAlert({
+        title:'Can\'t delete your last profile',
+        message:'Every account needs at least one profile. Create another profile before deleting this one.',
+        confirmText:'OK', singleButton:true
+      });
+      return;
+    }
+    var p = profiles[i];
+    showAlert({
+      title:'Delete "'+p.name+'"?',
+      message:'This removes the profile along with its bio, media, and reviews. This can\'t be undone.',
+      confirmText:'Delete', cancelText:'Cancel', danger:true,
+      onConfirm:function(){ deleteProfile(i); }
+    });
+  }
+
+  function deleteProfile(i){
+    profiles.splice(i, 1);
+    if(currentProfileIndex >= profiles.length){ currentProfileIndex = profiles.length - 1; }
+    else if(currentProfileIndex > i){ currentProfileIndex -= 1; }
+    renderActiveProfile();
+    renderSettingsProfiles();
+  }
+
+  /* =====================================================================
+     ALERT MODAL — reused for delete-profile and network-connection confirms
+  ===================================================================== */
+  function showAlert(opts){
+    document.getElementById('alertTitle').textContent = opts.title || '';
+    document.getElementById('alertMessage').textContent = opts.message || '';
+    var confirmBtn = document.getElementById('alertConfirmBtn');
+    var cancelBtn = document.getElementById('alertCancelBtn');
+    confirmBtn.textContent = opts.confirmText || 'OK';
+    confirmBtn.className = 'alert-btn primary' + (opts.danger ? ' danger' : '');
+    confirmBtn.onclick = function(){ hideAlert(); if(opts.onConfirm) opts.onConfirm(); };
+    if(opts.singleButton){
+      cancelBtn.style.display = 'none';
+    } else {
+      cancelBtn.style.display = '';
+      cancelBtn.textContent = opts.cancelText || 'Cancel';
+      cancelBtn.onclick = function(){ hideAlert(); if(opts.onCancel) opts.onCancel(); };
+    }
+    document.getElementById('alertOverlay').classList.add('open');
+  }
+  function hideAlert(){
+    document.getElementById('alertOverlay').classList.remove('open');
+  }
+
+  /* =====================================================================
+     NEW PROFILE WIZARD
+  ===================================================================== */
+  var INSTRUMENTS = ['Violin','Viola','Cello','Bass','Piano','Voice','Guitar','Drums','Trumpet','Saxophone','Flute','Other'];
+  var GENRES = ['Classical','Jazz','Pop','Rock','Folk','R&B / Soul','Musical Theater','Country','Bluegrass','Electronic','World','Hip-Hop'];
+  var CATEGORIES = ['Weddings','Corporate Events','Funerals','Recitals','Religious Services','Session Work','Teaching','Private Parties'];
+  var WIZ_BTN_LABELS = ['Get started','Continue','Verify','Continue','Continue','Continue','Continue','Continue','Continue','Continue','Create Profile','Go to Profile'];
+
+  var wizardStep = 0;
+  var wizardData = null;
+
+  function buildWizardGrids(){
+    document.getElementById('wizInstrumentGrid').innerHTML = INSTRUMENTS.map(function(inst){
+      return '<div class="instrument-opt" onclick="toggleMulti(this, wizardData.instruments, \''+inst+'\')">'+inst+'</div>';
+    }).join('');
+    document.getElementById('wizGenreGrid').innerHTML = GENRES.map(function(g){
+      return '<div class="chip-pick" onclick="toggleMulti(this, wizardData.genres, \''+g+'\')">'+g+'</div>';
+    }).join('');
+    document.getElementById('wizAvailGrid').innerHTML = CATEGORIES.map(function(c){
+      return '<div class="chip-pick" onclick="toggleMulti(this, wizardData.availability, \''+c+'\')">'+c+'</div>';
+    }).join('');
+  }
+
+  function buildEditGrids(){
+    document.getElementById('editInstrumentGrid').innerHTML = INSTRUMENTS.map(function(inst){
+      return '<div class="instrument-opt" onclick="toggleMulti(this, editProfileData.instruments, \''+inst+'\')">'+inst+'</div>';
+    }).join('');
+    document.getElementById('editGenreGrid').innerHTML = GENRES.map(function(g){
+      return '<div class="chip-pick" onclick="toggleMulti(this, editProfileData.genres, \''+g+'\')">'+g+'</div>';
+    }).join('');
+    document.getElementById('editAvailGrid').innerHTML = CATEGORIES.map(function(c){
+      return '<div class="chip-pick" onclick="toggleMulti(this, editProfileData.availability, \''+c+'\')">'+c+'</div>';
+    }).join('');
+  }
+
+  function toggleMulti(el, arr, val){
+    el.classList.toggle('on');
+    var idx = arr.indexOf(val);
+    if(el.classList.contains('on')){ if(idx === -1) arr.push(val); }
+    else { if(idx > -1) arr.splice(idx, 1); }
+    wizardValidate();
+  }
+
+  function toggleOrganizer(ctx){
+    var data = ctx === 'wiz' ? wizardData : editProfileData;
+    var toggleEl = document.getElementById(ctx + 'OrganizerToggle');
+    var gridEl = document.getElementById(ctx === 'wiz' ? 'wizInstrumentGrid' : 'editInstrumentGrid');
+    data.isOrganizer = !data.isOrganizer;
+    toggleEl.classList.toggle('on', data.isOrganizer);
+    if(data.isOrganizer){
+      data.instruments.length = 0;
+      gridEl.querySelectorAll('.instrument-opt').forEach(function(o){ o.classList.remove('on'); });
+      gridEl.classList.add('disabled-grid');
+    } else {
+      gridEl.classList.remove('disabled-grid');
+    }
+    wizardValidate();
+  }
+
+  function otpAdvance(el){
+    el.value = el.value.replace(/\D/g,'');
+    if(el.value.length === 1){
+      var next = el.nextElementSibling;
+      if(next && next.classList.contains('otp-box')) next.focus();
+    }
+    wizardValidate();
+  }
+
+  function wizardBioCount(){
+    var v = document.getElementById('wizBio').value;
+    document.getElementById('wizBioCount').textContent = v.length;
+  }
+
+  function wizardPhotoChosen(e){
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    var url = URL.createObjectURL(file);
+    wizardData.photoUrl = url;
+    var prev = document.getElementById('wizPhotoPreview');
+    prev.style.background = 'transparent';
+    prev.innerHTML = '<img src="'+url+'">';
+  }
+
+  function formatPhoneDisplay(v){
+    var digits = (v||'').replace(/\D/g,'');
+    if(digits.length === 10){
+      return '(' + digits.slice(0,3) + ') ' + digits.slice(3,6) + '-' + digits.slice(6);
+    }
+    return v || 'your number';
+  }
+
+  function wizardValidate(){
+    var btn = document.getElementById('wizContinueBtn');
+    var ok = true;
+    if(wizardStep === 1){
+      var digits = (document.getElementById('wizPhone').value||'').replace(/\D/g,'');
+      ok = digits.length >= 10;
+    } else if(wizardStep === 2){
+      var boxes = document.querySelectorAll('#screen-newprofile .otp-box');
+      ok = Array.prototype.every.call(boxes, function(b){ return b.value.length === 1; });
+    } else if(wizardStep === 3){
+      ok = document.getElementById('wizName').value.trim().length > 0 && (wizardData.isOrganizer || wizardData.instruments.length > 0);
+    } else if(wizardStep === 4){
+      ok = document.getElementById('wizYears').value !== '' && document.getElementById('wizLocation').value.trim().length > 0;
+    } else if(wizardStep === 5){
+      ok = wizardData.genres.length > 0;
+    }
+    btn.disabled = !ok;
+  }
+
+  function reviewRow(label, value){
+    return '<div class="review-card"><div class="rl">'+label+'</div><div class="rv">'+escapeHtml(value)+'</div></div>';
+  }
+
+  function renderWizardReview(){
+    var d = wizardData;
+    var rate = (d.rateMin || d.rateMax) ? ('$'+(d.rateMin||'0')+'–'+(d.rateMax||d.rateMin||'0')) : 'Not set';
+    var html = '';
+    html += reviewRow('Name', d.name || '—');
+    html += reviewRow('Instrument', d.instrument || '—');
+    html += reviewRow('Experience', (d.years ? d.years+' yrs' : '—') + ' · ' + (d.location || '—'));
+    html += reviewRow('Genres', d.genres.length ? d.genres.join(', ') : 'None selected');
+    html += reviewRow('Available for', d.availability.length ? d.availability.join(', ') : 'None selected');
+    html += reviewRow('Typical rate', rate);
+    html += reviewRow('Bio', d.bio || 'No bio added');
+    document.getElementById('wizReview').innerHTML = html;
+  }
+
+  function renderWizardStep(){
+    document.querySelectorAll('.wiz-step').forEach(function(s){ s.classList.remove('active'); });
+    var stepEl = document.querySelector('.wiz-step[data-step="'+wizardStep+'"]');
+    if(stepEl) stepEl.classList.add('active');
+
+    var track = document.getElementById('wizProgressTrack');
+    var count = document.getElementById('wizStepCount');
+    var backRow = document.getElementById('wizBackRow');
+
+    if(wizardStep === 0 || wizardStep === 11){
+      track.style.display = 'none';
+      count.style.display = 'none';
+    } else {
+      track.style.display = 'block';
+      count.style.display = 'block';
+      document.getElementById('wizProgressFill').style.width = Math.round((wizardStep/10)*100) + '%';
+      count.textContent = 'Step ' + wizardStep + ' of 10';
+    }
+
+    if(wizardStep === 11){
+      backRow.style.visibility = 'hidden';
+    } else {
+      backRow.style.visibility = 'visible';
+      backRow.textContent = wizardStep === 0 ? '← cancel' : '← back';
+    }
+
+    if(wizardStep === 2){
+      document.getElementById('wizPhoneDisplay').textContent = formatPhoneDisplay(wizardData.phone);
+    }
+    if(wizardStep === 10){
+      renderWizardReview();
+    }
+
+    document.getElementById('wizContinueBtn').textContent = WIZ_BTN_LABELS[wizardStep];
+    wizardValidate();
+    document.querySelector('.wiz-content').scrollTop = 0;
+  }
+
+  function enterWizard(){
+    wizardStep = 0;
+    wizardData = { phone: accountPhone, name:'', instruments:[], isOrganizer:false, years:'', location:'', genres:[], availability:[], rateMin:'', rateMax:'', bio:'', photoUrl:null };
+
+    document.getElementById('wizPhone').value = accountPhone;
+    document.getElementById('wizName').value = '';
+    document.getElementById('wizYears').value = '';
+    document.getElementById('wizLocation').value = '';
+    document.getElementById('wizRateMin').value = '';
+    document.getElementById('wizRateMax').value = '';
+    document.getElementById('wizBio').value = '';
+    document.getElementById('wizBioCount').textContent = '0';
+    var prev = document.getElementById('wizPhotoPreview');
+    prev.style.background = 'linear-gradient(135deg, var(--brass), var(--crimson))';
+    prev.innerHTML = '?';
+    document.getElementById('wizOrganizerToggle').classList.remove('on');
+    document.getElementById('wizInstrumentGrid').classList.remove('disabled-grid');
+    document.querySelectorAll('#wizInstrumentGrid .instrument-opt').forEach(function(o){ o.classList.remove('on'); });
+    document.querySelectorAll('#wizGenreGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+    document.querySelectorAll('#wizAvailGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+    document.querySelectorAll('#screen-newprofile .otp-box').forEach(function(o){ o.value = ''; });
+
+    document.querySelector('.navbar').style.display = 'none';
+    showScreen('screen-newprofile');
+    renderWizardStep();
+  }
+
+  function exitWizard(target){
+    document.querySelector('.navbar').style.display = '';
+    showScreen(target);
+  }
+
+  function buildAvailability(selected){
+    var off = [];
+    var hidden = [];
+    CATEGORIES.forEach(function(c){
+      if(selected.indexOf(c) === -1){
+        if((selected.length + off.length) < 4){ off.push(c); }
+        else { hidden.push(c); }
+      }
+    });
+    return { on: selected.slice(), off: off, hidden: hidden };
+  }
+
+  function createProfileFromWizard(){
+    var d = wizardData;
+    var initials = (d.name || '').trim().split(/\s+/).filter(Boolean).map(function(w){ return w[0]; }).join('').substring(0,2).toUpperCase() || '??';
+    var colorPairs = [
+      'linear-gradient(135deg, var(--sage), var(--ink-3))',
+      'linear-gradient(135deg, var(--crimson), var(--ink-3))',
+      'linear-gradient(135deg, var(--brass), var(--sage))',
+      'linear-gradient(135deg, var(--ink-3), var(--brass))'
+    ];
+    var color = colorPairs[profiles.length % colorPairs.length];
+    var avail = buildAvailability(d.availability);
+
+    var newProfile = {
+      initials: initials,
+      photoColor: color,
+      photoUrl: d.photoUrl,
+      name: d.name || 'New Profile',
+      instruments: d.instruments.slice(),
+      isOrganizer: !!d.isOrganizer,
+      location: d.location || '',
+      years: d.years || '',
+      credential: '',
+      rateMin: d.rateMin || '',
+      rateMax: d.rateMax || '',
+      gigsPlayed: 0,
+      rating: null,
+      bio: d.bio || 'No bio added yet.',
+      genres: d.genres.slice(),
+      availableOn: avail.on,
+      availableOff: avail.off,
+      availableHidden: avail.hidden,
+      media: [],
+      ensembles: [],
+      reviews: [],
+      eventsOrganized: [],
+      bookedGigs: [],
+      isNew: true,
+      phone: accountPhone,
+      email: accountEmail
+    };
+    profiles.push(newProfile);
+    currentProfileIndex = profiles.length - 1;
+    renderActiveProfile();
+  }
+
+  function wizardNext(){
+    if(wizardStep === 1){ wizardData.phone = document.getElementById('wizPhone').value; }
+    else if(wizardStep === 3){ wizardData.name = document.getElementById('wizName').value.trim(); }
+    else if(wizardStep === 4){
+      wizardData.years = document.getElementById('wizYears').value;
+      wizardData.location = document.getElementById('wizLocation').value.trim();
+    }
+    else if(wizardStep === 7){
+      wizardData.rateMin = document.getElementById('wizRateMin').value;
+      wizardData.rateMax = document.getElementById('wizRateMax').value;
+    }
+    else if(wizardStep === 8){ wizardData.bio = document.getElementById('wizBio').value.trim(); }
+    else if(wizardStep === 10){ createProfileFromWizard(); wizardStep = 11; renderWizardStep(); return; }
+    else if(wizardStep === 11){ exitWizard('screen-profile'); return; }
+
+    wizardStep += 1;
+    renderWizardStep();
+  }
+
+  function wizardBack(){
+    if(wizardStep === 0){ exitWizard('screen-settings'); return; }
+    if(wizardStep === 11){ return; }
+    wizardStep -= 1;
+    renderWizardStep();
+  }
+
+  /* =====================================================================
+     EDIT PROFILE
+  ===================================================================== */
+  var editProfileData = null;
+
+  function openEditProfile(){
+    var p = profiles[currentProfileIndex];
+    editProfileData = {
+      instruments: (p.instruments || []).slice(),
+      isOrganizer: !!p.isOrganizer,
+      genres: p.genres.slice(),
+      availability: p.availableOn.slice(),
+      photoUrl: p.photoUrl
+    };
+
+    document.getElementById('editName').value = p.name || '';
+    document.getElementById('editYears').value = p.years || '';
+    document.getElementById('editLocation').value = p.location || '';
+    document.getElementById('editCredential').value = p.credential || '';
+    document.getElementById('editRateMin').value = p.rateMin || '';
+    document.getElementById('editRateMax').value = p.rateMax || '';
+    document.getElementById('editBio').value = p.bio || '';
+    document.getElementById('editBioCount').textContent = (p.bio || '').length;
+
+    var prev = document.getElementById('editPhotoPreview');
+    if(p.photoUrl){
+      prev.style.background = 'transparent';
+      prev.innerHTML = '<img src="'+p.photoUrl+'">';
+    } else {
+      prev.style.background = p.photoColor;
+      prev.innerHTML = escapeHtml(p.initials);
+    }
+
+    document.querySelectorAll('#editInstrumentGrid .instrument-opt').forEach(function(o){
+      o.classList.toggle('on', editProfileData.instruments.indexOf(o.textContent) > -1);
+    });
+    var editToggleEl = document.getElementById('editOrganizerToggle');
+    var editGridEl = document.getElementById('editInstrumentGrid');
+    editToggleEl.classList.toggle('on', editProfileData.isOrganizer);
+    editGridEl.classList.toggle('disabled-grid', editProfileData.isOrganizer);
+    document.querySelectorAll('#editGenreGrid .chip-pick').forEach(function(o){
+      o.classList.toggle('on', editProfileData.genres.indexOf(o.textContent) > -1);
+    });
+    document.querySelectorAll('#editAvailGrid .chip-pick').forEach(function(o){
+      o.classList.toggle('on', editProfileData.availability.indexOf(o.textContent) > -1);
+    });
+
+    document.querySelector('.navbar').style.display = 'none';
+    showScreen('screen-editprofile');
+  }
+
+  function exitEditProfile(){
+    document.querySelector('.navbar').style.display = '';
+    goBack();
+  }
+
+  function editBioCount(){
+    document.getElementById('editBioCount').textContent = document.getElementById('editBio').value.length;
+  }
+
+  function editPhotoChosen(e){
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    var url = URL.createObjectURL(file);
+    editProfileData.photoUrl = url;
+    var prev = document.getElementById('editPhotoPreview');
+    prev.style.background = 'transparent';
+    prev.innerHTML = '<img src="'+url+'">';
+  }
+
+  function saveEditProfile(){
+    var p = profiles[currentProfileIndex];
+    var d = editProfileData;
+
+    p.name = document.getElementById('editName').value.trim() || p.name;
+    p.instruments = d.instruments.slice();
+    p.isOrganizer = !!d.isOrganizer;
+    p.years = document.getElementById('editYears').value;
+    p.location = document.getElementById('editLocation').value.trim();
+    p.credential = document.getElementById('editCredential').value.trim();
+    p.rateMin = document.getElementById('editRateMin').value;
+    p.rateMax = document.getElementById('editRateMax').value;
+    p.bio = document.getElementById('editBio').value.trim();
+    p.genres = d.genres.slice();
+
+    var avail = buildAvailability(d.availability);
+    p.availableOn = avail.on;
+    p.availableOff = avail.off;
+    p.availableHidden = avail.hidden;
+
+    p.photoUrl = d.photoUrl;
+    if(!p.photoUrl){
+      p.initials = (p.name || '').trim().split(/\s+/).filter(Boolean).map(function(w){ return w[0]; }).join('').substring(0,2).toUpperCase() || p.initials;
+    }
+
+    document.querySelector('.navbar').style.display = '';
+    renderActiveProfile();
+    showScreen('screen-profile');
+  }
+
+  /* =====================================================================
+     ORGANIZE EVENT
+  ===================================================================== */
+  var GIG_TYPES = ['Wedding','Funeral','Corporate Event','Recital','Religious Service','Fundraiser','Private Party','Other'];
+  var organizeEventData = { gigType:'', desiredMusicians:[] };
+
+  function buildOrganizeGrids(){
+    document.getElementById('orgTypeGrid').innerHTML = GIG_TYPES.map(function(t){
+      return '<div class="chip-pick" onclick="pickGigType(this,\''+t+'\')">'+t+'</div>';
+    }).join('');
+    document.getElementById('orgMusiciansGrid').innerHTML = INSTRUMENTS.map(function(inst){
+      return '<div class="chip-pick" onclick="toggleMulti(this, organizeEventData.desiredMusicians, \''+inst+'\')">'+inst+'</div>';
+    }).join('');
+  }
+
+  function pickGigType(el, type){
+    document.querySelectorAll('#orgTypeGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+    el.classList.add('on');
+    organizeEventData.gigType = type;
+  }
+
+  function resetOrganizeForm(){
+    document.getElementById('orgTitle').value = '';
+    document.getElementById('orgLocation').value = '';
+    document.getElementById('orgWhen').value = '';
+    document.getElementById('orgCompensation').value = '';
+    document.getElementById('orgNotes').value = '';
+    organizeEventData = { gigType:'', desiredMusicians:[] };
+    document.querySelectorAll('#orgTypeGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+    document.querySelectorAll('#orgMusiciansGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+  }
+
+  function openOrganizeModal(){
+    resetOrganizeForm();
+    document.getElementById('organizeModal').classList.add('open');
+  }
+
+  function closeOrganizeModal(){
+    document.getElementById('organizeModal').classList.remove('open');
+  }
+
+  function submitOrganizeEvent(){
+    var title = document.getElementById('orgTitle').value.trim();
+    var location = document.getElementById('orgLocation').value.trim();
+    if(!title || !location){
+      showAlert({
+        title:'Missing info',
+        message:'Please add at least an event title and location before posting.',
+        confirmText:'Got it', singleButton:true
+      });
+      return;
+    }
+    var event = {
+      title: title,
+      location: location,
+      when: document.getElementById('orgWhen').value.trim() || 'Date & time TBD',
+      gigType: organizeEventData.gigType || 'Event',
+      desiredMusicians: organizeEventData.desiredMusicians.slice(),
+      compensation: document.getElementById('orgCompensation').value.trim() || 'Not specified',
+      notes: document.getElementById('orgNotes').value.trim(),
+      status: 'upcoming'
+    };
+    var p = profiles[currentProfileIndex];
+    p.eventsOrganized = p.eventsOrganized || [];
+    p.eventsOrganized.unshift(event);
+    renderActiveProfile();
+    renderEventsScreen();
+
+    closeOrganizeModal();
+
+    document.querySelectorAll('.navitem').forEach(function(n){ n.classList.remove('active'); });
+    document.getElementById('navEventsItem').classList.add('active');
+    navHistory = ['screen-events'];
+    showScreen('screen-events');
+
+    showAlert({
+      title:'Event posted',
+      message:'"'+title+'" has been added to your events.',
+      confirmText:'Done', singleButton:true
+    });
+  }
+
+  /* =====================================================================
+     ADD MEDIA
+  ===================================================================== */
+  var addMediaFile = null;
+
+  function openAddMedia(){
+    document.getElementById('mediaCaption').value = '';
+    document.getElementById('mediaFileName').textContent = 'No file chosen';
+    document.getElementById('mediaFileInput').value = '';
+    addMediaFile = null;
+    document.querySelector('.navbar').style.display = 'none';
+    showScreen('screen-addmedia');
+  }
+
+  function exitAddMedia(){
+    document.querySelector('.navbar').style.display = '';
+    goBack();
+  }
+
+  function mediaFileChosen(e){
+    var file = e.target.files && e.target.files[0];
+    if(!file) return;
+    addMediaFile = file;
+    document.getElementById('mediaFileName').textContent = file.name;
+  }
+
+  function submitAddMedia(){
+    var caption = document.getElementById('mediaCaption').value.trim();
+    if(!caption){
+      showAlert({
+        title:'Add a caption',
+        message:'Give this media a short caption before adding it to your profile.',
+        confirmText:'Got it', singleButton:true
+      });
+      return;
+    }
+    var p = profiles[currentProfileIndex];
+    p.media.push('▶ ' + caption);
+    renderActiveProfile();
+    document.querySelector('.navbar').style.display = '';
+    goBack();
+  }
+
+  /* =====================================================================
+     EVENTS ORGANIZED — list + detail
+  ===================================================================== */
+  var currentEventIndex = 0;
+
+  function openMyEvents(){
+    renderMyEvents();
+    showScreen('screen-myevents');
+  }
+
+  function renderMyEvents(){
+    var p = profiles[currentProfileIndex];
+    var events = p.eventsOrganized || [];
+    var el = document.getElementById('myEventsList');
+    if(events.length){
+      el.innerHTML = events.map(function(ev, i){
+        return '<div class="list-row" onclick="openEventDetail('+i+')"><div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((ev.gigType||'EV').slice(0,2).toUpperCase())+'</div><div class="info"><b>'+escapeHtml(ev.title)+'</b><span>'+escapeHtml(ev.location)+' &middot; '+escapeHtml(ev.when)+'</span></div><div class="chev">&rsaquo;</div></div>';
+      }).join('');
+    } else {
+      el.innerHTML = '<div class="empty-note">You haven\'t organized any events yet.</div>';
+    }
+  }
+
+  function detailRow(label, value){
+    return '<div class="detail-block"><div class="detail-label">'+escapeHtml(label)+'</div><div class="detail-value">'+escapeHtml(value)+'</div></div>';
+  }
+
+  function openEventDetail(i){
+    currentEventIndex = i;
+    renderEventDetail();
+    showScreen('screen-eventdetail');
+  }
+
+  function renderEventDetail(){
+    var p = profiles[currentProfileIndex];
+    var ev = (p.eventsOrganized || [])[currentEventIndex];
+    if(!ev) return;
+    document.getElementById('eventDetailTitle').textContent = ev.title;
+    document.getElementById('eventDetailSub').textContent = ev.location + ' · ' + ev.when;
+    document.getElementById('eventDetailBody').innerHTML =
+      detailRow('Type of gig', ev.gigType || 'Event')
+      + detailRow('Location', ev.location)
+      + detailRow('Date & time', ev.when)
+      + detailRow('Desired musicians', ev.desiredMusicians && ev.desiredMusicians.length ? ev.desiredMusicians.join(', ') : 'Open to all instruments')
+      + detailRow('Compensation', ev.compensation || 'Not specified')
+      + (ev.notes ? detailRow('Notes', ev.notes) : '')
+      + (ev.attendees && ev.attendees.length ? detailRow('Performed by', ev.attendees.map(function(a){ return a.name; }).join(', ')) : '')
+      + detailRow('Organized by', p.name);
+  }
+
+  /* =====================================================================
+     EVENTS TAB — organize/upcoming/past + "My Events" (gigs you're booked on)
+  ===================================================================== */
+  function eventRowHtml(ev, idx){
+    return '<div class="list-row" onclick="openEventDetail('+idx+')"><div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((ev.gigType||'EV').slice(0,2).toUpperCase())+'</div><div class="info"><b>'+escapeHtml(ev.title)+'</b><span>'+escapeHtml(ev.location)+' &middot; '+escapeHtml(ev.when)+'</span></div><div class="chev">&rsaquo;</div></div>';
+  }
+
+  function bookedGigRowHtml(g){
+    return '<div class="list-row" style="cursor:default;">'
+      + '<div class="avatar" style="background:var(--sage); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((g.role||'M').slice(0,2).toUpperCase())+'</div>'
+      + '<div class="info"><b>'+escapeHtml(g.title)+'</b><span>'+escapeHtml(g.location)+' &middot; '+escapeHtml(g.when)+'</span></div>'
+      + '<span class="status-pill">Confirmed</span>'
+      + '</div>';
+  }
+
+  function renderEventsScreen(){
+    var p = profiles[currentProfileIndex];
+    var events = p.eventsOrganized || [];
+    var upcoming = events.map(function(ev, i){ return { ev:ev, idx:i }; }).filter(function(e){ return e.ev.status !== 'past'; });
+    var pastCount = events.filter(function(ev){ return ev.status === 'past'; }).length;
+
+    var el = document.getElementById('upcomingEventsList');
+    if(el){
+      el.innerHTML = upcoming.length
+        ? upcoming.map(function(e){ return eventRowHtml(e.ev, e.idx); }).join('')
+        : '<div class="empty-note">No upcoming events yet. Tap &ldquo;Organize an Event&rdquo; above to post one.</div>';
+    }
+    var pastLabel = document.getElementById('pastEventsCount');
+    if(pastLabel) pastLabel.textContent = pastCount + ' past';
+
+    var booked = p.bookedGigs || [];
+    var bEl = document.getElementById('myEventsBookedList');
+    if(bEl){
+      bEl.innerHTML = booked.length
+        ? booked.map(bookedGigRowHtml).join('')
+        : '<div class="empty-note">You haven\'t been booked for any gigs yet. Apply to opportunities on Discover to get started.</div>';
+    }
+  }
+
+  function openPastEvents(){
+    renderPastEventsList();
+    showScreen('screen-pastevents');
+  }
+
+  function renderPastEventsList(){
+    var p = profiles[currentProfileIndex];
+    var events = p.eventsOrganized || [];
+    var past = events.map(function(ev, i){ return { ev:ev, idx:i }; }).filter(function(e){ return e.ev.status === 'past'; });
+    var el = document.getElementById('pastEventsList');
+    if(past.length){
+      el.innerHTML = past.map(function(e){
+        var ev = e.ev;
+        var attendees = ev.attendees || [];
+        var attendeesHtml = attendees.length
+          ? '<div class="attendee-strip">'
+            + attendees.map(function(a){ return '<div class="avatar" style="background:'+a.color+'" title="'+escapeHtml(a.name)+'">'+escapeHtml(a.initials)+'</div>'; }).join('')
+            + '<span class="attendee-names">'+escapeHtml(attendees.map(function(a){ return a.name; }).join(', '))+'</span></div>'
+          : '<div class="attendee-names" style="margin-top:6px; display:block;">No performer records for this event.</div>';
+        return '<div class="past-event-row" onclick="openEventDetail('+e.idx+')" style="cursor:pointer;">'
+          + '<b style="display:block; font-size:13.5px; color:var(--ink); font-family:\'Inter\',sans-serif;">'+escapeHtml(ev.title)+'</b>'
+          + '<span style="font-size:11.5px; color:var(--text-muted);">'+escapeHtml(ev.location)+' &middot; '+escapeHtml(ev.when)+'</span>'
+          + attendeesHtml
+          + '</div>';
+      }).join('');
+    } else {
+      el.innerHTML = '<div class="empty-note">No past events yet.</div>';
+    }
+  }
+
+  /* =====================================================================
+     ENSEMBLES — create new, join existing, shared card + detail rendering
+  ===================================================================== */
+  var ENSEMBLE_TYPES = ['String Quartet','Duo','Trio','Chamber Group','Band','Choir','Orchestra','Other'];
+  var ensembleCreateData = { type:'', genres:[] };
+  var currentEnsembleId = null;
+
+  var ENSEMBLE_DIRECTORY = [
+    {
+      id:'cmu-wind', name:'CMU Wind Ensemble', type:'Concert Band', location:'Pittsburgh, PA',
+      genres:['Concert Band','Contemporary','Film Scores'],
+      bio:'A 40-piece concert band drawing from Carnegie Mellon students and alumni, performing a mix of concert band standards and contemporary film scores each semester.',
+      initials:'CW', color:'var(--sage)',
+      members:[
+        { name:'Maya Chen', role:'Flute', initials:'MC', color:'var(--sage)' },
+        { name:'Derek Osei', role:'Clarinet', initials:'DO', color:'var(--crimson)' },
+        { name:'Lily Fenwick', role:'Trumpet', initials:'LF', color:'var(--brass)' },
+        { name:'Marcus Webb', role:'Percussion', initials:'MW', color:'var(--ink-3)' }
+      ]
+    },
+    {
+      id:'steel-brass', name:'Steel City Brass Quintet', type:'Brass Quintet', location:'Pittsburgh, PA',
+      genres:['Brass','Ceremonial','Holiday'],
+      bio:'A five-piece brass ensemble specializing in ceremonial music, holiday concerts, and civic events across the greater Pittsburgh area.',
+      initials:'SB', color:'var(--crimson)',
+      members:[
+        { name:'Owen Vance', role:'Trombone', initials:'OV', color:'var(--crimson)' },
+        { name:'Reggie Coyle', role:'Trumpet', initials:'RC', color:'var(--sage)' },
+        { name:'Ana Petrenko', role:'French Horn', initials:'AP', color:'var(--brass)' },
+        { name:'Felix Duarte', role:'Tuba', initials:'FD', color:'var(--ink-3)' }
+      ]
+    },
+    {
+      id:'pgh-chamber', name:'Pittsburgh Chamber Players', type:'Chamber Group', location:'Pittsburgh, PA',
+      genres:['Classical','Contemporary','Recitals'],
+      bio:'A rotating chamber collective of Pittsburgh-area freelancers, presenting a subscription recital series each season at small venues around the city.',
+      initials:'PC', color:'var(--brass)',
+      members:[
+        { name:'Delphine Roy', role:'Cello', initials:'DR', color:'var(--sage)' },
+        { name:'Nina Vogel', role:'Piano', initials:'NV', color:'var(--crimson)' },
+        { name:'Bianca Ortiz', role:'Voice', initials:'BO', color:'var(--brass)' }
+      ]
+    },
+    {
+      id:'northside-jazz', name:'Northside Jazz Collective', type:'Jazz Combo', location:'Pittsburgh, PA',
+      genres:['Jazz','Standards','Improv'],
+      bio:'A rotating-cast jazz combo playing weekly sets at Northside venues, open to sit-ins from the local scene.',
+      initials:'NJ', color:'var(--ink-3)',
+      members:[
+        { name:'Noah Bennett', role:'Guitar', initials:'NB', color:'var(--ink-3)' },
+        { name:'Jules Ferreira', role:'Bass', initials:'JF', color:'var(--sage)' },
+        { name:'Sam Whitfield', role:'Trumpet', initials:'SW', color:'var(--crimson)' }
+      ]
+    }
+  ];
+
+  var pendingJoinRequests = {};
+
+  function buildEnsembleGrids(){
+    document.getElementById('ensTypeGrid').innerHTML = ENSEMBLE_TYPES.map(function(t){
+      return '<div class="chip-pick" onclick="pickEnsembleType(this,\''+t+'\')">'+t+'</div>';
+    }).join('');
+    document.getElementById('ensGenreGrid').innerHTML = GENRES.map(function(g){
+      return '<div class="chip-pick" onclick="toggleMulti(this, ensembleCreateData.genres, \''+g+'\')">'+g+'</div>';
+    }).join('');
+  }
+
+  function pickEnsembleType(el, type){
+    document.querySelectorAll('#ensTypeGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+    el.classList.add('on');
+    ensembleCreateData.type = type;
+  }
+
+  function resetEnsembleForm(){
+    document.getElementById('ensName').value = '';
+    document.getElementById('ensBio').value = '';
+    document.getElementById('ensembleSearch').value = '';
+    ensembleCreateData = { type:'', genres:[] };
+    document.querySelectorAll('#ensTypeGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+    document.querySelectorAll('#ensGenreGrid .chip-pick').forEach(function(o){ o.classList.remove('on'); });
+    switchEnsembleTab('create');
+  }
+
+  function openEnsembleModal(){
+    resetEnsembleForm();
+    renderEnsembleDirectory();
+    document.getElementById('ensembleModal').classList.add('open');
+  }
+
+  function closeEnsembleModal(){
+    document.getElementById('ensembleModal').classList.remove('open');
+  }
+
+  function switchEnsembleTab(tab){
+    var createPane = document.getElementById('ensCreatePane');
+    var joinPane = document.getElementById('ensJoinPane');
+    var footer = document.getElementById('ensCreateFooter');
+    var createBtn = document.getElementById('ensTabCreateBtn');
+    var joinBtn = document.getElementById('ensTabJoinBtn');
+    if(tab === 'join'){
+      createPane.style.display = 'none';
+      joinPane.style.display = 'block';
+      footer.style.display = 'none';
+      createBtn.classList.remove('active');
+      joinBtn.classList.add('active');
+    } else {
+      createPane.style.display = 'block';
+      joinPane.style.display = 'none';
+      footer.style.display = '';
+      createBtn.classList.add('active');
+      joinBtn.classList.remove('active');
+    }
+  }
+
+  function ensembleCardHtml(e){
+    var membersHtml = (e.members || []).slice(0, 4).map(function(m){
+      return '<div class="avatar" style="background:'+m.color+'">'+(m.isYou ? 'You' : escapeHtml(m.initials))+'</div>';
+    }).join('');
+    var tagsHtml = (e.genres || []).map(function(g){ return '<div class="tag">'+escapeHtml(g)+'</div>'; }).join('');
+    var memberCount = (e.members || []).length;
+    var metaParts = [memberCount + ' member' + (memberCount === 1 ? '' : 's')];
+    if(e.location) metaParts.push(e.location);
+    if(e.gigsCompleted) metaParts.push(e.gigsCompleted + ' gigs completed');
+    return '<div class="card" onclick="'+e.onclick+'" style="cursor:pointer;">'
+      + '<div class="eyebrow">'+escapeHtml(e.type || 'Ensemble')+'</div>'
+      + '<h3>'+escapeHtml(e.name)+'</h3>'
+      + '<div class="meta">'+metaParts.map(escapeHtml).join(' &middot; ')+'</div>'
+      + '<div class="ensemble-members">'+membersHtml+'</div>'
+      + '<div class="tagrow">'+tagsHtml+'</div>'
+      + '</div>';
+  }
+
+  function renderNetworkEnsembles(){
+    var wrap = document.getElementById('networkEnsembles');
+    if(!wrap) return;
+    var p = profiles[currentProfileIndex];
+    if(p.ensembles.length){
+      wrap.innerHTML = p.ensembles.map(ensembleCardHtml).join('');
+    } else {
+      wrap.innerHTML = '<div class="empty-note">You haven\'t joined or created an ensemble on this profile yet.</div>';
+    }
+  }
+
+  function submitCreateEnsemble(){
+    var name = document.getElementById('ensName').value.trim();
+    if(!name){
+      showAlert({
+        title:'Name required',
+        message:'Give your ensemble a name before creating it.',
+        confirmText:'Got it', singleButton:true
+      });
+      return;
+    }
+    var p = profiles[currentProfileIndex];
+    var id = 'custom-' + Date.now();
+    var initials = name.trim().split(/\s+/).filter(Boolean).map(function(w){ return w[0]; }).join('').substring(0, 2).toUpperCase() || 'EN';
+    var colors = ['var(--brass)', 'var(--sage)', 'var(--crimson)', 'var(--ink-3)'];
+    var color = colors[p.ensembles.length % colors.length];
+    var type = ensembleCreateData.type || 'Ensemble';
+    var ensemble = {
+      id: id, initials: initials, color: color, name: name,
+      type: type, location: p.location || '', gigsCompleted: 0,
+      genres: ensembleCreateData.genres.slice(),
+      bio: document.getElementById('ensBio').value.trim() || 'No bio added yet.',
+      media: [],
+      members: [{ name:'You', role: primaryRoleLabel(p), initials:'You', color: color, isYou:true }],
+      custom: true,
+      onclick: "openEnsembleDetail('" + id + "')"
+    };
+    ensemble.sub = type + ' &middot; 1 member';
+    p.ensembles.push(ensemble);
+    renderActiveProfile();
+    renderNetworkEnsembles();
+    closeEnsembleModal();
+    showAlert({
+      title:'Ensemble created',
+      message:'"'+name+'" has been added to your ensembles.',
+      confirmText:'Nice', singleButton:true
+    });
+  }
+
+  function renderEnsembleDirectory(){
+    var q = (document.getElementById('ensembleSearch').value || '').trim().toLowerCase();
+    var p = profiles[currentProfileIndex];
+    var joinedIds = p.ensembles.map(function(e){ return e.id; });
+    var results = ENSEMBLE_DIRECTORY.filter(function(e){
+      if(!q) return true;
+      var hay = (e.name+' '+e.type+' '+e.genres.join(' ')).toLowerCase();
+      return hay.indexOf(q) > -1;
+    });
+    var wrap = document.getElementById('ensembleDirectoryResults');
+    if(!results.length){
+      wrap.innerHTML = '<div class="empty-note">No ensembles match your search.</div>';
+      return;
+    }
+    wrap.innerHTML = results.map(function(e){
+      var joined = joinedIds.indexOf(e.id) > -1;
+      var pending = pendingJoinRequests[e.id];
+      var actionHtml;
+      if(joined){
+        actionHtml = '<span class="switch-pill" style="cursor:default;">Joined</span>';
+      } else if(pending){
+        actionHtml = '<span class="switch-pill pending" style="cursor:default;">'+pending.confirmed+'/'+pending.total+' confirmed</span>';
+      } else {
+        actionHtml = '<button class="add-btn" onclick="confirmJoinEnsemble(\''+e.id+'\')">Join</button>';
+      }
+      return '<div class="list-row" style="cursor:default;">'
+        + '<div class="avatar" style="background:'+e.color+'; margin-left:0; width:38px; height:38px; font-size:12px;">'+e.initials+'</div>'
+        + '<div class="info"><b>'+escapeHtml(e.name)+'</b><span>'+escapeHtml(e.type)+' &middot; '+escapeHtml(e.location)+'</span></div>'
+        + actionHtml
+        + '</div>';
+    }).join('');
+  }
+
+  function confirmJoinEnsemble(id){
+    var e = ENSEMBLE_DIRECTORY.filter(function(x){ return x.id === id; })[0];
+    if(!e || pendingJoinRequests[e.id]) return;
+    var total = e.members.length;
+    showAlert({
+      title:'Request to join '+e.name+'?',
+      message:'All '+total+' current member'+(total===1?'':'s')+' will be notified and need to confirm before you\'re added.',
+      confirmText:'Send Request', cancelText:'Cancel',
+      onConfirm:function(){ startJoinRequest(e); }
+    });
+  }
+
+  function startJoinRequest(e){
+    pendingJoinRequests[e.id] = { total:e.members.length, confirmed:0, settled:false };
+    renderEnsembleDirectory();
+
+    // Members "respond" one at a time, in a shuffled order, each independently
+    // approving or denying — a single denial blocks the join even if others
+    // already confirmed.
+    var order = e.members.slice().sort(function(){ return Math.random() - 0.5; });
+    var delay = 0;
+    order.forEach(function(member){
+      delay += 650 + Math.floor(Math.random() * 550);
+      (function(waitFor){
+        setTimeout(function(){ processJoinResponse(e, member); }, waitFor);
+      })(delay);
+    });
+  }
+
+  function processJoinResponse(e, member){
+    var req = pendingJoinRequests[e.id];
+    if(!req || req.settled) return;
+
+    var approves = Math.random() < 0.8;
+    if(!approves){
+      req.settled = true;
+      delete pendingJoinRequests[e.id];
+      renderEnsembleDirectory();
+      showAlert({
+        title:'Request denied',
+        message: member.name + ' declined your request to join ' + e.name + '. You have not been added to the ensemble.',
+        confirmText:'OK', singleButton:true
+      });
+      return;
+    }
+
+    req.confirmed++;
+    if(req.confirmed >= req.total){
+      req.settled = true;
+      delete pendingJoinRequests[e.id];
+      joinEnsemble(e);
+    } else {
+      renderEnsembleDirectory();
+    }
+  }
+
+  function joinEnsemble(e){
+    var p = profiles[currentProfileIndex];
+    var members = e.members.slice();
+    members.unshift({ name:'You', role: primaryRoleLabel(p), initials:'You', color:e.color, isYou:true });
+    var ensemble = {
+      id: e.id, initials: e.initials, color: e.color, name: e.name,
+      type: e.type, location: e.location, gigsCompleted: 0,
+      genres: e.genres.slice(), bio: e.bio, media: [],
+      members: members,
+      custom: true,
+      onclick: "openEnsembleDetail('" + e.id + "')"
+    };
+    ensemble.sub = e.type + ' &middot; ' + members.length + ' members';
+    p.ensembles.push(ensemble);
+    renderActiveProfile();
+    renderNetworkEnsembles();
+    renderEnsembleDirectory();
+    showAlert({
+      title:'Request approved',
+      message:'All '+e.members.length+' members confirmed — you\'re now part of '+e.name+'.',
+      confirmText:'Nice', singleButton:true
+    });
+  }
+
+  function openEnsembleDetail(id){
+    currentEnsembleId = id;
+    renderEnsembleDetail();
+    showScreen('screen-ensemble-detail');
+  }
+
+  function renderEnsembleDetail(){
+    var p = profiles[currentProfileIndex];
+    var e = p.ensembles.filter(function(x){ return x.id === currentEnsembleId; })[0];
+    if(!e) return;
+
+    var photo = document.getElementById('ensembleDetailPhoto');
+    photo.textContent = e.initials;
+    photo.style.background = e.color;
+
+    document.getElementById('ensembleDetailName').textContent = e.name;
+
+    var memberCount = (e.members || []).length;
+    var taglineParts = [e.type || 'Ensemble'];
+    if(e.location) taglineParts.push(e.location);
+    taglineParts.push(memberCount + ' member' + (memberCount === 1 ? '' : 's'));
+    document.getElementById('ensembleDetailTagline').textContent = taglineParts.join(' · ');
+
+    document.getElementById('ensembleDetailBadges').innerHTML = (e.genres || []).map(function(g){
+      return '<div class="badge">'+escapeHtml(g)+'</div>';
+    }).join('');
+
+    document.getElementById('ensembleDetailBio').textContent = e.bio || 'No bio added yet.';
+
+    var media = e.media || [];
+    document.getElementById('ensembleDetailMedia').innerHTML = media.length
+      ? '<div class="media-strip">' + media.map(function(m){ return '<div class="media-thumb">'+escapeHtml(m)+'</div>'; }).join('') + '</div>'
+      : '<div class="empty-note">No media yet for this ensemble.</div>';
+
+    document.getElementById('ensembleDetailMembers').innerHTML = (e.members || []).map(function(m){
+      var isYou = !!m.isYou;
+      var clickAttr = isYou ? ' onclick="showScreen(\'screen-profile\')" style="cursor:pointer;"' : '';
+      return '<div class="list-row"'+clickAttr+'>'
+        + '<div class="avatar" style="background:'+m.color+'; margin-left:0; width:38px; height:38px; font-size:12px;">'+(isYou ? 'You' : escapeHtml(m.initials))+'</div>'
+        + '<div class="info"><b>'+escapeHtml(isYou ? p.name : m.name)+'</b><span>'+escapeHtml(m.role || '')+'</span></div>'
+        + (isYou ? '<div class="chev">&rsaquo;</div>' : '')
+        + '</div>';
+    }).join('');
+
+    document.getElementById('ensembleDetailBookBtn').textContent = 'Book ' + e.name;
+  }
+
+  /* =====================================================================
+     NETWORK — connections, find-friends directory, recommendations
+  ===================================================================== */
+  var CONNECTIONS = [
+    { id:'josh', name:'Josh Lee', role:'Violin &middot; Mezza Quartet co-member', initials:'JL', color:'var(--sage)' },
+    { id:'nathan', name:'Nathan Gaynor', role:'Viola &middot; Mezza Quartet co-member', initials:'NG', color:'var(--crimson)' },
+    { id:'elly', name:'Elly Schade', role:'Cello &middot; Mezza Quartet co-member', initials:'ES', color:'var(--ink-3)' },
+    { id:'spencer', name:'Spencer Cha', role:'Piano &middot; Grieg Duo partner', initials:'SC', color:'var(--brass)' },
+    { id:null, name:'Maya Chen', role:'Flute &middot; CMU Wind Ensemble', initials:'MC', color:'var(--sage)' },
+    { id:null, name:'Derek Okafor', role:'Trumpet &middot; Pittsburgh Jazz Collective', initials:'DO', color:'var(--crimson)' },
+    { id:null, name:'Priya Nair', role:'Cello &middot; Duquesne Symphony', initials:'PN', color:'var(--brass)' },
+    { id:null, name:'Liam Foster', role:'Guitar &middot; session player', initials:'LF', color:'var(--ink-3)' },
+    { id:null, name:'Sofia Reyes', role:'Voice &middot; wedding vocalist', initials:'SR', color:'var(--sage)' },
+    { id:null, name:'Andre Walsh', role:'Drums &middot; function band', initials:'AW', color:'var(--crimson)' },
+    { id:null, name:'Grace Kim', role:'Viola &middot; CMU School of Music', initials:'GK', color:'var(--brass)' },
+    { id:null, name:'Tomas Bianchi', role:'Bass &middot; jazz trio', initials:'TB', color:'var(--ink-3)' },
+    { id:null, name:'Renee Park', role:'Harp &middot; ceremony musician', initials:'RP', color:'var(--sage)' },
+    { id:null, name:'Marcus Webb', role:'Saxophone &middot; big band', initials:'MW', color:'var(--crimson)' },
+    { id:null, name:'Isla Novak', role:'Violin &middot; chamber musician', initials:'IN', color:'var(--brass)' },
+    { id:null, name:'Kwame Boateng', role:'Piano &middot; accompanist', initials:'KB', color:'var(--ink-3)' },
+    { id:null, name:'Delphine Roy', role:'Cello &middot; string quartet', initials:'DR', color:'var(--sage)' },
+    { id:null, name:'Owen Vance', role:'Trombone &middot; brass quintet', initials:'OV', color:'var(--crimson)' },
+    { id:null, name:'Aisha Rahman', role:'Flute &middot; orchestral sub', initials:'AR', color:'var(--brass)' },
+    { id:null, name:'Noah Bennett', role:'Guitar &middot; acoustic duo', initials:'NB', color:'var(--ink-3)' }
+  ];
+
+  var DIRECTORY = [
+    { name:'Theo Marsh', instrument:'Cello', location:'Pittsburgh, PA', phone:'(628) 555-0110', initials:'TM', color:'var(--sage)' },
+    { name:'Bianca Ortiz', instrument:'Voice', location:'Philadelphia, PA', phone:'(917) 555-0144', initials:'BO', color:'var(--crimson)' },
+    { name:'Sam Whitfield', instrument:'Trumpet', location:'Cleveland, OH', phone:'(206) 555-0199', initials:'SW', color:'var(--brass)' },
+    { name:'Priya Anand', instrument:'Violin', location:'Pittsburgh, PA', phone:'(412) 555-0133', initials:'PA', color:'var(--ink-3)' },
+    { name:'Jules Ferreira', instrument:'Bass', location:'Columbus, OH', phone:'(773) 555-0188', initials:'JF', color:'var(--sage)' },
+    { name:'Nina Vogel', instrument:'Piano', location:'Pittsburgh, PA', phone:'(503) 555-0121', initials:'NV', color:'var(--crimson)' }
+  ];
+
+  function connectionRowHtml(c, idx){
+    var clickAttr = c.id ? ' onclick="showScreen(\'screen-musician-'+c.id+'\')" style="cursor:pointer;"' : '';
+    return '<div class="net-node"'+clickAttr+'>'
+      + '<div class="avatar" style="background:'+c.color+'">'+c.initials+'</div>'
+      + '<div class="info"><b>'+escapeHtml(c.name)+'</b><span>'+c.role+'</span></div>'
+      + '<button class="recommend-btn" onclick="event.stopPropagation(); recommendConnection('+idx+')" aria-label="Write a recommendation">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>'
+      + '</button></div>';
+  }
+
+  function renderMutualPreview(){
+    var wrap = document.getElementById('mutualPreviewWrap');
+    if(!wrap) return;
+    wrap.innerHTML = CONNECTIONS.slice(0, 4).map(function(c, i){ return connectionRowHtml(c, i); }).join('');
+  }
+
+  function renderMutualCount(){
+    var label = document.getElementById('mutualCountLabel');
+    if(label) label.textContent = CONNECTIONS.length + ' total';
+    var sub = document.getElementById('allConnectionsSub');
+    if(sub) sub.textContent = CONNECTIONS.length + ' people you\'re connected to';
+  }
+
+  function renderAllConnections(){
+    var wrap = document.getElementById('allConnectionsList');
+    if(!wrap) return;
+    wrap.innerHTML = CONNECTIONS.map(function(c, i){ return connectionRowHtml(c, i); }).join('');
+    renderMutualCount();
+  }
+
+  function recommendConnection(idx){
+    var c = CONNECTIONS[idx];
+    openRecommend({ musicianId:c.id, name:c.name });
+  }
+
+  function renderNetworkSearch(){
+    var raw = document.getElementById('networkSearch').value.trim();
+    var q = raw.toLowerCase();
+    var qDigits = raw.replace(/\D/g, '');
+    var wrap = document.getElementById('networkSearchResults');
+    var mainSections = document.getElementById('networkMainSections');
+    if(!q){
+      wrap.innerHTML = '';
+      mainSections.style.display = '';
+      return;
+    }
+    mainSections.style.display = 'none';
+    var matches = DIRECTORY.map(function(person, idx){ return { person:person, idx:idx }; }).filter(function(entry){
+      var person = entry.person;
+      var nameMatch = person.name.toLowerCase().indexOf(q) > -1;
+      var phoneDigits = person.phone.replace(/\D/g, '');
+      var phoneMatch = qDigits.length > 0 && phoneDigits.indexOf(qDigits) > -1;
+      return nameMatch || phoneMatch;
+    });
+    if(!matches.length){
+      wrap.innerHTML = '<div class="empty-note">No one found matching "'+escapeHtml(raw)+'".</div>';
+      return;
+    }
+    wrap.innerHTML = matches.map(function(entry){
+      var person = entry.person;
+      var alreadyConnected = CONNECTIONS.some(function(c){ return c.name === person.name; });
+      return '<div class="list-row" style="cursor:default;">'
+        + '<div class="avatar" style="background:'+person.color+'; margin-left:0; width:38px; height:38px; font-size:12px;">'+person.initials+'</div>'
+        + '<div class="info"><b>'+escapeHtml(person.name)+'</b><span>'+escapeHtml(person.instrument)+' &middot; '+escapeHtml(person.location)+'</span></div>'
+        + (alreadyConnected
+            ? '<span class="switch-pill" style="cursor:default;">Connected</span>'
+            : '<button class="add-btn" onclick="confirmAddConnection('+entry.idx+')">Add</button>')
+        + '</div>';
+    }).join('');
+  }
+
+  function confirmAddConnection(idx){
+    var person = DIRECTORY[idx];
+    showAlert({
+      title:'Add '+person.name+' to your network?',
+      message:person.name+' will be added to your connections. You\'ll be able to write recommendations for each other.',
+      confirmText:'Confirm', cancelText:'Deny',
+      onConfirm:function(){ addToNetwork(person); }
+    });
+  }
+
+  function addToNetwork(person){
+    CONNECTIONS.push({ id:null, name:person.name, role:escapeHtml(person.instrument)+' &middot; added via search', initials:person.initials, color:person.color });
+    renderMutualPreview();
+    renderMutualCount();
+    renderAllConnections();
+    renderNetworkSearch();
+    showAlert({ title:'Connected', message:person.name+' is now part of your network.', confirmText:'Nice', singleButton:true });
+  }
+
+  /* =====================================================================
+     RECOMMENDATIONS
+  ===================================================================== */
+  var musicianReviews = { josh:[], nathan:[], elly:[], spencer:[] };
+  var recommendTarget = null;
+
+  function renderMusicianReviews(id){
+    var el = document.getElementById('musicianReviews-'+id);
+    if(!el) return;
+    var list = musicianReviews[id] || [];
+    if(list.length){
+      el.innerHTML = list.map(function(r){ return '<div class="review"><p>'+r.text+'</p><div class="who">'+r.who+'</div></div>'; }).join('');
+    } else {
+      el.innerHTML = '<div class="empty-note">No reviews yet — be the first to write one.</div>';
+    }
+  }
+
+  function renderAllMusicianReviews(){
+    Object.keys(musicianReviews).forEach(renderMusicianReviews);
+  }
+
+  function openRecommend(target){
+    recommendTarget = target;
+    document.getElementById('recommendTargetLabel').textContent = 'For ' + target.name;
+    document.getElementById('recText').value = '';
+    document.getElementById('recTextCount').textContent = '0';
+    document.getElementById('recRole').value = '';
+    document.querySelector('.navbar').style.display = 'none';
+    showScreen('screen-recommend');
+  }
+
+  function exitRecommend(){
+    document.querySelector('.navbar').style.display = '';
+    goBack();
+  }
+
+  function recommendBioCount(){
+    document.getElementById('recTextCount').textContent = document.getElementById('recText').value.length;
+  }
+
+  function submitRecommendation(){
+    var text = document.getElementById('recText').value.trim();
+    if(!text || !recommendTarget) return;
+    var role = document.getElementById('recRole').value.trim();
+    var authorName = profiles[currentProfileIndex].name;
+    var entry = { text:'"'+text+'"', who:'— ' + authorName + (role ? ', ' + role : '') };
+    var target = recommendTarget;
+
+    if(target.musicianId && musicianReviews[target.musicianId]){
+      musicianReviews[target.musicianId].push(entry);
+      renderMusicianReviews(target.musicianId);
+    }
+
+    document.querySelector('.navbar').style.display = '';
+    goBack();
+    showAlert({
+      title:'Recommendation posted',
+      message:'Your recommendation for ' + target.name + (target.musicianId ? ' is live on their profile.' : ' has been sent.'),
+      confirmText:'Done', singleButton:true
+    });
+  }
+
+  buildWizardGrids();
+  buildEditGrids();
+  buildOrganizeGrids();
+  buildEnsembleGrids();
+  renderDiscoverFeed();
+  renderActiveProfile();
+  renderEventsScreen();
+  renderNetworkEnsembles();
+  renderMutualPreview();
+  renderMutualCount();
+  renderAllConnections();
+  renderAllMusicianReviews();
 </script>
 </body>
 </html>
