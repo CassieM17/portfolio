@@ -507,14 +507,6 @@
     display:flex; align-items:center; justify-content:center; color:var(--text-light);
   }
 
-  /* ===== Profile: Organize Event button ===== */
-  .organize-event-btn{
-    position:absolute; top:16px; right:60px; display:flex; align-items:center; gap:5px;
-    font-family:'JetBrains Mono',monospace; font-size:10px; padding:8px 11px; border-radius:20px;
-    background:rgba(224,185,117,.14); color:var(--brass-light); border:1px solid rgba(224,185,117,.3); cursor:pointer;
-    white-space:nowrap;
-  }
-
   /* ===== Full-screen popup modals (Organize Event, Create/Join Ensemble) ===== */
   .modal-overlay{
     position:absolute; inset:0; background:rgba(20,22,30,.55); z-index:90;
@@ -641,6 +633,29 @@
   .attendee-strip{ display:flex; gap:5px; align-items:center; flex-wrap:wrap; margin-top:8px; }
   .attendee-strip .avatar{ margin-left:0; width:26px; height:26px; font-size:9px; }
   .attendee-names{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--text-muted); margin-left:2px; }
+
+  /* ===== Discover: save-for-later bookmark on each card ===== */
+  .save-btn{
+    position:absolute; top:14px; right:14px; width:30px; height:30px; border-radius:50%;
+    background:var(--parchment-2); border:1px solid var(--line); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--text-muted); flex-shrink:0;
+  }
+  .save-btn.saved{ background:var(--ink); border-color:var(--ink); color:var(--brass-light); }
+
+  /* ===== Events: confirmed / not-confirmed indicator next to an organized event's title ===== */
+  .confirm-mark{
+    width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; color:#fff;
+  }
+  .confirm-mark.yes{ background:var(--sage); }
+  .confirm-mark.no{ background:var(--crimson); }
+
+  /* ===== Person profile: locked block shown when viewer is not in that person's network ===== */
+  .locked-block{
+    background:var(--parchment-2); border-radius:14px; padding:22px 18px; text-align:center; margin-top:6px;
+  }
+  .locked-block .lock-icon{ color:var(--text-muted); margin-bottom:10px; }
+  .locked-block p{ font-size:12.5px; color:var(--text-muted); line-height:1.55; margin-bottom:14px; }
 </style>
 </head>
 <body>
@@ -850,51 +865,78 @@
       </div>
       <div class="topbar">
         <div class="back-row" onclick="showScreen('screen-discover')">&larr; back to discover</div>
-        <div class="brand" style="margin-top:10px; font-size:19px;">String Quartet — Ceremony</div>
-        <div class="sub">Filoli Gardens · Sat, Aug 15 · 5:00–7:30 PM</div>
+        <div class="brand" style="margin-top:10px; font-size:19px;" id="gigDetailTitle">Opportunity</div>
+        <div class="sub" id="gigDetailSub"></div>
       </div>
     </div>
     <div class="content">
       <div class="net-wrap">
         <div class="detail-label" style="margin-bottom:10px;">Posted by</div>
         <div class="net-node" style="border:none; padding:0;">
-          <div class="avatar" style="background:var(--sage); width:40px; height:40px; font-size:13px;">EP</div>
-          <div class="info"><b>Elena Petrova, Wedding Planner</b><span>14 gigs booked on Opus &middot; responds in ~2 hrs</span></div>
+          <div class="avatar" id="gigDetailPosterAvatar" style="width:40px; height:40px; font-size:13px;"></div>
+          <div class="info"><b id="gigDetailPosterName"></b><span id="gigDetailPosterStats"></span></div>
         </div>
       </div>
 
-      <div class="detail-grid">
-        <div class="detail-block"><div class="detail-label">Instruments needed</div><div class="detail-value">2 Violin, Viola, Cello</div></div>
-        <div class="detail-block"><div class="detail-label">Dress code</div><div class="detail-value">Formal / black tie</div></div>
-        <div class="detail-block"><div class="detail-label">Repertoire</div><div class="detail-value">Pachelbel, Bridal chorus, jazz standards for cocktail hour</div></div>
-        <div class="detail-block"><div class="detail-label">Performance length</div><div class="detail-value">2.5 hrs, incl. one break</div></div>
-        <div class="detail-block"><div class="detail-label">Parking</div><div class="detail-value">On-site lot, load-in at Gate B</div></div>
-        <div class="detail-block"><div class="detail-label">Payment</div><div class="detail-value">Venmo, day-of</div></div>
-      </div>
+      <div class="detail-grid" id="gigDetailGrid"></div>
 
-      <div class="section-title">Why this feels safe <span class="see">trust layer</span></div>
-      <div class="net-wrap">
-        <div class="net-node">
-          <div class="avatar" style="background:var(--sage)">NG</div>
-          <div class="info"><b>Nathan Gaynor</b><span>Shares your quartet, "Mezza Quartet"</span></div>
-        </div>
-        <div class="net-node">
-          <div class="avatar" style="background:var(--brass)">JL</div>
-          <div class="info"><b>Josh Lee</b><span>Played 2 weddings with Elena</span></div>
-        </div>
-      </div>
+      <div id="gigDetailTrustWrap"></div>
 
       <div class="section-title">Rate &amp; deadline</div>
       <div class="card" style="margin-bottom:16px;">
         <div class="row" style="margin-top:0;">
-          <div><div class="detail-label">Budget</div><div class="detail-value" style="font-family:'JetBrains Mono',monospace; font-size:16px;">$450/musician</div></div>
-          <div><div class="detail-label">Apply by</div><div class="detail-value">Aug 3</div></div>
+          <div><div class="detail-label">Budget</div><div class="detail-value" id="gigDetailRate" style="font-family:'JetBrains Mono',monospace; font-size:16px;"></div></div>
+          <div><div class="detail-label">Apply by</div><div class="detail-value" id="gigDetailApplyBy"></div></div>
         </div>
       </div>
 
-      <button class="btn block crimson" onclick="applyToGig()">Apply as Mezza Quartet</button>
+      <button class="btn block crimson" id="gigDetailApplyBtn" onclick="applyToGig()">Apply</button>
       <div style="height:10px"></div>
-      <button class="btn block ghost">Save for later</button>
+      <button class="btn block ghost" id="gigDetailSaveBtn" onclick="toggleSaveGig(currentGigId)">Save for later</button>
+    </div>
+  </div>
+
+  <!-- ===================== SCREEN: PERSON PROFILE (generic, network-gated) ===================== -->
+  <div class="screen" id="screen-person">
+    <div class="header-block">
+      <div class="statusbar">
+        <span>9:41</span>
+        <div class="signal">
+          <svg width="17" height="11" viewBox="0 0 17 11"><rect x="0" y="6" width="3" height="5" rx="0.5" fill="currentColor"/><rect x="4.5" y="4" width="3" height="7" rx="0.5" fill="currentColor"/><rect x="9" y="2" width="3" height="9" rx="0.5" fill="currentColor"/><rect x="13.5" y="0" width="3" height="11" rx="0.5" fill="currentColor"/></svg>
+          <svg width="24" height="11" viewBox="0 0 24 11"><rect x="0.5" y="0.5" width="20" height="10" rx="2.5" stroke="currentColor" fill="none"/><rect x="2" y="2" width="17" height="7" rx="1.2" fill="currentColor"/><rect x="21.5" y="3.5" width="1.5" height="4" rx="0.7" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <div class="topbar">
+        <div class="back-row" onclick="goBack()">&larr; back</div>
+      </div>
+    </div>
+    <div class="profile-hero" style="margin-top:-1px;">
+      <div class="profile-photo" id="personPhoto">--</div>
+      <div class="profile-name" id="personName">Name</div>
+      <div class="profile-tagline" id="personTagline"></div>
+      <div class="badge-row" id="personBadges"></div>
+    </div>
+    <div class="content" style="padding-top:0;">
+      <div class="section-title">Contact</div>
+      <div class="card" id="personContactCard" style="margin-bottom:4px;"></div>
+
+      <div id="personFullBlock" style="display:none;">
+        <div class="section-title">Biography</div>
+        <p class="bio" id="personBio"></p>
+        <div class="section-title">Genres</div>
+        <div class="tagrow" id="personGenres"></div>
+        <div class="section-title">Reviews</div>
+        <div id="personReviews"></div>
+        <button class="btn block" style="margin-top:8px;" onclick="openSheet()">Share profile</button>
+      </div>
+
+      <div id="personLockedBlock" style="display:none;">
+        <div class="locked-block">
+          <svg class="lock-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg>
+          <p id="personLockedNote">Connect with this musician to see their full profile.</p>
+          <button class="btn" onclick="requestAddPerson(currentPersonProfile)">+ Add to Network</button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -970,10 +1012,6 @@
         <div class="contact-row"><div class="contact-label">Email</div><div class="contact-val" id="contactEmailVal">—</div></div>
         <div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val" id="contactPhoneVal">—</div></div>
       </div>
-      <button class="organize-event-btn" onclick="openOrganizeModal()" aria-label="Organize an event">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></svg>
-        Organize Event
-      </button>
       <button class="settings-gear" onclick="openSettings()" aria-label="Settings">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       </button>
@@ -1351,6 +1389,9 @@
 
       <div class="section-title" style="margin-top:22px;">My Events</div>
       <div id="myEventsBookedList"></div>
+
+      <div class="section-title" style="margin-top:22px;">Saved</div>
+      <div id="savedGigsList"></div>
     </div>
   </div>
 
@@ -1413,6 +1454,7 @@
     </div>
     <div class="content">
       <div class="detail-grid" id="eventDetailBody" style="margin-top:6px;"></div>
+      <div id="eventDetailPeople"></div>
     </div>
   </div>
 
@@ -1577,6 +1619,12 @@
       </div>
     </div>
     <div class="content" style="padding-top:0;">
+      <div class="section-title">Contact</div>
+      <div class="card" style="margin-bottom:4px;">
+        <div class="contact-row"><div class="contact-label">Email</div><div class="contact-val">josh.lee@gmail.com</div></div>
+        <div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val">(412) 555-0221</div></div>
+      </div>
+
       <div class="section-title">Biography</div>
       <p class="bio">Second violinist with the Mezza Quartet since its founding. Studies violin performance at Carnegie Mellon, with a background in orchestral and chamber playing. Comfortable second-chair support and quick to adapt on unfamiliar repertoire.</p>
 
@@ -1624,6 +1672,12 @@
       </div>
     </div>
     <div class="content" style="padding-top:0;">
+      <div class="section-title">Contact</div>
+      <div class="card" style="margin-bottom:4px;">
+        <div class="contact-row"><div class="contact-label">Email</div><div class="contact-val">nathan.gaynor@gmail.com</div></div>
+        <div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val">(412) 555-0222</div></div>
+      </div>
+
       <div class="section-title">Biography</div>
       <p class="bio">Violist with the Mezza Quartet, previously with the Pittsburgh Youth Symphony. Enjoys the inner-voice role of the viola in string quartet writing, and occasionally arranges pop and film repertoire for the group's cocktail-hour sets.</p>
 
@@ -1671,6 +1725,12 @@
       </div>
     </div>
     <div class="content" style="padding-top:0;">
+      <div class="section-title">Contact</div>
+      <div class="card" style="margin-bottom:4px;">
+        <div class="contact-row"><div class="contact-label">Email</div><div class="contact-val">elly.schade@gmail.com</div></div>
+        <div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val">(412) 555-0223</div></div>
+      </div>
+
       <div class="section-title">Biography</div>
       <p class="bio">Cellist anchoring the Mezza Quartet's low end since 2023. Also active as a freelance orchestral player around Pittsburgh, with a particular love of Romantic-era chamber writing and a steady hand for wedding ceremony timing.</p>
 
@@ -1718,6 +1778,12 @@
       </div>
     </div>
     <div class="content" style="padding-top:0;">
+      <div class="section-title">Contact</div>
+      <div class="card" style="margin-bottom:4px;">
+        <div class="contact-row"><div class="contact-label">Email</div><div class="contact-val">spencer.cha@gmail.com</div></div>
+        <div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val">(412) 555-0224</div></div>
+      </div>
+
       <div class="section-title">Biography</div>
       <p class="bio">Collaborative pianist and one half of the Grieg Duo alongside Cassandra May. Focused on Romantic-era sonata repertoire and comfortable accompanying singers and instrumentalists across recital and fundraiser settings.</p>
 
@@ -1847,9 +1913,11 @@
   }
 
   function applyToGig(){
+    var g = GIGS.filter(function(x){ return x.id === currentGigId; })[0];
+    var posterName = g && g.postedBy ? g.postedBy.name.split(',')[0] : 'The organizer';
     showAlert({
       title:'Application sent',
-      message:'Elena Petrova will review your application and reach out with next steps.',
+      message:posterName + ' will review your application and reach out with next steps.',
       confirmText:'Nice', singleButton:true
     });
   }
@@ -1915,16 +1983,30 @@
         { text:'"Eighteen years of stage experience and it shows — poised, precise, and generous with the rest of the ensemble."', who:'— Prof. Miriam Osei, Carnegie Mellon School of Music' }
       ],
       eventsOrganized: [
-        { title:'Fall Fundraiser Strings', location:'The Frick Pittsburgh, Pittsburgh PA', when:'Sat, Sep 12 · 6:00–8:00 PM', gigType:'Fundraiser', desiredMusicians:['Violin','Cello'], compensation:'$300/musician', status:'upcoming', notes:'Cocktail-hour background music, string duo or trio preferred.' },
+        { title:'Fall Fundraiser Strings', location:'The Frick Pittsburgh, Pittsburgh PA', when:'Sat, Sep 12 · 6:00–8:00 PM', gigType:'Fundraiser', desiredMusicians:['Violin','Cello'], compensation:'$300/musician', status:'upcoming', notes:'Cocktail-hour background music, string duo or trio preferred.',
+          confirmed: [],
+          applicants: [
+            { name:'Carla Jimenez', initials:'CJ', color:'var(--crimson)', instrument:'Cello', location:'Pittsburgh, PA', phone:'(412) 555-0301' },
+            { name:'Owen Park', initials:'OP', color:'var(--sage)', instrument:'Violin', location:'Pittsburgh, PA', phone:'(412) 555-0302' }
+          ]
+        },
+        { title:'Holiday Corporate Reception', location:'Union Trust Building, Pittsburgh PA', when:'Fri, Dec 11 · 6:00–9:00 PM', gigType:'Corporate Event', desiredMusicians:['Flute','Trumpet'], compensation:'$300/musician', status:'upcoming', notes:'Cocktail hour into dinner service, keep volume low during toasts.',
+          confirmed: [
+            { name:'Maya Chen', initials:'MC', color:'var(--sage)', instrument:'Flute', location:'Pittsburgh, PA', phone:'(412) 555-0201', years:'6', context:'the CMU Wind Ensemble' },
+            { name:'Derek Okafor', initials:'DO', color:'var(--crimson)', instrument:'Trumpet', location:'Pittsburgh, PA', phone:'(412) 555-0202', years:'9', context:'the Pittsburgh Jazz Collective' }
+          ],
+          applicants: []
+        },
         { title:'CMU Alumni Chamber Night', location:'Kresge Recital Hall, Pittsburgh PA', when:'Sat, Oct 3 · 7:00–9:00 PM', gigType:'Recital', desiredMusicians:['Violin','Viola','Cello'], compensation:'$200/musician', status:'past', notes:'', attendees:[
-          { name:'Josh Lee', initials:'JL', color:'var(--sage)' },
-          { name:'Nathan Gaynor', initials:'NG', color:'var(--crimson)' },
-          { name:'Elly Schade', initials:'ES', color:'var(--ink-3)' }
+          { id:'josh', name:'Josh Lee', initials:'JL', color:'var(--sage)', instrument:'Violin' },
+          { id:'nathan', name:'Nathan Gaynor', initials:'NG', color:'var(--crimson)', instrument:'Viola' },
+          { id:'elly', name:'Elly Schade', initials:'ES', color:'var(--ink-3)', instrument:'Cello' }
         ] }
       ],
       bookedGigs: [
         { title:'String Quartet, Sat Aug 15', location:'Filoli Gardens, Woodside CA', when:'Sat, Aug 15 · 4:00–6:30 PM', role:'Violin', organizer:'Elena Petrova' }
       ],
+      savedGigIds: ['gig3'],
       isNew: false,
       phone: accountPhone,
       email: accountEmail
@@ -2095,26 +2177,128 @@
       meta:'Filoli Gardens, Woodside CA · 2.5 hrs', tags:['Wedding','Classical','Formal'],
       mutuals:[{initials:'NG',color:'var(--sage)'},{initials:'JL',color:'var(--brass)'}],
       mutualLabel:'2 mutual connections applying', rate:'$450/musician',
-      clickable:true, onclick:"showScreen('screen-gigdetail')",
-      scope:'network', instruments:['Violin','Viola','Cello'], numPlayers:4, location:'Woodside, CA'
+      scope:'network', instruments:['Violin','Viola','Cello'], numPlayers:4, location:'Woodside, CA',
+      when:'Sat, Aug 15 · 5:00–7:30 PM',
+      postedBy:{ name:'Elena Petrova, Wedding Planner', initials:'EP', color:'var(--sage)', stats:'14 gigs booked on Opus · responds in ~2 hrs' },
+      instrumentsNeeded:'2 Violin, Viola, Cello', dressCode:'Formal / black tie',
+      repertoire:'Pachelbel, Bridal chorus, jazz standards for cocktail hour',
+      performanceLength:'2.5 hrs, incl. one break', parking:'On-site lot, load-in at Gate B',
+      payment:'Venmo, day-of', applyBy:'Aug 3',
+      trustLayer:[
+        { name:'Nathan Gaynor', initials:'NG', color:'var(--sage)', note:'Shares your quartet, "Mezza Quartet"' },
+        { name:'Josh Lee', initials:'JL', color:'var(--brass)', note:'Played 2 weddings with Elena' }
+      ],
+      applyAs:'Mezza Quartet'
     },
     {
       id:'gig2', eyebrow:'Religious Service · Sunday', title:'Sunday Service Cellist',
       meta:'First Congregational Church, Pittsburgh PA', tags:['Religious Service','Classical'],
       mutuals:[], mutualLabel:'', rate:'$120/service',
-      scope:'public', instruments:['Cello'], numPlayers:1, location:'Pittsburgh, PA'
+      scope:'public', instruments:['Cello'], numPlayers:1, location:'Pittsburgh, PA',
+      when:'Sun, Aug 23 · 9:30–11:00 AM',
+      postedBy:{ name:'Rev. Daniel Osei, Music Director', initials:'DO', color:'var(--ink-3)', stats:'6 gigs booked on Opus · responds in ~1 day' },
+      instrumentsNeeded:'1 Cello', dressCode:'Business casual',
+      repertoire:'Hymn accompaniment, one solo offertory piece',
+      performanceLength:'90 min, single service', parking:'Street parking on Ellsworth Ave',
+      payment:'Check, mailed within a week', applyBy:'Aug 18',
+      trustLayer:[], applyAs:null
     },
     {
       id:'gig3', eyebrow:'Recital · Next Week', title:'Violin & Piano Recital Set',
       meta:'The Athenaeum, Pittsburgh PA', tags:['Recital','Classical'],
       mutuals:[], mutualLabel:'', rate:'$350 flat',
-      scope:'public', instruments:['Violin','Piano'], numPlayers:2, location:'Pittsburgh, PA'
+      scope:'public', instruments:['Violin','Piano'], numPlayers:2, location:'Pittsburgh, PA',
+      when:'Fri, Aug 21 · 7:00–8:30 PM',
+      postedBy:{ name:'The Athenaeum Concert Series', initials:'AT', color:'var(--brass)', stats:'3 gigs booked on Opus · responds in ~3 hrs' },
+      instrumentsNeeded:'1 Violin, 1 Piano (duo)', dressCode:'Concert black',
+      repertoire:'Romantic-era sonatas, performer\'s choice',
+      performanceLength:'90 min with intermission', parking:'Valet available at venue entrance',
+      payment:'Direct deposit, within 5 business days', applyBy:'Aug 16',
+      trustLayer:[], applyAs:'Grieg Duo'
     },
     {
       id:'gig4', eyebrow:'Session Work · Trusted by your network', title:'Contemporary Ensemble Reading',
       meta:'Community Music Center, San Francisco CA', tags:['Session Work','Contemporary'],
       mutuals:[{initials:'ES',color:'var(--ink-3)'}], mutualLabel:'Elly Suzuki recommends', rate:'$275',
-      scope:'network', instruments:['Violin','Viola','Cello','Bass'], numPlayers:5, location:'San Francisco, CA'
+      scope:'network', instruments:['Violin','Viola','Cello','Bass'], numPlayers:5, location:'San Francisco, CA',
+      when:'Wed, Aug 26 · 6:00–9:00 PM',
+      postedBy:{ name:'Community Music Center', initials:'CM', color:'var(--ink-3)', stats:'9 gigs booked on Opus · responds in ~4 hrs' },
+      instrumentsNeeded:'Violin, Viola, Cello, Bass (open reading)', dressCode:'Casual',
+      repertoire:'Sight-reading contemporary chamber works, composer in attendance',
+      performanceLength:'3 hrs, one reading session', parking:'Free lot behind the building',
+      payment:'Zelle, same night', applyBy:'Aug 22',
+      trustLayer:[{ name:'Elly Schade', initials:'ES', color:'var(--ink-3)', note:'Recommended this session to you' }],
+      applyAs:null
+    },
+    {
+      id:'gig5', eyebrow:'Private Party · Trusted by your network', title:'50th Anniversary Recital Duo',
+      meta:'Private Residence, Sewickley PA · 1.5 hrs', tags:['Private Party','Classical','Romantic'],
+      mutuals:[{initials:'SC',color:'var(--brass)'}], mutualLabel:'Spencer Cha played for this family before', rate:'$400 flat',
+      scope:'network', instruments:['Violin','Piano'], numPlayers:2, location:'Sewickley, PA',
+      when:'Sat, Sep 6 · 4:00–5:30 PM',
+      postedBy:{ name:'The Callahan Family', initials:'CF', color:'var(--crimson)', stats:'2 gigs booked on Opus · responds in ~6 hrs' },
+      instrumentsNeeded:'1 Violin, 1 Piano (duo)', dressCode:'Semi-formal',
+      repertoire:'Romantic-era favorites, family requested "Clair de Lune"',
+      performanceLength:'90 min, cocktail-hour style', parking:'Driveway parking, 4 spots reserved',
+      payment:'Venmo, day-of', applyBy:'Aug 30',
+      trustLayer:[{ name:'Spencer Cha', initials:'SC', color:'var(--brass)', note:'Played the Callahans\' 40th anniversary' }],
+      applyAs:'Grieg Duo'
+    },
+    {
+      id:'gig6', eyebrow:'Corporate Event · Trusted by your network', title:'Holiday Reception Jazz Trio',
+      meta:'Union Trust Building, Pittsburgh PA · 3 hrs', tags:['Corporate Events','Jazz','Cocktail Hour'],
+      mutuals:[{initials:'JL',color:'var(--brass)'},{initials:'NG',color:'var(--sage)'}], mutualLabel:'2 mutual connections recommend this organizer', rate:'$300/musician',
+      scope:'network', instruments:['Violin','Piano','Bass'], numPlayers:3, location:'Pittsburgh, PA',
+      when:'Fri, Dec 11 · 6:00–9:00 PM',
+      postedBy:{ name:'Meridian Events Co.', initials:'ME', color:'var(--sage)', stats:'21 gigs booked on Opus · responds in ~1 hr' },
+      instrumentsNeeded:'Violin, Piano, Bass (jazz trio)', dressCode:'Cocktail attire',
+      repertoire:'Jazz standards, holiday requests welcome',
+      performanceLength:'3 hrs, two 15-min breaks', parking:'Validated garage parking',
+      payment:'ACH transfer, within 3 business days', applyBy:'Nov 20',
+      trustLayer:[
+        { name:'Josh Lee', initials:'JL', color:'var(--brass)', note:'Played Meridian\'s spring gala' },
+        { name:'Nathan Gaynor', initials:'NG', color:'var(--sage)', note:'Recommends this organizer' }
+      ],
+      applyAs:null
+    },
+    {
+      id:'gig7', eyebrow:'Funeral Service · This week', title:'Memorial Service Violinist',
+      meta:'Beinhauer Family Funeral Home, Pittsburgh PA', tags:['Funeral','Classical','Solemn'],
+      mutuals:[], mutualLabel:'', rate:'$150/service',
+      scope:'public', instruments:['Violin'], numPlayers:1, location:'Pittsburgh, PA',
+      when:'Thu, Aug 20 · 1:00–2:00 PM',
+      postedBy:{ name:'Beinhauer Family Funeral Home', initials:'BF', color:'var(--ink-3)', stats:'11 gigs booked on Opus · responds in ~5 hrs' },
+      instrumentsNeeded:'1 Violin', dressCode:'Black, formal',
+      repertoire:'Family will provide two requested pieces; performer\'s choice for prelude',
+      performanceLength:'60 min, prelude and recessional', parking:'Lot adjacent to the chapel',
+      payment:'Check, same day', applyBy:'Aug 18',
+      trustLayer:[], applyAs:null
+    },
+    {
+      id:'gig8', eyebrow:'Session Work · Ongoing', title:'Weekend Brunch Background Guitar',
+      meta:'Foraged Restaurant, Pittsburgh PA · weekly', tags:['Session Work','Acoustic','Recurring'],
+      mutuals:[], mutualLabel:'', rate:'$180/session',
+      scope:'public', instruments:['Guitar'], numPlayers:1, location:'Pittsburgh, PA',
+      when:'Sundays · 11:00 AM–1:30 PM (ongoing)',
+      postedBy:{ name:'Foraged Restaurant', initials:'FR', color:'var(--brass)', stats:'5 gigs booked on Opus · responds in ~2 hrs' },
+      instrumentsNeeded:'1 Guitar (acoustic)', dressCode:'Casual, all-black preferred',
+      repertoire:'Instrumental covers, low-volume background sets',
+      performanceLength:'2.5 hrs, no breaks needed', parking:'Street parking, validated after 12pm',
+      payment:'Direct deposit, weekly', applyBy:'Rolling',
+      trustLayer:[], applyAs:null
+    },
+    {
+      id:'gig9', eyebrow:'Festival · Next Month', title:'Outdoor Festival Folk Set',
+      meta:'Hartwood Acres Amphitheater, Pittsburgh PA', tags:['Festival','Folk','Outdoor'],
+      mutuals:[], mutualLabel:'', rate:'$220/musician',
+      scope:'public', instruments:['Violin','Guitar','Bass','Drums'], numPlayers:4, location:'Pittsburgh, PA',
+      when:'Sat, Sep 20 · 2:00–3:30 PM',
+      postedBy:{ name:'Hartwood Acres Concert Series', initials:'HA', color:'var(--crimson)', stats:'8 gigs booked on Opus · responds in ~1 day' },
+      instrumentsNeeded:'Violin (fiddle), Guitar, Bass, Drums', dressCode:'Casual, festival-appropriate',
+      repertoire:'Folk and bluegrass, one original set encouraged',
+      performanceLength:'90 min outdoor set', parking:'Free festival lot, load-in 2 hrs early',
+      payment:'Check, mailed within 2 weeks', applyBy:'Sep 5',
+      trustLayer:[], applyAs:null
     }
   ];
 
@@ -2127,9 +2311,12 @@
     } else {
       rowHtml = '<div class="row"><span></span><span class="rate">'+escapeHtml(g.rate)+'</span></div>';
     }
-    return '<div class="card"'+(g.clickable ? ' onclick="'+g.onclick+'" style="cursor:pointer;"' : '')+'>'
+    var saved = ((profiles[currentProfileIndex].savedGigIds) || []).indexOf(g.id) > -1;
+    return '<div class="card" onclick="openGigDetail(\''+g.id+'\')" style="cursor:pointer;">'
+      + '<button class="save-btn'+(saved?' saved':'')+'" onclick="event.stopPropagation(); toggleSaveGig(\''+g.id+'\')" aria-label="Save for later">'
+      + '<svg width="14" height="14" viewBox="0 0 24 24" fill="'+(saved?'currentColor':'none')+'" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>'
       + '<div class="eyebrow">'+escapeHtml(g.eyebrow)+'</div>'
-      + '<h3>'+escapeHtml(g.title)+'</h3>'
+      + '<h3 style="padding-right:30px;">'+escapeHtml(g.title)+'</h3>'
       + '<div class="meta">'+escapeHtml(g.meta)+'</div>'
       + '<div class="tagrow">'+g.tags.map(function(t){ return '<div class="tag">'+escapeHtml(t)+'</div>'; }).join('')+'</div>'
       + rowHtml
@@ -2171,6 +2358,76 @@
         ? '<div class="empty-note">No opportunities match &ldquo;'+escapeHtml(qVal)+'&rdquo;. Try a different search.</div>'
         : '<div class="empty-note">No '+(discoverScope === 'network' ? 'in-network' : 'public')+' opportunities match your filters right now.</div>';
     }
+  }
+
+  /* =====================================================================
+     GIG DETAIL — data-driven detail screen, reached from any Discover card
+  ===================================================================== */
+  var currentGigId = null;
+
+  function openGigDetail(id){
+    currentGigId = id;
+    renderGigDetail();
+    showScreen('screen-gigdetail');
+  }
+
+  function renderGigDetail(){
+    var g = GIGS.filter(function(x){ return x.id === currentGigId; })[0];
+    if(!g) return;
+    document.getElementById('gigDetailTitle').textContent = g.title;
+    document.getElementById('gigDetailSub').textContent = g.meta + ' · ' + g.when;
+
+    var posterAvatar = document.getElementById('gigDetailPosterAvatar');
+    posterAvatar.textContent = g.postedBy.initials;
+    posterAvatar.style.background = g.postedBy.color;
+    document.getElementById('gigDetailPosterName').textContent = g.postedBy.name;
+    document.getElementById('gigDetailPosterStats').textContent = g.postedBy.stats;
+
+    document.getElementById('gigDetailGrid').innerHTML =
+      detailRow('Instruments needed', g.instrumentsNeeded)
+      + detailRow('Dress code', g.dressCode)
+      + detailRow('Repertoire', g.repertoire)
+      + detailRow('Performance length', g.performanceLength)
+      + detailRow('Parking', g.parking)
+      + detailRow('Payment', g.payment);
+
+    var trustWrap = document.getElementById('gigDetailTrustWrap');
+    trustWrap.innerHTML = (g.trustLayer && g.trustLayer.length)
+      ? '<div class="section-title">Why this feels safe <span class="see">trust layer</span></div><div class="net-wrap">'
+        + g.trustLayer.map(function(t){
+            return '<div class="net-node"><div class="avatar" style="background:'+t.color+'">'+t.initials+'</div><div class="info"><b>'+escapeHtml(t.name)+'</b><span>'+escapeHtml(t.note)+'</span></div></div>';
+          }).join('')
+        + '</div>'
+      : '';
+
+    document.getElementById('gigDetailRate').textContent = g.rate;
+    document.getElementById('gigDetailApplyBy').textContent = g.applyBy;
+
+    var p = profiles[currentProfileIndex];
+    document.getElementById('gigDetailApplyBtn').textContent = 'Apply as ' + (g.applyAs || p.name);
+
+    var saved = ((p.savedGigIds) || []).indexOf(g.id) > -1;
+    var saveBtn = document.getElementById('gigDetailSaveBtn');
+    saveBtn.textContent = saved ? 'Saved ✓' : 'Save for later';
+  }
+
+  function toggleSaveGig(gigId){
+    var p = profiles[currentProfileIndex];
+    p.savedGigIds = p.savedGigIds || [];
+    var idx = p.savedGigIds.indexOf(gigId);
+    if(idx > -1){ p.savedGigIds.splice(idx, 1); }
+    else { p.savedGigIds.push(gigId); }
+    renderDiscoverFeed();
+    renderEventsScreen();
+    if(document.getElementById('screen-gigdetail').classList.contains('active')){ renderGigDetail(); }
+  }
+
+  function savedGigRowHtml(g){
+    return '<div class="list-row" onclick="openGigDetail(\''+g.id+'\')">'
+      + '<div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((g.tags[0]||'OP').slice(0,2).toUpperCase())+'</div>'
+      + '<div class="info"><b>'+escapeHtml(g.title)+'</b><span>'+escapeHtml(g.meta)+'</span></div>'
+      + '<button class="row-delete-btn" onclick="event.stopPropagation(); toggleSaveGig(\''+g.id+'\')" aria-label="Remove from saved"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>'
+      + '</div>';
   }
 
   /* =====================================================================
@@ -2543,6 +2800,7 @@
       reviews: [],
       eventsOrganized: [],
       bookedGigs: [],
+      savedGigIds: [],
       isNew: true,
       phone: accountPhone,
       email: accountEmail
@@ -2813,17 +3071,27 @@
     showScreen('screen-myevents');
   }
 
+  function eventIsConfirmed(ev){
+    if(ev.status === 'past') return true;
+    return !!(ev.confirmed && ev.confirmed.length);
+  }
+
+  function confirmMarkHtml(ev){
+    var yes = eventIsConfirmed(ev);
+    return '<span class="confirm-mark '+(yes?'yes':'no')+'" title="'+(yes?'Musicians confirmed':'Not yet confirmed')+'">'
+      + (yes
+          ? '<svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+          : '<svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>')
+      + '</span>';
+  }
+
   function renderMyEvents(){
     var p = profiles[currentProfileIndex];
     var events = p.eventsOrganized || [];
     var el = document.getElementById('myEventsList');
-    if(events.length){
-      el.innerHTML = events.map(function(ev, i){
-        return '<div class="list-row" onclick="openEventDetail('+i+')"><div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((ev.gigType||'EV').slice(0,2).toUpperCase())+'</div><div class="info"><b>'+escapeHtml(ev.title)+'</b><span>'+escapeHtml(ev.location)+' &middot; '+escapeHtml(ev.when)+'</span></div><div class="chev">&rsaquo;</div></div>';
-      }).join('');
-    } else {
-      el.innerHTML = '<div class="empty-note">You haven\'t organized any events yet.</div>';
-    }
+    el.innerHTML = events.length
+      ? events.map(eventRowHtml).join('')
+      : '<div class="empty-note">You haven\'t organized any events yet.</div>';
   }
 
   function detailRow(label, value){
@@ -2834,6 +3102,24 @@
     currentEventIndex = i;
     renderEventDetail();
     showScreen('screen-eventdetail');
+  }
+
+  function eventPersonRowHtml(person, listName, idx){
+    var onclickAttr = person.id
+      ? " onclick=\"showScreen('screen-musician-"+person.id+"')\""
+      : " onclick=\"openEventPersonProfile('"+listName+"', "+idx+")\"";
+    return '<div class="net-node" style="cursor:pointer;"'+onclickAttr+'>'
+      + '<div class="avatar" style="background:'+person.color+'">'+person.initials+'</div>'
+      + '<div class="info"><b>'+escapeHtml(person.name)+'</b><span>'+escapeHtml(person.instrument||'')+'</span></div>'
+      + '</div>';
+  }
+
+  function openEventPersonProfile(listName, idx){
+    var ev = (profiles[currentProfileIndex].eventsOrganized || [])[currentEventIndex];
+    if(!ev) return;
+    var person = (ev[listName] || [])[idx];
+    if(!person) return;
+    openPersonProfile(person);
   }
 
   function renderEventDetail(){
@@ -2849,15 +3135,33 @@
       + detailRow('Desired musicians', ev.desiredMusicians && ev.desiredMusicians.length ? ev.desiredMusicians.join(', ') : 'Open to all instruments')
       + detailRow('Compensation', ev.compensation || 'Not specified')
       + (ev.notes ? detailRow('Notes', ev.notes) : '')
-      + (ev.attendees && ev.attendees.length ? detailRow('Performed by', ev.attendees.map(function(a){ return a.name; }).join(', ')) : '')
       + detailRow('Organized by', p.name);
+
+    var peopleEl = document.getElementById('eventDetailPeople');
+    if(!peopleEl) return;
+    if(ev.status === 'past'){
+      var attendees = ev.attendees || [];
+      peopleEl.innerHTML = '<div class="section-title" style="margin-top:20px;">Performed By</div>'
+        + (attendees.length
+            ? '<div class="net-wrap">' + attendees.map(function(a,i){ return eventPersonRowHtml(a, 'attendees', i); }).join('') + '</div>'
+            : '<div class="empty-note">No performer records for this event.</div>');
+    } else if(ev.confirmed && ev.confirmed.length){
+      peopleEl.innerHTML = '<div class="section-title" style="margin-top:20px;">Confirmed Musicians <span class="see" style="color:var(--sage);">&#10003; confirmed</span></div>'
+        + '<div class="net-wrap">' + ev.confirmed.map(function(a,i){ return eventPersonRowHtml(a, 'confirmed', i); }).join('') + '</div>';
+    } else {
+      var applicants = ev.applicants || [];
+      peopleEl.innerHTML = '<div class="section-title" style="margin-top:20px;">Applicants <span class="see" style="color:var(--crimson);">&#10005; not yet confirmed</span></div>'
+        + (applicants.length
+            ? '<div class="net-wrap">' + applicants.map(function(a,i){ return eventPersonRowHtml(a, 'applicants', i); }).join('') + '</div>'
+            : '<div class="empty-note">No applicants yet.</div>');
+    }
   }
 
   /* =====================================================================
-     EVENTS TAB — organize/upcoming/past + "My Events" (gigs you're booked on)
+     EVENTS TAB — organize/upcoming/past + "My Events" (gigs you're booked on) + Saved
   ===================================================================== */
   function eventRowHtml(ev, idx){
-    return '<div class="list-row" onclick="openEventDetail('+idx+')"><div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((ev.gigType||'EV').slice(0,2).toUpperCase())+'</div><div class="info"><b>'+escapeHtml(ev.title)+'</b><span>'+escapeHtml(ev.location)+' &middot; '+escapeHtml(ev.when)+'</span></div><div class="chev">&rsaquo;</div></div>';
+    return '<div class="list-row" onclick="openEventDetail('+idx+')"><div class="avatar" style="background:var(--ink-3); margin-left:0; width:38px; height:38px; font-size:11px;">'+escapeHtml((ev.gigType||'EV').slice(0,2).toUpperCase())+'</div><div class="info"><b style="display:flex; align-items:center; gap:6px;">'+confirmMarkHtml(ev)+escapeHtml(ev.title)+'</b><span>'+escapeHtml(ev.location)+' &middot; '+escapeHtml(ev.when)+'</span></div><div class="chev">&rsaquo;</div></div>';
   }
 
   function bookedGigRowHtml(g){
@@ -2889,6 +3193,15 @@
       bEl.innerHTML = booked.length
         ? booked.map(bookedGigRowHtml).join('')
         : '<div class="empty-note">You haven\'t been booked for any gigs yet. Apply to opportunities on Discover to get started.</div>';
+    }
+
+    var savedIds = p.savedGigIds || [];
+    var savedGigs = savedIds.map(function(id){ return GIGS.filter(function(g){ return g.id === id; })[0]; }).filter(Boolean);
+    var sEl = document.getElementById('savedGigsList');
+    if(sEl){
+      sEl.innerHTML = savedGigs.length
+        ? savedGigs.map(savedGigRowHtml).join('')
+        : '<div class="empty-note">Nothing saved yet. Tap the bookmark icon on any opportunity in Discover to save it here.</div>';
     }
   }
 
@@ -3271,41 +3584,148 @@
     { id:'nathan', name:'Nathan Gaynor', role:'Viola &middot; Mezza Quartet co-member', initials:'NG', color:'var(--crimson)' },
     { id:'elly', name:'Elly Schade', role:'Cello &middot; Mezza Quartet co-member', initials:'ES', color:'var(--ink-3)' },
     { id:'spencer', name:'Spencer Cha', role:'Piano &middot; Grieg Duo partner', initials:'SC', color:'var(--brass)' },
-    { id:null, name:'Maya Chen', role:'Flute &middot; CMU Wind Ensemble', initials:'MC', color:'var(--sage)' },
-    { id:null, name:'Derek Okafor', role:'Trumpet &middot; Pittsburgh Jazz Collective', initials:'DO', color:'var(--crimson)' },
-    { id:null, name:'Priya Nair', role:'Cello &middot; Duquesne Symphony', initials:'PN', color:'var(--brass)' },
-    { id:null, name:'Liam Foster', role:'Guitar &middot; session player', initials:'LF', color:'var(--ink-3)' },
-    { id:null, name:'Sofia Reyes', role:'Voice &middot; wedding vocalist', initials:'SR', color:'var(--sage)' },
-    { id:null, name:'Andre Walsh', role:'Drums &middot; function band', initials:'AW', color:'var(--crimson)' },
-    { id:null, name:'Grace Kim', role:'Viola &middot; CMU School of Music', initials:'GK', color:'var(--brass)' },
-    { id:null, name:'Tomas Bianchi', role:'Bass &middot; jazz trio', initials:'TB', color:'var(--ink-3)' },
-    { id:null, name:'Renee Park', role:'Harp &middot; ceremony musician', initials:'RP', color:'var(--sage)' },
-    { id:null, name:'Marcus Webb', role:'Saxophone &middot; big band', initials:'MW', color:'var(--crimson)' },
-    { id:null, name:'Isla Novak', role:'Violin &middot; chamber musician', initials:'IN', color:'var(--brass)' },
-    { id:null, name:'Kwame Boateng', role:'Piano &middot; accompanist', initials:'KB', color:'var(--ink-3)' },
-    { id:null, name:'Delphine Roy', role:'Cello &middot; string quartet', initials:'DR', color:'var(--sage)' },
-    { id:null, name:'Owen Vance', role:'Trombone &middot; brass quintet', initials:'OV', color:'var(--crimson)' },
-    { id:null, name:'Aisha Rahman', role:'Flute &middot; orchestral sub', initials:'AR', color:'var(--brass)' },
-    { id:null, name:'Noah Bennett', role:'Guitar &middot; acoustic duo', initials:'NB', color:'var(--ink-3)' }
+    { id:null, name:'Maya Chen', role:'Flute &middot; CMU Wind Ensemble', initials:'MC', color:'var(--sage)',
+      instrument:'Flute', context:'the CMU Wind Ensemble', years:'6', location:'Pittsburgh, PA', phone:'(412) 555-0201' },
+    { id:null, name:'Derek Okafor', role:'Trumpet &middot; Pittsburgh Jazz Collective', initials:'DO', color:'var(--crimson)',
+      instrument:'Trumpet', context:'the Pittsburgh Jazz Collective', years:'9', location:'Pittsburgh, PA', phone:'(412) 555-0202' },
+    { id:null, name:'Priya Nair', role:'Cello &middot; Duquesne Symphony', initials:'PN', color:'var(--brass)',
+      instrument:'Cello', context:'the Duquesne Symphony', years:'12', location:'Pittsburgh, PA', phone:'(412) 555-0203' },
+    { id:null, name:'Liam Foster', role:'Guitar &middot; session player', initials:'LF', color:'var(--ink-3)',
+      instrument:'Guitar', context:'freelance session work around Pittsburgh', years:'7', location:'Pittsburgh, PA', phone:'(412) 555-0204' },
+    { id:null, name:'Sofia Reyes', role:'Voice &middot; wedding vocalist', initials:'SR', color:'var(--sage)',
+      instrument:'Voice', context:'weddings and private events', years:'5', location:'Pittsburgh, PA', phone:'(412) 555-0205' },
+    { id:null, name:'Andre Walsh', role:'Drums &middot; function band', initials:'AW', color:'var(--crimson)',
+      instrument:'Drums', context:'a Pittsburgh function band', years:'10', location:'Pittsburgh, PA', phone:'(412) 555-0206' },
+    { id:null, name:'Grace Kim', role:'Viola &middot; CMU School of Music', initials:'GK', color:'var(--brass)',
+      instrument:'Viola', context:'CMU School of Music', years:'4', location:'Pittsburgh, PA', phone:'(412) 555-0207' },
+    { id:null, name:'Tomas Bianchi', role:'Bass &middot; jazz trio', initials:'TB', color:'var(--ink-3)',
+      instrument:'Bass', context:'a local jazz trio', years:'13', location:'Pittsburgh, PA', phone:'(412) 555-0208' },
+    { id:null, name:'Renee Park', role:'Harp &middot; ceremony musician', initials:'RP', color:'var(--sage)',
+      instrument:'Harp', context:'wedding and ceremony bookings', years:'8', location:'Pittsburgh, PA', phone:'(412) 555-0209' },
+    { id:null, name:'Marcus Webb', role:'Saxophone &middot; big band', initials:'MW', color:'var(--crimson)',
+      instrument:'Saxophone', context:'a Pittsburgh big band', years:'15', location:'Pittsburgh, PA', phone:'(412) 555-0210' },
+    { id:null, name:'Isla Novak', role:'Violin &middot; chamber musician', initials:'IN', color:'var(--brass)',
+      instrument:'Violin', context:'chamber ensembles around the city', years:'6', location:'Pittsburgh, PA', phone:'(412) 555-0211' },
+    { id:null, name:'Kwame Boateng', role:'Piano &middot; accompanist', initials:'KB', color:'var(--ink-3)',
+      instrument:'Piano', context:'recital and audition accompanying', years:'11', location:'Pittsburgh, PA', phone:'(412) 555-0212' },
+    { id:null, name:'Delphine Roy', role:'Cello &middot; string quartet', initials:'DR', color:'var(--sage)',
+      instrument:'Cello', context:'a Pittsburgh string quartet', years:'9', location:'Pittsburgh, PA', phone:'(412) 555-0213' },
+    { id:null, name:'Owen Vance', role:'Trombone &middot; brass quintet', initials:'OV', color:'var(--crimson)',
+      instrument:'Trombone', context:'a local brass quintet', years:'7', location:'Pittsburgh, PA', phone:'(412) 555-0214' },
+    { id:null, name:'Aisha Rahman', role:'Flute &middot; orchestral sub', initials:'AR', color:'var(--brass)',
+      instrument:'Flute', context:'substitute orchestral work', years:'5', location:'Pittsburgh, PA', phone:'(412) 555-0215' },
+    { id:null, name:'Noah Bennett', role:'Guitar &middot; acoustic duo', initials:'NB', color:'var(--ink-3)',
+      instrument:'Guitar', context:'an acoustic duo for private events', years:'4', location:'Pittsburgh, PA', phone:'(412) 555-0216' }
   ];
 
   var DIRECTORY = [
-    { name:'Theo Marsh', instrument:'Cello', location:'Pittsburgh, PA', phone:'(628) 555-0110', initials:'TM', color:'var(--sage)' },
-    { name:'Bianca Ortiz', instrument:'Voice', location:'Philadelphia, PA', phone:'(917) 555-0144', initials:'BO', color:'var(--crimson)' },
-    { name:'Sam Whitfield', instrument:'Trumpet', location:'Cleveland, OH', phone:'(206) 555-0199', initials:'SW', color:'var(--brass)' },
-    { name:'Priya Anand', instrument:'Violin', location:'Pittsburgh, PA', phone:'(412) 555-0133', initials:'PA', color:'var(--ink-3)' },
-    { name:'Jules Ferreira', instrument:'Bass', location:'Columbus, OH', phone:'(773) 555-0188', initials:'JF', color:'var(--sage)' },
-    { name:'Nina Vogel', instrument:'Piano', location:'Pittsburgh, PA', phone:'(503) 555-0121', initials:'NV', color:'var(--crimson)' }
+    { name:'Theo Marsh', instrument:'Cello', location:'Pittsburgh, PA', phone:'(628) 555-0110', initials:'TM', color:'var(--sage)', years:'8', context:'freelance chamber and orchestral work' },
+    { name:'Bianca Ortiz', instrument:'Voice', location:'Philadelphia, PA', phone:'(917) 555-0144', initials:'BO', color:'var(--crimson)', years:'6', context:'jazz and wedding vocals' },
+    { name:'Sam Whitfield', instrument:'Trumpet', location:'Cleveland, OH', phone:'(206) 555-0199', initials:'SW', color:'var(--brass)', years:'10', context:'big band and session work' },
+    { name:'Priya Anand', instrument:'Violin', location:'Pittsburgh, PA', phone:'(412) 555-0133', initials:'PA', color:'var(--ink-3)', years:'7', context:'chamber music and recitals' },
+    { name:'Jules Ferreira', instrument:'Bass', location:'Columbus, OH', phone:'(773) 555-0188', initials:'JF', color:'var(--sage)', years:'9', context:'jazz combos and function bands' },
+    { name:'Nina Vogel', instrument:'Piano', location:'Pittsburgh, PA', phone:'(503) 555-0121', initials:'NV', color:'var(--crimson)', years:'12', context:'accompanying and solo recitals' }
   ];
 
   function connectionRowHtml(c, idx){
-    var clickAttr = c.id ? ' onclick="showScreen(\'screen-musician-'+c.id+'\')" style="cursor:pointer;"' : '';
-    return '<div class="net-node"'+clickAttr+'>'
+    var onclickAttr = c.id
+      ? " onclick=\"showScreen('screen-musician-"+c.id+"')\""
+      : " onclick=\"openPersonProfile(CONNECTIONS["+idx+"])\"";
+    return '<div class="net-node" style="cursor:pointer;"'+onclickAttr+'>'
       + '<div class="avatar" style="background:'+c.color+'">'+c.initials+'</div>'
       + '<div class="info"><b>'+escapeHtml(c.name)+'</b><span>'+c.role+'</span></div>'
       + '<button class="recommend-btn" onclick="event.stopPropagation(); recommendConnection('+idx+')" aria-label="Write a recommendation">'
       + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>'
       + '</button></div>';
+  }
+
+  /* =====================================================================
+     GENERIC PERSON PROFILE — used for network connections beyond the 4
+     featured musicians, directory search results, and event applicants/
+     confirmed musicians. Gates the bio/genres/reviews block behind network
+     status; contact info (email + phone) is always shown, per product rule.
+  ===================================================================== */
+  var currentPersonProfile = null;
+
+  function personEmail(name){
+    return name.toLowerCase().replace(/[^a-z\s]/g, '').trim().split(/\s+/).join('.') + '@gmail.com';
+  }
+
+  function personIsConnected(person){
+    return CONNECTIONS.some(function(c){ return c.name === person.name; });
+  }
+
+  function personDefaultBio(p){
+    var bits = [];
+    bits.push((p.instrument || 'Musician') + ' musician' + (p.location ? ' based in ' + p.location : '') + '.');
+    if(p.years) bits.push(p.years + ' years of performance experience.');
+    if(p.context) bits.push('Currently active with ' + p.context + '.');
+    return bits.join(' ');
+  }
+
+  function openPersonProfile(person){
+    if(!person) return;
+    currentPersonProfile = person;
+    renderPersonProfile();
+    showScreen('screen-person');
+  }
+
+  function renderPersonProfile(){
+    var p = currentPersonProfile;
+    if(!p) return;
+    var connected = personIsConnected(p);
+
+    var photoEl = document.getElementById('personPhoto');
+    photoEl.textContent = p.initials;
+    photoEl.style.background = p.color || 'var(--ink-3)';
+    document.getElementById('personName').textContent = p.name;
+    document.getElementById('personTagline').textContent = [p.instrument, p.location, p.years ? p.years + ' yrs experience' : null].filter(Boolean).join(' · ');
+    document.getElementById('personBadges').innerHTML = connected ? '<div class="badge">In your network</div>' : '';
+
+    document.getElementById('personContactCard').innerHTML =
+      '<div class="contact-row"><div class="contact-label">Email</div><div class="contact-val">'+escapeHtml(p.email || personEmail(p.name))+'</div></div>'
+      + '<div class="contact-row"><div class="contact-label">Phone</div><div class="contact-val">'+escapeHtml(p.phone || 'Not listed')+'</div></div>';
+
+    var fullBlock = document.getElementById('personFullBlock');
+    var lockedBlock = document.getElementById('personLockedBlock');
+    if(connected){
+      fullBlock.style.display = '';
+      lockedBlock.style.display = 'none';
+      document.getElementById('personBio').textContent = p.bio || personDefaultBio(p);
+      var genres = (p.genres && p.genres.length) ? p.genres : ['Classical'];
+      document.getElementById('personGenres').innerHTML = genres.map(function(g){ return '<div class="tag">'+escapeHtml(g)+'</div>'; }).join('');
+      var reviews = (p.id && musicianReviews[p.id]) ? musicianReviews[p.id] : [];
+      document.getElementById('personReviews').innerHTML = reviews.length
+        ? reviews.map(function(r){ return '<div class="review"><p>'+r.text+'</p><div class="who">'+r.who+'</div></div>'; }).join('')
+        : '<div class="empty-note">No reviews yet.</div>';
+    } else {
+      fullBlock.style.display = 'none';
+      lockedBlock.style.display = '';
+      document.getElementById('personLockedNote').textContent = 'Connect with ' + p.name + ' to see their full profile — biography, genres, and reviews.';
+    }
+  }
+
+  function requestAddPerson(person){
+    if(!person) return;
+    showAlert({
+      title:'Add ' + person.name + ' to your network?',
+      message:person.name + ' will be added to your connections. You\'ll be able to see their full profile and write recommendations for each other.',
+      confirmText:'Confirm', cancelText:'Deny',
+      onConfirm:function(){
+        CONNECTIONS.push({
+          id:null, name:person.name, role:(person.instrument || 'Musician') + ' &middot; added via profile',
+          initials:person.initials, color:person.color || 'var(--ink-3)',
+          instrument:person.instrument, context:person.context, years:person.years,
+          location:person.location, phone:person.phone
+        });
+        renderMutualPreview();
+        renderMutualCount();
+        renderAllConnections();
+        renderNetworkSearch();
+        renderPersonProfile();
+        showAlert({ title:'Connected', message:person.name + ' is now part of your network.', confirmText:'Nice', singleButton:true });
+      }
+    });
   }
 
   function renderMutualPreview(){
@@ -3359,12 +3779,12 @@
     wrap.innerHTML = matches.map(function(entry){
       var person = entry.person;
       var alreadyConnected = CONNECTIONS.some(function(c){ return c.name === person.name; });
-      return '<div class="list-row" style="cursor:default;">'
+      return '<div class="list-row" onclick="openPersonProfile(DIRECTORY['+entry.idx+'])" style="cursor:pointer;">'
         + '<div class="avatar" style="background:'+person.color+'; margin-left:0; width:38px; height:38px; font-size:12px;">'+person.initials+'</div>'
         + '<div class="info"><b>'+escapeHtml(person.name)+'</b><span>'+escapeHtml(person.instrument)+' &middot; '+escapeHtml(person.location)+'</span></div>'
         + (alreadyConnected
             ? '<span class="switch-pill" style="cursor:default;">Connected</span>'
-            : '<button class="add-btn" onclick="confirmAddConnection('+entry.idx+')">Add</button>')
+            : '<button class="add-btn" onclick="event.stopPropagation(); confirmAddConnection('+entry.idx+')">Add</button>')
         + '</div>';
     }).join('');
   }
@@ -3380,7 +3800,12 @@
   }
 
   function addToNetwork(person){
-    CONNECTIONS.push({ id:null, name:person.name, role:escapeHtml(person.instrument)+' &middot; added via search', initials:person.initials, color:person.color });
+    CONNECTIONS.push({
+      id:null, name:person.name, role:escapeHtml(person.instrument)+' &middot; added via search',
+      initials:person.initials, color:person.color,
+      instrument:person.instrument, context:person.context, years:person.years,
+      location:person.location, phone:person.phone
+    });
     renderMutualPreview();
     renderMutualCount();
     renderAllConnections();
