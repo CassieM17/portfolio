@@ -121,55 +121,90 @@
       <h3>Key Features</h3>
       <div class="feature-grid">
         <div class="feature-item">
-          <h4>Professional Profiles</h4>
-          <p>Headshot, instruments, experience, genres, recordings, availability, rates, and
-          reviews — helping organizers evaluate beyond a resume.</p>
+          <h4>Searchable, Filterable Gig Board</h4>
+          <p>A search bar and filter popup (instrument, number of players, location) sit above
+          an In-Network / Public toggle, so musicians can narrow the feed to opportunities
+          surfaced through their connections or browse the general board. Every card is
+          bookmarkable without opening it.</p>
         </div>
         <div class="feature-item">
-          <h4>Ensemble Profiles</h4>
-          <p>String quartets, jazz trios, bands, and chamber groups can be booked as a complete
-          unit instead of contacting each musician separately.</p>
+          <h4>Fully Data-Driven Gig Detail</h4>
+          <p>Every posting has its own real instruments-needed, dress code, repertoire, payment,
+          and apply-deadline info, plus a "why this feels safe" network-trust section and an
+          Apply button labeled for the right applicant — an ensemble or the musician themselves.</p>
         </div>
         <div class="feature-item">
-          <h4>Smart Gig Board</h4>
-          <p>Detailed postings — date, budget, instruments, dress code, repertoire — filterable
-          by location, instrument, genre, and compensation.</p>
+          <h4>Organize &amp; Manage Events</h4>
+          <p>Organizers post events through a slide-up form, then track them with a check or X
+          for confirmed vs. still-open, tap in to see applicants or confirmed musicians, and
+          revisit past events to see who actually performed.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Network-Gated Profiles</h4>
+          <p>Contact info is always public, but biography, genres, and reviews stay behind a
+          "Connect to see more" panel until that person is actually in your network — with a
+          one-tap request to add them straight from a stranger's profile.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Real Ensemble Confirmation Flow</h4>
+          <p>Creating a new ensemble adds you instantly as founder; requesting to join an
+          existing one requires every current member to confirm, simulated with staggered
+          live responses — and a single decline blocks the request outright.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Multi-Profile Accounts</h4>
+          <p>Every profile lives under one phone number and is switchable anytime from Settings
+          or an avatar strip. A guided 10-step wizard onboards a brand-new profile, musician or
+          event organizer, from scratch.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Editable, Data-Driven Profile</h4>
+          <p>Bio, genres, an editable "Available For" chip list, media uploads, linked ensembles,
+          and organized events all render from the same profile object the onboarding wizard
+          writes to — edits update everywhere at once.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Peer Recommendations</h4>
+          <p>A recommendation composer lives on every connection row — in your network list or on
+          an ensemble member's own page — replacing an empty "no reviews yet" state with a real,
+          attributed endorsement.</p>
         </div>
         <div class="feature-item">
           <h4>Trust Through Networks</h4>
-          <p>Organizers see mutual connections, shared ensembles, and past collaborations —
-          rewarding real professional relationships.</p>
-        </div>
-        <div class="feature-item">
-          <h4>Integrated Messaging</h4>
-          <p>Built-in chat with hire confirmation, creating a reliable record without
-          conversations scattered across apps.</p>
-        </div>
-        <div class="feature-item">
-          <h4>Payment Tracking</h4>
-          <p>Organizers mark musicians as paid post-performance, giving both sides visibility
-          into outstanding compensation.</p>
+          <p>Mutual connections, shared ensembles, and past collaborations surface throughout —
+          on gig cards, in gig detail, and across profiles — rewarding real professional
+          relationships instead of ignoring them.</p>
         </div>
       </div>
     </div>
 
     <div class="case-block">
       <h3>Information Architecture &amp; Database Design</h3>
-      <p>I modeled the relationships connecting users, profiles, ensembles, gigs, applications,
-      recommendations, and professional networks, then translated that model into a relational
-      database — Users, Profiles, Network Connections, Ensembles, Ensemble Members, Gigs,
-      Applications, Media, and Recommendations — to validate that every feature could be
-      supported by a scalable backend.</p>
-      <img class="zoomable" src="conceptual-model.png" alt="Opus conceptual data model and relational database schema" style="width:100%; border:1px solid var(--line); border-radius:12px; margin-top:1.2rem;">
+      <p>I modeled the relationships connecting profiles, the network graph, ensembles and their
+      membership, gigs and applications, self-organized events, saved gigs, media, and peer
+      recommendations, then translated that model into a relational schema — <strong>Profiles</strong>
+      sits at the center, with <strong>Connections</strong> forming a self-referencing network graph,
+      <strong>Ensemble Members</strong> and <strong>Applications</strong> as many-to-many join tables,
+      and <strong>Gigs</strong>, <strong>Events Organized</strong>, <strong>Ensembles</strong>,
+      <strong>Media</strong>, <strong>Saved Gigs</strong>, and <strong>Recommendations</strong> each
+      tracing back to the profile that owns, posted, or wrote them — to validate that every feature
+      in the prototype could be supported by a scalable backend.</p>
+      <img class="zoomable" src="conceptual-model.png" alt="Opus conceptual data model and relational database schema" style="width:100%; border:1px solid var(--line); margin-top:1.2rem;">
     </div>
 
     <div class="case-block">
       <h3>Interactive Prototype</h3>
-      <p>A working mockup of the Opus mobile experience — browse the gig board, view a
-      musician's profile, and see how ensemble booking and trust signals show up in the
-      interface. Scroll and tap within the frame below, or open it full-screen.</p>
-      <div style="margin-top:1.2rem; border:1px solid var(--line); border-radius:16px; overflow:hidden; background:#14161d;">
-        <iframe src="opus-prototype.html" title="Opus interactive prototype" style="width:100%; height:820px; border:0; display:block;" loading="lazy"></iframe>
+      <p>A working mockup of the Opus mobile experience — search and filter the gig board,
+      apply to a posting, organize your own event, browse a network-gated profile, and see
+      ensemble booking and trust signals show up throughout the interface. Scroll and tap
+      within the frame below, or open it full screen using the button in the top-right corner.</p>
+      <div id="protoEmbed" style="position:relative; margin-top:1.2rem; border:1px solid var(--line); overflow:hidden; background:#14161d;">
+        <button id="protoFullscreenBtn" onclick="toggleProtoFullscreen()" aria-label="Open prototype full screen"
+          style="position:absolute; top:14px; right:14px; z-index:10; width:38px; height:38px; background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.3); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s ease;"
+          onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'">
+          <svg id="protoFullscreenIcon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </button>
+        <iframe id="protoIframe" src="opus-prototype.html" title="Opus interactive prototype" allowfullscreen style="width:100%; height:1000px; border:0; display:block;" loading="lazy"></iframe>
       </div>
       <a href="opus-prototype.html" target="_blank" rel="noopener" class="back-link" style="margin-top:1rem; margin-bottom:0;">Open prototype in a new tab &rarr;</a>
     </div>
@@ -179,8 +214,8 @@
       <ul class="case-list">
         <li><strong>Build trust</strong> — recommendations, shared connections, and past
         collaborations help organizers hire with confidence.</li>
-        <li><strong>Reduce friction</strong> — discovery, applications, messaging, scheduling,
-        and payment tracking happen in one place.</li>
+        <li><strong>Reduce friction</strong> — discovery, applications, event organizing, and
+        network management happen in one place.</li>
         <li><strong>Support real hiring behavior</strong> — Opus makes existing professional
         relationships visible and useful, rather than ignoring them.</li>
       </ul>
@@ -189,9 +224,11 @@
     <div class="case-block">
       <h3>Reflection</h3>
       <p>This project deepened my understanding of designing marketplace products that serve two
-      distinct user groups with different goals, and gave me hands-on experience translating
-      product requirements into information architecture and relational database models. Next
-      steps I'd explore: built-in payment processing, verified references, calendar sync,
+      distinct user groups with different goals, and gave me hands-on experience translating a
+      growing product surface — search and filtering, event organizing, network-gated privacy,
+      a multi-step confirmation flow, multi-profile accounts — into information architecture and
+      a relational database model that could actually support it. Next steps I'd explore:
+      built-in payment processing, real phone verification, verified references, calendar sync,
       contract generation, AI-powered recommendations, and reputation scoring.</p>
     </div>
   </div>
@@ -210,5 +247,17 @@
 </footer>
 
 <script src="lightbox.js"></script>
+<script>
+  function toggleProtoFullscreen(){
+    var iframe = document.getElementById('protoIframe');
+    if(!document.fullscreenElement && !document.webkitFullscreenElement){
+      if(iframe.requestFullscreen){ iframe.requestFullscreen(); }
+      else if(iframe.webkitRequestFullscreen){ iframe.webkitRequestFullscreen(); }
+    } else {
+      if(document.exitFullscreen){ document.exitFullscreen(); }
+      else if(document.webkitExitFullscreen){ document.webkitExitFullscreen(); }
+    }
+  }
+</script>
 </body>
 </html>
