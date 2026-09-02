@@ -275,6 +275,8 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .spec-row span:first-child{ color:var(--brown); flex-shrink:0; }
 .spec-row span:last-child{ text-align:right; }
+.spec-row span:last-child a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
+.spec-row span:last-child a:hover{ color:var(--ink); }
 
 /* ---------- case study (Opus) ---------- */
 .case-study{ background:var(--paper); border:1px solid var(--line); border-radius:0; padding:2.6rem; margin-top:0.5rem; box-shadow:0 8px 24px rgba(181,69,31,0.08); }
