@@ -97,6 +97,7 @@
           </g>
         </svg>
         <div class="platter-target" id="platterTarget"></div>
+        <div class="platter-center" id="platterCenter"></div>
         <div class="music-notes" id="musicNotes">
           <span class="note n1">&#9834;</span>
           <span class="note n2">&#9833;</span>
@@ -246,6 +247,7 @@
   var wall = document.getElementById('vinylWall');
   var turntableWrap = document.getElementById('turntableWrap');
   var platterTarget = document.getElementById('platterTarget');
+  var platterCenter = document.getElementById('platterCenter');
   var tonearm = document.getElementById('tonearm');
   var audio = document.getElementById('vinylAudio');
   var records = Array.prototype.slice.call(document.querySelectorAll('.vinyl-record'));
@@ -331,9 +333,10 @@
   function snapToPlatter(rec){
     var stationRect = station.getBoundingClientRect();
     var t = platterTarget.getBoundingClientRect();
+    var pc = platterCenter.getBoundingClientRect();
     var newSize = t.width * 0.92;
-    var centerX = t.left + t.width/2 - stationRect.left;
-    var centerY = t.top + t.height/2 - stationRect.top;
+    var centerX = pc.left - stationRect.left;
+    var centerY = pc.top - stationRect.top;
     rec.style.transition = 'left 0.3s ease, top 0.3s ease, transform 0.3s ease, width 0.3s ease, height 0.3s ease';
     rec.style.width = newSize + 'px';
     rec.style.height = newSize + 'px';
