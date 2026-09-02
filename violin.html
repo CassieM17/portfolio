@@ -56,25 +56,25 @@
 
     <div class="vinyl-station" id="vinylStation">
       <div class="vinyl-wall" id="vinylWall">
-        <div class="vinyl-record" data-title="Bartok Violin Concerto No. 2" data-src="" style="left:0px; top:10px; z-index:5;">
+        <div class="vinyl-record" data-title="Paganini Caprice No. 9" data-src="paganini-caprice-9.mp3" style="z-index:5;">
           <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
-          <div class="vinyl-label-popup">Bartok Violin Concerto No. 2</div>
+          <div class="vinyl-label-popup">Paganini Caprice No. 9</div>
         </div>
-        <div class="vinyl-record" data-title="Mendelssohn" data-src="" style="left:54px; top:0px; z-index:4;">
+        <div class="vinyl-record" data-title="Sibelius Violin Concerto" data-src="sibelius-violin-concerto.mp3" style="z-index:4;">
           <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
-          <div class="vinyl-label-popup">Mendelssohn</div>
+          <div class="vinyl-label-popup">Sibelius Violin Concerto</div>
         </div>
-        <div class="vinyl-record" data-title="Bach" data-src="" style="left:108px; top:14px; z-index:3;">
+        <div class="vinyl-record" data-title="Debussy String Quartet" data-src="debussy-string-quartet.mp3" style="z-index:3;">
           <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
-          <div class="vinyl-label-popup">Bach</div>
+          <div class="vinyl-label-popup">Debussy String Quartet</div>
         </div>
-        <div class="vinyl-record" data-title="Cafe Music" data-src="" style="left:162px; top:2px; z-index:2;">
+        <div class="vinyl-record" data-title="Glazunov Violin Concerto" data-src="glazunov-violin-concerto.mp3" style="z-index:2;">
           <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
-          <div class="vinyl-label-popup">Cafe Music</div>
+          <div class="vinyl-label-popup">Glazunov Violin Concerto</div>
         </div>
-        <div class="vinyl-record" data-title="Paganini" data-src="" style="left:216px; top:12px; z-index:1;">
+        <div class="vinyl-record" data-title="Beethoven Sonata No. 8" data-src="beethoven-sonata-8.mp3" style="z-index:1;">
           <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
-          <div class="vinyl-label-popup">Paganini</div>
+          <div class="vinyl-label-popup">Beethoven Sonata No. 8</div>
         </div>
       </div>
 
@@ -86,14 +86,21 @@
           <ellipse cx="175" cy="140" rx="70" ry="19" fill="none" stroke="#3a3a3a" stroke-width="1"/>
           <ellipse cx="175" cy="140" rx="40" ry="11" fill="none" stroke="#3a3a3a" stroke-width="1"/>
           <circle cx="175" cy="140" r="5" fill="#c9a35a"/>
-          <rect x="312" y="166" width="20" height="12" rx="2" fill="#2a2a2a"/>
+          <rect x="286" y="76" width="24" height="14" rx="3" fill="#2a2a2a"/>
           <g id="tonearm" class="tonearm">
-            <line x1="300" y1="90" x2="322" y2="172" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="300" cy="90" r="11" fill="#2a2a2a"/>
-            <circle cx="322" cy="172" r="5" fill="#2a2a2a"/>
+            <line x1="322" y1="172" x2="300" y2="90" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="322" cy="172" r="6" fill="#2a2a2a"/>
+            <circle cx="300" cy="90" r="12" fill="#2a2a2a"/>
           </g>
         </svg>
         <div class="platter-target" id="platterTarget"></div>
+        <div class="music-notes" id="musicNotes">
+          <span class="note n1">&#9834;</span>
+          <span class="note n2">&#9833;</span>
+          <span class="note n3">&#9834;</span>
+          <span class="note n4">&#9833;</span>
+          <span class="note n5">&#9834;</span>
+        </div>
       </div>
       <div class="vinyl-hint">drag a record onto the turntable, then click the tonearm to play</div>
       <audio id="vinylAudio"></audio>
@@ -233,6 +240,8 @@
 (function(){
   var station = document.getElementById('vinylStation');
   if(!station) return;
+  var wall = document.getElementById('vinylWall');
+  var turntableWrap = document.getElementById('turntableWrap');
   var platterTarget = document.getElementById('platterTarget');
   var tonearm = document.getElementById('tonearm');
   var audio = document.getElementById('vinylAudio');
@@ -242,9 +251,29 @@
   var isPlaying = false;
   var dragging = null;
 
+  var RECORD_SIZE = 90;
+  var STRIDE = 60;
+  var TOPS = [10, 0, 14, 2, 12];
+
+  function layoutRecords(){
+    var wallWidth = wall.offsetWidth;
+    var centerX = wallWidth / 2;
+    var radius = RECORD_SIZE / 2;
+    records.forEach(function(rec, i){
+      var offsetFromCenter = (i - 2) * STRIDE;
+      var left = centerX + offsetFromCenter - radius;
+      var top = TOPS[i];
+      if(dragging && dragging.rec === rec) return;
+      rec.style.left = left + 'px';
+      rec.style.top = top + 'px';
+      rec.dataset.homeLeft = left;
+      rec.dataset.homeTop = top;
+    });
+  }
+  layoutRecords();
+  window.addEventListener('resize', layoutRecords);
+
   records.forEach(function(rec){
-    rec.dataset.homeLeft = parseFloat(rec.style.left);
-    rec.dataset.homeTop = parseFloat(rec.style.top);
     rec.dataset.homeZ = rec.style.zIndex;
 
     rec.addEventListener('pointerdown', function(e){
@@ -324,6 +353,7 @@
   function startPlayback(){
     isPlaying = true;
     tonearm.classList.add('playing');
+    turntableWrap.classList.add('playing');
     loadedRecord.classList.add('spinning');
     var src = loadedRecord.dataset.src;
     if(src){
@@ -336,6 +366,7 @@
   function stopPlayback(){
     isPlaying = false;
     tonearm.classList.remove('playing');
+    turntableWrap.classList.remove('playing');
     if(loadedRecord){ loadedRecord.classList.remove('spinning'); }
     audio.pause();
   }

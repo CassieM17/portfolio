@@ -318,9 +318,9 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 /* ---------- vinyl station: hanging records + turntable ---------- */
 .portrait-col{ display:flex; flex-direction:column; }
 .vinyl-station{ position:relative; margin-top:1.6rem; }
-.vinyl-wall{ position:relative; height:150px; }
+.vinyl-wall{ position:relative; height:124px; }
 .vinyl-record{
-  position:absolute; width:82px; height:82px; cursor:grab; touch-action:none;
+  position:absolute; width:90px; height:90px; cursor:grab; touch-action:none;
   transition:transform 0.2s ease, box-shadow 0.2s ease;
 }
 .vinyl-record:hover:not(.dragging){ transform:scale(1.14); z-index:80 !important; }
@@ -347,11 +347,34 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .vinyl-record:hover .vinyl-label-popup{ opacity:1; }
 
-.turntable-wrap{ position:relative; width:100%; margin-top:0.6rem; }
+.turntable-wrap{ position:relative; width:100%; margin-top:0.25rem; }
 .turntable-svg{ width:100%; height:auto; display:block; }
 .platter-target{ position:absolute; left:16.7%; top:51.4%; width:63.9%; height:30.5%; }
-.tonearm{ cursor:pointer; transform-origin:300px 90px; transition:transform 0.45s ease; }
-.tonearm.playing{ transform:rotate(65deg); }
+.tonearm{
+  cursor:pointer; transform-origin:322px 172px; transition:transform 0.45s ease;
+  transform:rotate(var(--tonearm-rot, 0deg)) scale(var(--tonearm-scale, 1));
+}
+.tonearm:hover{ --tonearm-scale:1.1; }
+.tonearm.playing{ --tonearm-rot:-58deg; }
+
+.music-notes{
+  position:absolute; left:65.3%; top:52%; width:0; height:0; display:none; pointer-events:none;
+}
+.turntable-wrap.playing .music-notes{ display:block; }
+.music-notes .note{
+  position:absolute; left:0; top:0; font-size:1.1rem; color:var(--brown); opacity:0;
+}
+.music-notes .n1{ animation:noteFan1 2.1s ease-out infinite; animation-delay:0s; }
+.music-notes .n2{ animation:noteFan2 2.3s ease-out infinite; animation-delay:0.4s; }
+.music-notes .n3{ animation:noteFan3 2s ease-out infinite; animation-delay:0.8s; }
+.music-notes .n4{ animation:noteFan4 2.4s ease-out infinite; animation-delay:1.2s; }
+.music-notes .n5{ animation:noteFan5 2.2s ease-out infinite; animation-delay:1.6s; }
+@keyframes noteFan1{ 0%{ transform:translate(0,0) scale(0.6); opacity:0; } 15%{ opacity:1; } 100%{ transform:translate(-38px,-58px) scale(1.15); opacity:0; } }
+@keyframes noteFan2{ 0%{ transform:translate(0,0) scale(0.6); opacity:0; } 15%{ opacity:1; } 100%{ transform:translate(-16px,-66px) scale(1.15); opacity:0; } }
+@keyframes noteFan3{ 0%{ transform:translate(0,0) scale(0.6); opacity:0; } 15%{ opacity:1; } 100%{ transform:translate(4px,-70px) scale(1.15); opacity:0; } }
+@keyframes noteFan4{ 0%{ transform:translate(0,0) scale(0.6); opacity:0; } 15%{ opacity:1; } 100%{ transform:translate(24px,-64px) scale(1.15); opacity:0; } }
+@keyframes noteFan5{ 0%{ transform:translate(0,0) scale(0.6); opacity:0; } 15%{ opacity:1; } 100%{ transform:translate(42px,-56px) scale(1.15); opacity:0; } }
+
 .vinyl-hint{
   font-family:'IBM Plex Mono'; font-size:0.68rem; color:var(--brown); opacity:0.8;
   margin-top:0.7rem; text-align:center;
