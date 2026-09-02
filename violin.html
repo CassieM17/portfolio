@@ -103,7 +103,7 @@
           <span class="note n5">&#9834;</span>
         </div>
       </div>
-      <div class="vinyl-hint">drag a record onto the turntable, then click the tonearm to play</div>
+      <div class="vinyl-hint">drag a record onto the turntable, then click the tonearm to start/stop</div>
       <audio id="vinylAudio"></audio>
     </div>
     </div>
@@ -271,10 +271,29 @@
       rec.dataset.homeTop = top;
     });
   }
+  function repositionLoadedRecord(){
+    if(!loadedRecord) return;
+    var stationRect = station.getBoundingClientRect();
+    var svgRect = turntableBase.getBoundingClientRect();
+    var platterWidth = (230/360) * svgRect.width;
+    var newSize = platterWidth * 0.92;
+    var centerX = svgRect.left + (175/360)*svgRect.width - stationRect.left;
+    var centerY = svgRect.top + (140/210)*svgRect.height - stationRect.top;
+    loadedRecord.style.width = newSize + 'px';
+    loadedRecord.style.height = newSize + 'px';
+    loadedRecord.style.left = (centerX - newSize/2) + 'px';
+    loadedRecord.style.top = (centerY - newSize/2) + 'px';
+  }
   layoutRecords();
-  window.addEventListener('resize', layoutRecords);
+  window.addEventListener('resize', function(){
+    layoutRecords();
+    repositionLoadedRecord();
+  });
   if(document.fonts && document.fonts.ready){
-    document.fonts.ready.then(layoutRecords);
+    document.fonts.ready.then(function(){
+      layoutRecords();
+      repositionLoadedRecord();
+    });
   }
 
   records.forEach(function(rec){
