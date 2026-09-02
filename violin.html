@@ -57,23 +57,23 @@
     <div class="vinyl-station" id="vinylStation">
       <div class="vinyl-wall" id="vinylWall">
         <div class="vinyl-record" data-title="Paganini Caprice No. 9" data-src="paganini-caprice-9.mp3" style="z-index:5;">
-          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
           <div class="vinyl-label-popup">Paganini Caprice No. 9</div>
         </div>
         <div class="vinyl-record" data-title="Sibelius Violin Concerto" data-src="sibelius-violin-concerto.mp3" style="z-index:4;">
-          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
           <div class="vinyl-label-popup">Sibelius Violin Concerto</div>
         </div>
         <div class="vinyl-record" data-title="Debussy String Quartet" data-src="debussy-string-quartet.mp3" style="z-index:3;">
-          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
           <div class="vinyl-label-popup">Debussy String Quartet</div>
         </div>
         <div class="vinyl-record" data-title="Glazunov Violin Concerto" data-src="glazunov-violin-concerto.mp3" style="z-index:2;">
-          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
           <div class="vinyl-label-popup">Glazunov Violin Concerto</div>
         </div>
         <div class="vinyl-record" data-title="Beethoven Sonata No. 8" data-src="beethoven-sonata-8.mp3" style="z-index:1;">
-          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
           <div class="vinyl-label-popup">Beethoven Sonata No. 8</div>
         </div>
       </div>
@@ -325,11 +325,14 @@
   function snapToPlatter(rec){
     var stationRect = station.getBoundingClientRect();
     var t = platterTarget.getBoundingClientRect();
+    var newSize = t.width * 0.92;
     var centerX = t.left + t.width/2 - stationRect.left;
     var centerY = t.top + t.height/2 - stationRect.top;
-    rec.style.transition = 'left 0.3s ease, top 0.3s ease, transform 0.3s ease';
-    rec.style.left = (centerX - rec.offsetWidth/2) + 'px';
-    rec.style.top = (centerY - rec.offsetHeight/2) + 'px';
+    rec.style.transition = 'left 0.3s ease, top 0.3s ease, transform 0.3s ease, width 0.3s ease, height 0.3s ease';
+    rec.style.width = newSize + 'px';
+    rec.style.height = newSize + 'px';
+    rec.style.left = (centerX - newSize/2) + 'px';
+    rec.style.top = (centerY - newSize/2) + 'px';
     rec.classList.add('on-platter');
     rec.style.zIndex = 60;
     loadedRecord = rec;
@@ -337,7 +340,9 @@
   }
 
   function snapHome(rec){
-    rec.style.transition = 'left 0.35s ease, top 0.35s ease, transform 0.35s ease';
+    rec.style.transition = 'left 0.35s ease, top 0.35s ease, transform 0.35s ease, width 0.35s ease, height 0.35s ease';
+    rec.style.width = RECORD_SIZE + 'px';
+    rec.style.height = RECORD_SIZE + 'px';
     rec.style.left = rec.dataset.homeLeft + 'px';
     rec.style.top = rec.dataset.homeTop + 'px';
     rec.classList.remove('on-platter');

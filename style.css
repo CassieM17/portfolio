@@ -325,7 +325,8 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .vinyl-record:hover:not(.dragging):not(.on-platter){ transform:scale(1.14); z-index:80 !important; }
 .vinyl-record.dragging{ transition:none; cursor:grabbing; z-index:200 !important; }
-.vinyl-record.on-platter{ transform:scaleY(0.34); }
+.vinyl-squash{ width:100%; height:100%; transition:transform 0.3s ease; }
+.vinyl-record.on-platter .vinyl-squash{ transform:scaleY(0.34); }
 .vinyl-disc{
   width:100%; height:100%; border-radius:50%;
   background:
@@ -334,11 +335,21 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   position:relative;
 }
 .vinyl-record.spinning .vinyl-disc{ animation:vinylSpin 2.6s linear infinite; }
+.vinyl-record.spinning .vinyl-disc::after{
+  content:''; position:absolute; inset:0; border-radius:50%; pointer-events:none;
+  background: conic-gradient(from 0deg,
+    transparent 0deg, rgba(210,210,210,0.4) 6deg, transparent 18deg,
+    transparent 140deg, rgba(210,210,210,0.28) 150deg, transparent 165deg,
+    transparent 250deg, rgba(210,210,210,0.32) 258deg, transparent 270deg,
+    transparent 360deg);
+}
 @keyframes vinylSpin{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
 .vinyl-center{
   position:absolute; top:50%; left:50%; width:34%; height:34%; transform:translate(-50%,-50%);
   border-radius:50%; background:var(--brown); display:flex; align-items:center; justify-content:center;
+  transition:background 0.4s ease;
 }
+.vinyl-record.spinning .vinyl-center{ background:#8A8E8D; }
 .vinyl-spindle-hole{ width:5px; height:5px; border-radius:50%; background:#0A0A0A; display:block; }
 .vinyl-label-popup{
   position:absolute; bottom:106%; left:50%; transform:translateX(-50%);
