@@ -96,8 +96,6 @@
             <circle id="tonearmHead" cx="300" cy="90" r="12" fill="var(--brown)"/>
           </g>
         </svg>
-        <div class="platter-target" id="platterTarget"></div>
-        <div class="platter-center" id="platterCenter"></div>
         <div class="music-notes" id="musicNotes">
           <span class="note n1">&#9834;</span>
           <span class="note n2">&#9833;</span>
@@ -246,8 +244,7 @@
   if(!station) return;
   var wall = document.getElementById('vinylWall');
   var turntableWrap = document.getElementById('turntableWrap');
-  var platterTarget = document.getElementById('platterTarget');
-  var platterCenter = document.getElementById('platterCenter');
+  var turntableBase = document.querySelector('.turntable-base');
   var tonearm = document.getElementById('tonearm');
   var audio = document.getElementById('vinylAudio');
   var records = Array.prototype.slice.call(document.querySelectorAll('.vinyl-record'));
@@ -317,8 +314,12 @@
       var recRect = rec.getBoundingClientRect();
       var cx = recRect.left + recRect.width/2;
       var cy = recRect.top + recRect.height/2;
-      var t = platterTarget.getBoundingClientRect();
-      var overPlatter = cx >= t.left && cx <= t.right && cy >= t.top && cy <= t.bottom;
+      var svgRect = turntableBase.getBoundingClientRect();
+      var pLeft = svgRect.left + (60/360)*svgRect.width;
+      var pRight = svgRect.left + (290/360)*svgRect.width;
+      var pTop = svgRect.top + (108/210)*svgRect.height;
+      var pBottom = svgRect.top + (172/210)*svgRect.height;
+      var overPlatter = cx >= pLeft && cx <= pRight && cy >= pTop && cy <= pBottom;
 
       if(overPlatter && !loadedRecord){
         snapToPlatter(rec);
@@ -332,11 +333,11 @@
 
   function snapToPlatter(rec){
     var stationRect = station.getBoundingClientRect();
-    var t = platterTarget.getBoundingClientRect();
-    var pc = platterCenter.getBoundingClientRect();
-    var newSize = t.width * 0.92;
-    var centerX = pc.left - stationRect.left;
-    var centerY = pc.top - stationRect.top;
+    var svgRect = turntableBase.getBoundingClientRect();
+    var platterWidth = (230/360) * svgRect.width;
+    var newSize = platterWidth * 0.92;
+    var centerX = svgRect.left + (175/360)*svgRect.width - stationRect.left;
+    var centerY = svgRect.top + (140/210)*svgRect.height - stationRect.top;
     rec.style.transition = 'left 0.3s ease, top 0.3s ease, transform 0.3s ease, width 0.3s ease, height 0.3s ease';
     rec.style.width = newSize + 'px';
     rec.style.height = newSize + 'px';

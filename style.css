@@ -368,8 +368,6 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .turntable-svg{ width:100%; height:auto; display:block; }
 .turntable-base{ position:relative; z-index:1; }
 .turntable-arm-layer{ position:absolute; inset:0; z-index:100; pointer-events:none; }
-.platter-target{ position:absolute; left:16.7%; top:51.4%; width:63.9%; height:30.5%; pointer-events:none; }
-.platter-center{ position:absolute; left:48.6111%; top:66.6667%; width:0; height:0; pointer-events:none; }
 .tonearm{
   transform-origin:322px 172px; transition:transform 0.45s ease;
   transform:rotate(var(--tonearm-rot, 0deg));
