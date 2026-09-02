@@ -314,6 +314,48 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .portrait-frame img{ width:100%; height:100%; display:block; object-fit:cover; aspect-ratio:3/4; }
 .bio p{ line-height:1.75; opacity:0.85; font-size:0.98rem; }
+
+/* ---------- vinyl station: hanging records + turntable ---------- */
+.portrait-col{ display:flex; flex-direction:column; }
+.vinyl-station{ position:relative; margin-top:1.6rem; }
+.vinyl-wall{ position:relative; height:150px; }
+.vinyl-record{
+  position:absolute; width:82px; height:82px; cursor:grab; touch-action:none;
+  transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+.vinyl-record:hover:not(.dragging){ transform:scale(1.14); z-index:80 !important; }
+.vinyl-record.dragging{ transition:none; cursor:grabbing; z-index:200 !important; }
+.vinyl-disc{
+  width:100%; height:100%; border-radius:50%;
+  background:
+    repeating-radial-gradient(circle at center, #0A0A0A 0px, #0A0A0A 2px, #1c1c1c 3px, #0A0A0A 4px);
+  box-shadow:0 6px 16px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.08);
+  position:relative;
+}
+.vinyl-record.spinning .vinyl-disc{ animation:vinylSpin 2.6s linear infinite; }
+@keyframes vinylSpin{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+.vinyl-center{
+  position:absolute; top:50%; left:50%; width:34%; height:34%; transform:translate(-50%,-50%);
+  border-radius:50%; background:var(--brown); display:flex; align-items:center; justify-content:center;
+}
+.vinyl-spindle-hole{ width:5px; height:5px; border-radius:50%; background:#0A0A0A; display:block; }
+.vinyl-label-popup{
+  position:absolute; bottom:106%; left:50%; transform:translateX(-50%);
+  background:var(--ink); color:var(--white); font-family:'IBM Plex Mono'; font-size:0.65rem;
+  padding:0.3rem 0.6rem; white-space:nowrap; opacity:0; pointer-events:none;
+  transition:opacity 0.2s ease; z-index:90;
+}
+.vinyl-record:hover .vinyl-label-popup{ opacity:1; }
+
+.turntable-wrap{ position:relative; width:100%; margin-top:0.6rem; }
+.turntable-svg{ width:100%; height:auto; display:block; }
+.platter-target{ position:absolute; left:16.7%; top:51.4%; width:63.9%; height:30.5%; }
+.tonearm{ cursor:pointer; transform-origin:300px 90px; transition:transform 0.45s ease; }
+.tonearm.playing{ transform:rotate(65deg); }
+.vinyl-hint{
+  font-family:'IBM Plex Mono'; font-size:0.68rem; color:var(--brown); opacity:0.8;
+  margin-top:0.7rem; text-align:center;
+}
 .bio p + p{ margin-top:1.15rem; }
 
 .awards{ list-style:none; margin-top:1.2rem; }

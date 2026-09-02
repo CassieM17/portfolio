@@ -49,9 +49,57 @@
 
 <section>
   <div class="violin-grid">
+    <div class="portrait-col">
     <div class="portrait-frame">
       <img src="headshot.jpeg" alt="Cassandra May holding a violin">
     </div>
+
+    <div class="vinyl-station" id="vinylStation">
+      <div class="vinyl-wall" id="vinylWall">
+        <div class="vinyl-record" data-title="Bartok Violin Concerto No. 2" data-src="" style="left:0px; top:10px; z-index:5;">
+          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-label-popup">Bartok Violin Concerto No. 2</div>
+        </div>
+        <div class="vinyl-record" data-title="Mendelssohn" data-src="" style="left:54px; top:0px; z-index:4;">
+          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-label-popup">Mendelssohn</div>
+        </div>
+        <div class="vinyl-record" data-title="Bach" data-src="" style="left:108px; top:14px; z-index:3;">
+          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-label-popup">Bach</div>
+        </div>
+        <div class="vinyl-record" data-title="Cafe Music" data-src="" style="left:162px; top:2px; z-index:2;">
+          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-label-popup">Cafe Music</div>
+        </div>
+        <div class="vinyl-record" data-title="Paganini" data-src="" style="left:216px; top:12px; z-index:1;">
+          <div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div>
+          <div class="vinyl-label-popup">Paganini</div>
+        </div>
+      </div>
+
+      <div class="turntable-wrap" id="turntableWrap">
+        <svg class="turntable-svg" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="15" y="140" width="330" height="55" rx="6" fill="#17130F"/>
+          <rect x="15" y="140" width="330" height="4" fill="var(--brown)"/>
+          <ellipse cx="175" cy="140" rx="115" ry="32" fill="#1c1c1c" stroke="var(--brown)" stroke-width="1"/>
+          <ellipse cx="175" cy="140" rx="70" ry="19" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+          <ellipse cx="175" cy="140" rx="40" ry="11" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+          <circle cx="175" cy="140" r="5" fill="#c9a35a"/>
+          <rect x="312" y="166" width="20" height="12" rx="2" fill="#2a2a2a"/>
+          <g id="tonearm" class="tonearm">
+            <line x1="300" y1="90" x2="322" y2="172" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="300" cy="90" r="11" fill="#2a2a2a"/>
+            <circle cx="322" cy="172" r="5" fill="#2a2a2a"/>
+          </g>
+        </svg>
+        <div class="platter-target" id="platterTarget"></div>
+      </div>
+      <div class="vinyl-hint">drag a record onto the turntable, then click the tonearm to play</div>
+      <audio id="vinylAudio"></audio>
+    </div>
+    </div>
+
     <div>
       <div class="bio">
         <p>Cassandra May holds a BFA in Violin Performance from Carnegie Mellon University,
@@ -181,5 +229,119 @@
 </footer>
 
 <script src="lightbox.js"></script>
+<script>
+(function(){
+  var station = document.getElementById('vinylStation');
+  if(!station) return;
+  var platterTarget = document.getElementById('platterTarget');
+  var tonearm = document.getElementById('tonearm');
+  var audio = document.getElementById('vinylAudio');
+  var records = Array.prototype.slice.call(document.querySelectorAll('.vinyl-record'));
+
+  var loadedRecord = null;
+  var isPlaying = false;
+  var dragging = null;
+
+  records.forEach(function(rec){
+    rec.dataset.homeLeft = parseFloat(rec.style.left);
+    rec.dataset.homeTop = parseFloat(rec.style.top);
+    rec.dataset.homeZ = rec.style.zIndex;
+
+    rec.addEventListener('pointerdown', function(e){
+      e.preventDefault();
+      rec.setPointerCapture(e.pointerId);
+      var rect = rec.getBoundingClientRect();
+      dragging = {
+        rec: rec,
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top
+      };
+      rec.classList.add('dragging');
+      if(loadedRecord === rec){
+        stopPlayback();
+        rec.classList.remove('on-platter');
+        loadedRecord = null;
+      }
+    });
+
+    rec.addEventListener('pointermove', function(e){
+      if(!dragging || dragging.rec !== rec) return;
+      var stationRect = station.getBoundingClientRect();
+      rec.style.left = (e.clientX - stationRect.left - dragging.offsetX) + 'px';
+      rec.style.top = (e.clientY - stationRect.top - dragging.offsetY) + 'px';
+    });
+
+    function endDrag(e){
+      if(!dragging || dragging.rec !== rec) return;
+      try{ rec.releasePointerCapture(e.pointerId); }catch(err){}
+      rec.classList.remove('dragging');
+      dragging = null;
+
+      var recRect = rec.getBoundingClientRect();
+      var cx = recRect.left + recRect.width/2;
+      var cy = recRect.top + recRect.height/2;
+      var t = platterTarget.getBoundingClientRect();
+      var overPlatter = cx >= t.left && cx <= t.right && cy >= t.top && cy <= t.bottom;
+
+      if(overPlatter && !loadedRecord){
+        snapToPlatter(rec);
+      } else {
+        snapHome(rec);
+      }
+    }
+    rec.addEventListener('pointerup', endDrag);
+    rec.addEventListener('pointercancel', endDrag);
+  });
+
+  function snapToPlatter(rec){
+    var stationRect = station.getBoundingClientRect();
+    var t = platterTarget.getBoundingClientRect();
+    var centerX = t.left + t.width/2 - stationRect.left;
+    var centerY = t.top + t.height/2 - stationRect.top;
+    rec.style.transition = 'left 0.3s ease, top 0.3s ease';
+    rec.style.left = (centerX - rec.offsetWidth/2) + 'px';
+    rec.style.top = (centerY - rec.offsetHeight/2) + 'px';
+    rec.classList.add('on-platter');
+    rec.style.zIndex = 60;
+    loadedRecord = rec;
+    setTimeout(function(){ rec.style.transition = ''; }, 320);
+  }
+
+  function snapHome(rec){
+    rec.style.transition = 'left 0.35s ease, top 0.35s ease';
+    rec.style.left = rec.dataset.homeLeft + 'px';
+    rec.style.top = rec.dataset.homeTop + 'px';
+    rec.classList.remove('on-platter');
+    rec.style.zIndex = rec.dataset.homeZ;
+    setTimeout(function(){ rec.style.transition = ''; }, 380);
+  }
+
+  tonearm.addEventListener('click', function(){
+    if(!loadedRecord) return;
+    if(isPlaying){ stopPlayback(); } else { startPlayback(); }
+  });
+
+  function startPlayback(){
+    isPlaying = true;
+    tonearm.classList.add('playing');
+    loadedRecord.classList.add('spinning');
+    var src = loadedRecord.dataset.src;
+    if(src){
+      audio.src = src;
+      audio.currentTime = 0;
+      audio.play().catch(function(){});
+    }
+  }
+
+  function stopPlayback(){
+    isPlaying = false;
+    tonearm.classList.remove('playing');
+    if(loadedRecord){ loadedRecord.classList.remove('spinning'); }
+    audio.pause();
+  }
+
+  window.addEventListener('pagehide', stopPlayback);
+})();
+</script>
 </body>
 </html>
