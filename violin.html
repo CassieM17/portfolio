@@ -90,7 +90,7 @@
           <g id="tonearm" class="tonearm">
             <line x1="322" y1="172" x2="300" y2="90" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
             <circle cx="322" cy="172" r="6" fill="#2a2a2a"/>
-            <circle cx="300" cy="90" r="12" fill="#2a2a2a"/>
+            <circle id="tonearmHead" cx="300" cy="90" r="12" fill="#2a2a2a"/>
           </g>
         </svg>
         <div class="platter-target" id="platterTarget"></div>
@@ -327,7 +327,7 @@
     var t = platterTarget.getBoundingClientRect();
     var centerX = t.left + t.width/2 - stationRect.left;
     var centerY = t.top + t.height/2 - stationRect.top;
-    rec.style.transition = 'left 0.3s ease, top 0.3s ease';
+    rec.style.transition = 'left 0.3s ease, top 0.3s ease, transform 0.3s ease';
     rec.style.left = (centerX - rec.offsetWidth/2) + 'px';
     rec.style.top = (centerY - rec.offsetHeight/2) + 'px';
     rec.classList.add('on-platter');
@@ -337,7 +337,7 @@
   }
 
   function snapHome(rec){
-    rec.style.transition = 'left 0.35s ease, top 0.35s ease';
+    rec.style.transition = 'left 0.35s ease, top 0.35s ease, transform 0.35s ease';
     rec.style.left = rec.dataset.homeLeft + 'px';
     rec.style.top = rec.dataset.homeTop + 'px';
     rec.classList.remove('on-platter');
@@ -345,7 +345,7 @@
     setTimeout(function(){ rec.style.transition = ''; }, 380);
   }
 
-  tonearm.addEventListener('click', function(){
+  turntableWrap.addEventListener('click', function(){
     if(!loadedRecord) return;
     if(isPlaying){ stopPlayback(); } else { startPlayback(); }
   });

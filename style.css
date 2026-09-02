@@ -318,13 +318,14 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 /* ---------- vinyl station: hanging records + turntable ---------- */
 .portrait-col{ display:flex; flex-direction:column; }
 .vinyl-station{ position:relative; margin-top:1.6rem; }
-.vinyl-wall{ position:relative; height:124px; }
+.vinyl-wall{ position:relative; height:112px; }
 .vinyl-record{
   position:absolute; width:90px; height:90px; cursor:grab; touch-action:none;
   transition:transform 0.2s ease, box-shadow 0.2s ease;
 }
-.vinyl-record:hover:not(.dragging){ transform:scale(1.14); z-index:80 !important; }
+.vinyl-record:hover:not(.dragging):not(.on-platter){ transform:scale(1.14); z-index:80 !important; }
 .vinyl-record.dragging{ transition:none; cursor:grabbing; z-index:200 !important; }
+.vinyl-record.on-platter{ transform:scaleY(0.34); }
 .vinyl-disc{
   width:100%; height:100%; border-radius:50%;
   background:
@@ -347,15 +348,16 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .vinyl-record:hover .vinyl-label-popup{ opacity:1; }
 
-.turntable-wrap{ position:relative; width:100%; margin-top:0.25rem; }
+.turntable-wrap{ position:relative; width:100%; margin-top:0.1rem; cursor:pointer; }
 .turntable-svg{ width:100%; height:auto; display:block; }
-.platter-target{ position:absolute; left:16.7%; top:51.4%; width:63.9%; height:30.5%; }
+.platter-target{ position:absolute; left:16.7%; top:51.4%; width:63.9%; height:30.5%; pointer-events:none; }
 .tonearm{
-  cursor:pointer; transform-origin:322px 172px; transition:transform 0.45s ease;
-  transform:rotate(var(--tonearm-rot, 0deg)) scale(var(--tonearm-scale, 1));
+  transform-origin:322px 172px; transition:transform 0.45s ease;
+  transform:rotate(var(--tonearm-rot, 0deg));
 }
-.tonearm:hover{ --tonearm-scale:1.1; }
 .tonearm.playing{ --tonearm-rot:-58deg; }
+#tonearmHead{ transform-origin:300px 90px; transition:transform 0.25s ease; }
+.turntable-wrap:hover #tonearmHead{ transform:scale(1.18); }
 
 .music-notes{
   position:absolute; left:65.3%; top:52%; width:0; height:0; display:none; pointer-events:none;
@@ -377,7 +379,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 
 .vinyl-hint{
   font-family:'IBM Plex Mono'; font-size:0.68rem; color:var(--brown); opacity:0.8;
-  margin-top:0.7rem; text-align:center;
+  margin-top:0.5rem; text-align:center;
 }
 .bio p + p{ margin-top:1.15rem; }
 
