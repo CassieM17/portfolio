@@ -326,7 +326,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .vinyl-record:hover:not(.dragging):not(.on-platter){ transform:scale(1.14); z-index:80 !important; }
 .vinyl-record.dragging{ transition:none; cursor:grabbing; z-index:200 !important; }
 .vinyl-squash{ width:100%; height:100%; transition:transform 0.3s ease; }
-.vinyl-record.on-platter .vinyl-squash{ transform:scaleY(0.34); }
+.vinyl-record.on-platter .vinyl-squash{ transform:scaleY(0.28); }
 .vinyl-disc{
   width:100%; height:100%; border-radius:50%;
   background:
@@ -358,9 +358,12 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   transition:opacity 0.2s ease; z-index:90;
 }
 .vinyl-record:hover .vinyl-label-popup{ opacity:1; }
+.vinyl-record.on-platter .vinyl-label-popup{ opacity:1; bottom:auto; top:20%; }
 
-.turntable-wrap{ position:relative; width:100%; margin-top:0.1rem; cursor:pointer; }
+.turntable-wrap{ position:relative; width:100%; margin-top:-32px; cursor:pointer; }
 .turntable-svg{ width:100%; height:auto; display:block; }
+.turntable-base{ position:relative; z-index:1; }
+.turntable-arm-layer{ position:absolute; inset:0; z-index:100; pointer-events:none; }
 .platter-target{ position:absolute; left:16.7%; top:51.4%; width:63.9%; height:30.5%; pointer-events:none; }
 .tonearm{
   transform-origin:322px 172px; transition:transform 0.45s ease;
@@ -371,7 +374,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .turntable-wrap:hover #tonearmHead{ transform:scale(1.18); }
 
 .music-notes{
-  position:absolute; left:65.3%; top:52%; width:0; height:0; display:none; pointer-events:none;
+  position:absolute; left:65.3%; top:52%; width:0; height:0; display:none; pointer-events:none; z-index:110;
 }
 .turntable-wrap.playing .music-notes{ display:block; }
 .music-notes .note{

@@ -79,18 +79,20 @@
       </div>
 
       <div class="turntable-wrap" id="turntableWrap">
-        <svg class="turntable-svg" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg class="turntable-svg turntable-base" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <rect x="15" y="140" width="330" height="55" rx="6" fill="#17130F"/>
           <rect x="15" y="140" width="330" height="4" fill="var(--brown)"/>
           <ellipse cx="175" cy="140" rx="115" ry="32" fill="#1c1c1c" stroke="var(--brown)" stroke-width="1"/>
           <ellipse cx="175" cy="140" rx="70" ry="19" fill="none" stroke="#3a3a3a" stroke-width="1"/>
           <ellipse cx="175" cy="140" rx="40" ry="11" fill="none" stroke="#3a3a3a" stroke-width="1"/>
           <circle cx="175" cy="140" r="5" fill="#c9a35a"/>
-          <rect x="286" y="76" width="24" height="14" rx="3" fill="#2a2a2a"/>
+          <rect x="286" y="76" width="24" height="14" rx="3" fill="#8A6B69"/>
+        </svg>
+        <svg class="turntable-svg turntable-arm-layer" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <g id="tonearm" class="tonearm">
             <line x1="322" y1="172" x2="300" y2="90" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="322" cy="172" r="6" fill="#2a2a2a"/>
-            <circle id="tonearmHead" cx="300" cy="90" r="12" fill="#2a2a2a"/>
+            <circle cx="322" cy="172" r="6" fill="#8A6B69"/>
+            <circle id="tonearmHead" cx="300" cy="90" r="12" fill="#8A6B69"/>
           </g>
         </svg>
         <div class="platter-target" id="platterTarget"></div>
