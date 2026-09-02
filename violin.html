@@ -275,6 +275,9 @@
   }
   layoutRecords();
   window.addEventListener('resize', layoutRecords);
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(layoutRecords);
+  }
 
   records.forEach(function(rec){
     rec.dataset.homeZ = rec.style.zIndex;
