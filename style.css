@@ -277,6 +277,9 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .spec-row span:last-child{ text-align:right; }
 .spec-row span:last-child a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
 .spec-row span:last-child a:hover{ color:var(--ink); }
+a.spec-row{ transition:opacity 0.2s ease; }
+a.spec-row:hover{ opacity:0.6; }
+a.spec-row:hover span:first-child{ text-decoration:underline; text-underline-offset:2px; }
 
 /* ---------- case study (Opus) ---------- */
 .case-study{ background:var(--paper); border:1px solid var(--line); border-radius:0; padding:2.6rem; margin-top:0.5rem; box-shadow:0 8px 24px rgba(181,69,31,0.08); }
@@ -286,6 +289,8 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .case-meta div{ display:flex; flex-direction:column; gap:0.25rem; }
 .case-meta .l{ font-family:'IBM Plex Mono'; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.05em; opacity:0.55; }
 .case-meta .v{ font-family:'IBM Plex Mono'; font-size:0.78rem; }
+.case-meta .v a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
+.case-meta .v a:hover{ color:var(--ink); }
 
 .case-block{ margin-top:2.4rem; }
 .case-block h3{ font-family:'Anton', sans-serif; font-weight:600; font-size:1.35rem; margin-bottom:0.9rem; color:var(--brown); }
