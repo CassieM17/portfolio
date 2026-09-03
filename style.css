@@ -541,16 +541,15 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 }
 .carousel-wrap{ margin-top:0.8rem; }
 .carousel-viewport{
-  overflow-x:auto; overflow-y:hidden; cursor:grab; scroll-snap-type:x mandatory;
+  overflow-x:auto; overflow-y:hidden; cursor:grab;
   -webkit-overflow-scrolling:touch; padding-bottom:0.4rem;
 }
-.carousel-viewport.dragging{ cursor:grabbing; scroll-snap-type:none; user-select:none; }
+.carousel-viewport.dragging{ cursor:grabbing; user-select:none; }
 .carousel-viewport::-webkit-scrollbar{ height:5px; }
 .carousel-viewport::-webkit-scrollbar-track{ background:transparent; }
 .carousel-viewport::-webkit-scrollbar-thumb{ background:var(--line); border-radius:0; }
 .media-carousel-track{ display:flex; gap:1.4rem; width:max-content; }
-.carousel-item{ flex:0 0 220px; scroll-snap-align:start; display:flex; flex-direction:column; gap:0.6rem; }
-.carousel-item:last-child{ scroll-snap-align:end; }
+.carousel-item{ flex:0 0 220px; display:flex; flex-direction:column; gap:0.6rem; }
 @media (min-width:700px){ .carousel-item{ flex-basis:250px; } }
 .carousel-item .photo-box{
   width:100%; aspect-ratio:3/4; border-radius:0; overflow:hidden;
