@@ -291,7 +291,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .case-meta .v a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
 .case-meta .v a:hover{ color:var(--ink); }
 
-.case-block{ margin-top:2.4rem; }
+.case-block{ margin-top:1.5rem; }
 .case-block h3{ font-family:'Anton', sans-serif; font-weight:600; font-size:1.35rem; margin-bottom:0.9rem; color:var(--brown); }
 .case-block p{ font-size:0.96rem; line-height:1.7; opacity:0.85; }
 .case-block p + p{ margin-top:0.9rem; }
@@ -757,7 +757,7 @@ footer{ background:var(--brown-deep); color:var(--white); padding:3rem 2.4rem; m
 .term-tip:hover .tip-bubble, .term-tip:focus .tip-bubble{ opacity:1; visibility:visible; }
 
 /* ---------- case study preview strip (top of page) ---------- */
-.preview-strip{ display:flex; gap:1rem; margin:1.6rem 0 0.4rem; }
+.preview-strip{ display:flex; gap:1rem; margin:1rem 0 0.4rem; }
 .preview-strip img{
   flex:1; width:50%; border:1px solid var(--line); border-radius:0;
   box-shadow:0 8px 22px rgba(181,69,31,0.12);
