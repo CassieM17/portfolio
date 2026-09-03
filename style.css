@@ -284,10 +284,10 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .case-study{ background:var(--paper); border:1px solid var(--line); border-radius:0; padding:2.6rem; margin-top:0.5rem; box-shadow:0 8px 24px rgba(181,69,31,0.08); }
 .case-title{ font-family:'Anton', sans-serif; font-weight:600; font-size:1.9rem; }
 .case-question{ font-size:1.05rem; line-height:1.65; opacity:0.8; margin-top:0.9rem; max-width:680px; }
-.case-meta{ display:flex; gap:2.2rem; flex-wrap:wrap; margin-top:1.6rem; padding-top:1.4rem; border-top:1px solid var(--line); }
+.case-meta{ display:flex; gap:2.2rem; flex-wrap:wrap; margin-top:0.4rem; }
 .case-meta div{ display:flex; flex-direction:column; gap:0.25rem; }
-.case-meta .l{ font-family:'IBM Plex Mono'; font-size:0.6rem; text-transform:uppercase; letter-spacing:0.05em; opacity:0.55; }
-.case-meta .v{ font-family:'IBM Plex Mono'; font-size:0.78rem; }
+.case-meta .l{ font-family:'IBM Plex Mono'; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.05em; opacity:0.55; }
+.case-meta .v{ font-family:'IBM Plex Mono'; font-size:0.92rem; font-weight:500; color:var(--ink); }
 .case-meta .v a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
 .case-meta .v a:hover{ color:var(--ink); }
 
