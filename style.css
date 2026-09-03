@@ -750,7 +750,6 @@ footer{ background:var(--brown-deep); color:var(--white); padding:3rem 2.4rem; m
 .term-tip{
   text-decoration:underline; text-decoration-style:dotted; text-decoration-color:currentColor;
   text-decoration-thickness:1px; text-underline-offset:3px; cursor:help; position:relative;
-  z-index:500;
 }
 .tip-bubble{
   position:absolute; top:135%; left:0; width:230px; white-space:normal; line-height:1.4;
