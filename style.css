@@ -549,13 +549,13 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 .carousel-viewport::-webkit-scrollbar-track{ background:transparent; }
 .carousel-viewport::-webkit-scrollbar-thumb{ background:var(--line); border-radius:0; }
 .media-carousel-track{ display:flex; gap:1.4rem; width:max-content; }
-.carousel-item{ flex:0 0 220px; display:flex; flex-direction:column; gap:0.6rem; }
-@media (min-width:700px){ .carousel-item{ flex-basis:250px; } }
+.carousel-item{ flex:0 0 220px; width:220px; max-width:220px; min-width:0; display:flex; flex-direction:column; gap:0.6rem; }
+@media (min-width:700px){ .carousel-item{ flex-basis:250px; width:250px; max-width:250px; } }
 .carousel-item .photo-box{
-  width:100%; aspect-ratio:3/4; border-radius:0; overflow:hidden;
+  width:100%; max-width:100%; aspect-ratio:3/4; border-radius:0; overflow:hidden;
   border:1px solid var(--line); box-shadow:0 6px 18px rgba(181,69,31,0.1);
 }
-.carousel-item .photo-box img{ width:100%; height:100%; object-fit:cover; display:block; }
+.carousel-item .photo-box img{ width:100%; max-width:100%; height:100%; object-fit:cover; display:block; }
 .carousel-item .cap{ font-family:'IBM Plex Mono'; font-size:0.7rem; opacity:0.65; text-align:center; }
 
 .gallery-strip.two-col{ grid-template-columns:repeat(2, 1fr); }
