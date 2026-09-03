@@ -307,6 +307,17 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .case-list{ margin-top:0.6rem; padding-left:1.2rem; }
 .case-list li{ font-size:0.94rem; line-height:1.7; opacity:0.85; margin-bottom:0.3rem; }
 
+.case-expand{ margin-top:2.4rem; border-top:2px solid var(--ink); padding-top:1.4rem; }
+.case-expand summary{
+  font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.05em; text-transform:uppercase;
+  color:var(--brown); cursor:pointer; list-style:none; display:flex; align-items:center; gap:0.5rem;
+}
+.case-expand summary::-webkit-details-marker{ display:none; }
+.case-expand summary::before{ content:'+'; font-family:'Anton'; font-size:1rem; }
+.case-expand[open] summary::before{ content:'−'; }
+.case-expand-body{ margin-top:1.2rem; max-width:720px; }
+.case-expand-body p{ font-size:0.94rem; line-height:1.7; opacity:0.85; }
+
 /* ---------- violin page ---------- */
 .violin-grid{ display:grid; grid-template-columns:0.8fr 1.35fr; gap:3.2rem; align-items:start; }
 @media (max-width:760px){ .violin-grid{ grid-template-columns:1fr; } }
