@@ -269,16 +269,20 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .back-link:hover{ opacity:1; color:var(--blue-deep); }
 .spec-row{
-  display:flex; justify-content:space-between; gap:2rem; padding:0.9rem 0;
+  display:flex; justify-content:space-between; gap:1rem; padding:0.9rem 0;
   border-bottom:1px solid var(--line);
   font-family:'IBM Plex Mono'; font-size:0.78rem;
 }
 .spec-row span:first-child{ color:var(--brown); flex-shrink:0; }
 .spec-row span:first-child a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
 .spec-row span:first-child a:hover{ color:var(--ink); }
-.spec-row span:last-child{ text-align:right; }
+.spec-row span:last-child{ min-width:0; overflow-wrap:break-word; text-align:right; }
 .spec-row span:last-child a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
 .spec-row span:last-child a:hover{ color:var(--ink); }
+@media (max-width:600px){
+  .spec-row{ flex-direction:column; gap:0.3rem; }
+  .spec-row span:last-child{ text-align:left; }
+}
 
 /* ---------- case study (Opus) ---------- */
 .case-study{ background:var(--paper); border:1px solid var(--line); border-radius:0; padding:2.6rem; margin-top:0.5rem; box-shadow:0 8px 24px rgba(181,69,31,0.08); }
@@ -537,7 +541,7 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 }
 .carousel-wrap{ margin-top:0.8rem; }
 .carousel-viewport{
-  overflow-x:auto; overflow-y:hidden; cursor:grab; scroll-snap-type:x proximity;
+  overflow-x:auto; overflow-y:hidden; cursor:grab; scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch; padding-bottom:0.4rem;
 }
 .carousel-viewport.dragging{ cursor:grabbing; scroll-snap-type:none; user-select:none; }
@@ -546,6 +550,7 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 .carousel-viewport::-webkit-scrollbar-thumb{ background:var(--line); border-radius:0; }
 .media-carousel-track{ display:flex; gap:1.4rem; width:max-content; }
 .carousel-item{ flex:0 0 220px; scroll-snap-align:start; display:flex; flex-direction:column; gap:0.6rem; }
+.carousel-item:last-child{ scroll-snap-align:end; }
 @media (min-width:700px){ .carousel-item{ flex-basis:250px; } }
 .carousel-item .photo-box{
   width:100%; aspect-ratio:3/4; border-radius:0; overflow:hidden;
