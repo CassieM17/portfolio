@@ -533,6 +533,10 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
   transition:all 0.2s ease;
 }
 .about-links a:hover{ background:var(--blue-deep); border-color:var(--blue-deep); color:var(--white); }
+.about-links-static{
+  font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
+  padding:0.85rem 1.4rem; border-radius:0; border:2px solid var(--line); opacity:0.5;
+}
 
 /* ---------- media carousel (violin page): drag or scroll horizontally ---------- */
 .scroll-hint{
