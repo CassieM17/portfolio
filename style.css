@@ -864,3 +864,65 @@ img.zoomable{
   transition:background 0.2s ease; z-index:1001;
 }
 .lightbox-close:hover{ background:rgba(255,255,255,0.25); }
+
+
+/* ============================================================
+   Noir theme — opt-in via body.noir. Used on pages that have
+   rolled over to the darker vinyl/camera direction; every other
+   page keeps the warm-paper theme untouched via the base :root
+   values above. Component rules elsewhere in this file already
+   read colors through var(--canvas/--paper/--ink/--brown/...),
+   so redefining those on body.noir reskins them automatically —
+   the overrides below only cover the handful of places that use
+   a literal color instead of a variable, or need a different
+   typographic treatment for this theme.
+   ============================================================ */
+
+body.noir{
+  --canvas: #0B0A09;
+  --paper:  #17130F;
+  --ink:    #EDE7DC;
+  --white:  #F5F1E8;
+  --brown:  #C6461D;
+  --brown-deep: #7A2A10;
+  --blue:   #8FBCCB;
+  --blue-deep: #6FA0B0;
+  --line:   rgba(237,231,220,0.14);
+
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family:'Instrument Sans', 'Inter', sans-serif;
+}
+
+.noir nav{ background:rgba(11,10,9,0.86); }
+
+.noir .hero{ position:relative; overflow:hidden; }
+.noir .hero::before{
+  content:''; position:absolute; right:-120px; top:-40px;
+  width:420px; height:420px; border-radius:50%; pointer-events:none; z-index:0;
+  background:repeating-radial-gradient(circle, transparent 0 11px, rgba(237,231,220,0.045) 11px 12px);
+}
+.noir .hero h1{
+  font-family:'Fraunces', serif; font-weight:500; font-optical-sizing:auto;
+  text-transform:none; letter-spacing:-0.01em; position:relative; z-index:1;
+}
+.noir .hero-subtitle, .noir .hero-meta-line, .noir .section-mark, .noir .project-grid{
+  position:relative; z-index:1;
+}
+.noir .hero-meta-line{ color:rgba(237,231,220,0.6); }
+
+.noir .section-mark h2{
+  font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+  text-transform:none; letter-spacing:0;
+}
+
+.noir .project-card{ background:var(--paper); }
+.noir .project-card:hover .project-info,
+.noir .project-card:has(.preview-link:hover) .project-info{
+  background:var(--brown-deep); color:var(--white);
+}
+
+.noir .tip-bubble{ font-family:'Instrument Sans', sans-serif; }
+.noir .term-tip{ text-decoration-color: var(--blue); }
+
+.noir footer{ background:var(--brown-deep); }
