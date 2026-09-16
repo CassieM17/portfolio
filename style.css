@@ -648,7 +648,7 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 .about-photo-frame{
   position:relative; border-radius:0; overflow:hidden; border:1px solid var(--line);
   box-shadow:0 10px 30px rgba(181,69,31,0.12); aspect-ratio:900/3763;
-  height:clamp(26rem, 48vw, 44rem); width:auto; max-width:100%;
+  height:clamp(22rem, 41vw, 38rem); width:auto; max-width:100%;
   margin:0 auto; transform:rotate(-5deg);
 }
 .about-photo-frame img{
