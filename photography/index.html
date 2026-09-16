@@ -49,22 +49,80 @@
   <p class="section-intro">A few frames from places I've traveled.</p>
 </div>
 
-<section>
-  <div class="photo-masonry">
-    <div class="photo-block"><img class="zoomable" src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand"><span class="cap">Chiang Mai, Thailand</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-hallstatt.jpeg" alt="Hallstatt, Austria"><span class="cap">Hallstatt, Austria</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-pch.jpg" alt="Pacific Coast Highway, California"><span class="cap">Pacific Coast Highway, CA</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-joshuatree.jpeg" alt="Joshua Tree, California"><span class="cap">Joshua Tree, CA</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-lakebled.jpeg" alt="Lake Bled, Slovenia"><span class="cap">Lake Bled, Slovenia</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-monaco.jpeg" alt="Monaco"><span class="cap">Monaco</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-pittsburgh.jpeg" alt="Pittsburgh, Pennsylvania"><span class="cap">Pittsburgh, PA</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-sandiego.jpeg" alt="San Diego, California"><span class="cap">San Diego, CA</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-santorini.jpeg" alt="Santorini, Greece"><span class="cap">Santorini, Greece</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-seoul.jpg" alt="Seoul, South Korea"><span class="cap">Seoul, S. Korea</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-yangshuo.jpeg" alt="Yangshuo, China"><span class="cap">Yangshuo, China</span></div>
-    <div class="photo-block"><img class="zoomable" src="/travel-yosemite.jpeg" alt="Yosemite, California"><span class="cap">Yosemite, CA</span></div>
+<section class="photo-viewer-section">
+  <div class="photo-viewer-stage">
+    <button class="photo-nav-btn prev" id="pvPrev" aria-label="Previous photo">&larr;</button>
+    <div class="photo-viewer-frame">
+      <img id="pvImg" src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand">
+      <div class="photo-viewer-caption">
+        <span id="pvLoc">Chiang Mai, Thailand</span>
+        <span id="pvCount" class="photo-viewer-count">01 / 12</span>
+      </div>
+    </div>
+    <button class="photo-nav-btn next" id="pvNext" aria-label="Next photo">&rarr;</button>
+  </div>
+
+  <div class="photo-roll" id="pvRoll">
+    <button class="photo-roll-item active" data-index="0" aria-label="View Chiang Mai, Thailand"><img src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="1" aria-label="View Hallstatt, Austria"><img src="/travel-hallstatt.jpeg" alt="Hallstatt, Austria" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="2" aria-label="View Pacific Coast Highway, CA"><img src="/travel-pch.jpg" alt="Pacific Coast Highway, CA" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="3" aria-label="View Joshua Tree, CA"><img src="/travel-joshuatree.jpeg" alt="Joshua Tree, CA" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="4" aria-label="View Lake Bled, Slovenia"><img src="/travel-lakebled.jpeg" alt="Lake Bled, Slovenia" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="5" aria-label="View Monaco"><img src="/travel-monaco.jpeg" alt="Monaco" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="6" aria-label="View Pittsburgh, PA"><img src="/travel-pittsburgh.jpeg" alt="Pittsburgh, PA" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="7" aria-label="View San Diego, CA"><img src="/travel-sandiego.jpeg" alt="San Diego, CA" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="8" aria-label="View Santorini, Greece"><img src="/travel-santorini.jpeg" alt="Santorini, Greece" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="9" aria-label="View Seoul, S. Korea"><img src="/travel-seoul.jpg" alt="Seoul, S. Korea" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="10" aria-label="View Yangshuo, China"><img src="/travel-yangshuo.jpeg" alt="Yangshuo, China" loading="lazy"></button>
+    <button class="photo-roll-item" data-index="11" aria-label="View Yosemite, CA"><img src="/travel-yosemite.jpeg" alt="Yosemite, CA" loading="lazy"></button>
   </div>
 </section>
+
+<script>
+(function(){
+  var photos = [["/travel-chiangmai.jpeg", "Chiang Mai, Thailand"], ["/travel-hallstatt.jpeg", "Hallstatt, Austria"], ["/travel-pch.jpg", "Pacific Coast Highway, CA"], ["/travel-joshuatree.jpeg", "Joshua Tree, CA"], ["/travel-lakebled.jpeg", "Lake Bled, Slovenia"], ["/travel-monaco.jpeg", "Monaco"], ["/travel-pittsburgh.jpeg", "Pittsburgh, PA"], ["/travel-sandiego.jpeg", "San Diego, CA"], ["/travel-santorini.jpeg", "Santorini, Greece"], ["/travel-seoul.jpg", "Seoul, S. Korea"], ["/travel-yangshuo.jpeg", "Yangshuo, China"], ["/travel-yosemite.jpeg", "Yosemite, CA"]];
+  var idx = 0;
+  var imgEl = document.getElementById('pvImg');
+  var locEl = document.getElementById('pvLoc');
+  var countEl = document.getElementById('pvCount');
+  var rollEl = document.getElementById('pvRoll');
+  var items = rollEl.querySelectorAll('.photo-roll-item');
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function render(){
+    var p = photos[idx];
+    imgEl.src = p[0];
+    imgEl.alt = p[1];
+    locEl.textContent = p[1];
+    countEl.textContent = pad(idx + 1) + ' / ' + pad(photos.length);
+    items.forEach(function(it, i){
+      it.classList.toggle('active', i === idx);
+    });
+    var active = items[idx];
+    if(active){
+      active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  function go(delta){
+    idx = (idx + delta + photos.length) % photos.length;
+    render();
+  }
+
+  document.getElementById('pvPrev').addEventListener('click', function(){ go(-1); });
+  document.getElementById('pvNext').addEventListener('click', function(){ go(1); });
+
+  items.forEach(function(it, i){
+    it.addEventListener('click', function(){ idx = i; render(); });
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowLeft'){ go(-1); }
+    else if(e.key === 'ArrowRight'){ go(1); }
+  });
+})();
+</script>
 
 <footer>
   <div class="footer-inner">
@@ -78,6 +136,5 @@
   </div>
 </footer>
 
-<script src="/lightbox.js"></script>
 </body>
 </html>

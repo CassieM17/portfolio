@@ -204,6 +204,50 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .photo-block .cap{ font-family:'IBM Plex Mono'; font-size:0.7rem; opacity:0.65; text-align:center; }
 @media (max-width:700px){ .photo-masonry{ columns:2 180px; } }
 @media (max-width:460px){ .photo-masonry{ columns:1; } }
+
+/* ---------- photography page: viewer + scrollable photo roll ---------- */
+.photo-viewer-section{
+  display:flex; gap:1.4rem; max-width:1080px; margin:0 auto; padding:0 2.4rem 3.5rem;
+}
+.photo-viewer-stage{ display:flex; align-items:center; gap:0.9rem; flex:1; min-width:0; }
+.photo-viewer-frame{
+  position:relative; flex:1; min-width:0; aspect-ratio:4/3; overflow:hidden;
+  border:1px solid var(--line); box-shadow:0 10px 26px rgba(181,69,31,0.14); background:var(--paper);
+}
+.photo-viewer-frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+.photo-viewer-caption{
+  position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between;
+  align-items:baseline; gap:0.8rem; padding:0.9rem 1.1rem;
+  background:linear-gradient(to top, rgba(10,10,10,0.6), rgba(10,10,10,0));
+  color:var(--white); font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.02em;
+}
+.photo-viewer-count{ opacity:0.85; flex-shrink:0; }
+.photo-nav-btn{
+  flex-shrink:0; width:2.6rem; height:2.6rem; display:flex; align-items:center; justify-content:center;
+  border:2px solid var(--ink); background:var(--canvas); color:var(--ink); font-size:1.1rem;
+  cursor:pointer; border-radius:0; transition:all 0.2s ease;
+}
+.photo-nav-btn:hover{ background:var(--ink); color:var(--white); border-color:var(--ink); }
+.photo-roll{
+  flex:0 0 110px; width:110px; display:flex; flex-direction:column; gap:0.55rem;
+  overflow-y:auto; padding-right:0.3rem;
+}
+.photo-roll::-webkit-scrollbar{ width:5px; }
+.photo-roll::-webkit-scrollbar-track{ background:transparent; }
+.photo-roll::-webkit-scrollbar-thumb{ background:var(--line); border-radius:0; }
+.photo-roll-item{
+  display:block; padding:0; border:2px solid transparent; background:none; cursor:pointer;
+  aspect-ratio:1/1; overflow:hidden; opacity:0.55; transition:all 0.2s ease; flex-shrink:0;
+}
+.photo-roll-item img{ width:100%; height:100%; object-fit:cover; display:block; }
+.photo-roll-item:hover{ opacity:0.85; }
+.photo-roll-item.active{ opacity:1; border-color:var(--blue); }
+@media (max-width:760px){
+  .photo-viewer-section{ flex-direction:column; padding:0 1.4rem 2.6rem; }
+  .photo-roll{ flex-direction:row; width:100%; height:auto; max-height:none; overflow-x:auto; overflow-y:hidden; }
+  .photo-roll-item{ flex:0 0 76px; width:76px; }
+}
+
 .gallery-thumb{
   aspect-ratio:4/3; border:1px dashed var(--line); border-radius:0;
   display:flex; align-items:center; justify-content:center;
