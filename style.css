@@ -213,7 +213,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .camframe{
   flex:0 1 520px; max-width:520px; width:100%;
-  background:var(--brown-deep); border-radius:14px; padding:1.1rem 1.1rem 1.4rem;
+  background:var(--brown-deep); border-radius:14px; padding:1.1rem;
   box-shadow:0 16px 40px rgba(23,19,15,0.35);
 }
 .camframe-topbar{ display:flex; align-items:center; gap:0.7rem; padding:0.1rem 0.3rem 0.9rem; }
@@ -249,7 +249,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .camframe-count{ color:var(--brown); opacity:0.95; flex-shrink:0; letter-spacing:0.05em; }
 .camframe-controls{
-  display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:1.2rem;
+  display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:1.2rem; margin-bottom:0;
 }
 .camframe-arrow{
   width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid rgba(245,243,238,0.3);
@@ -265,7 +265,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .camframe-shutter:active{ transform:scale(0.94); }
 .photo-roll{
   flex:0 0 110px; width:110px; display:flex; flex-direction:column; gap:0.55rem;
-  overflow-y:auto; padding-right:0.3rem;
+  overflow-y:auto; padding-right:0.3rem; min-height:0;
 }
 .photo-roll::-webkit-scrollbar{ width:5px; }
 .photo-roll::-webkit-scrollbar-track{ background:transparent; }
@@ -280,7 +280,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 @media (max-width:760px){
   .photo-viewer-section{ flex-direction:column; padding:0 1.4rem 2.6rem; }
   .camframe{ max-width:100%; }
-  .photo-roll{ flex-direction:row; width:100%; height:auto; max-height:none; overflow-x:auto; overflow-y:hidden; }
+  .photo-roll{ flex-direction:row; width:100%; height:auto; max-height:none; min-width:0; overflow-x:auto; overflow-y:hidden; }
   .photo-roll-item{ flex:0 0 76px; width:76px; }
 }
 
