@@ -23,76 +23,78 @@
   </div>
 </nav>
 
-<div class="page-hero photo-hero">
+<div class="page-hero play-hero">
   <a class="back-link" href="/">&larr; Back to Work</a>
-  <div class="movement"><h1>Photography</h1></div>
-  <p class="section-intro">People, places, and passing moments</p>
+  <h1 class="play-title">Play</h1>
 </div>
 
-<section class="photo-viewer-section">
-  <div class="camframe">
-    <div class="camframe-topbar">
-      <span class="camframe-lens" aria-hidden="true"></span>
-      <span class="camframe-swatch" aria-hidden="true"></span>
-      <span class="camframe-brand">CASS&nbsp;&middot;&nbsp;CAM</span>
-    </div>
+<section class="play-columns">
+  <div class="play-col photo-col" id="photography">
+    <h2 class="play-heading">Photography</h2>
+    <div class="photo-viewer-section">
+      <div class="camframe">
+        <div class="camframe-topbar">
+          <span class="camframe-lens" aria-hidden="true"></span>
+          <span class="camframe-swatch" aria-hidden="true"></span>
+          <span class="camframe-brand">CASS&nbsp;&middot;&nbsp;CAM</span>
+        </div>
 
-    <div class="camframe-viewport" id="pvViewport">
-      <img id="pvImg" src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand">
-      <div class="camframe-caption">
-        <span id="pvLoc">Chiang Mai, Thailand</span>
-        <span id="pvCount" class="camframe-count">01 / 12</span>
-      </div>
-    </div>
+        <div class="camframe-viewport" id="pvViewport">
+          <img id="pvImg" class="zoomable" src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand">
+          <div class="camframe-caption">
+            <span id="pvLoc">Chiang Mai, Thailand</span>
+            <span id="pvCount" class="camframe-count">01 / 12</span>
+          </div>
+        </div>
 
-    <div class="camframe-controls">
-      <button class="camframe-arrow" id="pvPrev" aria-label="Previous photo">&lsaquo;</button>
-      <button class="camframe-arrow" id="pvNext" aria-label="Next photo">&rsaquo;</button>
-    </div>
-  </div>
-
-  <div class="photo-roll" id="pvRoll">
-    <button class="photo-roll-item active" data-index="0" aria-label="View Chiang Mai, Thailand"><img src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="1" aria-label="View Hallstatt, Austria"><img src="/travel-hallstatt.jpeg" alt="Hallstatt, Austria" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="2" aria-label="View Pacific Coast Highway, CA"><img src="/travel-pch.jpg" alt="Pacific Coast Highway, CA" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="3" aria-label="View Joshua Tree, CA"><img src="/travel-joshuatree.jpeg" alt="Joshua Tree, CA" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="4" aria-label="View Lake Bled, Slovenia"><img src="/travel-lakebled.jpeg" alt="Lake Bled, Slovenia" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="5" aria-label="View Monaco"><img src="/travel-monaco.jpeg" alt="Monaco" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="6" aria-label="View Pittsburgh, PA"><img src="/travel-pittsburgh.jpeg" alt="Pittsburgh, PA" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="7" aria-label="View San Diego, CA"><img src="/travel-sandiego.jpeg" alt="San Diego, CA" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="8" aria-label="View Santorini, Greece"><img src="/travel-santorini.jpeg" alt="Santorini, Greece" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="9" aria-label="View Seoul, S. Korea"><img src="/travel-seoul.jpg" alt="Seoul, S. Korea" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="10" aria-label="View Yangshuo, China"><img src="/travel-yangshuo.jpeg" alt="Yangshuo, China" loading="lazy"></button>
-    <button class="photo-roll-item" data-index="11" aria-label="View Yosemite, CA"><img src="/travel-yosemite.jpeg" alt="Yosemite, CA" loading="lazy"></button>
-  </div>
-</section>
-
-<section class="easel-section">
-  <div class="movement"><h2>Painting</h2></div>
-  <p class="section-intro">A few recent paintings.</p>
-
-  <div class="easel-wrap">
-    <div class="easel">
-      <div class="easel-canvas" id="easelViewport">
-        <img id="easelImg" src="/painting-3.jpg" alt="Fall Colors, 2021">
-        <div class="easel-caption">
-          <span id="easelCap">Fall Colors, 2021</span>
-          <span id="easelCount" class="easel-count">01 / 03</span>
+        <div class="camframe-controls">
+          <button class="camframe-arrow" id="pvPrev" aria-label="Previous photo">&lsaquo;</button>
+          <button class="camframe-arrow" id="pvNext" aria-label="Next photo">&rsaquo;</button>
         </div>
       </div>
-      <div class="easel-ledge" aria-hidden="true"></div>
-      <div class="easel-legs" aria-hidden="true"></div>
-    </div>
 
-    <div class="easel-controls">
-      <button class="easel-arrow" id="easelPrev" aria-label="Previous painting">&lsaquo;</button>
-      <button class="easel-arrow" id="easelNext" aria-label="Next painting">&rsaquo;</button>
+      <div class="photo-roll" id="pvRoll">
+        <button class="photo-roll-item active" data-index="0" aria-label="View Chiang Mai, Thailand"><img src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="1" aria-label="View Hallstatt, Austria"><img src="/travel-hallstatt.jpeg" alt="Hallstatt, Austria" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="2" aria-label="View Pacific Coast Highway, CA"><img src="/travel-pch.jpg" alt="Pacific Coast Highway, CA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="3" aria-label="View Joshua Tree, CA"><img src="/travel-joshuatree.jpeg" alt="Joshua Tree, CA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="4" aria-label="View Lake Bled, Slovenia"><img src="/travel-lakebled.jpeg" alt="Lake Bled, Slovenia" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="5" aria-label="View Monaco"><img src="/travel-monaco.jpeg" alt="Monaco" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="6" aria-label="View Pittsburgh, PA"><img src="/travel-pittsburgh.jpeg" alt="Pittsburgh, PA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="7" aria-label="View San Diego, CA"><img src="/travel-sandiego.jpeg" alt="San Diego, CA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="8" aria-label="View Santorini, Greece"><img src="/travel-santorini.jpeg" alt="Santorini, Greece" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="9" aria-label="View Seoul, S. Korea"><img src="/travel-seoul.jpg" alt="Seoul, S. Korea" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="10" aria-label="View Yangshuo, China"><img src="/travel-yangshuo.jpeg" alt="Yangshuo, China" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="11" aria-label="View Yosemite, CA"><img src="/travel-yosemite.jpeg" alt="Yosemite, CA" loading="lazy"></button>
+      </div>
     </div>
+  </div>
 
-    <div class="easel-thumbs" id="easelThumbs">
-      <button class="easel-thumb active" data-index="0" aria-label="View Fall Colors, 2021"><img src="/painting-3.jpg" alt="Fall Colors, 2021" loading="lazy"></button>
-      <button class="easel-thumb" data-index="1" aria-label="View Winter Colors, 2021"><img src="/painting-1.jpg" alt="Winter Colors, 2021" loading="lazy"></button>
-      <button class="easel-thumb" data-index="2" aria-label="View Beach, 2022"><img src="/painting-2.jpg" alt="Beach, 2022" loading="lazy"></button>
+  <div class="play-col painting-col" id="painting">
+    <h2 class="play-heading">Painting</h2>
+    <div class="easel-wrap">
+      <div class="easel">
+        <div class="easel-canvas" id="easelViewport">
+          <img id="easelImg" class="zoomable" src="/painting-3.jpg" alt="Fall Colors, 2021">
+          <div class="easel-caption">
+            <span id="easelCap">Fall Colors, 2021</span>
+            <span id="easelCount" class="easel-count">01 / 03</span>
+          </div>
+        </div>
+        <div class="easel-ledge" aria-hidden="true"></div>
+        <div class="easel-legs" aria-hidden="true"></div>
+      </div>
+
+      <div class="easel-controls">
+        <button class="easel-arrow" id="easelPrev" aria-label="Previous painting">&lsaquo;</button>
+        <button class="easel-arrow" id="easelNext" aria-label="Next painting">&rsaquo;</button>
+      </div>
+
+      <div class="easel-thumbs" id="easelThumbs">
+        <button class="easel-thumb active" data-index="0" aria-label="View Fall Colors, 2021"><img src="/painting-3.jpg" alt="Fall Colors, 2021" loading="lazy"></button>
+        <button class="easel-thumb" data-index="1" aria-label="View Winter Colors, 2021"><img src="/painting-1.jpg" alt="Winter Colors, 2021" loading="lazy"></button>
+        <button class="easel-thumb" data-index="2" aria-label="View Beach, 2022"><img src="/painting-2.jpg" alt="Beach, 2022" loading="lazy"></button>
+      </div>
     </div>
   </div>
 </section>
@@ -145,7 +147,7 @@
   // scrolls internally instead of stretching (and growing) the whole page.
   var camEl = document.querySelector('.camframe');
   function syncRollHeight(){
-    if(window.matchMedia('(max-width:760px)').matches){
+    if(window.matchMedia('(max-width:560px)').matches){
       rollEl.style.maxHeight = '';
     } else {
       rollEl.style.maxHeight = camEl.offsetHeight + 'px';
@@ -197,6 +199,8 @@
   });
 })();
 </script>
+
+<script src="/lightbox.js"></script>
 
 <footer>
   <div class="footer-inner">

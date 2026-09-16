@@ -197,14 +197,33 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 @media (max-width:700px){ .photo-masonry{ columns:2 180px; } }
 @media (max-width:460px){ .photo-masonry{ columns:1; } }
 
-/* ---------- photography page: CASS · CAM viewer widget ---------- */
-.page-hero.photo-hero{ padding-top:4.6rem; padding-bottom:0.7rem; }
-.photo-viewer-section{
-  display:flex; gap:1.4rem; max-width:1080px; margin:0 auto; padding:0 2.4rem 3.5rem;
-  justify-content:center; align-items:flex-start;
+/* ---------- play page: Photography + Painting side-by-side ---------- */
+.page-hero.play-hero{ padding-top:4.6rem; padding-bottom:1.2rem; }
+.play-title{
+  font-family:'Fraunces', serif; font-weight:500; font-optical-sizing:auto;
+  font-size:clamp(1.6rem, 3vw, 2.1rem); letter-spacing:0.01em; color:var(--ink);
+  opacity:0.85; margin-top:0.7rem; position:relative; z-index:1;
 }
+.play-columns{
+  display:grid; grid-template-columns:1fr 1fr; gap:2.6rem; align-items:start;
+  max-width:1140px; margin:0 auto; padding:0.4rem 2.4rem 4rem;
+}
+.play-col{ display:flex; flex-direction:column; min-width:0; scroll-margin-top:6rem; }
+.play-col.photo-col{ align-items:flex-start; }
+.play-col.painting-col{ align-items:flex-end; }
+.play-heading{
+  font-family:'IBM Plex Mono', monospace; font-size:0.75rem; font-weight:500;
+  letter-spacing:0.12em; text-transform:uppercase; color:var(--ink); opacity:0.5;
+  margin-bottom:1.1rem;
+}
+@media (max-width:980px){
+  .play-columns{ grid-template-columns:1fr; gap:3.2rem; padding:0.4rem 1.4rem 3rem; }
+  .play-col.photo-col, .play-col.painting-col{ align-items:center; }
+}
+
+.photo-viewer-section{ display:flex; gap:1.2rem; align-items:flex-start; }
 .camframe{
-  flex:0 1 520px; max-width:520px; width:100%;
+  flex:0 1 380px; max-width:380px; width:100%;
   background:var(--canvas); border:1px solid rgba(245,243,238,0.25); border-radius:14px; padding:1.1rem;
   box-shadow:0 16px 40px rgba(23,19,15,0.35);
 }
@@ -245,7 +264,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .camframe-arrow:hover{ background:var(--brown); border-color:var(--brown); color:var(--white); }
 .photo-roll{
-  flex:0 0 110px; width:110px; display:flex; flex-direction:column; gap:0.55rem;
+  flex:0 0 90px; width:90px; display:flex; flex-direction:column; gap:0.55rem;
   overflow-y:auto; padding-right:0.3rem; min-height:0;
 }
 .photo-roll::-webkit-scrollbar{ width:5px; }
@@ -258,20 +277,15 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .photo-roll-item img{ width:100%; height:100%; object-fit:cover; display:block; }
 .photo-roll-item:hover{ opacity:0.85; }
 .photo-roll-item.active{ opacity:1; border-color:var(--blue); }
-@media (max-width:760px){
-  .photo-viewer-section{ flex-direction:column; padding:0 1.4rem 2.6rem; }
+@media (max-width:560px){
+  .photo-viewer-section{ flex-direction:column; align-items:center; }
   .camframe{ max-width:100%; }
   .photo-roll{ flex-direction:row; width:100%; height:auto; max-height:none; min-width:0; overflow-x:auto; overflow-y:hidden; }
   .photo-roll-item{ flex:0 0 76px; width:76px; }
 }
 
-/* ---------- photography page: painting easel ---------- */
-.easel-section{
-  max-width:1080px; margin:0 auto; padding:0 2.4rem 4rem;
-  display:flex; flex-direction:column; align-items:flex-start; gap:0.2rem;
-}
-.easel-wrap{ display:flex; flex-direction:column; align-items:center; gap:1rem; margin:1.6rem auto 0; }
-.easel{ width:100%; max-width:480px; }
+.easel-wrap{ display:flex; flex-direction:column; align-items:center; gap:1rem; }
+.easel{ width:100%; max-width:400px; }
 .easel-canvas{
   position:relative; aspect-ratio:5/4; overflow:hidden;
   background:var(--canvas); border:1px solid rgba(245,243,238,0.25);
