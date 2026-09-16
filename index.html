@@ -122,5 +122,12 @@
   </div>
 </footer>
 
+<script>
+  // Keep the address bar clean: the Work nav link scrolls here via
+  // #resume-anchor, but we don't want the hash to stick around in the URL.
+  if (window.location.hash === '#resume-anchor' && history.replaceState) {
+    history.replaceState(null, '', '/');
+  }
+</script>
 </body>
 </html>
