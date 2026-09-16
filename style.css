@@ -902,10 +902,12 @@ body.noir{
 
 .noir nav{ background:rgba(11,10,9,0.86); }
 
-.noir .hero{ position:relative; overflow:hidden; }
-.noir .hero::before{
+.noir .hero, .noir .page-hero, .noir .about-hero, .noir .contact-hero{
+  position:relative; overflow:hidden;
+}
+.noir .hero::before, .noir .page-hero::before, .noir .about-hero::before, .noir .contact-hero::before{
   content:''; position:absolute; right:-120px; top:-40px;
-  width:420px; height:420px; border-radius:50%; pointer-events:none; z-index:0;
+  width:420px; height:420px; border-radius:50%; pointer-events:none; z-index:-1;
   background:repeating-radial-gradient(circle, transparent 0 11px, rgba(237,231,220,0.045) 11px 12px);
 }
 .noir .hero h1{
