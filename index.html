@@ -81,14 +81,6 @@
     <div class="spec-row"><span>Downs Research Lab · research assistant</span><span>test-optional admissions and <a href="https://cmu.ca1.qualtrics.com/jfe/form/SV_9zBj0gcB4UN7A22" target="_blank" rel="noopener">music education</a> research</span></div>
   </div>
 
-  <div class="section-mark">
-    <span class="num">03</span>
-    <h2>Toolkit</h2>
-  </div>
-  <div class="spec-sheet">
-    <div class="spec-row"><span>Tools</span><span>Excel, PostgreSQL, Python, R, Microsoft Office Suite (Word, Powerpoint, Outlook), Adobe Suite, Figma</span></div>
-    <div class="spec-row"><span>Languages</span><span>English (fluent), Chinese (advanced)</span></div>
-  </div>
 </section>
 
 <footer>
@@ -108,6 +100,64 @@
   if (window.location.hash === '#resume-anchor' && history.replaceState) {
     history.replaceState(null, '', '/');
   }
+</script>
+
+<div class="project-modal-overlay" id="projectModalOverlay">
+  <div class="project-modal-panel">
+    <button class="project-modal-close" id="projectModalClose" aria-label="Close">&times;</button>
+    <iframe id="projectModalFrame" class="project-modal-frame" title="Project detail"></iframe>
+  </div>
+</div>
+
+<script>
+(function(){
+  var overlay = document.getElementById('projectModalOverlay');
+  var panel = overlay.querySelector('.project-modal-panel');
+  var frame = document.getElementById('projectModalFrame');
+  var closeBtn = document.getElementById('projectModalClose');
+  var cards = document.querySelectorAll('.project-card');
+
+  function openModal(url){
+    frame.src = url;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    frame.src = 'about:blank';
+  }
+
+  cards.forEach(function(card){
+    card.addEventListener('click', function(e){
+      // let cmd/ctrl/shift-click and middle-click behave like a normal link
+      if(e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
+      e.preventDefault();
+      openModal(card.getAttribute('href'));
+    });
+  });
+
+  overlay.addEventListener('click', function(e){
+    if(e.target === overlay){ closeModal(); }
+  });
+  closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && overlay.classList.contains('open')){ closeModal(); }
+  });
+
+  // Once the case-study page loads inside the frame, tidy it up for a
+  // pop-up context: hide its own nav/back-link/footer and tighten the
+  // top spacing, since our modal already provides the close affordance.
+  frame.addEventListener('load', function(){
+    try {
+      var doc = frame.contentDocument;
+      if(!doc || !doc.head) return;
+      var style = doc.createElement('style');
+      style.textContent = 'nav{display:none !important;} .back-link{display:none !important;} footer{display:none !important;} .page-hero{padding-top:2.4rem !important;}';
+      doc.head.appendChild(style);
+    } catch(err){ /* same-origin should always allow this; fail quietly otherwise */ }
+  });
+})();
 </script>
 </body>
 </html>
