@@ -106,6 +106,13 @@ nav{
 .hero-sub{ margin-top:1.4rem; max-width:640px; font-size:1.15rem; line-height:1.7; opacity:0.82; }
 .hero-actions{ display:flex; gap:1.1rem; margin-top:2.3rem; flex-wrap:wrap; scroll-margin-top:6rem; }
 
+@media (max-width:640px){
+  .hero{ padding-left:1.5rem; padding-right:1.5rem; }
+  .hero h1.hero-title-sm{ font-size:clamp(2.5rem, 10vw, 3.1rem); }
+  .hero-subtitle{ font-size:clamp(0.66rem, 3.0vw, 0.78rem); letter-spacing:0.02em; }
+  .hero-meta-line{ font-size:clamp(0.60rem, 2.8vw, 0.74rem); letter-spacing:0.02em; }
+}
+
 .btn{
   font-family:'IBM Plex Mono', monospace; font-size:0.76rem; letter-spacing:0.03em;
   padding:0.9rem 1.7rem; text-decoration:none; border-radius:0;
