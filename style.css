@@ -108,7 +108,7 @@ nav{
 
 @media (max-width:640px){
   .hero{ padding-left:1.5rem; padding-right:1.5rem; }
-  .hero h1.hero-title-sm{ font-size:clamp(2.5rem, 10vw, 3.1rem); }
+  .hero h1.hero-title-sm{ font-size:clamp(1.6rem, calc(9.7vw - 5px), 2.3rem); }
   .hero-subtitle{ font-size:clamp(0.66rem, 3.0vw, 0.78rem); letter-spacing:0.02em; }
   .hero-meta-line{ font-size:clamp(0.60rem, 2.8vw, 0.74rem); letter-spacing:0.02em; }
 }
