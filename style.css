@@ -38,8 +38,8 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--blue-deep); outli
 .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--blue-deep); }
 
 /* ---------- signature mark (leaf) ---------- */
-.site-mark{ display:inline-block; width:20px; height:20px; flex-shrink:0; }
-.site-mark.lg{ width:60px; height:60px; }
+.site-mark{ display:inline-block; width:32px; height:32px; flex-shrink:0; }
+.site-mark.lg{ width:72px; height:72px; }
 .site-mark img{ width:100%; height:100%; display:block; object-fit:contain; }
 
 /* ---------- nav ---------- */
