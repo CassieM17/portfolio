@@ -101,7 +101,7 @@ nav{
 }
 .hero-meta-line{
   font-family:'IBM Plex Mono'; font-size:0.78rem; letter-spacing:0.03em; color:rgba(10,10,10,0.65);
-  margin-top:1.4rem;
+  margin-top:1.4rem; font-style:italic;
 }
 .hero-sub{ margin-top:1.4rem; max-width:640px; font-size:1.15rem; line-height:1.7; opacity:0.82; }
 .hero-actions{ display:flex; gap:1.1rem; margin-top:2.3rem; flex-wrap:wrap; scroll-margin-top:6rem; }
@@ -890,8 +890,7 @@ footer{ background:var(--brown-deep); color:var(--white); padding:3rem 2.4rem; m
 
 /* ---------- hover tooltip term (e.g. "Systems Design") ---------- */
 .term-tip{
-  text-decoration:underline; text-decoration-style:dotted; text-decoration-color:currentColor;
-  text-decoration-thickness:1px; text-underline-offset:3px; cursor:help; position:relative;
+  text-decoration:none; cursor:help; position:relative;
 }
 .tip-bubble{
   position:absolute; top:135%; left:0; width:230px; white-space:normal; line-height:1.4;
@@ -1013,7 +1012,7 @@ body.noir{
 .noir .section-mark{ border-top:none; }
 
 .noir .section-mark h2{
-  font-family:'Fraunces', serif; font-style:italic; font-weight:500;
+  font-family:'Fraunces', serif; font-style:normal; font-weight:500;
   text-transform:none; letter-spacing:0;
 }
 
@@ -1024,7 +1023,6 @@ body.noir{
 }
 
 .noir .tip-bubble{ font-family:'Instrument Sans', sans-serif; }
-.noir .term-tip{ text-decoration-color: var(--blue); }
 
 .noir footer{ background:var(--canvas); border-top:1px solid var(--line); }
 
