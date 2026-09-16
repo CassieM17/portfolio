@@ -221,9 +221,9 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   .play-col.photo-col, .play-col.painting-col{ align-items:center; }
 }
 
-.photo-viewer-section{ display:flex; gap:1.2rem; align-items:flex-start; }
+.photo-viewer-section{ display:flex; gap:1.2rem; align-items:flex-start; min-width:0; max-width:100%; }
 .camframe{
-  flex:0 1 380px; max-width:380px; width:100%;
+  flex:0 1 380px; max-width:380px; width:100%; min-width:0;
   background:var(--canvas); border:1px solid rgba(245,243,238,0.25); border-radius:14px; padding:1.1rem;
   box-shadow:0 16px 40px rgba(23,19,15,0.35);
 }
@@ -284,8 +284,8 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   .photo-roll-item{ flex:0 0 76px; width:76px; }
 }
 
-.easel-wrap{ display:flex; flex-direction:column; align-items:center; gap:1rem; }
-.easel{ width:100%; max-width:400px; }
+.easel-wrap{ display:flex; flex-direction:column; align-items:center; gap:1rem; min-width:0; max-width:100%; }
+.easel{ width:100%; max-width:400px; min-width:0; }
 .easel-canvas{
   position:relative; aspect-ratio:5/4; overflow:hidden;
   background:var(--canvas); border:1px solid rgba(245,243,238,0.25);
