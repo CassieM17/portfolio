@@ -67,6 +67,36 @@
   </div>
 </section>
 
+<section class="easel-section">
+  <div class="movement"><h2>Painting</h2></div>
+  <p class="section-intro">A few recent paintings.</p>
+
+  <div class="easel-wrap">
+    <div class="easel">
+      <div class="easel-canvas" id="easelViewport">
+        <img id="easelImg" src="/painting-3.jpg" alt="Fall Colors, 2021">
+        <div class="easel-caption">
+          <span id="easelCap">Fall Colors, 2021</span>
+          <span id="easelCount" class="easel-count">01 / 03</span>
+        </div>
+      </div>
+      <div class="easel-ledge" aria-hidden="true"></div>
+      <div class="easel-legs" aria-hidden="true"></div>
+    </div>
+
+    <div class="easel-controls">
+      <button class="easel-arrow" id="easelPrev" aria-label="Previous painting">&lsaquo;</button>
+      <button class="easel-arrow" id="easelNext" aria-label="Next painting">&rsaquo;</button>
+    </div>
+
+    <div class="easel-thumbs" id="easelThumbs">
+      <button class="easel-thumb active" data-index="0" aria-label="View Fall Colors, 2021"><img src="/painting-3.jpg" alt="Fall Colors, 2021" loading="lazy"></button>
+      <button class="easel-thumb" data-index="1" aria-label="View Winter Colors, 2021"><img src="/painting-1.jpg" alt="Winter Colors, 2021" loading="lazy"></button>
+      <button class="easel-thumb" data-index="2" aria-label="View Beach, 2022"><img src="/painting-2.jpg" alt="Beach, 2022" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
 <script>
 (function(){
   var photos = [["/travel-chiangmai.jpeg", "Chiang Mai, Thailand"], ["/travel-hallstatt.jpeg", "Hallstatt, Austria"], ["/travel-pch.jpg", "Pacific Coast Highway, CA"], ["/travel-joshuatree.jpeg", "Joshua Tree, CA"], ["/travel-lakebled.jpeg", "Lake Bled, Slovenia"], ["/travel-monaco.jpeg", "Monaco"], ["/travel-pittsburgh.jpeg", "Pittsburgh, PA"], ["/travel-sandiego.jpeg", "San Diego, CA"], ["/travel-santorini.jpeg", "Santorini, Greece"], ["/travel-seoul.jpg", "Seoul, S. Korea"], ["/travel-yangshuo.jpeg", "Yangshuo, China"], ["/travel-yosemite.jpeg", "Yosemite, CA"]];
@@ -123,6 +153,48 @@
   }
   syncRollHeight();
   window.addEventListener('resize', syncRollHeight);
+})();
+</script>
+
+<script>
+(function(){
+  var paintings = [
+    ["/painting-3.jpg", "Fall Colors, 2021"],
+    ["/painting-1.jpg", "Winter Colors, 2021"],
+    ["/painting-2.jpg", "Beach, 2022"]
+  ];
+  var idx = 0;
+  var imgEl = document.getElementById('easelImg');
+  var capEl = document.getElementById('easelCap');
+  var countEl = document.getElementById('easelCount');
+  var thumbs = document.querySelectorAll('.easel-thumb');
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function render(){
+    var p = paintings[idx];
+    imgEl.classList.add('flip');
+    window.setTimeout(function(){
+      imgEl.src = p[0];
+      imgEl.alt = p[1];
+      imgEl.classList.remove('flip');
+    }, 200);
+    capEl.textContent = p[1];
+    countEl.textContent = pad(idx + 1) + ' / ' + pad(paintings.length);
+    thumbs.forEach(function(t, i){ t.classList.toggle('active', i === idx); });
+  }
+
+  function go(delta){
+    idx = (idx + delta + paintings.length) % paintings.length;
+    render();
+  }
+
+  document.getElementById('easelPrev').addEventListener('click', function(){ go(-1); });
+  document.getElementById('easelNext').addEventListener('click', function(){ go(1); });
+
+  thumbs.forEach(function(t, i){
+    t.addEventListener('click', function(){ idx = i; render(); });
+  });
 })();
 </script>
 

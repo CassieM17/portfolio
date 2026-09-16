@@ -205,7 +205,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 }
 .camframe{
   flex:0 1 520px; max-width:520px; width:100%;
-  background:var(--brown-deep); border-radius:14px; padding:1.1rem;
+  background:var(--canvas); border:1px solid rgba(245,243,238,0.25); border-radius:14px; padding:1.1rem;
   box-shadow:0 16px 40px rgba(23,19,15,0.35);
 }
 .camframe-topbar{ display:flex; align-items:center; gap:0.7rem; padding:0.1rem 0.3rem 0.9rem; }
@@ -239,11 +239,11 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   display:flex; align-items:center; justify-content:center; gap:1.5rem; margin-top:1.2rem; margin-bottom:0;
 }
 .camframe-arrow{
-  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid rgba(245,243,238,0.3);
-  background:transparent; color:rgba(245,243,238,0.85); font-size:1.25rem; line-height:1;
+  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid var(--brown);
+  background:transparent; color:var(--brown); font-size:1.25rem; line-height:1;
   display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s ease;
 }
-.camframe-arrow:hover{ border-color:var(--white); color:var(--white); }
+.camframe-arrow:hover{ background:var(--brown); border-color:var(--brown); color:var(--white); }
 .photo-roll{
   flex:0 0 110px; width:110px; display:flex; flex-direction:column; gap:0.55rem;
   overflow-y:auto; padding-right:0.3rem; min-height:0;
@@ -264,6 +264,57 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
   .photo-roll{ flex-direction:row; width:100%; height:auto; max-height:none; min-width:0; overflow-x:auto; overflow-y:hidden; }
   .photo-roll-item{ flex:0 0 76px; width:76px; }
 }
+
+/* ---------- photography page: painting easel ---------- */
+.easel-section{
+  max-width:1080px; margin:0 auto; padding:0 2.4rem 4rem;
+  display:flex; flex-direction:column; align-items:flex-start; gap:0.2rem;
+}
+.easel-wrap{ display:flex; flex-direction:column; align-items:center; gap:1rem; margin:1.6rem auto 0; }
+.easel{ width:100%; max-width:480px; }
+.easel-canvas{
+  position:relative; aspect-ratio:5/4; overflow:hidden;
+  background:var(--canvas); border:1px solid rgba(245,243,238,0.25);
+  box-shadow:0 16px 40px rgba(23,19,15,0.35);
+}
+.easel-canvas img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform 0.35s ease, opacity 0.35s ease;
+}
+.easel-canvas img.flip{ transform:rotateY(90deg); opacity:0.3; }
+.easel-caption{
+  position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between;
+  align-items:baseline; gap:0.8rem; padding:0.8rem 1rem;
+  background:linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0));
+  font-family:'IBM Plex Mono', monospace; font-size:0.8rem; letter-spacing:0.02em;
+  color:var(--white);
+}
+.easel-count{ color:var(--brown); opacity:0.95; flex-shrink:0; letter-spacing:0.05em; }
+.easel-ledge{
+  height:9px; width:92%; margin:0 auto; background:#3b2a1e;
+  border:1px solid rgba(245,243,238,0.16); border-top:none;
+}
+.easel-legs{ width:54%; height:30px; margin:0 auto; position:relative; }
+.easel-legs::before, .easel-legs::after{
+  content:''; position:absolute; top:0; width:2px; height:30px; background:rgba(245,243,238,0.22);
+}
+.easel-legs::before{ left:8%; transform:rotate(9deg); transform-origin:top; }
+.easel-legs::after{ right:8%; transform:rotate(-9deg); transform-origin:top; }
+.easel-controls{ display:flex; align-items:center; justify-content:center; gap:1.5rem; }
+.easel-arrow{
+  width:2.5rem; height:2.5rem; border-radius:50%; border:1px solid var(--brown);
+  background:transparent; color:var(--brown); font-size:1.25rem; line-height:1;
+  display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s ease;
+}
+.easel-arrow:hover{ background:var(--brown); color:var(--white); }
+.easel-thumbs{ display:flex; gap:0.6rem; }
+.easel-thumb{
+  display:block; padding:0; border:2px solid transparent; background:none; cursor:pointer;
+  width:60px; aspect-ratio:1/1; overflow:hidden; opacity:0.55; transition:all 0.2s ease; flex-shrink:0;
+}
+.easel-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.easel-thumb:hover{ opacity:0.85; }
+.easel-thumb.active{ opacity:1; border-color:var(--blue); }
 
 .gallery-thumb{
   aspect-ratio:4/3; border:1px dashed var(--line); border-radius:0;
