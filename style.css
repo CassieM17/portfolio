@@ -904,12 +904,14 @@ body.noir{
 }
 .noir .hero h1{
   font-family:'Fraunces', serif; font-weight:500; font-optical-sizing:auto;
-  text-transform:none; letter-spacing:-0.01em; position:relative; z-index:1;
+  letter-spacing:0.01em; position:relative; z-index:1;
 }
 .noir .hero-subtitle, .noir .hero-meta-line, .noir .section-mark, .noir .project-grid{
   position:relative; z-index:1;
 }
 .noir .hero-meta-line{ color:rgba(237,231,220,0.6); }
+.noir .hero-subtitle{ color:var(--blue); }
+.noir .section-mark{ border-top:none; }
 
 .noir .section-mark h2{
   font-family:'Fraunces', serif; font-style:italic; font-weight:500;
