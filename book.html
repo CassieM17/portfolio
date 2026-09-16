@@ -2,104 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Booki — Cassandra May</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<title>Cassandra May</title>
+<meta http-equiv="refresh" content="0; url=/book/">
+<link rel="canonical" href="https://cassandramay.com/book/">
+<script>location.replace('/book/');</script>
 </head>
 <body>
-
-<nav>
-  <a class="nav-mark" href="home.html">
-    <span class="sunflower-mark">
-      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <g class="sunflower-petals">
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(0 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(36 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(72 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(108 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(144 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(180 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(216 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(252 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(288 60 60)"/>
-          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(324 60 60)"/>
-        </g>
-        <circle cx="60" cy="60" r="29" fill="var(--brown-deep)"/>
-        <circle cx="49" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
-        <circle cx="49" cy="58" r="1.7" fill="var(--white)"/>
-        <circle cx="71" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
-        <circle cx="71" cy="58" r="1.7" fill="var(--white)"/>
-        <path d="M47,70 Q60,80 73,70" fill="none" stroke="var(--white)" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </span>
-    Cassandra May
-  </a>
-  <div class="nav-links">
-    <a href="home.html#resume-anchor" class="current">Work</a>
-    <a href="violin.html">Violin</a>
-    <a href="about.html">About</a>
-  </div>
-</nav>
-
-<div class="page-hero">
-  <a class="back-link" href="home.html">&larr; Back to Work</a>
-  <div class="movement"><h1>Your Private Library</h1></div>
-</div>
-
-<section>
-  <div class="case-study">
-    <div class="case-meta">
-      <div><span class="l">Timeframe</span><span class="v">2026</span></div>
-      <div><span class="l">Project</span><span class="v"><a href="https://cassiem17.github.io/booki/" target="_blank" rel="noopener">booki</a></span></div>
-      <div><span class="l">Role</span><span class="v">Designer, Front-End Developer</span></div>
-    </div>
-
-    <div class="case-block">
-      <h3>Summary</h3>
-      <p>Booki is a quiet, private bookshelf to log what you're reading. This little weekend
-      project is a searchable bookshelf, sortably by author, genre, title, date added.</p>
-    </div>
-
-    <div class="case-block">
-      <h3>Preview</h3>
-      <div id="bookiEmbed" style="position:relative; margin-top:1.2rem; border:1px solid var(--line); overflow:hidden; background:#14161d;">
-        <button id="bookiFullscreenBtn" onclick="toggleBookiFullscreen()" aria-label="Open booki full screen"
-          style="position:absolute; top:14px; right:14px; z-index:10; width:38px; height:38px; background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.3); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:background 0.2s ease;"
-          onmouseover="this.style.background='rgba(0,0,0,0.85)'" onmouseout="this.style.background='rgba(0,0,0,0.55)'">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-        </button>
-        <iframe id="bookiIframe" src="https://cassiem17.github.io/booki/" title="booki interactive preview" allowfullscreen style="width:100%; height:700px; border:0; display:block;" loading="lazy"></iframe>
-      </div>
-      <a href="https://cassiem17.github.io/booki/" target="_blank" rel="noopener" class="back-link" style="margin-top:1rem; margin-bottom:0;">Open prototype in a new tab &rarr;</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-nav">
-      <a href="home.html">Home</a>
-      <a href="home.html#resume-anchor">Work</a>
-      <a href="violin.html">Violin</a>
-      <a href="about.html">About</a>
-    </div>
-    <div class="footer-copy">© 2026 Cassandra May · <a href="home.html">cassandramay.com</a></div>
-  </div>
-</footer>
-
-<script>
-  function toggleBookiFullscreen(){
-    var iframe = document.getElementById('bookiIframe');
-    if(!document.fullscreenElement && !document.webkitFullscreenElement){
-      if(iframe.requestFullscreen){ iframe.requestFullscreen(); }
-      else if(iframe.webkitRequestFullscreen){ iframe.webkitRequestFullscreen(); }
-    } else {
-      if(document.exitFullscreen){ document.exitFullscreen(); }
-      else if(document.webkitExitFullscreen){ document.webkitExitFullscreen(); }
-    }
-  }
-</script>
+<p>Redirecting to <a href="/book/">cassandramay.com/book/</a>&hellip;</p>
 </body>
 </html>

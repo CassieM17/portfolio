@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassandra May</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-mark" href="/">
+    <span class="sunflower-mark">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g class="sunflower-petals">
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(36 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(72 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(108 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(144 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(180 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(216 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(252 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(288 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(324 60 60)"/>
+        </g>
+        <circle cx="60" cy="60" r="29" fill="var(--brown-deep)"/>
+        <circle cx="49" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
+        <circle cx="49" cy="58" r="1.7" fill="var(--white)"/>
+        <circle cx="71" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
+        <circle cx="71" cy="58" r="1.7" fill="var(--white)"/>
+        <path d="M47,70 Q60,80 73,70" fill="none" stroke="var(--white)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </span>
+    Cassandra May
+  </a>
+  <div class="nav-links">
+    <a href="/#resume-anchor" class="current">Work</a>
+    <a href="/violin/">Violin</a>
+    <a href="/about/">About</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <a class="back-link" href="/">&larr; Back to Work</a>
+  <div class="movement"><h1>Rethinking iCal</h1></div>
+</div>
+
+<section>
+  <div class="case-study">
+    <div class="case-meta">
+      <div><span class="l">Timeframe</span><span class="v">2026</span></div>
+      <div><span class="l">Project</span><span class="v">iCal</span></div>
+      <div><span class="l">Role</span><span class="v">Researcher, UX Designer</span></div>
+    </div>
+
+    <div class="case-block">
+      <h3>Summary</h3>
+      <p>As a busy student juggling academic calendars, orchestra commitments, and research
+      deadlines, iCal is where my whole schedule lives, and it works. But a semester of
+      near-daily use surfaced the same friction repeatedly: uncompressible dead time, a color
+      system too rigid for how I actually organize things, and views that gave a week off the
+      same visual weight as a 30-minute meeting. I treated my own calendar as a research subject
+      and made some design changes.</p>
+    </div>
+
+    <div class="preview-strip">
+      <img class="zoomable" src="/cal-week-after.png" alt="Preview of the redesigned Week View">
+      <img class="zoomable" src="/cal-month-after.png" alt="Preview of the redesigned Month View">
+    </div>
+
+    <div class="case-block">
+      <h3>01 · Research Approach</h3>
+      <p>I used an <strong>autoethnographic diary-study</strong> method: over several weeks of
+      real use, I annotated live screenshots of my own calendar the moment something didn't work,
+      circling, labeling, and sketching fixes directly on top of my actual schedule.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>02 · Key Findings</h3>
+
+      <div class="subhead">Week View</div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">1</span><h4>No visual hierarchy within a single calendar</h4></div>
+        <p>Every event renders in the same flat color — making one deadline stand out means
+        creating a whole new calendar.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Let users bold, italicize,
+        or pattern-fill individual events instead.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">2</span><h4>Rigid, one-note color palette</h4></div>
+        <p>Calendars support only a single solid preset color — no gradients, patterns, or
+        background tinting.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Expand the color picker to
+        custom hues, subtle patterns, and background tints.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">3</span><h4>Dead time can't be collapsed</h4></div>
+        <p>Roughly seven nightly sleep hours render at full height, pushing the real schedule
+        below the fold for no reason.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Let users compress a
+        defined empty time range, customizable per person.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">4</span><h4>The "now" indicator is easy to lose</h4></div>
+        <p>The current-time marker blends into a dense grid of overlapping events and colors.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>A persistent,
+        higher-contrast marker, with a floating time chip when scrolled out of frame.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">5</span><h4>Inconsistent weekend treatment</h4></div>
+        <p>Month view shades weekends as a visual anchor; Week view doesn't carry the same
+        treatment.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Carry weekend shading
+        into every view, toggleable in Settings.</div>
+      </div>
+
+      <div class="subhead">Month View</div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">6</span><h4>Multi-day banners compete with real events</h4></div>
+        <p>A week-long banner like "Winter Break" renders at the same visual weight as a 9am
+        lecture.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Give all-day events a
+        lighter background treatment instead of a full-weight bar.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">7</span><h4>Date numbers crowd event labels</h4></div>
+        <p>The date number sits inline with the first event, squeezing longer labels.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Let the date number float
+        independently in the corner of the cell.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">8</span><h4>No at-a-glance category signal</h4></div>
+        <p>On a five-plus-event day, there's no way to tell what kind of day it is without
+        tapping in.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>A small row of category
+        icons beneath the date number, tap-to-expand for the full list.</div>
+      </div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">9</span><h4>No seasonal or ambient cues</h4></div>
+        <p>The month grid looks identical whether it's January or June.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Small, optional seasonal
+        iconography to add warmth without clutter.</div>
+      </div>
+
+      <div class="subhead">Calendar Sidebar</div>
+
+      <div class="finding">
+        <div class="finding-head"><span class="finding-num">10</span><h4>Twelve calendars, one visual language</h4></div>
+        <p>All 12 calendars are differentiated only by a colored dot — no icons, no grouping,
+        no way to separate daily from rarely-used ones.</p>
+        <div class="opportunity"><strong>Design opportunity</strong><br>Lightweight icons per
+        calendar type, custom folders, and pinning for the ones used most.</div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>03 · Try the Redesign</h3>
+      <p>Turning the highest-priority findings into something you can actually click through,
+      using the same real schedule from the diary study.</p>
+
+      <div class="subhead">Week View</div>
+      <div class="mini-before">
+        <span class="compare-tag before">Before — Current iCal</span>
+        <img class="zoomable" src="/cal-week-before.png" alt="Before: current iCal Week View, November 2023">
+      </div>
+      <p style="font-size:0.9rem; opacity:0.8; margin-bottom:0.4rem;">Click the toggles below to apply each fix to the real schedule from the diary study — same data, one change at a time.</p>
+      <div class="toggle-row">
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-collapse-off', !this.checked)"> Collapse dead time</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-weekend-on', this.checked)"> Weekend shading</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-hierarchy-on', this.checked)"> Bold / italic hierarchy</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('wiFrame').classList.toggle('wi-now-hi', this.checked)"> High-contrast "now"</label>
+      </div>
+
+      <div id="wiFrame" class="wi-frame wi-weekend-on wi-hierarchy-on wi-now-hi">
+        <div class="wi-topbar">
+          <div class="wi-icons"><span class="wi-dot"></span><span class="wi-dot2"></span><span class="wi-dot2"></span><span class="wi-dot2"></span></div>
+          <div class="wi-segctrl"><span>Day</span><span class="active">Week</span><span>Month</span><span>Year</span></div>
+          <div>Wed, Nov 29 &middot; 11:20 AM&nbsp;&nbsp;Today</div>
+        </div>
+        <div class="wi-monthtitle">November 2023</div>
+        <div class="wi-legend">
+          <div><span class="sw" style="background:#4a86e0;"></span>Academics</div>
+          <div><span class="sw" style="background:#9b6bc7;"></span>Violin</div>
+          <div><span class="sw" style="background:#e3934f;"></span>Research</div>
+          <div><span class="sw" style="background:#3fb1c2;"></span>Social</div>
+          <div><span class="sw" style="background:#9099a8;"></span>Personal</div>
+          <div><span class="sw" style="background:#2f3f66;"></span>Deadline</div>
+        </div>
+        <div class="wi-gridwrap">
+          <div class="wi-dayheader">
+            <div class="wi-dh" style="left:calc(38px + 0*((100% - 38px)/7));">Sun 26</div>
+            <div class="wi-dh" style="left:calc(38px + 1*((100% - 38px)/7));">Mon 27</div>
+            <div class="wi-dh" style="left:calc(38px + 2*((100% - 38px)/7));">Tue 28</div>
+            <div class="wi-dh" style="left:calc(38px + 3*((100% - 38px)/7));">Wed 29</div>
+            <div class="wi-dh" style="left:calc(38px + 4*((100% - 38px)/7));">Thu 30</div>
+            <div class="wi-dh" style="left:calc(38px + 5*((100% - 38px)/7));">Fri 1</div>
+            <div class="wi-dh weekend" style="left:calc(38px + 6*((100% - 38px)/7));">Sat 2</div>
+          </div>
+          <div class="wi-viewport">
+            <div class="wi-weekendcol" style="left:calc(38px + 6*((100% - 38px)/7)); width:calc((100% - 38px)/7);"></div>
+            <div class="wi-sleepband">12:00 &ndash; 7:00 AM &middot; Sleep (tap to expand)</div>
+            <div class="wi-eventslayer" id="wiEventsLayer"></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+      (function(){
+        var weekEvents = [
+          {d:0,top:436,h:40,cal:'social',t:'thai food w/ jayden'},
+          {d:0,top:596,h:20,cal:'deadline',t:'rpc poster due',bold:1},
+          {d:1,top:116,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:1,top:196,h:40,cal:'academics',t:'Writing about Data'},
+          {d:1,top:316,h:20,cal:'personal',t:'submit TLA form',italic:1},
+          {d:1,top:416,h:40,cal:'violin',t:'practice'},
+          {d:1,top:516,h:60,cal:'research',t:'EUREKA! Discovery pres.',bold:1},
+          {d:2,top:136,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:2,top:256,h:20,cal:'personal',t:'amazon / xmas cards',italic:1},
+          {d:2,top:356,h:30,cal:'academics',t:'talk to advisor'},
+          {d:2,top:436,h:40,cal:'violin',t:'rehearse w/ brian'},
+          {d:2,top:536,h:60,cal:'violin',t:'van der sloot studio class',bold:1},
+          {d:3,top:116,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:3,top:196,h:40,cal:'academics',t:'Writing about Data'},
+          {d:3,top:276,h:40,cal:'violin',t:'chamber coaching'},
+          {d:3,top:376,h:40,cal:'social',t:'dinner w/ jayden',italic:1},
+          {d:3,top:516,h:20,cal:'deadline',t:'ucla app',bold:1},
+          {d:4,top:116,h:40,cal:'academics',t:'Differential & Integral Calc'},
+          {d:4,top:316,h:40,cal:'violin',t:'canterbury place gig'},
+          {d:4,top:436,h:80,cal:'social',t:'hang out w/ jayden',italic:1},
+          {d:4,top:596,h:20,cal:'deadline',t:'apply to ucla',bold:1},
+          {d:5,top:76,h:20,cal:'personal',t:'call jasmin, get package',italic:1},
+          {d:5,top:256,h:40,cal:'academics',t:'de fer'},
+          {d:5,top:356,h:40,cal:'social',t:'scottys market'},
+          {d:5,top:556,h:20,cal:'personal',t:'laundry, take out trash',italic:1},
+          {d:5,top:616,h:60,cal:'social',t:'harry potter w/ alex',italic:1},
+          {d:6,top:276,h:60,cal:'social',t:'capital grains brunch',italic:1},
+          {d:6,top:536,h:100,cal:'social',t:'bbq w/ raghav, julian, jess+'},
+          {d:6,top:636,h:60,cal:'deadline',t:'study for rpc',bold:1}
+        ];
+        var gridlines = [36,116,196,276,356,436,516,596,676];
+        var tlabels = [
+          {top:112,label:'9 AM'},{top:192,label:'11 AM'},{top:272,label:'1 PM'},{top:352,label:'3 PM'},
+          {top:432,label:'5 PM'},{top:512,label:'7 PM'},{top:592,label:'9 PM'},{top:672,label:'11 PM'}
+        ];
+        var layer = document.getElementById('wiEventsLayer');
+        var colWidth = 'calc((100% - 38px)/7)';
+        function colLeft(d){ return 'calc(38px + ' + d + '*((100% - 38px)/7))'; }
+        var html = '';
+        gridlines.forEach(function(g){
+          html += '<div class="wi-gridline" style="top:' + g + 'px;"></div>';
+        });
+        tlabels.forEach(function(tl){
+          html += '<div class="wi-tlabel" style="top:' + tl.top + 'px;">' + tl.label + '</div>';
+        });
+        weekEvents.forEach(function(ev){
+          html += '<div class="wi-event wi-c-' + ev.cal + '" data-bold="' + (ev.bold?1:0) + '" data-italic="' + (ev.italic?1:0) + '" style="top:' + ev.top + 'px; height:' + ev.h + 'px; left:' + colLeft(ev.d) + '; width:' + colWidth + ';">' + ev.t + '</div>';
+        });
+        // now marker: Wed (col3) 11:20am -> compact top 209
+        html += '<div class="wi-now" style="top:209px; left:' + colLeft(3) + '; width:' + colWidth + ';"></div>';
+        html += '<div class="wi-nowdot" style="top:209px; left:calc(38px + 3*((100% - 38px)/7));"></div>';
+        html += '<div class="wi-nowlabel" style="top:203px; left:0;">11:20</div>';
+        layer.innerHTML = html;
+      })();
+      </script>
+
+      <div class="subhead">Month View</div>
+      <div class="mini-before">
+        <span class="compare-tag before">Before — Current iCal</span>
+        <img class="zoomable" src="/cal-month-before.png" alt="Before: current iCal Month View, January 2024">
+      </div>
+      <p style="font-size:0.9rem; opacity:0.8; margin-bottom:0.4rem;">Same idea for Month view — toggle each fix on and off.</p>
+      <div class="toggle-row">
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-ribbon-on', this.checked)"> Lightweight banner</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-datenum-on', this.checked)"> Floating date number</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-icons-on', this.checked)"> Category icon strip</label>
+        <label class="opt-toggle"><input type="checkbox" checked onchange="document.getElementById('miFrame').classList.toggle('mi-weekend-on', this.checked)"> Weekend shading</label>
+      </div>
+
+      <div id="miFrame" class="mi-frame mi-ribbon-on mi-datenum-on mi-icons-on mi-weekend-on">
+        <div class="mi-topbar">
+          <div class="mi-icons"><span class="wi-dot"></span><span class="wi-dot2"></span><span class="wi-dot2"></span><span class="wi-dot2"></span></div>
+          <div class="mi-segctrl"><span>Day</span><span>Week</span><span class="active">Month</span><span>Year</span></div>
+          <div>Tue, Jan 16&nbsp;&nbsp;Today</div>
+        </div>
+        <div class="mi-monthtitle">January 2024</div>
+        <div class="mi-legend">
+          <div><span class="sw" style="background:#4a86e0;"></span>Academics</div>
+          <div><span class="sw" style="background:#9b6bc7;"></span>Violin</div>
+          <div><span class="sw" style="background:#3fb1c2;"></span>Social</div>
+          <div><span class="sw" style="background:#9099a8;"></span>Personal</div>
+          <div><span class="sw" style="background:#d9548a;"></span>Birthday</div>
+          <div><span class="sw" style="background:#2f3f66;"></span>Deadline</div>
+        </div>
+        <div class="mi-dayheader"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div class="weekend">Sat</div></div>
+        <div class="mi-grid" id="miGrid"></div>
+      </div>
+
+      <script>
+      (function(){
+        var C = function(cls, txt){ return [cls, txt]; };
+        var cells = [
+          {n:31, dim:1, wknd:1},
+          {n:1, wbreak:1, icons:['personal'], ev:[C('personal',"New Year's Day"),C('personal','las vegas trip')]},
+          {n:2, wbreak:1, icons:['personal'], ev:[C('personal','leave for vegas')]},
+          {n:3, wbreak:1},
+          {n:4, wbreak:1, icons:['personal'], ev:[C('personal','rigo comes back')]},
+          {n:5, wbreak:1, icons:['personal'], ev:[C('personal','see rigo')]},
+          {n:6, wbreak:1, wknd:1, icons:['social'], ev:[C('social','harker alumni soccer')]},
+
+          {n:7, wknd:1, icons:['birthday'], ev:[C('birthday',"Ashley Ryan's Bday"),C('birthday',"Michelle Jin's Bday")]},
+          {n:8, icons:['birthday','academics','personal'], ev:[C('birthday',"Dawson Chen's Bday"),C('academics','harker classes start'),C('personal','dermatology appt')]},
+          {n:9, icons:['personal','social'], ev:[C('personal','roland appt'),C('social','climbing w/ andromeda')]},
+          {n:10, icons:['violin','personal'], ev:[C('violin','practice'),C('personal','opto appt')]},
+          {n:11, icons:['violin','personal'], ev:[C('violin','practice'),C('personal','record')]},
+          {n:12, icons:['personal'], ev:[C('personal','photoshoot'),C('personal','call yunah')]},
+          {n:13, wknd:1},
+
+          {n:14, wknd:1},
+          {n:15, icons:['deadline'], ev:[C('deadline','Martin Luther King Jr. Day'),C('deadline','music@menlo deadline')]},
+          {n:16, today:1, icons:['birthday','academics','violin'], ev:[C('birthday',"Lexi Wong's Birthday"),C('academics','Integration and Approx'),C('academics','Reasoning w/ Data')]},
+          {n:17, icons:['personal'], ev:[C('personal','flight to Denver'),C('personal','flight to Pittsburgh')]},
+          {n:18, icons:['academics'], ev:[C('academics','Integration and Approx'),C('academics','Intro to Psych')]},
+          {n:19},
+          {n:20, wknd:1},
+
+          {n:21, wknd:1, icons:['birthday'], ev:[C('birthday',"Uncle Jay's Birthday")]},
+          {n:22, icons:['academics'], ev:[C('academics','Integration and Approx'),C('academics','Reasoning w/ Data')]},
+          {n:23, icons:['academics','violin'], ev:[C('academics','Intro to Psych'),C('violin','Major Instrumental Ens.')]},
+          {n:24, icons:['birthday','academics'], ev:[C('birthday',"Harika Parimi's Bday"),C('academics','Integration and Approx')]},
+          {n:25, icons:['academics'], ev:[C('academics','Reasoning w/ Data'),C('academics','Principles of Micro')]},
+          {n:26, icons:['academics'], ev:[C('academics','Integration and Approx')]},
+          {n:27, wknd:1},
+
+          {n:28, wknd:1},
+          {n:29, icons:['academics'], ev:[C('academics','Integration and Approx')]},
+          {n:30, icons:['deadline','academics'], ev:[C('deadline','deadline: univ. minnesota'),C('academics','Reasoning w/ Data')]},
+          {n:31, icons:['academics','violin'], ev:[C('academics','Principles of Micro'),C('violin','Violin Studio Perf.')]},
+          {n:1, dim:1, ev:[C('deadline','Black History Month')]},
+          {n:2, dim:1, wknd:1, ev:[C('personal','Groundhog Day')]},
+          {n:3, dim:1, wknd:1}
+        ];
+        var iconClass = {academics:'mi-dot-academics',violin:'mi-dot-violin',social:'mi-dot-social',personal:'mi-dot-personal',birthday:'mi-dot-birthday',deadline:'mi-dot-deadline'};
+        var grid = document.getElementById('miGrid');
+        var html = '';
+        cells.forEach(function(c){
+          var cls = 'mi-cell';
+          if(c.dim) cls += ' dim';
+          if(c.wknd) cls += ' wknd';
+          if(c.wbreak) cls += ' wbreak';
+          if(c.today) cls += '';
+          var style = c.today ? ' style="border:1.5px solid #4a86e0;"' : '';
+          html += '<div class="' + cls + '"' + style + '>';
+          if(c.wbreak){ html += '<div class="mi-banner" data-label="WINTER BREAK">WINTER BREAK</div>'; }
+          html += '<div class="mi-datenum-row"><span class="mi-daynum' + (c.today ? ' today' : '') + '">' + c.n + '</span></div>';
+          if(c.icons && c.icons.length){
+            html += '<div class="mi-icons">';
+            c.icons.forEach(function(ic){ html += '<span class="mi-icondot ' + iconClass[ic] + '"></span>'; });
+            html += '</div>';
+          }
+          if(c.ev){
+            c.ev.forEach(function(e){ html += '<div class="mi-ev mi-c-' + e[0] + '">' + e[1] + '</div>'; });
+          }
+          html += '</div>';
+        });
+        grid.innerHTML = html;
+      })();
+      </script>
+    </div>
+
+
+    <div class="case-block">
+      <h3>04 · Prioritization</h3>
+      <p>Plotting the ten findings against rough implementation effort helps sequence a roadmap.</p>
+      <div class="quad-grid">
+        <div class="quad green">
+          <h4>High Impact · Low Effort</h4>
+          <ul>
+            <li>Weekend shading in every view (#5)</li>
+            <li>Higher-contrast "now" indicator (#4)</li>
+            <li>Bold / italic text on events (#1)</li>
+            <li>Floating date number in Month view (#7)</li>
+          </ul>
+        </div>
+        <div class="quad blue">
+          <h4>High Impact · High Effort</h4>
+          <ul>
+            <li>Collapsible / "warped" dead time (#3)</li>
+            <li>Category icon strip in Month view (#8)</li>
+            <li>Lightweight banner treatment for multi-day events (#6)</li>
+          </ul>
+        </div>
+        <div class="quad yellow">
+          <h4>Lower Impact · Low Effort</h4>
+          <ul>
+            <li>Seasonal iconography (#9)</li>
+          </ul>
+        </div>
+        <div class="quad red">
+          <h4>Lower Impact · High Effort</h4>
+          <ul>
+            <li>Full sidebar restructuring with custom folders (#10)</li>
+            <li>Expanded color/pattern system (#2)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <details class="case-expand">
+      <summary>Reflection &amp; Next Steps</summary>
+      <div class="case-expand-body">
+        <p>This was a solo, single-subject diary study, essentially n of 1. My own habits shape
+        which pain points surfaced; someone with a lighter calendar might prioritize differently.</p>
+        <p style="margin-top:1rem;">With more time, I'd take this in three directions: run the
+        same live-annotation exercise with 5-8 other students with different calendar habits to
+        see which findings generalize beyond my own use; build clickable Figma prototypes for the
+        "high impact / low effort" quadrant and usability-test them against the current iCal
+        flows; and validate the category-icon-strip concept specifically.</p>
+      </div>
+    </details>
+
+    <p class="case-note" style="margin-top:1.6rem;">This case study was produced independently as a personal design exercise and is not affiliated with or endorsed by Apple Inc.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="/">Home</a>
+      <a href="/#resume-anchor">Work</a>
+      <a href="/violin/">Violin</a>
+      <a href="/about/">About</a>
+    </div>
+    <div class="footer-copy">© 2026 Cassandra May · <a href="/">cassandramay.com</a></div>
+  </div>
+</footer>
+
+<script src="/lightbox.js"></script>
+</body>
+</html>
