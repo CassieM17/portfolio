@@ -145,6 +145,11 @@
 
   // Keep the photo roll pinned to the camera widget's own height so it
   // scrolls internally instead of stretching (and growing) the whole page.
+  // The camframe's height isn't final until its photo and the webfonts have
+  // loaded, so a plain call-once-on-load undersizes the roll (only ~3 thumbs
+  // fit) until something else -- like a window resize -- forces a recompute.
+  // A ResizeObserver catches every layout change that affects camEl's size
+  // (image load, font swap, viewport resize) and keeps the roll in sync.
   var camEl = document.querySelector('.camframe');
   function syncRollHeight(){
     if(window.matchMedia('(max-width:560px)').matches){
@@ -155,6 +160,12 @@
   }
   syncRollHeight();
   window.addEventListener('resize', syncRollHeight);
+  if(window.ResizeObserver){
+    new ResizeObserver(syncRollHeight).observe(camEl);
+  }
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(syncRollHeight);
+  }
 })();
 </script>
 
