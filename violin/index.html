@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassandra May</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-mark" href="/">
+    <span class="sunflower-mark">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g class="sunflower-petals">
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(0 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(36 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(72 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(108 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(144 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(180 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(216 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(252 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(288 60 60)"/>
+          <ellipse cx="60" cy="22" rx="9" ry="20" fill="var(--blue)" stroke="var(--brown)" stroke-width="1.5" transform="rotate(324 60 60)"/>
+        </g>
+        <circle cx="60" cy="60" r="29" fill="var(--brown-deep)"/>
+        <circle cx="49" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
+        <circle cx="49" cy="58" r="1.7" fill="var(--white)"/>
+        <circle cx="71" cy="55" r="6" fill="none" stroke="var(--white)" stroke-width="3"/>
+        <circle cx="71" cy="58" r="1.7" fill="var(--white)"/>
+        <path d="M47,70 Q60,80 73,70" fill="none" stroke="var(--white)" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </span>
+    Cassandra May
+  </a>
+  <div class="nav-links">
+    <a href="/#resume-anchor">Work</a>
+    <a href="/violin/" class="current">Violin</a>
+    <a href="/about/">About</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="movement"><h1>Violin</h1></div>
+</div>
+
+<section>
+  <div class="violin-grid">
+    <div class="portrait-col">
+    <div class="portrait-frame">
+      <img src="/headshot.jpeg" alt="Cassandra May holding a violin">
+    </div>
+
+    <div class="vinyl-station" id="vinylStation">
+      <div class="vinyl-wall" id="vinylWall">
+        <div class="vinyl-record" data-title="Paganini Caprice No. 9" data-src="/paganini-caprice-9.mp3" style="z-index:5;">
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+          <div class="vinyl-label-popup">Paganini Caprice No. 9</div>
+        </div>
+        <div class="vinyl-record" data-title="Sibelius Violin Concerto" data-src="/sibelius-violin-concerto.mp3" style="z-index:4;">
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+          <div class="vinyl-label-popup">Sibelius Violin Concerto</div>
+        </div>
+        <div class="vinyl-record" data-title="Bach Sonata 1 Fugue" data-src="/bach-sonata-1-fugue.mp3" style="z-index:3;">
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+          <div class="vinyl-label-popup">Bach Sonata 1 Fugue</div>
+        </div>
+        <div class="vinyl-record" data-title="Glazunov Violin Concerto" data-src="/glazunov-violin-concerto.mp3" style="z-index:2;">
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+          <div class="vinyl-label-popup">Glazunov Violin Concerto</div>
+        </div>
+        <div class="vinyl-record" data-title="Beethoven Sonata No. 8" data-src="/beethoven-sonata-8.mp3" style="z-index:1;">
+          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+          <div class="vinyl-label-popup">Beethoven Sonata No. 8</div>
+        </div>
+      </div>
+
+      <div class="turntable-wrap" id="turntableWrap">
+        <svg class="turntable-svg turntable-base" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="15" y="140" width="330" height="55" rx="6" fill="#17130F"/>
+          <rect x="15" y="140" width="330" height="4" fill="var(--brown)"/>
+          <ellipse cx="175" cy="140" rx="115" ry="32" fill="#1c1c1c" stroke="var(--brown)" stroke-width="1"/>
+          <ellipse cx="175" cy="140" rx="70" ry="19" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+          <ellipse cx="175" cy="140" rx="40" ry="11" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+          <circle cx="175" cy="140" r="5" fill="#c9a35a"/>
+          <rect x="286" y="76" width="24" height="14" rx="3" fill="var(--brown)"/>
+        </svg>
+        <svg class="turntable-svg turntable-arm-layer" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g id="tonearm" class="tonearm">
+            <line x1="322" y1="172" x2="300" y2="90" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="322" cy="172" r="6" fill="var(--brown)"/>
+            <circle id="tonearmHead" cx="300" cy="90" r="12" fill="var(--brown)"/>
+          </g>
+        </svg>
+        <div class="music-notes" id="musicNotes">
+          <span class="note n1">&#9834;</span>
+          <span class="note n2">&#9833;</span>
+          <span class="note n3">&#9834;</span>
+          <span class="note n4">&#9833;</span>
+          <span class="note n5">&#9834;</span>
+        </div>
+      </div>
+      <div class="vinyl-hint">drag a record onto the turntable, then click the tonearm to start/stop</div>
+      <audio id="vinylAudio"></audio>
+    </div>
+    </div>
+
+    <div>
+      <div class="bio">
+        <p>Cassandra May holds a BFA in Violin Performance from Carnegie Mellon University,
+        where she studied under Professor William van der Sloot. A Bay Area native, she began
+        learning the violin at age 3 and studied with teachers Patricia Burnham and David
+        Chernyavsky.</p>
+
+        <p>Cassandra has performed extensively as a soloist, chamber musician, and orchestral
+        violinist. Her recent accomplishments include winning the Pittsburgh Concert Society
+        Major Award with the Mezza String Quartet and placing runner-up in Carnegie Mellon's
+        2025 Concerto Competition. She was also a recipient of the Pittsburgh Female College
+        Association Award and has been recognized as a prizewinner in the ENKOR, Peninsula
+        Young Musicians, KAMSA, United States Open Music, and Junior Bach Festival
+        competitions. Her past orchestral leadership roles include concertmaster and principal
+        positions with the Golden State Youth Orchestra, San Francisco Youth Orchestra, and
+        Carnegie Mellon Philharmonic. Additionally, her musical studies have taken her to
+        festivals including the Mozarteum Academy in Salzburg, Tanglewood String Quartet
+        Workshop, and Bowdoin International Music Festival.</p>
+
+        <p>Cassandra also teaches students ages 8–20, with a focus on helping with solo and
+        ensemble repertoire, mastering technique, and passing auditions. She is passionate about
+        helping young musicians build both confidence and a strong musical foundation.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Recordings</div>
+  <div class="recordings">
+    <div class="recording">
+      <div class="recording-title">Paganini Violin Concerto No. 1</div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/saWaSE0726Y" title="Paganini Violin Concerto No. 1" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="recording">
+      <div class="recording-title">Paganini Caprice No. 4</div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/4dGIdGZN_k8" title="Paganini Caprice No. 4" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="recording">
+      <div class="recording-title">Debussy String Quartet</div>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/Bt2UU05AKKU" title="Debussy String Quartet" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="subhead">Media</div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 8L5 12l4 4"/><path d="M15 8l4 4-4 4"/></svg>
+    drag or scroll to see more
+  </div>
+  <div class="carousel-wrap">
+    <div class="carousel-viewport" id="violinViewport">
+      <div class="media-carousel-track" id="violinTrack">
+        <div class="carousel-item">
+          <div class="photo-box"><img class="zoomable" src="/violin-harker.jpg" alt="Cassandra May performing as soloist with orchestra" style="object-position:50% 15%;"></div>
+          <span class="cap">Solo Performance</span>
+        </div>
+        <div class="carousel-item">
+          <div class="photo-box"><img class="zoomable" src="/violin-mezza-quartet.jpeg" alt="Mezza string quartet on the Carnegie Mellon lawn" style="object-position:50% 35%;"></div>
+          <span class="cap">Mezza String Quartet</span>
+        </div>
+        <div class="carousel-item">
+          <div class="photo-box"><img class="zoomable" src="/violin-portrait-red.jpg" alt="Cassandra May studio portrait with violin" style="object-position:50% 25%;"></div>
+          <span class="cap">Portrait</span>
+        </div>
+        <div class="carousel-item">
+          <div class="photo-box"><img class="zoomable" src="/violin-graduation-duo.jpg" alt="Cassandra May with a fellow musician on graduation day" style="object-position:50% 20%;"></div>
+          <span class="cap">Graduation</span>
+        </div>
+        <div class="carousel-item">
+          <div class="photo-box"><img class="zoomable" src="/violin-salzburg.jpg" alt="Cassandra May performing violin with a pianist in Salzburg" style="object-position:75% 25%;"></div>
+          <span class="cap">Performance in Salzburg</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var viewport = document.getElementById('violinViewport');
+  var isDown = false;
+  var startX, scrollStart, moved;
+
+  viewport.addEventListener('mousedown', function(e){
+    isDown = true;
+    moved = 0;
+    viewport.classList.add('dragging');
+    startX = e.pageX;
+    scrollStart = viewport.scrollLeft;
+  });
+  window.addEventListener('mouseup', function(){
+    isDown = false;
+    viewport.classList.remove('dragging');
+  });
+  window.addEventListener('mousemove', function(e){
+    if(!isDown) return;
+    e.preventDefault();
+    var dx = e.pageX - startX;
+    moved = Math.max(moved, Math.abs(dx));
+    viewport.scrollLeft = scrollStart - dx;
+  });
+  // If the mouse actually dragged (rather than just clicked), suppress the
+  // click that follows so it doesn't accidentally trigger the zoom lightbox.
+  viewport.addEventListener('click', function(e){
+    if(moved > 5){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }, true);
+})();
+</script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="/">Home</a>
+      <a href="/#resume-anchor">Work</a>
+      <a href="/about/">About</a>
+    </div>
+    <div class="footer-copy">© 2026 Cassandra May · <a href="/">cassandramay.com</a></div>
+  </div>
+</footer>
+
+<script src="/lightbox.js"></script>
+<script>
+(function(){
+  var station = document.getElementById('vinylStation');
+  if(!station) return;
+  var wall = document.getElementById('vinylWall');
+  var turntableWrap = document.getElementById('turntableWrap');
+  var turntableBase = document.querySelector('.turntable-base');
+  var tonearm = document.getElementById('tonearm');
+  var audio = document.getElementById('vinylAudio');
+  var records = Array.prototype.slice.call(document.querySelectorAll('.vinyl-record'));
+
+  var loadedRecord = null;
+  var isPlaying = false;
+  var dragging = null;
+
+  var RECORD_SIZE = 90;
+  var STRIDE = 60;
+  var TOPS = [10, 0, 14, 2, 12];
+
+  function layoutRecords(){
+    var wallWidth = wall.offsetWidth;
+    var centerX = wallWidth / 2;
+    var radius = RECORD_SIZE / 2;
+    records.forEach(function(rec, i){
+      var offsetFromCenter = (i - 2) * STRIDE;
+      var left = centerX + offsetFromCenter - radius;
+      var top = TOPS[i];
+      if(dragging && dragging.rec === rec) return;
+      rec.style.left = left + 'px';
+      rec.style.top = top + 'px';
+      rec.dataset.homeLeft = left;
+      rec.dataset.homeTop = top;
+    });
+  }
+  function repositionLoadedRecord(){
+    if(!loadedRecord) return;
+    var stationRect = station.getBoundingClientRect();
+    var svgRect = turntableBase.getBoundingClientRect();
+    var platterWidth = (230/360) * svgRect.width;
+    var newSize = platterWidth * 0.92;
+    var centerX = svgRect.left + (175/360)*svgRect.width - stationRect.left;
+    var centerY = svgRect.top + (140/210)*svgRect.height - stationRect.top;
+    loadedRecord.style.width = newSize + 'px';
+    loadedRecord.style.height = newSize + 'px';
+    loadedRecord.style.left = (centerX - newSize/2) + 'px';
+    loadedRecord.style.top = (centerY - newSize/2) + 'px';
+  }
+  layoutRecords();
+  window.addEventListener('resize', function(){
+    layoutRecords();
+    repositionLoadedRecord();
+  });
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      layoutRecords();
+      repositionLoadedRecord();
+    });
+  }
+
+  records.forEach(function(rec){
+    rec.dataset.homeZ = rec.style.zIndex;
+
+    rec.addEventListener('pointerdown', function(e){
+      e.preventDefault();
+      rec.setPointerCapture(e.pointerId);
+      var rect = rec.getBoundingClientRect();
+      dragging = {
+        rec: rec,
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top
+      };
+      rec.classList.add('dragging');
+      if(loadedRecord === rec){
+        stopPlayback();
+        rec.classList.remove('on-platter');
+        loadedRecord = null;
+      }
+    });
+
+    rec.addEventListener('pointermove', function(e){
+      if(!dragging || dragging.rec !== rec) return;
+      var stationRect = station.getBoundingClientRect();
+      rec.style.left = (e.clientX - stationRect.left - dragging.offsetX) + 'px';
+      rec.style.top = (e.clientY - stationRect.top - dragging.offsetY) + 'px';
+    });
+
+    function endDrag(e){
+      if(!dragging || dragging.rec !== rec) return;
+      try{ rec.releasePointerCapture(e.pointerId); }catch(err){}
+      rec.classList.remove('dragging');
+      dragging = null;
+
+      var recRect = rec.getBoundingClientRect();
+      var cx = recRect.left + recRect.width/2;
+      var cy = recRect.top + recRect.height/2;
+      var svgRect = turntableBase.getBoundingClientRect();
+      var pLeft = svgRect.left + (60/360)*svgRect.width;
+      var pRight = svgRect.left + (290/360)*svgRect.width;
+      var pTop = svgRect.top + (108/210)*svgRect.height;
+      var pBottom = svgRect.top + (172/210)*svgRect.height;
+      var overPlatter = cx >= pLeft && cx <= pRight && cy >= pTop && cy <= pBottom;
+
+      if(overPlatter && !loadedRecord){
+        snapToPlatter(rec);
+      } else {
+        snapHome(rec);
+      }
+    }
+    rec.addEventListener('pointerup', endDrag);
+    rec.addEventListener('pointercancel', endDrag);
+  });
+
+  function snapToPlatter(rec){
+    var stationRect = station.getBoundingClientRect();
+    var svgRect = turntableBase.getBoundingClientRect();
+    var platterWidth = (230/360) * svgRect.width;
+    var newSize = platterWidth * 0.92;
+    var centerX = svgRect.left + (175/360)*svgRect.width - stationRect.left;
+    var centerY = svgRect.top + (140/210)*svgRect.height - stationRect.top;
+    rec.style.transition = 'left 0.3s ease, top 0.3s ease, transform 0.3s ease, width 0.3s ease, height 0.3s ease';
+    rec.style.width = newSize + 'px';
+    rec.style.height = newSize + 'px';
+    rec.style.left = (centerX - newSize/2) + 'px';
+    rec.style.top = (centerY - newSize/2) + 'px';
+    rec.classList.add('on-platter');
+    rec.style.zIndex = 60;
+    loadedRecord = rec;
+    setTimeout(function(){ rec.style.transition = ''; }, 320);
+  }
+
+  function snapHome(rec){
+    rec.style.transition = 'left 0.35s ease, top 0.35s ease, transform 0.35s ease, width 0.35s ease, height 0.35s ease';
+    rec.style.width = RECORD_SIZE + 'px';
+    rec.style.height = RECORD_SIZE + 'px';
+    rec.style.left = rec.dataset.homeLeft + 'px';
+    rec.style.top = rec.dataset.homeTop + 'px';
+    rec.classList.remove('on-platter');
+    rec.style.zIndex = rec.dataset.homeZ;
+    setTimeout(function(){ rec.style.transition = ''; }, 380);
+  }
+
+  turntableWrap.addEventListener('click', function(){
+    if(!loadedRecord) return;
+    if(isPlaying){ stopPlayback(); } else { startPlayback(); }
+  });
+
+  function startPlayback(){
+    isPlaying = true;
+    tonearm.classList.add('playing');
+    turntableWrap.classList.add('playing');
+    loadedRecord.classList.add('spinning');
+    var src = loadedRecord.dataset.src;
+    if(src){
+      audio.src = src;
+      audio.currentTime = 0;
+      audio.play().catch(function(){});
+    }
+  }
+
+  function stopPlayback(){
+    isPlaying = false;
+    tonearm.classList.remove('playing');
+    turntableWrap.classList.remove('playing');
+    if(loadedRecord){ loadedRecord.classList.remove('spinning'); }
+    audio.pause();
+  }
+
+  window.addEventListener('pagehide', stopPlayback);
+})();
+</script>
+</body>
+</html>
