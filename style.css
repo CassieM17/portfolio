@@ -600,13 +600,13 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 .about-bio p + p{ margin-top:1rem; }
 .about-bio a{ color:var(--brown); text-decoration:underline; text-underline-offset:2px; }
 .about-bio a:hover{ color:var(--blue); }
-.about-links{ display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+.about-links{ display:flex; gap:1.6rem; margin-top:2rem; flex-wrap:wrap; align-items:center; }
 .about-links a{
-  font-family:'IBM Plex Mono', monospace; font-size:0.82rem; text-decoration:none;
-  padding:0.85rem 1.4rem; border-radius:0; border:2px solid var(--ink);
-  transition:all 0.2s ease;
+  font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--ink); opacity:0.75;
+  text-decoration:underline; text-decoration-color:var(--line); text-underline-offset:3px;
+  padding:0; border:none; transition:opacity 0.2s ease, color 0.2s ease, text-decoration-color 0.2s ease;
 }
-.about-links a:hover{ background:var(--blue-deep); border-color:var(--blue-deep); color:var(--white); }
+.about-links a:hover{ opacity:1; color:var(--blue); text-decoration-color:var(--blue); background:none; }
 .about-links-static{
   font-family:'IBM Plex Mono', monospace; font-size:0.82rem;
   padding:0.85rem 1.4rem; border-radius:0; border:2px solid var(--line); opacity:0.5;
