@@ -931,7 +931,7 @@ body.noir{
 .noir .tip-bubble{ font-family:'Instrument Sans', sans-serif; }
 .noir .term-tip{ text-decoration-color: var(--blue); }
 
-.noir footer{ background:var(--brown-deep); }
+.noir footer{ background:var(--canvas); border-top:1px solid var(--line); }
 
 /* other pages: page-title headers switch to the same serif as the
    homepage hero; section dividers drop, matching the homepage */
