@@ -37,18 +37,10 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--blue-deep); outli
 }
 .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--blue-deep); }
 
-/* ---------- sunflower signature mark ---------- */
-.sunflower-mark{ display:inline-block; width:20px; height:20px; flex-shrink:0; }
-.sunflower-mark.lg{ width:60px; height:60px; }
-.sunflower-mark svg{ width:100%; height:100%; display:block; }
-.sunflower-petals{ transform-origin:60px 60px; }
-@media (prefers-reduced-motion: no-preference){
-  .sunflower-petals{ animation:sway 4.5s ease-in-out infinite; }
-  @keyframes sway{
-    0%, 100%{ transform:rotate(-5deg); }
-    50%{ transform:rotate(5deg); }
-  }
-}
+/* ---------- signature mark (leaf) ---------- */
+.site-mark{ display:inline-block; width:20px; height:20px; flex-shrink:0; }
+.site-mark.lg{ width:60px; height:60px; }
+.site-mark img{ width:100%; height:100%; display:block; object-fit:contain; }
 
 /* ---------- nav ---------- */
 nav{
