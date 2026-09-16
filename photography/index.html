@@ -67,7 +67,6 @@
 
     <div class="camframe-controls">
       <button class="camframe-arrow" id="pvPrev" aria-label="Previous photo">&lsaquo;</button>
-      <button class="camframe-shutter" id="pvShutter" aria-label="Next photo"></button>
       <button class="camframe-arrow" id="pvNext" aria-label="Next photo">&rsaquo;</button>
     </div>
   </div>
@@ -120,14 +119,8 @@
     render();
   }
 
-  var viewportEl = document.getElementById('pvViewport');
   document.getElementById('pvPrev').addEventListener('click', function(){ go(-1); });
   document.getElementById('pvNext').addEventListener('click', function(){ go(1); });
-  document.getElementById('pvShutter').addEventListener('click', function(){
-    viewportEl.classList.add('flash');
-    setTimeout(function(){ viewportEl.classList.remove('flash'); }, 220);
-    go(1);
-  });
 
   items.forEach(function(it, i){
     it.addEventListener('click', function(){ idx = i; render(); });
@@ -137,6 +130,19 @@
     if(e.key === 'ArrowLeft'){ go(-1); }
     else if(e.key === 'ArrowRight'){ go(1); }
   });
+
+  // Keep the photo roll pinned to the camera widget's own height so it
+  // scrolls internally instead of stretching (and growing) the whole page.
+  var camEl = document.querySelector('.camframe');
+  function syncRollHeight(){
+    if(window.matchMedia('(max-width:760px)').matches){
+      rollEl.style.maxHeight = '';
+    } else {
+      rollEl.style.maxHeight = camEl.offsetHeight + 'px';
+    }
+  }
+  syncRollHeight();
+  window.addEventListener('resize', syncRollHeight);
 })();
 </script>
 
