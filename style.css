@@ -679,11 +679,7 @@ a.pinned:hover{ transform:rotate(0deg) translateY(-3px); box-shadow:0 12px 24px 
 }
 
 /* ---------- media carousel (violin page): drag or scroll horizontally ---------- */
-.scroll-hint{
-  display:flex; align-items:center; gap:0.4rem; font-family:'IBM Plex Mono'; font-size:0.72rem;
-  color:var(--blue); opacity:0.85; margin-top:0.6rem; letter-spacing:0.02em;
-}
-.carousel-wrap{ margin-top:0.8rem; }
+.carousel-wrap{ margin-top:0; }
 .carousel-viewport{
   overflow-x:auto; overflow-y:hidden; cursor:grab;
   -webkit-overflow-scrolling:touch; padding-bottom:0.4rem;
