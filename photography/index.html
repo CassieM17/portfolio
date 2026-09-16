@@ -43,23 +43,33 @@
   </div>
 </nav>
 
-<div class="page-hero">
+<div class="page-hero photo-hero">
   <a class="back-link" href="/">&larr; Back to Work</a>
-  <div class="movement"><h1>Personal Photography</h1></div>
-  <p class="section-intro">A few frames from places I've traveled.</p>
+  <div class="movement"><h1>Photography</h1></div>
+  <p class="section-intro">People, places, and passing moments</p>
 </div>
 
 <section class="photo-viewer-section">
-  <div class="photo-viewer-stage">
-    <button class="photo-nav-btn prev" id="pvPrev" aria-label="Previous photo">&larr;</button>
-    <div class="photo-viewer-frame">
+  <div class="camframe">
+    <div class="camframe-topbar">
+      <span class="camframe-lens" aria-hidden="true"></span>
+      <span class="camframe-swatch" aria-hidden="true"></span>
+      <span class="camframe-brand">CASS&nbsp;&middot;&nbsp;CAM</span>
+    </div>
+
+    <div class="camframe-viewport" id="pvViewport">
       <img id="pvImg" src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand">
-      <div class="photo-viewer-caption">
+      <div class="camframe-caption">
         <span id="pvLoc">Chiang Mai, Thailand</span>
-        <span id="pvCount" class="photo-viewer-count">01 / 12</span>
+        <span id="pvCount" class="camframe-count">01 / 12</span>
       </div>
     </div>
-    <button class="photo-nav-btn next" id="pvNext" aria-label="Next photo">&rarr;</button>
+
+    <div class="camframe-controls">
+      <button class="camframe-arrow" id="pvPrev" aria-label="Previous photo">&lsaquo;</button>
+      <button class="camframe-shutter" id="pvShutter" aria-label="Next photo"></button>
+      <button class="camframe-arrow" id="pvNext" aria-label="Next photo">&rsaquo;</button>
+    </div>
   </div>
 
   <div class="photo-roll" id="pvRoll">
@@ -110,8 +120,14 @@
     render();
   }
 
+  var viewportEl = document.getElementById('pvViewport');
   document.getElementById('pvPrev').addEventListener('click', function(){ go(-1); });
   document.getElementById('pvNext').addEventListener('click', function(){ go(1); });
+  document.getElementById('pvShutter').addEventListener('click', function(){
+    viewportEl.classList.add('flash');
+    setTimeout(function(){ viewportEl.classList.remove('flash'); }, 220);
+    go(1);
+  });
 
   items.forEach(function(it, i){
     it.addEventListener('click', function(){ idx = i; render(); });
