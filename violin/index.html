@@ -23,8 +23,8 @@
   </div>
 </nav>
 
-<div class="page-hero">
-  <div class="movement"><h1>Violin</h1></div>
+<div class="page-hero violin-hero">
+  <span class="eyebrow"><span class="dot"></span>Violin</span>
 </div>
 
 <section>
@@ -32,59 +32,6 @@
     <div class="portrait-col">
     <div class="portrait-frame">
       <img src="/headshot.jpeg" alt="Cassandra May holding a violin">
-    </div>
-
-    <div class="vinyl-station" id="vinylStation">
-      <div class="vinyl-wall" id="vinylWall">
-        <div class="vinyl-record" data-title="Paganini Caprice No. 9" data-src="/paganini-caprice-9.mp3" style="z-index:5;">
-          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
-          <div class="vinyl-label-popup">Paganini Caprice No. 9</div>
-        </div>
-        <div class="vinyl-record" data-title="Sibelius Violin Concerto" data-src="/sibelius-violin-concerto.mp3" style="z-index:4;">
-          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
-          <div class="vinyl-label-popup">Sibelius Violin Concerto</div>
-        </div>
-        <div class="vinyl-record" data-title="Bach Sonata 1 Fugue" data-src="/bach-sonata-1-fugue.mp3" style="z-index:3;">
-          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
-          <div class="vinyl-label-popup">Bach Sonata 1 Fugue</div>
-        </div>
-        <div class="vinyl-record" data-title="Glazunov Violin Concerto" data-src="/glazunov-violin-concerto.mp3" style="z-index:2;">
-          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
-          <div class="vinyl-label-popup">Glazunov Violin Concerto</div>
-        </div>
-        <div class="vinyl-record" data-title="Beethoven Sonata No. 8" data-src="/beethoven-sonata-8.mp3" style="z-index:1;">
-          <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
-          <div class="vinyl-label-popup">Beethoven Sonata No. 8</div>
-        </div>
-      </div>
-
-      <div class="turntable-wrap" id="turntableWrap">
-        <svg class="turntable-svg turntable-base" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="15" y="140" width="330" height="55" rx="6" fill="#17130F"/>
-          <rect x="15" y="140" width="330" height="4" fill="var(--brown)"/>
-          <ellipse cx="175" cy="140" rx="115" ry="32" fill="#1c1c1c" stroke="var(--brown)" stroke-width="1"/>
-          <ellipse cx="175" cy="140" rx="70" ry="19" fill="none" stroke="#3a3a3a" stroke-width="1"/>
-          <ellipse cx="175" cy="140" rx="40" ry="11" fill="none" stroke="#3a3a3a" stroke-width="1"/>
-          <circle cx="175" cy="140" r="5" fill="#c9a35a"/>
-          <rect x="286" y="76" width="24" height="14" rx="3" fill="var(--brown)"/>
-        </svg>
-        <svg class="turntable-svg turntable-arm-layer" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <g id="tonearm" class="tonearm">
-            <line x1="322" y1="172" x2="300" y2="90" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
-            <circle cx="322" cy="172" r="6" fill="var(--brown)"/>
-            <circle id="tonearmHead" cx="300" cy="90" r="12" fill="var(--brown)"/>
-          </g>
-        </svg>
-        <div class="music-notes" id="musicNotes">
-          <span class="note n1">&#9834;</span>
-          <span class="note n2">&#9833;</span>
-          <span class="note n3">&#9834;</span>
-          <span class="note n4">&#9833;</span>
-          <span class="note n5">&#9834;</span>
-        </div>
-      </div>
-      <div class="vinyl-hint">drag a record onto the turntable, then click the tonearm to start/stop</div>
-      <audio id="vinylAudio"></audio>
     </div>
     </div>
 
@@ -113,25 +60,81 @@
   </div>
 
   <div class="subhead">Recordings</div>
-  <div class="recordings">
-    <div class="recording">
-      <div class="recording-title">Paganini Violin Concerto No. 1</div>
-      <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/saWaSE0726Y" title="Paganini Violin Concerto No. 1" allowfullscreen loading="lazy"></iframe>
+  <div class="carousel-viewport" id="recordingsViewport">
+    <div class="recordings" id="recordingsTrack">
+      <div class="recording">
+        <div class="recording-title">Paganini Violin Concerto No. 1</div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/saWaSE0726Y" title="Paganini Violin Concerto No. 1" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="recording">
+        <div class="recording-title">Paganini Caprice No. 4</div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/4dGIdGZN_k8" title="Paganini Caprice No. 4" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="recording">
+        <div class="recording-title">Debussy String Quartet</div>
+        <div class="video-frame">
+          <iframe src="https://www.youtube.com/embed/Bt2UU05AKKU" title="Debussy String Quartet" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
-    <div class="recording">
-      <div class="recording-title">Paganini Caprice No. 4</div>
-      <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/4dGIdGZN_k8" title="Paganini Caprice No. 4" allowfullscreen loading="lazy"></iframe>
+  </div>
+
+  <div class="subhead">Audio</div>
+  <div class="vinyl-station" id="vinylStation">
+    <div class="vinyl-wall" id="vinylWall">
+      <div class="vinyl-record" data-title="Paganini Caprice No. 9" data-src="/paganini-caprice-9.mp3" style="z-index:5;">
+        <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+        <div class="vinyl-label-popup">Paganini Caprice No. 9</div>
+      </div>
+      <div class="vinyl-record" data-title="Sibelius Violin Concerto" data-src="/sibelius-violin-concerto.mp3" style="z-index:4;">
+        <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+        <div class="vinyl-label-popup">Sibelius Violin Concerto</div>
+      </div>
+      <div class="vinyl-record" data-title="Bach Sonata 1 Fugue" data-src="/bach-sonata-1-fugue.mp3" style="z-index:3;">
+        <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+        <div class="vinyl-label-popup">Bach Sonata 1 Fugue</div>
+      </div>
+      <div class="vinyl-record" data-title="Glazunov Violin Concerto" data-src="/glazunov-violin-concerto.mp3" style="z-index:2;">
+        <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+        <div class="vinyl-label-popup">Glazunov Violin Concerto</div>
+      </div>
+      <div class="vinyl-record" data-title="Beethoven Sonata No. 8" data-src="/beethoven-sonata-8.mp3" style="z-index:1;">
+        <div class="vinyl-squash"><div class="vinyl-disc"><div class="vinyl-center"><span class="vinyl-spindle-hole"></span></div></div></div>
+        <div class="vinyl-label-popup">Beethoven Sonata No. 8</div>
       </div>
     </div>
-    <div class="recording">
-      <div class="recording-title">Debussy String Quartet</div>
-      <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/Bt2UU05AKKU" title="Debussy String Quartet" allowfullscreen loading="lazy"></iframe>
+
+    <div class="turntable-wrap" id="turntableWrap">
+      <svg class="turntable-svg turntable-base" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="15" y="140" width="330" height="55" rx="6" fill="#17130F"/>
+        <rect x="15" y="140" width="330" height="4" fill="var(--brown)"/>
+        <ellipse cx="175" cy="140" rx="115" ry="32" fill="#1c1c1c" stroke="var(--brown)" stroke-width="1"/>
+        <ellipse cx="175" cy="140" rx="70" ry="19" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+        <ellipse cx="175" cy="140" rx="40" ry="11" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+        <circle cx="175" cy="140" r="5" fill="#c9a35a"/>
+        <rect x="286" y="76" width="24" height="14" rx="3" fill="var(--brown)"/>
+      </svg>
+      <svg class="turntable-svg turntable-arm-layer" viewBox="0 0 360 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <g id="tonearm" class="tonearm">
+          <line x1="322" y1="172" x2="300" y2="90" stroke="#c9a35a" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="322" cy="172" r="6" fill="var(--brown)"/>
+          <circle id="tonearmHead" cx="300" cy="90" r="12" fill="var(--brown)"/>
+        </g>
+      </svg>
+      <div class="music-notes" id="musicNotes">
+        <span class="note n1">&#9834;</span>
+        <span class="note n2">&#9833;</span>
+        <span class="note n3">&#9834;</span>
+        <span class="note n4">&#9833;</span>
+        <span class="note n5">&#9834;</span>
       </div>
     </div>
+    <div class="vinyl-hint">drag a record onto the turntable, then click the tonearm to start/stop</div>
+    <audio id="vinylAudio"></audio>
   </div>
 
   <div class="subhead">Media</div>
@@ -165,36 +168,38 @@
 
 <script>
 (function(){
-  var viewport = document.getElementById('violinViewport');
-  var isDown = false;
-  var startX, scrollStart, moved;
+  var viewports = document.querySelectorAll('.carousel-viewport');
+  viewports.forEach(function(viewport){
+    var isDown = false;
+    var startX, scrollStart, moved;
 
-  viewport.addEventListener('mousedown', function(e){
-    isDown = true;
-    moved = 0;
-    viewport.classList.add('dragging');
-    startX = e.pageX;
-    scrollStart = viewport.scrollLeft;
-  });
-  window.addEventListener('mouseup', function(){
-    isDown = false;
-    viewport.classList.remove('dragging');
-  });
-  window.addEventListener('mousemove', function(e){
-    if(!isDown) return;
-    e.preventDefault();
-    var dx = e.pageX - startX;
-    moved = Math.max(moved, Math.abs(dx));
-    viewport.scrollLeft = scrollStart - dx;
-  });
-  // If the mouse actually dragged (rather than just clicked), suppress the
-  // click that follows so it doesn't accidentally trigger the zoom lightbox.
-  viewport.addEventListener('click', function(e){
-    if(moved > 5){
+    viewport.addEventListener('mousedown', function(e){
+      isDown = true;
+      moved = 0;
+      viewport.classList.add('dragging');
+      startX = e.pageX;
+      scrollStart = viewport.scrollLeft;
+    });
+    window.addEventListener('mouseup', function(){
+      isDown = false;
+      viewport.classList.remove('dragging');
+    });
+    window.addEventListener('mousemove', function(e){
+      if(!isDown) return;
       e.preventDefault();
-      e.stopPropagation();
-    }
-  }, true);
+      var dx = e.pageX - startX;
+      moved = Math.max(moved, Math.abs(dx));
+      viewport.scrollLeft = scrollStart - dx;
+    });
+    // If the mouse actually dragged (rather than just clicked), suppress the
+    // click that follows so it doesn't accidentally trigger the zoom lightbox.
+    viewport.addEventListener('click', function(e){
+      if(moved > 5){
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  });
 })();
 </script>
 
