@@ -40,19 +40,8 @@
   <!-- ===================== CLICKABLE PROJECT CARDS ===================== -->
   <div class="project-grid" id="resume-anchor">
     <a class="project-card" href="/opus/">
-      <div class="motion-preview opus-dual">
-        <div class="phone-col col-a">
-          <div class="scroll-track">
-            <img src="/opus-scroll-discover.png" alt="Opus app — Discover screen, scrolling">
-            <img src="/opus-scroll-discover.png" alt="" aria-hidden="true">
-          </div>
-        </div>
-        <div class="phone-col col-b">
-          <div class="scroll-track">
-            <img src="/opus-scroll-profile.png" alt="Opus app — Profile screen, scrolling">
-            <img src="/opus-scroll-profile.png" alt="" aria-hidden="true">
-          </div>
-        </div>
+      <div class="motion-preview static-preview">
+        <img src="/opus-preview.jpg" alt="Opus app mockup on iPhone 17">
       </div>
       <div class="project-info">
         <h3>Opus</h3>
@@ -77,8 +66,7 @@
   </div>
   <div class="spec-sheet">
     <div class="spec-row"><span><a href="https://cassandralmay.substack.com/" target="_blank" rel="noopener"><strong>Cass Was Here</strong></a> · substack writer</span><span>travel guides, itineraries, and <a href="/photography/#photography">photography</a></span></div>
-    <div class="spec-row"><span><a href="/book/"><strong>booki</strong></a> · designer</span><span>personal library for tracking your reading</span></div>
-    <div class="spec-row"><span>Downs Research Lab · research assistant</span><span>test-optional admissions and <a href="https://cmu.ca1.qualtrics.com/jfe/form/SV_9zBj0gcB4UN7A22" target="_blank" rel="noopener">music education</a> research</span></div>
+    <div class="spec-row"><span><a href="/book/" data-modal-link><strong>booki</strong></a> · designer</span><span>personal library for tracking your reading</span></div>
   </div>
 
 </section>
@@ -115,7 +103,7 @@
   var panel = overlay.querySelector('.project-modal-panel');
   var frame = document.getElementById('projectModalFrame');
   var closeBtn = document.getElementById('projectModalClose');
-  var cards = document.querySelectorAll('.project-card');
+  var cards = document.querySelectorAll('.project-card, [data-modal-link]');
 
   function openModal(url){
     frame.src = url;
