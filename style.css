@@ -95,6 +95,13 @@ nav{
   font-family:'Newsreader', serif; font-style:italic; font-weight:500;
   text-transform:none; color:var(--blue); letter-spacing:0; font-size:1.2em;
 }
+.hero h1.hero-title-sm{
+  font-size:clamp(2.7rem, 7.5vw, 6.2rem);
+}
+.hero-subtitle{
+  font-family:'IBM Plex Mono', monospace; font-size:1rem; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--brown); margin-top:0.9rem;
+}
 .hero-pun{
   display:block; font-family:'Newsreader', serif; font-style:italic; font-weight:500;
   text-transform:none; font-size:0.4em; letter-spacing:0; color:var(--ink);
