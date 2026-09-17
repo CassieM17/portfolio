@@ -138,7 +138,7 @@
       var doc = frame.contentDocument;
       if(!doc || !doc.head) return;
       var style = doc.createElement('style');
-      style.textContent = 'nav{display:none !important;} .back-link{display:none !important;} footer{display:none !important;} .page-hero{padding-top:2.4rem !important;}';
+      style.textContent = 'nav{display:none !important;} .back-link{display:none !important;} footer{display:none !important;} .page-hero{padding-top:2.4rem !important;} .case-study{background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; margin-top:0.5rem !important;}';
       doc.head.appendChild(style);
     } catch(err){ /* same-origin should always allow this; fail quietly otherwise */ }
   });
