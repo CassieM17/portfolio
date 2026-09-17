@@ -936,12 +936,13 @@ img.zoomable{
   cursor:default;
 }
 .lightbox-close{
-  position:fixed; top:1.4rem; right:1.4rem; width:44px; height:44px; border-radius:50%;
-  background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.3);
-  font-size:1.7rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
-  transition:background 0.2s ease; z-index:1001;
+  position:fixed; top:1.4rem; left:1.4rem; width:auto; height:auto;
+  background:none; border:none; color:rgba(255,255,255,0.55);
+  font-size:1.6rem; font-weight:300; line-height:1; cursor:pointer; padding:0.3rem;
+  display:flex; align-items:center; justify-content:center;
+  transition:color 0.2s ease; z-index:1001;
 }
-.lightbox-close:hover{ background:rgba(255,255,255,0.25); }
+.lightbox-close:hover{ color:rgba(255,255,255,1); }
 
 /* ---------- Selected Work: quick-view pop-up (iframe of the case-study page) ---------- */
 .project-modal-overlay{
@@ -957,16 +958,16 @@ img.zoomable{
 }
 .project-modal-frame{ width:100%; height:100%; border:0; display:block; }
 .project-modal-close{
-  position:absolute; top:-1.4rem; right:-1.4rem; width:44px; height:44px; border-radius:50%;
-  background:rgba(255,255,255,0.12); color:#fff; border:1px solid rgba(255,255,255,0.3);
-  font-size:1.7rem; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center;
-  transition:background 0.2s ease;
+  position:absolute; top:1.1rem; left:1.2rem; width:auto; height:auto;
+  background:none; border:none; color:rgba(237,231,220,0.55);
+  font-size:1.5rem; font-weight:300; line-height:1; cursor:pointer; padding:0.3rem;
+  display:flex; align-items:center; justify-content:center; z-index:1;
+  transition:color 0.2s ease;
 }
-.project-modal-close:hover{ background:rgba(255,255,255,0.22); }
+.project-modal-close:hover{ color:rgba(237,231,220,0.95); }
 @media (max-width:640px){
   .project-modal-overlay{ padding:1.2rem; }
   .project-modal-panel{ width:100%; height:90vh; }
-  .project-modal-close{ top:-2.6rem; right:0; }
 }
 
 
@@ -1001,7 +1002,7 @@ body.noir{
 .noir nav{ background:rgba(11,10,9,0.86); }
 
 .noir .hero, .noir .page-hero, .noir .about-hero, .noir .contact-hero{
-  position:relative; overflow:hidden;
+  position:relative;
 }
 .noir .hero::before, .noir .page-hero::before, .noir .about-hero::before, .noir .contact-hero::before{
   content:''; position:absolute; right:-120px; top:-40px;
