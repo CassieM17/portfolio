@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/leaf-icon.png">
+<title>Cassandra May</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="noir">
+
+<nav>
+  <a class="nav-mark" href="/">
+    <span class="site-mark"><img src="/leaf-icon-spin.svg" alt=""></span>
+  </a>
+  <div class="nav-links">
+    <a href="/#resume-anchor" class="current">Work</a>
+    <a href="/violin/">Violin</a>
+    <a href="/about/">About</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <a class="back-link" href="/">&larr; Back to Work</a>
+  <div class="movement"><h1>To Truck or not to Truck?</h1></div>
+</div>
+
+<section>
+  <div class="case-study">
+    <div class="case-meta">
+      <div><span class="l">Timeframe</span><span class="v">2025</span></div>
+      <div><span class="l">Project</span><span class="v">Mr. Bulgogi</span></div>
+      <div><span class="l">Role</span><span class="v">Data Analyst</span></div>
+      <div><span class="l">Tools</span><span class="v">Google Sheets · NPV Modeling · Survey Research</span></div>
+    </div>
+
+    <div class="case-block">
+      <h3>Summary</h3>
+      <p>Mr. Bulgogi is a Korean food truck that shows up on Carnegie Mellon's campus a few weeks
+      a semester and reliably sells out. For a Decision Analysis course, I worked with a team of
+      four to answer the question CMU Dining Services actually has to answer: should Mr. Bulgogi
+      stay a seasonal pop-up, become a permanent restaurant, or stay a pop-up while a competing
+      Korean restaurant opens permanently instead? I led the data side — designing the student
+      survey, building the Even Swaps and NPV models, and pressure-testing the recommendation
+      against the assumptions it depended on.</p>
+    </div>
+
+    <img class="zoomable" src="/truck-photo.jpg" alt="Mr. Bulgogi's red 'Tartan Express' food truck parked on Carnegie Mellon's campus" style="width:100%; max-width:420px; border:1px solid var(--line); margin:0.4rem auto 0; display:block;">
+
+    <div class="case-block">
+      <h3>The Decision</h3>
+      <p>The decision sits with CMU Dining Services, weighing three real objectives at once:
+      student satisfaction, building a base of regular customers, and profit. Three alternatives
+      were on the table:</p>
+      <div class="feature-grid">
+        <div class="feature-item"><h4>Go permanent</h4><p>Establish Mr. Bulgogi as a full-time, on-campus restaurant.</p></div>
+        <div class="feature-item"><h4>Stay the course</h4><p>Keep Mr. Bulgogi exactly as it is — a seasonal food truck, nothing added.</p></div>
+        <div class="feature-item"><h4>Pop-up + competitor</h4><p>Keep the truck seasonal, but let a new Korean restaurant open permanently alongside it.</p></div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>Turning Opinions Into Dollars</h3>
+      <p>We ran a 104-respondent student survey and went directly to the sources for operating
+      data — emailing Mr. Bulgogi's owner for cost figures and CMU Dining Services for contract
+      and space-availability context. Student satisfaction isn't naturally priced, so we used
+      <strong>Even Swaps</strong> to convert it into dollar terms: we asked what students would be
+      willing to pay for a bowl, for eating weekly, for the option to eat there again, and for a
+      "significant," "moderate," or "slight" improvement in satisfaction, then applied those
+      rates against each alternative's projected traffic. That let satisfaction sit inside the
+      same financial model as rent, ingredients, and revenue — instead of being a bullet point
+      next to it.</p>
+      <p style="margin-top:0.9rem;">Each alternative's monetized cash flows were then projected
+      over a 20-year horizon and discounted using <strong>CMU's own weighted average cost of
+      capital (7.01%)</strong>, calculated from the university's 2024 financial statements — the
+      same discount rate a university treasurer would actually use, not a generic assumption.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>What the Model Found</h3>
+      <p>Going permanent wins by a wide margin. Its 20-year NPV comes in roughly ten times higher
+      than either staying seasonal or ceding the permanent slot to a new competitor — driven less
+      by the extra open days themselves than by unmet demand the survey surfaced directly: over
+      half of respondents said they wanted Mr. Bulgogi but it simply wasn't open when they were
+      looking, and a majority said a full-time location would meaningfully improve their
+      satisfaction with campus dining.</p>
+      <img class="zoomable" src="/truck-findings-chart.jpg" alt="Chart comparing 20-year NPV across the three alternatives, and key survey findings from 104 respondents" style="width:100%; margin-top:0.6rem;">
+    </div>
+
+    <div class="case-block">
+      <h3>Stress-Testing the Recommendation</h3>
+      <p>A model is only as trustworthy as its shakiest assumption, so we built two-way
+      sensitivity tables — discount rate against improvement rate, and improvement rate against
+      carryover rate — spanning a wide range around our base-case estimates. Going permanent
+      stayed the top choice in every single combination we tested. That mattered more than the
+      headline number: it meant the recommendation didn't depend on us guessing the exact right
+      inputs, just the right direction.</p>
+    </div>
+
+    <div class="case-block">
+      <h3>Recommendation</h3>
+      <p>We recommended that CMU Dining Services open Mr. Bulgogi as a permanent, full-time
+      restaurant on campus. It's projected to substantially outearn either alternative over a
+      20-year horizon, the result holds up under a wide range of assumptions, and it directly
+      answers demand the survey data made hard to ignore — students who already wanted this and
+      couldn't get it.</p>
+    </div>
+
+    <details class="case-expand">
+      <summary>Assumptions &amp; Key Uncertainties</summary>
+      <div class="case-expand-body">
+        <p><strong>What the model assumed:</strong> that a full-time location sells more bowls
+        per day than the truck does (based on the share of survey respondents who said they'd
+        eat more often if Mr. Bulgogi were open full-time, applied as an improvement rate over
+        current weekly demand); that a new competing restaurant would land at roughly 90% of Mr.
+        Bulgogi's satisfaction with students, with some of that demand carrying over rather than
+        being lost outright; and that total revenue scales with bowls sold times customers, with
+        some natural variability from add-ons, appetizers, and desserts.</p>
+        <p style="margin-top:0.9rem;"><strong>What we couldn't fully resolve:</strong> whether
+        students are actually as unsatisfied with current dining as the survey suggests, versus
+        just enthusiastic about a truck they already like; whether a permanent location would
+        genuinely raise satisfaction or just formalize an existing favorite; how daily order
+        volume really shifts between a temporary and permanent format once the novelty wears
+        off; the risk that a permanent Mr. Bulgogi cannibalizes traffic from other campus dining
+        options rather than growing the pie; and how much of the revenue CMU actually keeps,
+        since contract terms and margin splits with dining partners weren't fully available to
+        us.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="/">Home</a>
+      <a href="/#resume-anchor">Work</a>
+      <a href="/violin/">Violin</a>
+      <a href="/about/">About</a>
+    </div>
+    <div class="footer-copy">© 2026 Cassandra May · <a href="/">cassandramay.com</a> · <a href="https://linkedin.com/in/cassandra-l-may" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:cassandra.l.may@gmail.com">Email</a></div>
+  </div>
+</footer>
+
+<script src="/lightbox.js"></script>
+</body>
+</html>
