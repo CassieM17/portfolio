@@ -471,7 +471,7 @@ section{ position:relative; padding:2.2rem 2.4rem 5.5rem; max-width:1080px; marg
 .case-expand summary::-webkit-details-marker{ display:none; }
 .case-expand summary::before{ content:'+'; font-family:'Anton'; font-size:1rem; }
 .case-expand[open] summary::before{ content:'−'; }
-.case-expand-body{ margin-top:1.2rem; max-width:720px; }
+.case-expand-body{ margin-top:1.2rem; }
 .case-expand-body p{ font-size:0.94rem; line-height:1.7; opacity:0.85; }
 
 /* ---------- violin page ---------- */
