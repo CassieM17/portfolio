@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/leaf-icon.png">
+<title>Cassandra May</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body class="noir">
+
+<nav>
+  <a class="nav-mark" href="/">
+    <span class="site-mark"><img src="/leaf-icon-spin.svg" alt=""></span>
+  </a>
+  <div class="nav-links">
+    <a href="/#resume-anchor" class="current">Work</a>
+    <a href="/violin/">Violin</a>
+    <a href="/about/">About</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <a class="back-link" href="/">&larr; Back to Work</a>
+  <div class="movement"><h1>Semi-Autonomous Scooter</h1></div>
+</div>
+
+<section>
+  <div class="case-study">
+    <div class="case-meta">
+      <div><span class="l">Timeframe</span><span class="v">2025</span></div>
+      <div><span class="l">Project</span><span class="v">Scoot</span></div>
+      <div><span class="l">Role</span><span class="v">Product Designer, Design Engineer</span></div>
+      <div><span class="l">Tools</span><span class="v">Figma · Physical Prototyping</span></div>
+    </div>
+
+    <div class="case-block">
+      <h3>Summary</h3>
+      <p>ScootScoot is a concept for a semi-autonomous e-scooter, designed with a team of four
+      for a graduate interaction design course at Carnegie Mellon. The brief was open-ended:
+      explore new control ideas and user experiences for a vehicle that can partially drive
+      itself. I worked across research, interface design, and physical prototyping — building
+      the working handlebar prototype (brake, blinker, horn, mode dial) alongside the Figma
+      dashboard it was wired to control.</p>
+    </div>
+
+    <img class="zoomable" src="/scoot-prototype-annotated.jpg" alt="Annotated final cardboard-and-PVC scooter handlebar prototype with camera, brake, blinker, horn, mode dial, and accept/accelerate control" style="width:100%; border:1px solid var(--line); margin-top:0.4rem;">
+
+    <div class="case-block">
+      <h3>Research &amp; Insights</h3>
+      <p>We ran guerrilla interviews with six current e-scooter riders — a student athlete,
+      engineering and business students, and a professor — to understand how people actually
+      use and feel about their scooters. Three insights shaped everything that followed.</p>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <h4>It transports me, but I also transport it</h4>
+          <p>Riders carry their scooter as much as they ride it — up stairs, onto buses, into buildings.</p>
+        </div>
+        <div class="feature-item">
+          <h4>Everywhere, but not seen using it</h4>
+          <p>People rely on their scooter for daily trips but are self-conscious about riding it in front of others.</p>
+        </div>
+        <div class="feature-item">
+          <h4>It has to suit every need</h4>
+          <p>Riders will only adopt a scooter if it holds up across weather, terrain, and errands — not just a commute.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>From Sketches to a Working Prototype</h3>
+      <p>We converged on ideas from individual thumbnail sketches — a fold mode for compact
+      storage, GPS navigation with rerouting, physical dashboard controls, road-obstruction
+      alerts, hands-on unlocking, and an autopark mode — then built a physical handlebar out of
+      cardboard, PVC pipe, and a phone mount, wired to a Figma prototype so it could actually be
+      "driven." A rubber band gave the brake real resistance; a repurposed water bottle became a
+      swiveling kickstand.</p>
+      <div class="gallery-strip two-col">
+        <div class="gallery-item">
+          <img class="zoomable" src="/scoot-storyboard.jpg" alt="Storyboard sketch of a rider navigating obstacles and weather on their scooter">
+          <span class="cap">Problem-framing storyboard</span>
+        </div>
+        <div class="gallery-item">
+          <img class="zoomable" src="/scoot-sketch.jpg" alt="Hand-drawn sketch of the scooter handlebar controls and dashboard">
+          <span class="cap">Early handlebar concept sketch</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-block">
+      <h3>Designing the Interactions</h3>
+      <p>The dashboard had to communicate state at a glance — unlocking, mode changes, and
+      moments when the rider needed to take back control. Resting a hand on each grip triggers
+      an unlock animation; a fold-mode confirmation uses clear green/red semantic cues before
+      the scooter folds itself down for storage.</p>
+      <img class="zoomable" src="/scoot-dashboard-flows.jpg" alt="Final dashboard screens showing the hands-on unlock sequence and fold mode confirmation flow" style="width:100%; border:1px solid var(--line); margin-top:0.6rem;">
+    </div>
+
+    <div class="case-block">
+      <h3>Field Testing &amp; Iteration</h3>
+      <p>We tested the paper prototype on real riders and rebuilt based on what confused them.
+      Every participant overlooked the autopark option at the start of a route, so we moved it
+      to appear after arrival instead. A speedometer icon read as unclear for "accelerate," so
+      we relabeled it "GO." And nobody found the blinker until we added simple arrow icons.</p>
+      <div class="gallery-strip two-col">
+        <div class="gallery-item">
+          <img class="zoomable" src="/scoot-paper-prototype.jpg" alt="Paper prototype screens including the auto-mode-off warning, unlocking screen, and status indicators">
+          <span class="cap">Paper prototype, before field testing</span>
+        </div>
+        <div class="gallery-item">
+          <img class="zoomable" src="/scoot-field-study.jpg" alt="Before and after redesign of the autopark option and reroute confirmation based on field study feedback">
+          <span class="cap">Autopark &amp; reroute, redesigned from field feedback</span>
+        </div>
+      </div>
+    </div>
+
+    <details class="case-expand">
+      <summary>Process &amp; Outcome</summary>
+      <div class="case-expand-body">
+        <p>My focus was the physical side of the prototype — building the handlebar so it
+        looked, and where it mattered, <em>felt</em> real: real resistance on the brake, a horn
+        you press rather than tap, a mode dial with feedback that matched its on-screen state.
+        Getting strangers to actually try it, sticky-note affinity mapping as a team, and
+        watching small changes — a label, an icon, a screen's position in the flow — measurably
+        reduce confusion were the most valuable parts of the process.</p>
+        <p style="margin-top:0.9rem;">We delivered a fully working low-fidelity hardware
+        prototype alongside a high-fidelity Figma dashboard, refined through two rounds of user
+        testing. If I carried it further, the dashboard itself is what I'd revisit next — testing
+        whether an even smaller screen, closer to a smartwatch, could keep the same
+        functionality with a lighter footprint.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="/">Home</a>
+      <a href="/#resume-anchor">Work</a>
+      <a href="/violin/">Violin</a>
+      <a href="/about/">About</a>
+    </div>
+    <div class="footer-copy">© 2026 Cassandra May · <a href="/">cassandramay.com</a> · <a href="https://linkedin.com/in/cassandra-l-may" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:cassandra.l.may@gmail.com">Email</a></div>
+  </div>
+</footer>
+
+<script src="/lightbox.js"></script>
+</body>
+</html>
