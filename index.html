@@ -170,18 +170,9 @@
     if(e.key === 'Escape' && overlay.classList.contains('open')){ closeModal(); }
   });
 
-  // Once the case-study page loads inside the frame, tidy it up for a
-  // pop-up context: hide its own nav/back-link/footer and tighten the
-  // top spacing, since our modal already provides the close affordance.
-  frame.addEventListener('load', function(){
-    try {
-      var doc = frame.contentDocument;
-      if(!doc || !doc.head) return;
-      var style = doc.createElement('style');
-      style.textContent = 'nav{display:none !important;} .back-link{display:none !important;} footer{display:none !important;} .page-hero{padding-top:2.4rem !important;} .page-hero::before{display:none !important;} .case-study{background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; margin-top:0.5rem !important;}';
-      doc.head.appendChild(style);
-    } catch(err){ /* same-origin should always allow this; fail quietly otherwise */ }
-  });
+  // Each case-study page hides its own nav/back-link/footer itself (see the
+  // .in-modal inline script + CSS in style.css) as soon as it detects it's
+  // inside this iframe, so there's nothing left to tidy up here after load.
 })();
 </script>
 </body>

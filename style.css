@@ -951,7 +951,7 @@ img.zoomable{
 .project-modal-overlay{
   position:fixed; inset:0; background:rgba(15,12,8,0.92); z-index:1000;
   display:flex; align-items:center; justify-content:center; padding:3rem 2rem;
-  opacity:0; visibility:hidden; transition:opacity 0.25s ease;
+  opacity:0; visibility:hidden; transition:opacity 0.15s ease;
 }
 .project-modal-overlay.open{ opacity:1; visibility:visible; }
 .project-modal-panel{
@@ -972,6 +972,18 @@ img.zoomable{
   .project-modal-overlay{ padding:1.2rem; }
   .project-modal-panel{ width:100%; height:90vh; }
 }
+
+/* ---------- case-study pages, when loaded inside the quick-view iframe above ----------
+   Each case-study page adds .in-modal to <html> the instant it detects it's inside an
+   iframe (a synchronous inline script at the very top of <head>, before anything renders),
+   so these rules are already active for the very first paint — no flash of the full
+   standalone page (nav, back-link, footer, decorative circle) before it gets hidden. */
+html.in-modal nav,
+html.in-modal .back-link,
+html.in-modal footer{ display:none !important; }
+html.in-modal .page-hero{ padding-top:2.4rem !important; }
+html.in-modal .page-hero::before{ display:none !important; }
+html.in-modal .case-study{ background:transparent !important; border:none !important; box-shadow:none !important; padding:0 !important; margin-top:0.5rem !important; }
 
 
 /* ============================================================
