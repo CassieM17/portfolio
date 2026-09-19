@@ -38,7 +38,7 @@
         </div>
 
         <div class="camframe-viewport" id="pvViewport">
-          <img id="pvImg" class="zoomable" src="/travel-berlin.jpg" alt="Berlin, Germany">
+          <img id="pvImg" class="zoomable" data-show-caption="true" src="/travel-berlin.jpg" alt="Berlin, Germany">
           <div class="camframe-caption">
             <span id="pvLoc">Berlin, Germany</span>
             <span id="pvCount" class="camframe-count">01 / 13</span>
@@ -74,7 +74,7 @@
     <div class="easel-wrap">
       <div class="easel">
         <div class="easel-canvas" id="easelViewport">
-          <img id="easelImg" class="zoomable" src="/painting-3.jpg" alt="Fall Colors, 2021">
+          <img id="easelImg" class="zoomable" data-show-caption="true" data-medium="Acrylic on canvas" src="/painting-3.jpg" alt="Fall Colors, 2021">
           <div class="easel-caption">
             <span id="easelCap">Fall Colors, 2021</span>
             <span id="easelCount" class="easel-count">01 / 03</span>
@@ -185,12 +185,8 @@
 
   function render(){
     var p = paintings[idx];
-    imgEl.classList.add('flip');
-    window.setTimeout(function(){
-      imgEl.src = p[0];
-      imgEl.alt = p[1];
-      imgEl.classList.remove('flip');
-    }, 200);
+    imgEl.src = p[0];
+    imgEl.alt = p[1];
     capEl.textContent = p[1];
     countEl.textContent = pad(idx + 1) + ' / ' + pad(paintings.length);
     thumbs.forEach(function(t, i){ t.classList.toggle('active', i === idx); });
