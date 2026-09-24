@@ -1036,6 +1036,9 @@ body.noir{
   width:420px; height:420px; border-radius:50%; pointer-events:none; z-index:-1;
   background:repeating-radial-gradient(circle, transparent 0 11px, rgba(237,231,220,0.045) 11px 12px);
 }
+/* homepage hero is 1280px wide vs 1080px on every other page; shift its
+   circle so it lands in the same spot as the about/violin pages */
+.noir .hero::before{ right:calc((100% - min(100%, 1080px)) / 2 - 120px); }
 .noir .hero h1{
   font-family:'Fraunces', serif; font-weight:500; font-optical-sizing:auto;
   letter-spacing:0.01em; position:relative; z-index:1;
