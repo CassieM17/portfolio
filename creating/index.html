@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/leaf-icon.png">
+<title>Cassandra May</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+
+<style>
+  .wrapped-col{ grid-column:1 / -1; align-items:center !important; text-align:center; scroll-margin-top:6rem; }
+  .wrapped-stage{ position:relative; width:min(100%, 520px); aspect-ratio:1/1; background:#F6F3EE; overflow:hidden; border:1px solid rgba(245,243,238,0.25); }
+  .wrapped-stage img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; animation:wrappedFade 6s ease-in-out infinite; }
+  .wrapped-stage img.w2{ animation-delay:-3s; }
+  @keyframes wrappedFade{ 0%{opacity:0} 8%{opacity:1} 42%{opacity:1} 50%{opacity:0} 100%{opacity:0} }
+  .wrapped-caption{ margin-top:0.9rem; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; opacity:0.6; }
+  @media (prefers-reduced-motion:reduce){ .wrapped-stage img{ animation:none; } .wrapped-stage img.w1{ opacity:1; } }
+</style>
+</head>
+<body class="noir">
+
+<nav>
+  <a class="nav-mark" href="/">
+    <span class="site-mark"><img src="/leaf-icon-spin.svg" alt=""></span>
+  </a>
+  <div class="nav-links">
+    <a href="/#resume-anchor">Work</a>
+    <a href="/violin/">Violin</a>
+    <a href="/about/">About</a>
+  </div>
+</nav>
+
+<div class="page-hero play-hero">
+  <span class="eyebrow"><span class="dot"></span>Playground</span>
+</div>
+
+<section class="play-columns">
+  <div class="play-col photo-col" id="photography">
+    <h2 class="play-heading">Photography</h2>
+    <div class="photo-viewer-section">
+      <div class="camframe">
+        <div class="camframe-topbar">
+          <span class="camframe-lens" aria-hidden="true"></span>
+          <span class="camframe-swatch" aria-hidden="true"></span>
+          <span class="camframe-brand">CASS&nbsp;&middot;&nbsp;CAM</span>
+        </div>
+
+        <div class="camframe-viewport" id="pvViewport">
+          <img id="pvImg" class="zoomable" data-show-caption="true" data-nav-prev="pvPrev" data-nav-next="pvNext" src="/travel-berlin.jpg" alt="Berlin, Germany">
+          <div class="camframe-caption">
+            <span id="pvLoc">Berlin, Germany</span>
+            <span id="pvCount" class="camframe-count">01 / 13</span>
+          </div>
+        </div>
+
+        <div class="camframe-controls">
+          <button class="camframe-arrow" id="pvPrev" aria-label="Previous photo">&lsaquo;</button>
+          <button class="camframe-arrow" id="pvNext" aria-label="Next photo">&rsaquo;</button>
+        </div>
+      </div>
+
+      <div class="photo-roll" id="pvRoll">
+        <button class="photo-roll-item active" data-index="0" aria-label="View Berlin, Germany"><img src="/travel-berlin.jpg" alt="Berlin, Germany" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="1" aria-label="View Chiang Mai, Thailand"><img src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="2" aria-label="View Hallstatt, Austria"><img src="/travel-hallstatt.jpeg" alt="Hallstatt, Austria" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="3" aria-label="View Pacific Coast Highway, CA"><img src="/travel-pch.jpg" alt="Pacific Coast Highway, CA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="4" aria-label="View Joshua Tree, CA"><img src="/travel-joshuatree.jpeg" alt="Joshua Tree, CA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="5" aria-label="View Portland, OR"><img src="/travel-portland.jpg" alt="Portland, OR" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="6" aria-label="View Lake Bled, Slovenia"><img src="/travel-lakebled.jpeg" alt="Lake Bled, Slovenia" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="7" aria-label="View Olympic Valley, CA"><img src="/travel-olympicvalley.jpg" alt="Olympic Valley, CA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="8" aria-label="View Pittsburgh, PA"><img src="/travel-pittsburgh.jpeg" alt="Pittsburgh, PA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="9" aria-label="View San Diego, CA"><img src="/travel-sandiego.jpeg" alt="San Diego, CA" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="10" aria-label="View Santorini, Greece"><img src="/travel-santorini.jpeg" alt="Santorini, Greece" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="11" aria-label="View Seoul, S. Korea"><img src="/travel-seoul.jpg" alt="Seoul, S. Korea" loading="lazy"></button>
+        <button class="photo-roll-item" data-index="12" aria-label="View Yangshuo, China"><img src="/travel-yangshuo.jpeg" alt="Yangshuo, China" loading="lazy"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="play-col painting-col" id="painting">
+    <h2 class="play-heading">Painting</h2>
+    <div class="easel-wrap">
+      <div class="easel">
+        <div class="easel-canvas" id="easelViewport">
+          <img id="easelImg" class="zoomable" data-show-caption="true" data-medium="Acrylic on Canvas" data-nav-prev="easelPrev" data-nav-next="easelNext" src="/painting-3.jpg" alt="Fall Colors, 2021">
+          <div class="easel-caption">
+            <span id="easelCap">Fall Colors, 2021</span>
+            <span id="easelCount" class="easel-count">01 / 03</span>
+          </div>
+        </div>
+        <div class="easel-ledge" aria-hidden="true"></div>
+        <div class="easel-legs" aria-hidden="true"></div>
+      </div>
+
+      <div class="easel-controls">
+        <button class="easel-arrow" id="easelPrev" aria-label="Previous painting">&lsaquo;</button>
+        <button class="easel-arrow" id="easelNext" aria-label="Next painting">&rsaquo;</button>
+      </div>
+
+      <div class="easel-thumbs" id="easelThumbs">
+        <button class="easel-thumb active" data-index="0" aria-label="View Fall Colors, 2021"><img src="/painting-3.jpg" alt="Fall Colors, 2021" loading="lazy"></button>
+        <button class="easel-thumb" data-index="1" aria-label="View Winter Colors, 2021"><img src="/painting-1.jpg" alt="Winter Colors, 2021" loading="lazy"></button>
+        <button class="easel-thumb" data-index="2" aria-label="View Beach, 2022"><img src="/painting-2.jpg" alt="Beach, 2022" loading="lazy"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="play-columns" style="padding-top:0;">
+  <div class="play-col wrapped-col" id="wrapped-tech">
+    <h2 class="play-heading">Wrapped Tech</h2>
+    <div class="wrapped-stage" role="img" aria-label="Thread-wrapped earbuds and USB-C charger, alternating between coiled and laid out">
+      <img class="w1" src="/wrapped-tech-coiled.jpg" alt="">
+      <img class="w2" src="/wrapped-tech-unwound.jpg" alt="">
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var photos = [["/travel-berlin.jpg", "Berlin, Germany"], ["/travel-chiangmai.jpeg", "Chiang Mai, Thailand"], ["/travel-hallstatt.jpeg", "Hallstatt, Austria"], ["/travel-pch.jpg", "Pacific Coast Highway, CA"], ["/travel-joshuatree.jpeg", "Joshua Tree, CA"], ["/travel-portland.jpg", "Portland, OR"], ["/travel-lakebled.jpeg", "Lake Bled, Slovenia"], ["/travel-olympicvalley.jpg", "Olympic Valley, CA"], ["/travel-pittsburgh.jpeg", "Pittsburgh, PA"], ["/travel-sandiego.jpeg", "San Diego, CA"], ["/travel-santorini.jpeg", "Santorini, Greece"], ["/travel-seoul.jpg", "Seoul, S. Korea"], ["/travel-yangshuo.jpeg", "Yangshuo, China"]];
+  var idx = 0;
+  var imgEl = document.getElementById('pvImg');
+  var locEl = document.getElementById('pvLoc');
+  var countEl = document.getElementById('pvCount');
+  var rollEl = document.getElementById('pvRoll');
+  var items = rollEl.querySelectorAll('.photo-roll-item');
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function render(){
+    var p = photos[idx];
+    imgEl.src = p[0];
+    imgEl.alt = p[1];
+    locEl.textContent = p[1];
+    countEl.textContent = pad(idx + 1) + ' / ' + pad(photos.length);
+    items.forEach(function(it, i){
+      it.classList.toggle('active', i === idx);
+    });
+    var active = items[idx];
+    if(active){
+      active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+  }
+
+  function go(delta){
+    idx = (idx + delta + photos.length) % photos.length;
+    render();
+  }
+
+  document.getElementById('pvPrev').addEventListener('click', function(){ go(-1); });
+  document.getElementById('pvNext').addEventListener('click', function(){ go(1); });
+
+  items.forEach(function(it, i){
+    it.addEventListener('click', function(){ idx = i; render(); });
+  });
+
+  document.addEventListener('keydown', function(e){
+    // When the lightbox is open, it owns arrow-key navigation itself
+    // (see lightbox.js) so the photo doesn't advance twice per press.
+    if(document.querySelector('.lightbox-overlay.open')){ return; }
+    if(e.key === 'ArrowLeft'){ go(-1); }
+    else if(e.key === 'ArrowRight'){ go(1); }
+  });
+
+  // Keep the photo roll pinned to the camera widget's own height so it
+  // scrolls internally instead of stretching (and growing) the whole page.
+  // The camframe's height isn't final until its photo and the webfonts have
+  // loaded, so a plain call-once-on-load undersizes the roll (only ~3 thumbs
+  // fit) until something else -- like a window resize -- forces a recompute.
+  // A ResizeObserver catches every layout change that affects camEl's size
+  // (image load, font swap, viewport resize) and keeps the roll in sync.
+  var camEl = document.querySelector('.camframe');
+  function syncRollHeight(){
+    if(window.matchMedia('(max-width:560px)').matches){
+      rollEl.style.maxHeight = '';
+    } else {
+      rollEl.style.maxHeight = camEl.offsetHeight + 'px';
+    }
+  }
+  syncRollHeight();
+  window.addEventListener('resize', syncRollHeight);
+  if(window.ResizeObserver){
+    new ResizeObserver(syncRollHeight).observe(camEl);
+  }
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(syncRollHeight);
+  }
+})();
+</script>
+
+<script>
+(function(){
+  var paintings = [
+    ["/painting-3.jpg", "Fall Colors, 2021"],
+    ["/painting-1.jpg", "Winter Colors, 2021"],
+    ["/painting-2.jpg", "Beach, 2022"]
+  ];
+  var idx = 0;
+  var imgEl = document.getElementById('easelImg');
+  var capEl = document.getElementById('easelCap');
+  var countEl = document.getElementById('easelCount');
+  var thumbs = document.querySelectorAll('.easel-thumb');
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function render(){
+    var p = paintings[idx];
+    imgEl.src = p[0];
+    imgEl.alt = p[1];
+    capEl.textContent = p[1];
+    countEl.textContent = pad(idx + 1) + ' / ' + pad(paintings.length);
+    thumbs.forEach(function(t, i){ t.classList.toggle('active', i === idx); });
+  }
+
+  function go(delta){
+    idx = (idx + delta + paintings.length) % paintings.length;
+    render();
+  }
+
+  document.getElementById('easelPrev').addEventListener('click', function(){ go(-1); });
+  document.getElementById('easelNext').addEventListener('click', function(){ go(1); });
+
+  thumbs.forEach(function(t, i){
+    t.addEventListener('click', function(){ idx = i; render(); });
+  });
+})();
+</script>
+
+<script src="/lightbox.js"></script>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-nav">
+      <a href="/">Home</a>
+      <a href="/#resume-anchor">Work</a>
+      <a href="/violin/">Violin</a>
+      <a href="/about/">About</a>
+    </div>
+    <div class="footer-copy">© 2026 Cassandra May · <a href="/">cassandramay.com</a> · <a href="https://linkedin.com/in/cassandra-l-may" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:cassandra.l.may@gmail.com">Email</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
