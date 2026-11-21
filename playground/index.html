@@ -116,14 +116,14 @@
   </div>
 
   <div class="play-col painting-col" id="painting">
-    <h2 class="play-heading">Painting</h2>
+    <h2 class="play-heading">Visual Art</h2>
     <div class="easel-wrap">
       <div class="easel">
         <div class="easel-canvas" id="easelViewport">
           <img id="easelImg" class="zoomable" data-show-caption="true" data-medium="Acrylic on Canvas" data-nav-prev="easelPrev" data-nav-next="easelNext" src="/painting-3.jpg" alt="Fall Colors, 2021">
           <div class="easel-caption">
             <span id="easelCap">Fall Colors, 2021</span>
-            <span id="easelCount" class="easel-count">01 / 03</span>
+            <span id="easelCount" class="easel-count">01 / 04</span>
           </div>
         </div>
         <div class="easel-ledge" aria-hidden="true"></div>
@@ -139,6 +139,7 @@
         <button class="easel-thumb active" data-index="0" aria-label="View Fall Colors, 2021"><img src="/painting-3.jpg" alt="Fall Colors, 2021" loading="lazy"></button>
         <button class="easel-thumb" data-index="1" aria-label="View Winter Colors, 2021"><img src="/painting-1.jpg" alt="Winter Colors, 2021" loading="lazy"></button>
         <button class="easel-thumb" data-index="2" aria-label="View Beach, 2022"><img src="/painting-2.jpg" alt="Beach, 2022" loading="lazy"></button>
+        <button class="easel-thumb" data-index="3" aria-label="View Flowers, 2025"><img src="/painting-flowers.jpg" alt="Flowers, 2025" loading="lazy"></button>
       </div>
     </div>
   </div>
@@ -252,9 +253,10 @@
 <script>
 (function(){
   var paintings = [
-    ["/painting-3.jpg", "Fall Colors, 2021"],
-    ["/painting-1.jpg", "Winter Colors, 2021"],
-    ["/painting-2.jpg", "Beach, 2022"]
+    ["/painting-3.jpg", "Fall Colors, 2021", "Acrylic on Canvas"],
+    ["/painting-1.jpg", "Winter Colors, 2021", "Acrylic on Canvas"],
+    ["/painting-2.jpg", "Beach, 2022", "Acrylic on Canvas"],
+    ["/painting-flowers.jpg", "Flowers, 2025", "Oil Pastel on Paper"]
   ];
   var idx = 0;
   var imgEl = document.getElementById('easelImg');
@@ -269,6 +271,10 @@
     imgEl.src = p[0];
     imgEl.alt = p[1];
     capEl.textContent = p[1];
+    imgEl.dataset.medium = p[2];
+    var fl = p[0].indexOf('flowers') > -1;
+    imgEl.style.objectFit = fl ? 'contain' : '';
+    imgEl.style.background = fl ? '#f4f0e8' : '';
     countEl.textContent = pad(idx + 1) + ' / ' + pad(paintings.length);
     thumbs.forEach(function(t, i){ t.classList.toggle('active', i === idx); });
   }
