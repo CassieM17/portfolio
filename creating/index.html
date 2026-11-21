@@ -9,14 +9,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Newsreader:ital,wght@1,500;1,600&family=Inter:wght@400;500;600&family=Fraunces:opsz,wght@9..144,500&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 
+
 <style>
-  .wrapped-col{ grid-column:1 / -1; align-items:center !important; text-align:center; scroll-margin-top:6rem; }
-  .wrapped-stage{ position:relative; width:min(100%, 520px); aspect-ratio:1/1; background:#F6F3EE; overflow:hidden; border:1px solid rgba(245,243,238,0.25); }
-  .wrapped-stage img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; animation:wrappedFade 6s ease-in-out infinite; }
-  .wrapped-stage img.w2{ animation-delay:-3s; }
-  @keyframes wrappedFade{ 0%{opacity:0} 8%{opacity:1} 42%{opacity:1} 50%{opacity:0} 100%{opacity:0} }
-  .wrapped-caption{ margin-top:0.9rem; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.12em; text-transform:uppercase; opacity:0.6; }
-  @media (prefers-reduced-motion:reduce){ .wrapped-stage img{ animation:none; } .wrapped-stage img.w1{ opacity:1; } }
+  .tv-col{ grid-column:1 / -1; align-items:center !important; scroll-margin-top:6rem; }
+  .tv{ width:min(100%, 700px); background:#2a1d14; border-radius:26px; padding:1.1rem; display:grid; grid-template-columns:1fr 104px; gap:1rem;
+       box-shadow:0 18px 44px rgba(0,0,0,0.55), inset 0 0 0 2px rgba(245,243,238,0.08), inset 0 2px 0 rgba(255,255,255,0.12); }
+  .tv-screen{ position:relative; aspect-ratio:4/3; background:#F6F3EE; border-radius:18px / 16px; overflow:hidden; box-shadow:inset 0 0 28px rgba(0,0,0,0.45), 0 0 0 5px #0e0a07;
+              -webkit-touch-callout:none; -webkit-user-select:none; user-select:none; touch-action:manipulation; cursor:default; }
+  .tv-screen::after{ content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+       background:repeating-linear-gradient(to bottom, rgba(0,0,0,0.045) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, transparent 62%, rgba(0,0,0,0.28) 100%); }
+  .tv-ch{ position:absolute; inset:0; display:none; }
+  .tv-ch.on{ display:block; }
+  .tv-ch img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:none; -webkit-user-drag:none; pointer-events:none; }
+  .tv-ch img.show{ display:block; }
+  .tv-bars{ background:linear-gradient(to right,#c8c8c8 0 14.28%,#c8c800 0 28.56%,#00c8c8 0 42.84%,#00c800 0 57.12%,#c800c8 0 71.4%,#c80000 0 85.68%,#0000c8 0 100%); }
+  .tv-bars::before{ content:""; position:absolute; left:0; right:0; bottom:0; height:22%; background:linear-gradient(to right,#0000c8 0 14.28%,#111 0 28.56%,#c800c8 0 42.84%,#111 0 57.12%,#00c8c8 0 71.4%,#111 0 85.68%,#c8c8c8 0 100%); }
+  .tv-bars span{ position:absolute; left:50%; top:42%; transform:translate(-50%,-50%); background:#000; color:#fff; padding:0.5rem 1rem; font-family:'IBM Plex Mono', monospace; font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; white-space:nowrap; }
+  .tv-static{ position:absolute; inset:0; width:100%; height:100%; display:none; z-index:3; image-rendering:pixelated; }
+  .tv-osd{ position:absolute; top:0.7rem; right:0.9rem; z-index:4; font-family:'IBM Plex Mono', monospace; font-size:0.95rem; letter-spacing:0.12em; color:#3dff7a; text-shadow:0 0 6px rgba(61,255,122,0.8); opacity:0; transition:opacity 0.2s; }
+  .tv-osd.on{ opacity:1; }
+  .tv-panel{ display:flex; flex-direction:column; align-items:center; gap:0.8rem; padding:0.3rem 0; }
+  .tv-label{ font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.14em; text-transform:uppercase; color:rgba(245,243,238,0.6); text-align:center; }
+  .tv-nums{ display:flex; gap:0.5rem; }
+  .tv-num{ width:38px; height:38px; border-radius:50%; border:0; background:#e8dfcf; color:#2a1d14; font-family:'IBM Plex Mono', monospace; font-weight:500; font-size:0.95rem; cursor:pointer; box-shadow:0 3px 0 #8d7f6a; }
+  .tv-num:active{ transform:translateY(2px); box-shadow:0 1px 0 #8d7f6a; }
+  .tv-num.active{ background:#B5451F; color:#F5F3EE; box-shadow:0 3px 0 #6e2810; }
+  .tv-switch{ border:1px solid rgba(245,243,238,0.4); background:transparent; color:#F5F3EE; font-family:'IBM Plex Mono', monospace; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.55rem 0.5rem; border-radius:6px; cursor:pointer; line-height:1.3; }
+  .tv-switch:hover{ background:rgba(245,243,238,0.12); }
+  .tv-speaker{ margin-top:auto; width:100%; height:44px; border-radius:6px; background:repeating-linear-gradient(to bottom, rgba(0,0,0,0.5) 0 2px, transparent 2px 6px); opacity:0.7; }
+  .tv-hint{ margin-top:0.9rem; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.45; text-align:center; }
+  @media (max-width:560px){
+    .tv{ grid-template-columns:1fr; }
+    .tv-panel{ flex-direction:row; flex-wrap:wrap; justify-content:center; }
+    .tv-speaker{ display:none; }
+  }
 </style>
 </head>
 <body class="noir">
@@ -108,13 +134,31 @@
   </div>
 </section>
 
+
 <section class="play-columns" style="padding-top:0;">
-  <div class="play-col wrapped-col" id="wrapped-tech">
-    <h2 class="play-heading">Wrapped Tech</h2>
-    <div class="wrapped-stage" role="img" aria-label="Thread-wrapped earbuds and USB-C charger, alternating between coiled and laid out">
-      <img class="w1" src="/wrapped-tech-coiled.jpg" alt="">
-      <img class="w2" src="/wrapped-tech-unwound.jpg" alt="">
+  <div class="play-col tv-col" id="physical">
+    <h2 class="play-heading">Physical</h2>
+    <div class="tv">
+      <div class="tv-screen" id="tvScreen" role="img" aria-label="Television showing thread-wrapped earbuds and a USB-C charger, coiled and laid out">
+        <div class="tv-ch on" id="tvCh1">
+          <img class="show" src="/wrapped-tech-coiled.jpg" alt="">
+          <img src="/wrapped-tech-unwound.jpg" alt="">
+        </div>
+        <div class="tv-ch tv-bars" id="tvCh2"><span>Coming soon</span></div>
+        <canvas class="tv-static" id="tvStatic" width="160" height="120"></canvas>
+        <div class="tv-osd" id="tvOsd">CH 01</div>
+      </div>
+      <div class="tv-panel">
+        <span class="tv-label">Channel</span>
+        <div class="tv-nums">
+          <button class="tv-num active" data-ch="1" aria-label="Channel 1">1</button>
+          <button class="tv-num" data-ch="2" aria-label="Channel 2">2</button>
+        </div>
+        <button class="tv-switch" id="tvSwitch">Switch<br>channels</button>
+        <div class="tv-speaker" aria-hidden="true"></div>
+      </div>
     </div>
+    <span class="tv-hint">Hover or press and hold the screen to pause</span>
   </div>
 </section>
 
@@ -230,6 +274,68 @@
 </script>
 
 <script src="/lightbox.js"></script>
+<script>
+(function(){
+  var screen = document.getElementById('tvScreen');
+  var ch1 = document.getElementById('tvCh1'), ch2 = document.getElementById('tvCh2');
+  var imgs = ch1.querySelectorAll('img');
+  var nums = document.querySelectorAll('.tv-num');
+  var osd = document.getElementById('tvOsd');
+  var canvas = document.getElementById('tvStatic');
+  var ctx = canvas.getContext('2d');
+  var channel = 1, frame = 0, paused = false, osdTimer = null, staticTimer = null, held = false, holdTimer = null;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Channel 1: hard cut between the two photos (no fade)
+  setInterval(function(){
+    if(paused || channel !== 1 || reduce){ return; }
+    imgs[frame].classList.remove('show');
+    frame = (frame + 1) % imgs.length;
+    imgs[frame].classList.add('show');
+  }, 1400);
+
+  // Pause while the pointer is on the screen (mouse) or while held (touch)
+  screen.addEventListener('mouseenter', function(){ paused = true; });
+  screen.addEventListener('mouseleave', function(){ paused = false; });
+  screen.addEventListener('touchstart', function(){
+    clearTimeout(holdTimer);
+    holdTimer = setTimeout(function(){ paused = true; held = true; }, 300);
+  }, {passive:true});
+  function release(){ clearTimeout(holdTimer); if(held){ paused = false; held = false; } }
+  screen.addEventListener('touchend', release);
+  screen.addEventListener('touchcancel', release);
+  screen.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+  function drawStatic(){
+    var d = ctx.createImageData(canvas.width, canvas.height), i, v;
+    for(i = 0; i < d.data.length; i += 4){ v = Math.random() * 255; d.data[i] = d.data[i+1] = d.data[i+2] = v; d.data[i+3] = 255; }
+    ctx.putImageData(d, 0, 0);
+  }
+  function flashStatic(done){
+    canvas.style.display = 'block';
+    clearInterval(staticTimer);
+    drawStatic();
+    staticTimer = setInterval(drawStatic, 50);
+    setTimeout(function(){ clearInterval(staticTimer); canvas.style.display = 'none'; if(done){ done(); } }, reduce ? 0 : 320);
+  }
+  function setChannel(n){
+    if(n === channel){ return; }
+    channel = n;
+    flashStatic(function(){
+      ch1.classList.toggle('on', channel === 1);
+      ch2.classList.toggle('on', channel === 2);
+    });
+    nums.forEach(function(b){ b.classList.toggle('active', +b.dataset.ch === channel); });
+    osd.textContent = 'CH 0' + channel;
+    osd.classList.add('on');
+    clearTimeout(osdTimer);
+    osdTimer = setTimeout(function(){ osd.classList.remove('on'); }, 1800);
+  }
+  nums.forEach(function(b){ b.addEventListener('click', function(){ setChannel(+b.dataset.ch); }); });
+  document.getElementById('tvSwitch').addEventListener('click', function(){ setChannel(channel === 1 ? 2 : 1); });
+})();
+</script>
+
 
 <footer>
   <div class="footer-inner">
