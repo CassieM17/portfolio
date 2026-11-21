@@ -1074,3 +1074,6 @@ body.noir{
    background; under noir --ink is the light text color, so give it
    an explicit dark surface instead */
 .noir .vinyl-label-popup{ background:var(--brown-deep); color:var(--white); }
+
+/* visually hidden but available to screen readers and search engines */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
