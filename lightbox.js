@@ -52,7 +52,22 @@
     function navigate(delta){
       if(!triggerImg){ return; }
       var btnId = delta < 0 ? triggerImg.dataset.navPrev : triggerImg.dataset.navNext;
-      if(!btnId){ return; }
+      if(!btnId){
+        // Fallback: page through the other zoomable images in the same
+        // carousel track (e.g. the violin Media row), wrapping around.
+        var track = triggerImg.closest('.media-carousel-track');
+        if(!track){ return; }
+        var group = Array.prototype.slice.call(track.querySelectorAll('img.zoomable'));
+        var i = group.indexOf(triggerImg);
+        if(i < 0){ return; }
+        triggerImg = group[(i + delta + group.length) % group.length];
+        imgEl.src = triggerImg.currentSrc || triggerImg.src;
+        imgEl.alt = triggerImg.alt || '';
+        var sc = triggerImg.dataset.showCaption === 'true';
+        renderCaption(sc ? (triggerImg.alt || '') : '', triggerImg.dataset.medium || '');
+        if(triggerImg.scrollIntoView){ triggerImg.scrollIntoView({block:'nearest', inline:'center'}); }
+        return;
+      }
       var btn = document.getElementById(btnId);
       if(!btn){ return; }
       btn.click();
