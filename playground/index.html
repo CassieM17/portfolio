@@ -20,7 +20,7 @@
        background:repeating-linear-gradient(to bottom, rgba(0,0,0,0.045) 0 1px, transparent 1px 3px), radial-gradient(ellipse at center, transparent 62%, rgba(0,0,0,0.28) 100%); }
   .tv-ch{ position:absolute; inset:0; display:none; }
   .tv-ch.on{ display:block; }
-  .tv-ch img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:none; -webkit-user-drag:none; pointer-events:none; }
+  .tv-ch img{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:none; -webkit-user-drag:none; cursor:zoom-in; }
   .tv-ch img.show{ display:block; }
   .tv-bars{ background:linear-gradient(to right,#c8c8c8 0 14.28%,#c8c800 0 28.56%,#00c8c8 0 42.84%,#00c800 0 57.12%,#c800c8 0 71.4%,#c80000 0 85.68%,#0000c8 0 100%); }
   .tv-bars::before{ content:""; position:absolute; left:0; right:0; bottom:0; height:22%; background:linear-gradient(to right,#0000c8 0 14.28%,#111 0 28.56%,#c800c8 0 42.84%,#111 0 57.12%,#00c8c8 0 71.4%,#111 0 85.68%,#c8c8c8 0 100%); }
@@ -139,10 +139,10 @@
   <div class="play-col tv-col" id="physical">
     <h2 class="play-heading">Physical</h2>
     <div class="tv">
-      <div class="tv-screen" id="tvScreen" role="img" aria-label="Television showing thread-wrapped earbuds and a USB-C charger, coiled and laid out">
-        <div class="tv-ch on" id="tvCh1">
-          <img class="show" src="/wrapped-tech-coiled.jpg" alt="">
-          <img src="/wrapped-tech-unwound.jpg" alt="">
+      <div class="tv-screen" id="tvScreen" aria-label="Television showing embroidery thread wrapped earbuds, coiled and laid out">
+        <div class="tv-ch on" id="tvCh1" data-lightbox-group>
+          <img class="show zoomable" data-show-caption="true" src="/wrapped-tech-coiled.jpg" alt="Embroidery thread wrapped earbuds">
+          <img class="zoomable" data-show-caption="true" src="/wrapped-tech-unwound.jpg" alt="Embroidery thread wrapped earbuds">
         </div>
         <div class="tv-ch tv-bars" id="tvCh2"><span>Coming soon</span></div>
         <canvas class="tv-static" id="tvStatic" width="160" height="120"></canvas>
@@ -301,7 +301,7 @@
     clearTimeout(holdTimer);
     holdTimer = setTimeout(function(){ paused = true; held = true; }, 300);
   }, {passive:true});
-  function release(){ clearTimeout(holdTimer); if(held){ paused = false; held = false; } }
+  function release(e){ clearTimeout(holdTimer); if(held){ paused = false; held = false; if(e && e.cancelable){ e.preventDefault(); } } }
   screen.addEventListener('touchend', release);
   screen.addEventListener('touchcancel', release);
   screen.addEventListener('contextmenu', function(e){ e.preventDefault(); });

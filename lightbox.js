@@ -55,7 +55,7 @@
       if(!btnId){
         // Fallback: page through the other zoomable images in the same
         // carousel track (e.g. the violin Media row), wrapping around.
-        var track = triggerImg.closest('.media-carousel-track');
+        var track = triggerImg.closest('.media-carousel-track, [data-lightbox-group]');
         if(!track){ return; }
         var group = Array.prototype.slice.call(track.querySelectorAll('img.zoomable'));
         var i = group.indexOf(triggerImg);
