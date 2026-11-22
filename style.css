@@ -1135,3 +1135,6 @@ button, input, textarea, select{ font-family:'Jost', sans-serif; }
 .hero .hero-meta-line{ margin-top:0.7rem; letter-spacing:0.1em; }
 .hero .section-mark{ text-align:left; }
 @media (max-width:700px){ .hero h1.hero-line{ font-size:1.4rem; letter-spacing:0.01em; } }
+/* hero v3: two lines on desktop */
+.hero h1.hero-line{ font-size:clamp(1.45rem, 2.35vw, 2.05rem); max-width:36em; }
+@media (max-width:700px){ .hero h1.hero-line{ font-size:1.3rem; max-width:none; } }
