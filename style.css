@@ -1146,3 +1146,6 @@ button, input, textarea, select{ font-family:'Jost', sans-serif; }
   padding:1.8rem 0.8rem 0.65rem; background:linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0));
   font-family:'Jost', sans-serif; font-size:0.78rem; letter-spacing:0.02em;
 }
+
+/* For the Record: descriptor words match the right-hand column colour */
+.spec-row span:first-child .spec-white{ color:var(--ink); }
