@@ -1108,3 +1108,20 @@ button, input, textarea, select{ font-family:'Jost', sans-serif; }
 .lightbox-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
 .lightbox-thumb:hover{ opacity:0.9; }
 .lightbox-thumb.active{ opacity:1; border-color:#fff; }
+
+/* hero headline sentence */
+.hero .hero-subtitle{
+  font-family:'Josefin Sans', sans-serif; font-weight:300; text-transform:none;
+  font-size:clamp(1.1rem, 1.6vw, 1.3rem); letter-spacing:0.03em; line-height:1.5;
+  max-width:48em; margin-left:0; margin-right:0; margin-top:1.1rem;
+}
+@media (max-width:700px){ .hero .hero-subtitle{ font-size:1.05rem; letter-spacing:0.02em; } }
+
+/* hero: name + tagline as one flowing sentence */
+.hero h1.hero-line{
+  font-size:clamp(1.7rem, 3.6vw, 3rem); line-height:1.25; letter-spacing:0.04em; max-width:21em;
+  font-weight:300; text-transform:none;
+}
+.hero h1.hero-line .hero-name{ font-weight:300; }
+.hero h1.hero-line .hero-blue{ color:var(--blue); }
+@media (max-width:700px){ .hero h1.hero-line{ font-size:1.6rem; letter-spacing:0.03em; } }
