@@ -1083,3 +1083,18 @@ body.noir{
 .hero h1{ line-height:1.05; font-weight:300; letter-spacing:0.05em; font-size:clamp(2.4rem, 7.2vw, 6rem); }
 .hero h1.hero-title-sm{ font-size:clamp(2.2rem, 6.2vw, 5rem); }
 .hero-meta-line{ letter-spacing:0.14em; font-weight:300; }
+
+/* section headings + project previews: small, spaced-out capitals (Futura-style) */
+.movement h2, .section-header, .section-mark h2, .case-block h3{
+  font-family:'Josefin Sans', sans-serif; font-weight:400; text-transform:uppercase;
+  font-size:0.95rem; letter-spacing:0.3em;
+}
+.section-header{ font-size:0.95rem; }
+.project-info h3{ font-size:0.9rem; text-transform:uppercase; letter-spacing:0.24em; font-weight:400; }
+.project-tags{ font-size:0.62rem; letter-spacing:0.2em; }
+.noir .section-mark h2, .noir .movement h2{
+  text-transform:uppercase; font-size:0.95rem; letter-spacing:0.3em; font-weight:400;
+}
+
+/* buttons and form controls inherit the site fonts */
+button, input, textarea, select{ font-family:'Jost', sans-serif; }
