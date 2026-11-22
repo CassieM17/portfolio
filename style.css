@@ -1125,3 +1125,13 @@ button, input, textarea, select{ font-family:'Jost', sans-serif; }
 .hero h1.hero-line .hero-name{ font-weight:300; }
 .hero h1.hero-line .hero-blue{ color:var(--blue); }
 @media (max-width:700px){ .hero h1.hero-line{ font-size:1.6rem; letter-spacing:0.03em; } }
+
+/* hero v2: tighter, centred */
+.hero h1.hero-line, .hero .hero-meta-line{ text-align:center; }
+.hero h1.hero-line{
+  font-size:clamp(1.45rem, 2.7vw, 2.3rem); line-height:1.18; letter-spacing:0.015em;
+  max-width:27em; margin-left:auto; margin-right:auto; text-wrap:balance;
+}
+.hero .hero-meta-line{ margin-top:0.7rem; letter-spacing:0.1em; }
+.hero .section-mark{ text-align:left; }
+@media (max-width:700px){ .hero h1.hero-line{ font-size:1.4rem; letter-spacing:0.01em; } }
