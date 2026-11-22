@@ -23,6 +23,38 @@
     var captionMainEl = overlay.querySelector('.lightbox-caption-main');
     var captionSubEl = overlay.querySelector('.lightbox-caption-sub');
     var triggerImg = null;
+    var stripEl = document.createElement('div');
+    stripEl.className = 'lightbox-strip';
+    overlay.appendChild(stripEl);
+
+    // Optional thumbnail bar: an image with data-strip="true" gets a row of
+    // previews under the zoomed picture, driven by window.lightboxStrip
+    // ({items:[{src,label}], index(), set(i)}) which the page provides.
+    function syncStrip(){
+      var api = window.lightboxStrip;
+      var on = !!(triggerImg && triggerImg.dataset.strip === 'true' && api);
+      overlay.classList.toggle('has-strip', on);
+      stripEl.innerHTML = '';
+      if(!on){ return; }
+      api.items.forEach(function(it, i){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'lightbox-thumb' + (i === api.index() ? ' active' : '');
+        b.setAttribute('aria-label', it.label);
+        var t = document.createElement('img');
+        t.src = it.src; t.alt = it.label;
+        b.appendChild(t);
+        b.addEventListener('click', function(e){
+          e.stopPropagation();
+          api.set(i);
+          imgEl.src = triggerImg.src;
+          imgEl.alt = triggerImg.alt || '';
+          renderCaption(triggerImg.alt || '', triggerImg.dataset.medium || '');
+          syncStrip();
+        });
+        stripEl.appendChild(b);
+      });
+    }
 
     function renderCaption(alt, subCaption){
       if(alt){
@@ -43,9 +75,11 @@
       renderCaption(showCaption ? (img.alt || '') : '', img.dataset.medium || '');
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
+      syncStrip();
     }
     function close(){
       overlay.classList.remove('open');
+      overlay.classList.remove('has-strip');
       document.body.style.overflow = '';
       triggerImg = null;
     }
@@ -75,6 +109,7 @@
       imgEl.alt = triggerImg.alt || '';
       var showCaption = triggerImg.dataset.showCaption === 'true';
       renderCaption(showCaption ? (triggerImg.alt || '') : '', triggerImg.dataset.medium || '');
+      syncStrip();
     }
     overlay.addEventListener('click', function(e){
       if(e.target === overlay){ close(); }

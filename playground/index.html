@@ -53,35 +53,21 @@
     .tv-speaker{ display:none; }
   }
 
-  /* ---------- collage mosaic ---------- */
+  /* ---------- two-column layout: photography + physical | visual art ---------- */
   .mosaic-wrap{ max-width:1240px; margin:0 auto; padding:0.4rem 1.5rem 4rem; }
-  .mosaic{ display:grid; grid-template-columns:repeat(12,1fr); grid-auto-rows:84px; gap:10px; }
-  .mosaic-photos{ display:contents; }
+  .mosaic{ display:grid; grid-template-columns:1fr 1fr; gap:10px; align-items:start; }
   .tile{ position:relative; margin:0; overflow:hidden; background:#14110f; min-width:0; }
-  .tile.photo img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; transition:transform .5s ease; }
-  .tile.photo:hover img{ transform:scale(1.03); }
-  .tile.photo figcaption{ position:absolute; left:10px; bottom:8px; pointer-events:none; font:300 0.62rem 'Josefin Sans',sans-serif; letter-spacing:0.22em; text-transform:uppercase; color:#fff; text-shadow:0 1px 6px rgba(0,0,0,0.75); opacity:0; transition:opacity .25s; }
-  .tile.photo:hover figcaption, .tile.photo:focus-within figcaption{ opacity:1; }
   .tile.panel{ border:1px solid #2a2622; }
   .tl{ position:absolute; left:12px; top:10px; z-index:3; font:400 0.68rem 'Josefin Sans',sans-serif; letter-spacing:0.3em; text-transform:uppercase; color:rgba(245,243,238,0.85); text-shadow:0 1px 6px rgba(0,0,0,0.6); pointer-events:none; }
-  .t-cam{ grid-column:1/6; grid-row:1/6; padding:2.2rem 0.9rem 0.9rem; display:flex; justify-content:center; }
+  .t-cam{ grid-column:1; grid-row:1; padding:2.4rem 1rem 1.1rem; display:flex; justify-content:center; }
   .t-cam .camframe{ max-width:none; flex:1 1 auto; }
-  .t-cam .photo-viewer-section{ gap:0.8rem; width:100%; }
-  .t-cam .photo-roll{ flex:0 0 76px; width:76px; max-height:100%; }
-  .t-art{ grid-column:9/13; grid-row:1/6; }
-  .t-hall{ grid-column:6/9; grid-row:1/4; }
-  .t-pch{ grid-column:6/9; grid-row:4/6; }
-  .t-chiang{ grid-column:1/3; grid-row:6/9; }
-  .t-jt{ grid-column:3/6; grid-row:6/9; }
-  .t-seoul{ grid-column:6/8; grid-row:6/9; }
-  .t-sant{ grid-column:8/10; grid-row:6/9; }
-  .t-yang{ grid-column:10/13; grid-row:6/9; }
-  .t-bled{ grid-column:1/4; grid-row:9/13; }
-  .t-sd{ grid-column:1/4; grid-row:13/16; }
-  .t-tv{ grid-column:4/13; grid-row:9/16; display:flex; align-items:center; justify-content:center; padding:2.4rem 1rem 1rem; }
+  .t-cam .photo-viewer-section{ gap:0.9rem; width:100%; }
+  .t-cam .photo-roll{ flex:0 0 80px; width:80px; max-height:100%; }
+  .t-tv{ grid-column:1; grid-row:2; display:flex; align-items:center; justify-content:center; padding:2.6rem 1rem 1.1rem; }
+  .t-art{ grid-column:2; grid-row:1; align-self:stretch; min-height:340px; position:relative; overflow:hidden; }
   .tv-holder{ width:min(100%,760px); display:flex; flex-direction:column; align-items:center; }
   .tv-holder .tv{ width:100%; }
-  .art-tile > img{ width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
+  .art-tile > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
   .art-cap{ position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between; align-items:baseline; gap:0.8rem; padding:1.6rem 0.9rem 0.7rem; pointer-events:none;
             background:linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0)); font:300 0.7rem 'Josefin Sans',sans-serif; letter-spacing:0.2em; text-transform:uppercase; color:#fff; }
   .art-count{ color:var(--brown); opacity:0.95; }
@@ -89,14 +75,11 @@
   .art-arrow:hover{ background:var(--brown); border-color:var(--brown); }
   .art-arrow.prev{ left:10px; } .art-arrow.next{ right:10px; }
   @media (max-width:900px){
-    .mosaic{ grid-template-columns:repeat(2,1fr); grid-auto-rows:auto; }
-    .mosaic .tile{ grid-column:auto !important; grid-row:auto !important; }
-    .tile.photo{ aspect-ratio:1/1; }
-    .tile.photo figcaption{ opacity:1; }
-    .mosaic .t-cam, .mosaic .t-tv, .mosaic .t-art{ grid-column:1/-1 !important; }
-    .mosaic .t-art{ aspect-ratio:4/5; }
-    .mosaic .t-tv{ padding:2.4rem 0.6rem 1rem; }
-    .t-cam{ padding:2.2rem 0.7rem 0.9rem; }
+    .mosaic{ grid-template-columns:1fr; }
+    .mosaic .t-cam, .mosaic .t-tv, .mosaic .t-art{ grid-column:1 !important; grid-row:auto !important; }
+    .mosaic .t-art{ aspect-ratio:4/5; min-height:0; order:3; }
+    .mosaic .t-cam{ order:1; padding:2.4rem 0.7rem 0.9rem; }
+    .mosaic .t-tv{ order:2; padding:2.6rem 0.6rem 1rem; }
     .t-cam .photo-viewer-section{ flex-direction:column; align-items:center; }
     .t-cam .photo-roll{ flex-direction:row; width:100%; max-height:none; overflow-x:auto; overflow-y:hidden; }
     .t-cam .photo-roll-item{ flex:0 0 70px; width:70px; }
@@ -167,22 +150,10 @@
 
     <div class="tile art-tile t-art" id="painting">
       <span class="tl">Visual Art</span>
-      <img id="easelImg" class="zoomable" data-show-caption="true" data-medium="Acrylic on Canvas" data-nav-prev="easelPrev" data-nav-next="easelNext" src="/painting-3.jpg" alt="Fall Colors, 2021">
-      <div class="art-cap"><span id="easelCap">Fall Colors, 2021</span><span id="easelCount" class="art-count">01 / 04</span></div>
+      <img id="easelImg" class="zoomable" data-show-caption="true" data-medium="Acrylic on Canvas" data-strip="true" data-nav-prev="easelPrev" data-nav-next="easelNext" src="/painting-2.jpg" alt="Beach, 2022">
+      <div class="art-cap"><span id="easelCap">Beach, 2022</span><span id="easelCount" class="art-count">01 / 03</span></div>
       <button class="art-arrow prev" id="easelPrev" aria-label="Previous artwork">&lsaquo;</button>
       <button class="art-arrow next" id="easelNext" aria-label="Next artwork">&rsaquo;</button>
-    </div>
-
-    <div class="mosaic-photos" data-lightbox-group>
-    <figure class="tile photo t-hall"><img class="zoomable" data-show-caption="true" src="/travel-hallstatt.jpeg" alt="Hallstatt, Austria" loading="lazy"><figcaption>Hallstatt</figcaption></figure>
-    <figure class="tile photo t-pch"><img class="zoomable" data-show-caption="true" src="/travel-pch.jpg" alt="Pacific Coast Highway, CA" loading="lazy"><figcaption>Pacific Coast Highway</figcaption></figure>
-    <figure class="tile photo t-chiang"><img class="zoomable" data-show-caption="true" src="/travel-chiangmai.jpeg" alt="Chiang Mai, Thailand" loading="lazy"><figcaption>Chiang Mai</figcaption></figure>
-    <figure class="tile photo t-jt"><img class="zoomable" data-show-caption="true" src="/travel-joshuatree.jpeg" alt="Joshua Tree, CA" loading="lazy"><figcaption>Joshua Tree</figcaption></figure>
-    <figure class="tile photo t-seoul"><img class="zoomable" data-show-caption="true" src="/travel-seoul.jpg" alt="Seoul, S. Korea" loading="lazy"><figcaption>Seoul</figcaption></figure>
-    <figure class="tile photo t-sant"><img class="zoomable" data-show-caption="true" src="/travel-santorini.jpeg" alt="Santorini, Greece" loading="lazy"><figcaption>Santorini</figcaption></figure>
-    <figure class="tile photo t-yang"><img class="zoomable" data-show-caption="true" src="/travel-yangshuo.jpeg" alt="Yangshuo, China" loading="lazy"><figcaption>Yangshuo</figcaption></figure>
-    <figure class="tile photo t-bled"><img class="zoomable" data-show-caption="true" src="/travel-lakebled.jpeg" alt="Lake Bled, Slovenia" loading="lazy"><figcaption>Lake Bled</figcaption></figure>
-    <figure class="tile photo t-sd"><img class="zoomable" data-show-caption="true" src="/travel-sandiego.jpeg" alt="San Diego, CA" loading="lazy"><figcaption>San Diego</figcaption></figure>
     </div>
 
     <div class="tile panel t-tv" id="physical">
@@ -294,9 +265,8 @@
 <script>
 (function(){
   var paintings = [
-    ["/painting-3.jpg", "Fall Colors, 2021", "Acrylic on Canvas"],
-    ["/painting-1.jpg", "Winter Colors, 2021", "Acrylic on Canvas"],
     ["/painting-2.jpg", "Beach, 2022", "Acrylic on Canvas"],
+    ["/painting-3.jpg", "Fall Colors, 2021", "Acrylic on Canvas"],
     ["/painting-flowers.jpg", "Flowers, 2025", "Oil Pastel on Paper"]
   ];
   var idx = 0;
@@ -319,6 +289,12 @@
     countEl.textContent = pad(idx + 1) + ' / ' + pad(paintings.length);
     thumbs.forEach(function(t, i){ t.classList.toggle('active', i === idx); });
   }
+
+  window.lightboxStrip = {
+    items: paintings.map(function(p){ return {src:p[0], label:p[1]}; }),
+    index: function(){ return idx; },
+    set: function(i){ idx = i; render(); }
+  };
 
   function go(delta){
     idx = (idx + delta + paintings.length) % paintings.length;
