@@ -1149,3 +1149,8 @@ button, input, textarea, select{ font-family:'Jost', sans-serif; }
 
 /* For the Record: descriptor words match the right-hand column colour */
 .spec-row span:first-child .spec-white{ color:var(--ink); }
+
+/* Blue = opens in a new tab (only: Cass Was Here + the YouTube playlist links) */
+.noir .spec-row a[href*="substack"]{ color:var(--blue); }
+.noir .spec-row a[href*="substack"]:hover{ color:var(--blue-deep); }
+.noir .playlist-link-inner{ color:var(--blue); }
