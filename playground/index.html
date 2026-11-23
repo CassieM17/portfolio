@@ -70,16 +70,16 @@
   .art-tile > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; cursor:zoom-in; }
   .art-cap{ position:absolute; left:0; right:0; bottom:0; display:flex; justify-content:space-between; align-items:baseline; gap:0.8rem; padding:1.6rem 0.9rem 0.7rem; pointer-events:none;
             background:linear-gradient(to top, rgba(0,0,0,0.65), rgba(0,0,0,0)); font:300 0.7rem 'Josefin Sans',sans-serif; letter-spacing:0.2em; text-transform:uppercase; color:#fff; }
-  .art-count{ color:var(--brown); opacity:0.95; }
+  .art-count{ color:#fff; opacity:0.85; }
   .art-arrow{ position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.6); background:rgba(0,0,0,0.38); color:#fff; font-size:1.25rem; line-height:1; cursor:pointer; z-index:3; transition:background .2s, border-color .2s; }
   .art-arrow:hover{ background:var(--brown); border-color:var(--brown); }
   .art-arrow.prev{ left:10px; } .art-arrow.next{ right:10px; }
   @media (max-width:900px){
     .mosaic{ grid-template-columns:1fr; }
     .mosaic .t-cam, .mosaic .t-tv, .mosaic .t-art{ grid-column:1 !important; grid-row:auto !important; }
-    .mosaic .t-art{ aspect-ratio:4/5; min-height:0; order:3; }
+    .mosaic .t-art{ aspect-ratio:4/5; min-height:0; order:2; }
     .mosaic .t-cam{ order:1; padding:2.4rem 0.7rem 0.9rem; }
-    .mosaic .t-tv{ order:2; padding:2.6rem 0.6rem 1rem; }
+    .mosaic .t-tv{ order:3; padding:2.6rem 0.6rem 1rem; }
     .t-cam .photo-viewer-section{ flex-direction:column; align-items:center; }
     .t-cam .photo-roll{ flex-direction:row; width:100%; max-height:none; overflow-x:auto; overflow-y:hidden; }
     .t-cam .photo-roll-item{ flex:0 0 70px; width:70px; }
@@ -378,7 +378,6 @@
   <div class="footer-inner">
     <div class="footer-nav">
       <a href="/">Home</a>
-      <a href="/#resume-anchor">Work</a>
       <a href="/violin/">Violin</a>
       <a href="/about/">About</a>
     </div>
