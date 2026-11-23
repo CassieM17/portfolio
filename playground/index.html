@@ -74,10 +74,10 @@
   .art-arrow{ position:absolute; top:50%; transform:translateY(-50%); width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,0.6); background:rgba(0,0,0,0.38); color:#fff; font-size:1.25rem; line-height:1; cursor:pointer; z-index:3; transition:background .2s, border-color .2s; }
   .art-arrow:hover{ background:var(--brown); border-color:var(--brown); }
   .art-arrow.prev{ left:10px; } .art-arrow.next{ right:10px; }
-  @media (max-width:900px){
+  @media (max-width:1000px){
     .mosaic{ grid-template-columns:1fr; }
     .mosaic .t-cam, .mosaic .t-tv, .mosaic .t-art{ grid-column:1 !important; grid-row:auto !important; }
-    .mosaic .t-art{ aspect-ratio:4/5; min-height:0; order:2; }
+    .mosaic .t-art{ order:2; align-self:start; height:0; min-height:0; padding-bottom:68%; width:100%; }
     .mosaic .t-cam{ order:1; padding:2.4rem 0.7rem 0.9rem; }
     .mosaic .t-tv{ order:3; padding:2.6rem 0.6rem 1rem; }
     .t-cam .photo-viewer-section{ flex-direction:column; align-items:center; }
